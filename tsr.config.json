@@ -1,9 +1,0 @@
-
-{
-  "routesDirectory": "./src/pages",
-  "generatedRouteTree": "./src/routeTree.gen.ts",
-  "routeFilePrefix": "~",
-  "autoCodeSplitting": true,
-  "routeFileIgnorePrefix": "-",
-  "quoteStyle": "single"
-}
