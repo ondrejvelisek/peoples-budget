@@ -10,5 +10,5 @@
 html,
 body,
 #root {
-  @apply bg-sand-200 h-full;
+  @apply bg-sand-200 size-full;
 }

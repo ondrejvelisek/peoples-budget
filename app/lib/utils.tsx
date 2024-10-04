@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import type { FC, PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -38,3 +39,14 @@ export function seo({
 
   return tags;
 }
+
+export const withProviders =
+  <P extends object>(...providers: Array<FC<PropsWithChildren>>) =>
+  (WrappedComponent: FC<P>): FC<P> =>
+  (props: P) =>
+    providers.reduceRight(
+      (acc, Provider) => {
+        return <Provider>{acc}</Provider>;
+      },
+      <WrappedComponent {...props} />
+    );
