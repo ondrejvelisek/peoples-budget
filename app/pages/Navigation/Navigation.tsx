@@ -18,7 +18,7 @@ import {
 
 const Navigation: FC<PropsWithChildren> = ({ children }) => {
   const [isOpen, { toggle: toggleOpen, close }] = useNavigationOpenState();
-  const [isCondese, { toggle: toggleCondese }] = useNavigationCondenseState();
+  const [isCondese, setIsCondense] = useNavigationCondenseState();
 
   return (
     <div className="relative flex size-full overflow-hidden">
@@ -47,7 +47,7 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
 
           <Button
             variant="ghost"
-            onClick={toggleCondese}
+            onClick={() => setIsCondense((prev) => !prev)}
             className={cn("hidden transition-transform md:block", {
               "-translate-x-[calc(220px-100%)]": isCondese,
               "text-sand-500": !isCondese,

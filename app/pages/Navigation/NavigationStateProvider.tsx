@@ -1,14 +1,14 @@
-import { useDisclosure } from "@mantine/hooks";
 import {
   createContext,
   useContext,
   type FC,
   type PropsWithChildren,
 } from "react";
+import { useDisclosure, useLocalStorage } from "@mantine/hooks";
 
 type NavigationOpenState = ReturnType<typeof useDisclosure>;
 
-type NavigationCondenseState = ReturnType<typeof useDisclosure>;
+type NavigationCondenseState = ReturnType<typeof useLocalStorage<boolean>>;
 
 const NavigationStateContext = createContext<
   { open: NavigationOpenState; condense: NavigationCondenseState } | undefined
@@ -34,9 +34,14 @@ export const useNavigationCondenseState = (): NavigationCondenseState => {
   return context.condense;
 };
 
-export const NavigationStateProvider: FC<PropsWithChildren> = ({ children }) => {
+export const NavigationStateProvider: FC<PropsWithChildren> = ({
+  children,
+}) => {
   const open = useDisclosure(false);
-  const condense = useDisclosure(false);
+  const condense = useLocalStorage<boolean>({
+    key: "navigation-condensed",
+    defaultValue: false,
+  });
 
   return (
     <NavigationStateContext.Provider
