@@ -10,6 +10,7 @@ import mainCss from "../main.css?url";
 
 import { StrictMode } from "react";
 import { seo } from "@/lib/utils";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -38,9 +39,11 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Navigation>
-        <Outlet />
-      </Navigation>
+      <TooltipProvider>
+        <Navigation>
+          <Outlet />
+        </Navigation>
+      </TooltipProvider>
     </RootDocument>
   );
 }

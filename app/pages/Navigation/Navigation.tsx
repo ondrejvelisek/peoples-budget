@@ -11,6 +11,12 @@ import { cn, withProviders } from "@/lib/utils";
 import { NavigationMenu } from "./NavigationMenu";
 import { GiLion } from "react-icons/gi";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+import {
   NavigationStateProvider,
   useNavigationCondenseState,
   useNavigationOpenState,
@@ -45,20 +51,30 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
             )}
           </Button>
 
-          <Button
-            variant="ghost"
-            onClick={() => setIsCondense((prev) => !prev)}
-            className={cn("hidden transition-transform md:block", {
-              "-translate-x-[calc(220px-100%)]": isCondese,
-              "text-sand-500": !isCondese,
-            })}
+          <Tooltip
+            disableHoverableContent
+            delayDuration={isCondese ? 100 : 500}
           >
-            {isCondese ? (
-              <TbLayoutSidebarLeftExpandFilled className="scale-150" />
-            ) : (
-              <TbLayoutSidebarLeftCollapseFilled className="scale-150" />
-            )}
-          </Button>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                onClick={() => setIsCondense(!isCondese)}
+                className={cn("hidden transition-transform md:block", {
+                  "-translate-x-[calc(220px-100%)]": isCondese,
+                  "text-sand-500": !isCondese,
+                })}
+              >
+                {isCondese ? (
+                  <TbLayoutSidebarLeftExpandFilled className="scale-150" />
+                ) : (
+                  <TbLayoutSidebarLeftCollapseFilled className="scale-150" />
+                )}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side={isCondese ? "right" : "bottom"} asChild>
+              <p>{isCondese ? "Rozbalit menu" : "Sbalit menu"}</p>
+            </TooltipContent>
+          </Tooltip>
         </nav>
         <div
           className={cn(
@@ -70,16 +86,37 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
         >
           <div />
           <NavigationMenu className="pr-2" onItemClick={close} />
-          <footer className="px-4 py-3 pr-2 text-xs leading-loose text-sand-400">
-            <span className={cn({ "inline md:hidden": isCondese })}>
-              Vytvořeno s{" "}
-            </span>
-            <span className="text-rose-400">♥︎</span>
-            <span className={cn({ "inline md:hidden": isCondese })}>
-              {" "}
-              v Česku
-            </span>
-          </footer>
+
+          <Tooltip delayDuration={100} disableHoverableContent>
+            <TooltipTrigger asChild>
+              <footer className="w-fit px-4 py-3 pr-2 text-xs leading-loose text-sand-400">
+                <span
+                  className={cn({ "inline md:hidden md:size-0": isCondese })}
+                >
+                  Vytvořeno s{" "}
+                </span>
+                <span className="text-rose-400">♥︎</span>
+                <span
+                  className={cn({ "inline md:hidden md:size-0": isCondese })}
+                >
+                  {" "}
+                  k Česku
+                </span>
+              </footer>
+            </TooltipTrigger>
+            {isCondese && (
+              <TooltipContent
+                side="right"
+                sideOffset={6}
+                asChild
+                className="m-0 hidden bg-sand-200 text-sand-500 shadow-none md:block"
+              >
+                <div className="border-none p-3 pl-1 text-xs leading-loose">
+                  Vytvořeno s láskou k Česku
+                </div>
+              </TooltipContent>
+            )}
+          </Tooltip>
         </div>
       </div>
 
