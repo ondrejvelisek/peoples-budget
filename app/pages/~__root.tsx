@@ -3,15 +3,13 @@ import {
   ScrollRestoration,
   createRootRoute,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import { Navigation } from "./Navigation";
+import { Navigation } from "./Navigation/Navigation";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 
 import mainCss from "../main.css?url";
 
 import { StrictMode } from "react";
 import { seo } from "@/lib/utils";
-import { ColorPalette } from "./ColorPalette";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -31,7 +29,7 @@ export const Route = createRootRoute({
       která Vám umožní prozkoumat státní rozpočet České republiky a zjistit, kam putují.
       Vyzkoušejte si, jak byste rozdělili peníze Vy! Sdílejte své nápady a názory s ostatními.`,
       keywords:
-        "Rozpočet národa, rozpočet, státní rozpočet, finance, peníze, česká republika, interaktivní, výdaje, příjmy",
+        "Lidový rozpočet, Rozpočet lidu, Rozpočet národa, rozpočet, státní rozpočet, finance, peníze, česká republika, interaktivní, výdaje, příjmy",
     }),
   ],
   links: () => [{ rel: "stylesheet", href: mainCss }],
@@ -50,11 +48,11 @@ function RootComponent() {
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <StrictMode>
-      <Html className="h-full bg-sand-200">
+      <Html>
         <Head>
           <Meta />
         </Head>
-        <Body className="h-full bg-sand-200" style={{ height: "100%" }}>
+        <Body>
           {children}
           <ScrollRestoration />
           <Scripts />

@@ -2,10 +2,11 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint, { config } from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
+import tailwind from "eslint-plugin-tailwindcss";
 
 export default config(
   {
-    ignores: ["**/dist/"],
+    ignores: ["**/dist/", "**/.vinxi/", "**/.output/"],
   },
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
@@ -17,6 +18,26 @@ export default config(
   {
     rules: {
       "react/react-in-jsx-scope": "off",
+    },
+  },
+  ...tailwind.configs["flat/recommended"],
+  {
+    settings: {
+      tailwindcss: {
+        // These are the default values but feel free to customize
+        callees: ["cn"],
+        config: "tailwind.config.ts", // returned from `loadConfig()` utility if not provided
+        removeDuplicates: true,
+      },
+    },
+  },
+  {
+    files: ["**/app/components/ui/**/*.{ts,tsx}"],
+    rules: {
+      "react/prop-types": "off",
+      "tailwindcss/classnames-order": "off",
+      "tailwindcss/no-contradicting-classname": "off",
+      "tailwindcss/no-unnecessary-arbitrary-value": "off",
     },
   }
 );

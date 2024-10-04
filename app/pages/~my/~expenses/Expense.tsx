@@ -1,5 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { findByName, findParent, type ExpenseItem } from "../../data/expenses";
+import {
+  findByName,
+  findParent,
+  type ExpenseItem,
+} from "../../../data/expenses";
 import ExpenseChild from "./ExpenseChild";
 
 export default function Expense({ name }: { name: string }) {
@@ -15,7 +19,7 @@ export default function Expense({ name }: { name: string }) {
       <div className="">
         {parent && (
           <Link
-            to="/expenses/$expenseName"
+            to="/my/expenses/$expenseName"
             params={{ expenseName: parent.name }}
           >
             Back
@@ -34,7 +38,10 @@ export default function Expense({ name }: { name: string }) {
   return (
     <div className="">
       {parent && (
-        <Link to="/expenses/$expenseName" params={{ expenseName: parent.name }}>
+        <Link
+          to="/my/expenses/$expenseName"
+          params={{ expenseName: parent.name }}
+        >
           Back
         </Link>
       )}

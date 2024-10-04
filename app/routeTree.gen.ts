@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './pages/~__root'
 import { Route as IndexImport } from './pages/~index'
+import { Route as SupportIndexImport } from './pages/~support/~index'
 import { Route as PublishedIndexImport } from './pages/~published/~index'
 import { Route as MyIndexImport } from './pages/~my/~index'
 import { Route as CompareIndexImport } from './pages/~compare/~index'
@@ -26,6 +27,11 @@ import { Route as MyExpensesIndexImport } from './pages/~my/~expenses/~index'
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SupportIndexRoute = SupportIndexImport.update({
+  path: '/support/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -127,6 +133,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublishedIndexImport
       parentRoute: typeof rootRoute
     }
+    '/support/': {
+      id: '/support/'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/my/expenses/': {
       id: '/my/expenses/'
       path: '/my/expenses'
@@ -161,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/compare': typeof CompareIndexRoute
   '/my': typeof MyIndexRoute
   '/published': typeof PublishedIndexRoute
+  '/support': typeof SupportIndexRoute
   '/my/expenses': typeof MyExpensesIndexRoute
   '/my/incomes': typeof MyIncomesIndexRoute
   '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
@@ -174,6 +188,7 @@ export interface FileRoutesByTo {
   '/compare': typeof CompareIndexRoute
   '/my': typeof MyIndexRoute
   '/published': typeof PublishedIndexRoute
+  '/support': typeof SupportIndexRoute
   '/my/expenses': typeof MyExpensesIndexRoute
   '/my/incomes': typeof MyIncomesIndexRoute
   '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
@@ -188,6 +203,7 @@ export interface FileRoutesById {
   '/compare/': typeof CompareIndexRoute
   '/my/': typeof MyIndexRoute
   '/published/': typeof PublishedIndexRoute
+  '/support/': typeof SupportIndexRoute
   '/my/expenses/': typeof MyExpensesIndexRoute
   '/my/incomes/': typeof MyIncomesIndexRoute
   '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
@@ -203,6 +219,7 @@ export interface FileRouteTypes {
     | '/compare'
     | '/my'
     | '/published'
+    | '/support'
     | '/my/expenses'
     | '/my/incomes'
     | '/my/expenses/$expenseName'
@@ -215,6 +232,7 @@ export interface FileRouteTypes {
     | '/compare'
     | '/my'
     | '/published'
+    | '/support'
     | '/my/expenses'
     | '/my/incomes'
     | '/my/expenses/$expenseName'
@@ -227,6 +245,7 @@ export interface FileRouteTypes {
     | '/compare/'
     | '/my/'
     | '/published/'
+    | '/support/'
     | '/my/expenses/'
     | '/my/incomes/'
     | '/my/expenses/$expenseName'
@@ -241,6 +260,7 @@ export interface RootRouteChildren {
   CompareIndexRoute: typeof CompareIndexRoute
   MyIndexRoute: typeof MyIndexRoute
   PublishedIndexRoute: typeof PublishedIndexRoute
+  SupportIndexRoute: typeof SupportIndexRoute
   MyExpensesIndexRoute: typeof MyExpensesIndexRoute
   MyIncomesIndexRoute: typeof MyIncomesIndexRoute
   MyExpensesExpenseNameRoute: typeof MyExpensesExpenseNameRoute
@@ -254,6 +274,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompareIndexRoute: CompareIndexRoute,
   MyIndexRoute: MyIndexRoute,
   PublishedIndexRoute: PublishedIndexRoute,
+  SupportIndexRoute: SupportIndexRoute,
   MyExpensesIndexRoute: MyExpensesIndexRoute,
   MyIncomesIndexRoute: MyIncomesIndexRoute,
   MyExpensesExpenseNameRoute: MyExpensesExpenseNameRoute,
@@ -278,6 +299,7 @@ export const routeTree = rootRoute
         "/compare/",
         "/my/",
         "/published/",
+        "/support/",
         "/my/expenses/",
         "/my/incomes/",
         "/my/expenses/$expenseName"
@@ -303,6 +325,9 @@ export const routeTree = rootRoute
     },
     "/published/": {
       "filePath": "~published/~index.tsx"
+    },
+    "/support/": {
+      "filePath": "~support/~index.tsx"
     },
     "/my/expenses/": {
       "filePath": "~my/~expenses/~index.tsx"

@@ -5,6 +5,7 @@ import {
   RiTimeLine,
   RiScales3Line,
   RiHome3Line,
+  RiHandHeartLine,
 } from "react-icons/ri";
 
 import { GrGroup } from "react-icons/gr";
@@ -18,7 +19,7 @@ export const NavigationMenu: FC<{
 }> = ({ className, onItemClick }) => {
   return (
     <nav>
-      <ul className={cn("flex flex-col gap-6 items-start", className)}>
+      <ul className={cn("flex flex-col items-start gap-4", className)}>
         <NavigationItem to="/" onClick={onItemClick} Icon={RiHome3Line}>
           O projektu
         </NavigationItem>
@@ -35,15 +36,15 @@ export const NavigationMenu: FC<{
         <NavigationItem to="/my" onClick={onItemClick} Icon={RiUser3Line}>
           Můj rozpočet
         </NavigationItem>
+        <NavigationItem to="/published" onClick={onItemClick} Icon={GrGroup}>
+          Rozpočty lidí
+        </NavigationItem>
         <NavigationItem
           to="/agregated"
           onClick={onItemClick}
           Icon={TbArrowsMinimize}
         >
-          Lidový rozpočet
-        </NavigationItem>
-        <NavigationItem to="/published" onClick={onItemClick} Icon={GrGroup}>
-          Zveřejněné rozpočty
+          Agregovaný rozpočet
         </NavigationItem>
         <NavigationItem
           to="/compare"
@@ -51,6 +52,13 @@ export const NavigationMenu: FC<{
           Icon={RiScales3Line}
         >
           Porovnat rozpočty
+        </NavigationItem>
+        <NavigationItem
+          to="/support"
+          onClick={onItemClick}
+          Icon={RiHandHeartLine}
+        >
+          Podpořit projekt
         </NavigationItem>
       </ul>
     </nav>

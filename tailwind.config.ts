@@ -1,9 +1,10 @@
 import type { Config } from "tailwindcss";
+import tailwindAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
   content: ["./app/**/*.{js,jsx,ts,tsx,html}"],
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindAnimate],
   theme: {
     extend: {
       borderRadius: {
