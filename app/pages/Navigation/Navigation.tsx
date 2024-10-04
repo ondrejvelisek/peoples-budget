@@ -78,14 +78,14 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
         </nav>
         <div
           className={cn(
-            "flex grow -translate-x-3/4 scale-90 flex-col justify-between transition-all md:min-w-fit md:translate-x-0 md:scale-100 ",
+            "flex grow -translate-x-3/4 scale-90 flex-col justify-between overflow-y-auto transition-all md:min-w-fit md:translate-x-0 md:scale-100",
             {
               "translate-x-0 scale-100": isOpen,
             }
           )}
         >
           <div />
-          <NavigationMenu className="pr-2" onItemClick={close} />
+          <NavigationMenu className="pr-2 pt-2" onItemClick={close} />
 
           <Tooltip delayDuration={100} disableHoverableContent>
             <TooltipTrigger asChild>

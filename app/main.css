@@ -12,3 +12,7 @@ body,
 #root {
   @apply bg-sand-200 size-full;
 }
+
+* {
+  @apply scrollbar-thin scrollbar-thumb-sand-500/20 hover:scrollbar-thumb-sand-500/30 active:scrollbar-thumb-sand-500/25 scrollbar-track-transparent;
+}
