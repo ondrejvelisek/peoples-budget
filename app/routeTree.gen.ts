@@ -12,9 +12,15 @@
 
 import { Route as rootRoute } from './pages/~__root'
 import { Route as IndexImport } from './pages/~index'
-import { Route as ExpensesExpenseNameImport } from './pages/~expenses/~$expenseName'
-import { Route as IncomesIndexImport } from './pages/~incomes/~index'
-import { Route as ExpensesIndexImport } from './pages/~expenses/~index'
+import { Route as PublishedIndexImport } from './pages/~published/~index'
+import { Route as MyIndexImport } from './pages/~my/~index'
+import { Route as CompareIndexImport } from './pages/~compare/~index'
+import { Route as AgregatedIndexImport } from './pages/~agregated/~index'
+import { Route as R2025IndexImport } from './pages/~2025/~index'
+import { Route as R2024IndexImport } from './pages/~2024/~index'
+import { Route as MyExpensesExpenseNameImport } from './pages/~my/~expenses/~$expenseName'
+import { Route as MyIncomesIndexImport } from './pages/~my/~incomes/~index'
+import { Route as MyExpensesIndexImport } from './pages/~my/~expenses/~index'
 
 // Create/Update Routes
 
@@ -23,18 +29,48 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ExpensesExpenseNameRoute = ExpensesExpenseNameImport.update({
-  path: '/expenses/$expenseName',
+const PublishedIndexRoute = PublishedIndexImport.update({
+  path: '/published/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const IncomesIndexRoute = IncomesIndexImport.update({
-  path: '/incomes/',
+const MyIndexRoute = MyIndexImport.update({
+  path: '/my/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const ExpensesIndexRoute = ExpensesIndexImport.update({
-  path: '/expenses/',
+const CompareIndexRoute = CompareIndexImport.update({
+  path: '/compare/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AgregatedIndexRoute = AgregatedIndexImport.update({
+  path: '/agregated/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const R2025IndexRoute = R2025IndexImport.update({
+  path: '/2025/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const R2024IndexRoute = R2024IndexImport.update({
+  path: '/2024/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MyExpensesExpenseNameRoute = MyExpensesExpenseNameImport.update({
+  path: '/my/expenses/$expenseName',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MyIncomesIndexRoute = MyIncomesIndexImport.update({
+  path: '/my/incomes/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MyExpensesIndexRoute = MyExpensesIndexImport.update({
+  path: '/my/expenses/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -49,25 +85,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/expenses/': {
-      id: '/expenses/'
-      path: '/expenses'
-      fullPath: '/expenses'
-      preLoaderRoute: typeof ExpensesIndexImport
+    '/2024/': {
+      id: '/2024/'
+      path: '/2024'
+      fullPath: '/2024'
+      preLoaderRoute: typeof R2024IndexImport
       parentRoute: typeof rootRoute
     }
-    '/incomes/': {
-      id: '/incomes/'
-      path: '/incomes'
-      fullPath: '/incomes'
-      preLoaderRoute: typeof IncomesIndexImport
+    '/2025/': {
+      id: '/2025/'
+      path: '/2025'
+      fullPath: '/2025'
+      preLoaderRoute: typeof R2025IndexImport
       parentRoute: typeof rootRoute
     }
-    '/expenses/$expenseName': {
-      id: '/expenses/$expenseName'
-      path: '/expenses/$expenseName'
-      fullPath: '/expenses/$expenseName'
-      preLoaderRoute: typeof ExpensesExpenseNameImport
+    '/agregated/': {
+      id: '/agregated/'
+      path: '/agregated'
+      fullPath: '/agregated'
+      preLoaderRoute: typeof AgregatedIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/compare/': {
+      id: '/compare/'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/my/': {
+      id: '/my/'
+      path: '/my'
+      fullPath: '/my'
+      preLoaderRoute: typeof MyIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/published/': {
+      id: '/published/'
+      path: '/published'
+      fullPath: '/published'
+      preLoaderRoute: typeof PublishedIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/my/expenses/': {
+      id: '/my/expenses/'
+      path: '/my/expenses'
+      fullPath: '/my/expenses'
+      preLoaderRoute: typeof MyExpensesIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/my/incomes/': {
+      id: '/my/incomes/'
+      path: '/my/incomes'
+      fullPath: '/my/incomes'
+      preLoaderRoute: typeof MyIncomesIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/my/expenses/$expenseName': {
+      id: '/my/expenses/$expenseName'
+      path: '/my/expenses/$expenseName'
+      fullPath: '/my/expenses/$expenseName'
+      preLoaderRoute: typeof MyExpensesExpenseNameImport
       parentRoute: typeof rootRoute
     }
   }
@@ -77,47 +155,108 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/expenses': typeof ExpensesIndexRoute
-  '/incomes': typeof IncomesIndexRoute
-  '/expenses/$expenseName': typeof ExpensesExpenseNameRoute
+  '/2024': typeof R2024IndexRoute
+  '/2025': typeof R2025IndexRoute
+  '/agregated': typeof AgregatedIndexRoute
+  '/compare': typeof CompareIndexRoute
+  '/my': typeof MyIndexRoute
+  '/published': typeof PublishedIndexRoute
+  '/my/expenses': typeof MyExpensesIndexRoute
+  '/my/incomes': typeof MyIncomesIndexRoute
+  '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/expenses': typeof ExpensesIndexRoute
-  '/incomes': typeof IncomesIndexRoute
-  '/expenses/$expenseName': typeof ExpensesExpenseNameRoute
+  '/2024': typeof R2024IndexRoute
+  '/2025': typeof R2025IndexRoute
+  '/agregated': typeof AgregatedIndexRoute
+  '/compare': typeof CompareIndexRoute
+  '/my': typeof MyIndexRoute
+  '/published': typeof PublishedIndexRoute
+  '/my/expenses': typeof MyExpensesIndexRoute
+  '/my/incomes': typeof MyIncomesIndexRoute
+  '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/expenses/': typeof ExpensesIndexRoute
-  '/incomes/': typeof IncomesIndexRoute
-  '/expenses/$expenseName': typeof ExpensesExpenseNameRoute
+  '/2024/': typeof R2024IndexRoute
+  '/2025/': typeof R2025IndexRoute
+  '/agregated/': typeof AgregatedIndexRoute
+  '/compare/': typeof CompareIndexRoute
+  '/my/': typeof MyIndexRoute
+  '/published/': typeof PublishedIndexRoute
+  '/my/expenses/': typeof MyExpensesIndexRoute
+  '/my/incomes/': typeof MyIncomesIndexRoute
+  '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/expenses' | '/incomes' | '/expenses/$expenseName'
+  fullPaths:
+    | '/'
+    | '/2024'
+    | '/2025'
+    | '/agregated'
+    | '/compare'
+    | '/my'
+    | '/published'
+    | '/my/expenses'
+    | '/my/incomes'
+    | '/my/expenses/$expenseName'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/expenses' | '/incomes' | '/expenses/$expenseName'
-  id: '__root__' | '/' | '/expenses/' | '/incomes/' | '/expenses/$expenseName'
+  to:
+    | '/'
+    | '/2024'
+    | '/2025'
+    | '/agregated'
+    | '/compare'
+    | '/my'
+    | '/published'
+    | '/my/expenses'
+    | '/my/incomes'
+    | '/my/expenses/$expenseName'
+  id:
+    | '__root__'
+    | '/'
+    | '/2024/'
+    | '/2025/'
+    | '/agregated/'
+    | '/compare/'
+    | '/my/'
+    | '/published/'
+    | '/my/expenses/'
+    | '/my/incomes/'
+    | '/my/expenses/$expenseName'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ExpensesIndexRoute: typeof ExpensesIndexRoute
-  IncomesIndexRoute: typeof IncomesIndexRoute
-  ExpensesExpenseNameRoute: typeof ExpensesExpenseNameRoute
+  R2024IndexRoute: typeof R2024IndexRoute
+  R2025IndexRoute: typeof R2025IndexRoute
+  AgregatedIndexRoute: typeof AgregatedIndexRoute
+  CompareIndexRoute: typeof CompareIndexRoute
+  MyIndexRoute: typeof MyIndexRoute
+  PublishedIndexRoute: typeof PublishedIndexRoute
+  MyExpensesIndexRoute: typeof MyExpensesIndexRoute
+  MyIncomesIndexRoute: typeof MyIncomesIndexRoute
+  MyExpensesExpenseNameRoute: typeof MyExpensesExpenseNameRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ExpensesIndexRoute: ExpensesIndexRoute,
-  IncomesIndexRoute: IncomesIndexRoute,
-  ExpensesExpenseNameRoute: ExpensesExpenseNameRoute,
+  R2024IndexRoute: R2024IndexRoute,
+  R2025IndexRoute: R2025IndexRoute,
+  AgregatedIndexRoute: AgregatedIndexRoute,
+  CompareIndexRoute: CompareIndexRoute,
+  MyIndexRoute: MyIndexRoute,
+  PublishedIndexRoute: PublishedIndexRoute,
+  MyExpensesIndexRoute: MyExpensesIndexRoute,
+  MyIncomesIndexRoute: MyIncomesIndexRoute,
+  MyExpensesExpenseNameRoute: MyExpensesExpenseNameRoute,
 }
 
 export const routeTree = rootRoute
@@ -133,22 +272,46 @@ export const routeTree = rootRoute
       "filePath": "~__root.tsx",
       "children": [
         "/",
-        "/expenses/",
-        "/incomes/",
-        "/expenses/$expenseName"
+        "/2024/",
+        "/2025/",
+        "/agregated/",
+        "/compare/",
+        "/my/",
+        "/published/",
+        "/my/expenses/",
+        "/my/incomes/",
+        "/my/expenses/$expenseName"
       ]
     },
     "/": {
       "filePath": "~index.tsx"
     },
-    "/expenses/": {
-      "filePath": "~expenses/~index.tsx"
+    "/2024/": {
+      "filePath": "~2024/~index.tsx"
     },
-    "/incomes/": {
-      "filePath": "~incomes/~index.tsx"
+    "/2025/": {
+      "filePath": "~2025/~index.tsx"
     },
-    "/expenses/$expenseName": {
-      "filePath": "~expenses/~$expenseName.tsx"
+    "/agregated/": {
+      "filePath": "~agregated/~index.tsx"
+    },
+    "/compare/": {
+      "filePath": "~compare/~index.tsx"
+    },
+    "/my/": {
+      "filePath": "~my/~index.tsx"
+    },
+    "/published/": {
+      "filePath": "~published/~index.tsx"
+    },
+    "/my/expenses/": {
+      "filePath": "~my/~expenses/~index.tsx"
+    },
+    "/my/incomes/": {
+      "filePath": "~my/~incomes/~index.tsx"
+    },
+    "/my/expenses/$expenseName": {
+      "filePath": "~my/~expenses/~$expenseName.tsx"
     }
   }
 }

@@ -4,13 +4,14 @@ import {
   createRootRoute,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import { Navbar } from "./Navbar";
+import { Navigation } from "./Navigation";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 
 import mainCss from "../main.css?url";
 
 import { StrictMode } from "react";
 import { seo } from "@/lib/utils";
+import { ColorPalette } from "./ColorPalette";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -39,8 +40,9 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Navbar />
-      <Outlet />
+      <Navigation>
+        <Outlet />
+      </Navigation>
     </RootDocument>
   );
 }
@@ -48,14 +50,13 @@ function RootComponent() {
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <StrictMode>
-      <Html>
+      <Html className="h-full bg-sand-200">
         <Head>
           <Meta />
         </Head>
-        <Body>
+        <Body className="h-full bg-sand-200" style={{ height: "100%" }}>
           {children}
           <ScrollRestoration />
-          <TanStackRouterDevtools position="bottom-right" />
           <Scripts />
         </Body>
       </Html>

@@ -3,6 +3,12 @@
 @tailwind utilities;
 @layer base {
   :root {
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
+}
+
+html,
+body,
+#root {
+  @apply bg-sand-200 h-full;
 }
