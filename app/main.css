@@ -10,7 +10,7 @@
 html,
 body,
 #root {
-  @apply bg-sand-200 size-full;
+  @apply bg-sand-200 size-full text-[110%];
 }
 
 * {

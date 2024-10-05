@@ -18,7 +18,7 @@ export const useNavigationOpenState = (): NavigationOpenState => {
   const context = useContext(NavigationStateContext);
   if (!context) {
     throw new Error(
-      "useNavigationOpen must be used within a NavigationProvider"
+      "useNavigationOpenState must be used within a NavigationStateProvider"
     );
   }
   return context.open;
@@ -28,7 +28,7 @@ export const useNavigationCondenseState = (): NavigationCondenseState => {
   const context = useContext(NavigationStateContext);
   if (!context) {
     throw new Error(
-      "useNavigationCondense must be used within a NavigationProvider"
+      "useNavigationCondenseState must be used within a NavigationStateProvider"
     );
   }
   return context.condense;
