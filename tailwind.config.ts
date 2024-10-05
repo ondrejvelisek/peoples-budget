@@ -30,6 +30,9 @@ export default {
           950: "#14100D",
         },
       },
+      fontSize: {
+        "2xs": "0.625rem",
+      },
     },
   },
 } satisfies Config;

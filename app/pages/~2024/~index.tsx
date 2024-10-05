@@ -1,3 +1,4 @@
+import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/2024/")({
@@ -5,9 +6,5 @@ export const Route = createFileRoute("/2024/")({
 });
 
 function Home() {
-  return (
-    <div className="p-4">
-      <h1>Vládní rozpočet 2024</h1>
-    </div>
-  );
+  return <ExpensesExplorer />;
 }

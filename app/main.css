@@ -7,10 +7,14 @@
   }
 }
 
+:root {
+  @apply text-[110%];
+}
+
 html,
 body,
 #root {
-  @apply bg-sand-200 size-full text-[110%];
+  @apply bg-sand-200 size-full;
 }
 
 * {
