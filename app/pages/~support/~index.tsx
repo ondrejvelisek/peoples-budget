@@ -1,13 +1,13 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/support/')({
-  component: Home,
-})
+export const Route = createFileRoute("/support/")({
+  component: Page,
+});
 
-function Home() {
+function Page() {
   return (
     <div className="p-4">
       <h1>Podpořit projekt</h1>
     </div>
-  )
+  );
 }

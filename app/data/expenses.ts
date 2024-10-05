@@ -1,3 +1,6 @@
+import { useBudget } from "@/components/BudgetProvider/BudgetProvider";
+import { sum } from "lodash";
+
 type ExpenseItemExample = {
   title: string;
   amount: number;
@@ -179,7 +182,7 @@ export const expenses: ExpenseInnerItem = {
 export function findByName(
   name: string,
   item: ExpenseItem = expenses
-): ExpenseItem | null {
+): ExpenseItem | undefined {
   if (item.name === name) {
     return item;
   }
@@ -192,14 +195,12 @@ export function findByName(
       }
     }
   }
-
-  return null;
 }
 
 export function findParent(
   name: string,
   item: ExpenseItem = expenses
-): ExpenseItem | null {
+): ExpenseItem | undefined {
   if ("children" in item) {
     for (const child of item.children) {
       if (child.name === name) {
@@ -212,6 +213,28 @@ export function findParent(
       }
     }
   }
-
-  return null;
 }
+
+export function calcAmount(item: ExpenseItem = expenses): number {
+  if (!item) {
+    return 0;
+  }
+  if ("amount" in item) {
+    return item.amount;
+  }
+
+  return sum(item.children.map(calcAmount));
+}
+
+export const useExpense = (expenseName?: string) => {
+  const { budgetName } = useBudget();
+  console.log("budgetName: ", budgetName);
+  if (!expenseName) {
+    const amount = calcAmount(expenses);
+    return [expenses, amount, undefined] as const;
+  }
+  const expense = findByName(expenseName, expenses);
+  const amount = calcAmount(expense);
+  const parent = findParent(expenseName, expenses);
+  return [expense, amount, parent] as const;
+};

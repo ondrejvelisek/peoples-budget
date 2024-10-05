@@ -50,3 +50,13 @@ export const withProviders =
       },
       <WrappedComponent {...props} />
     );
+
+export const formatCurrency = new Intl.NumberFormat("cs-CZ", {
+  style: "currency",
+  currency: "CZK",
+  notation: "compact",
+}).format;
+
+export const formatPercent = new Intl.NumberFormat("cs-CZ", {
+  style: "percent",
+}).format;

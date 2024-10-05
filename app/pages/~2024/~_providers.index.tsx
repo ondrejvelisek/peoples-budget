@@ -1,10 +1,10 @@
 import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/2024/")({
-  component: Home,
+export const Route = createFileRoute("/2024/_providers/")({
+  component: Page,
 });
 
-function Home() {
+function Page() {
   return <ExpensesExplorer />;
 }
