@@ -3,7 +3,7 @@ import {
   ScrollRestoration,
   createRootRoute,
 } from "@tanstack/react-router";
-import Navigation from "./Navigation/Navigation";
+import Navigation from "../components/Navigation/Navigation";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 
 import mainCss from "../main.css?url";
