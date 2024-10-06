@@ -16,16 +16,22 @@ export const ColorPalette: FC = () => {
         <div className="size-4 bg-amber-600" />
       </div>
       <div className="flex flex-col">
+        <div className="size-4 bg-rose-400" />
         <div className="size-4 bg-rose-500" />
         <div className="size-4 bg-rose-600" />
         <div className="size-4 bg-rose-700" />
-        <div className="size-4 bg-rose-800" />
       </div>
       <div className="flex flex-col">
+        <div className="size-4 bg-sky-300" />
         <div className="size-4 bg-sky-400" />
         <div className="size-4 bg-sky-500" />
         <div className="size-4 bg-sky-600" />
-        <div className="size-4 bg-sky-700" />
+      </div>
+      <div className="flex flex-col">
+        <div className="size-4 bg-lime-300" />
+        <div className="size-4 bg-lime-400" />
+        <div className="size-4 bg-lime-500" />
+        <div className="size-4 bg-lime-600" />
       </div>
     </div>
   );
