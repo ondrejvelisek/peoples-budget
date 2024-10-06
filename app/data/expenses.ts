@@ -1,7 +1,7 @@
 import { useBudget } from "@/components/BudgetProvider/BudgetProvider";
 import { sum } from "lodash";
 
-type ExpenseItemExample = {
+export type ExpenseItemExample = {
   title: string;
   amount: number;
 };
@@ -199,12 +199,12 @@ export function findByName(
 
 export function findParent(
   name: string,
-  item: ExpenseItem = expenses
+  root: ExpenseItem = expenses
 ): ExpenseItem | undefined {
-  if ("children" in item) {
-    for (const child of item.children) {
+  if ("children" in root) {
+    for (const child of root.children) {
       if (child.name === name) {
-        return item;
+        return root;
       }
 
       const found = findParent(name, child);
@@ -215,10 +215,29 @@ export function findParent(
   }
 }
 
-export function calcAmount(item: ExpenseItem = expenses): number {
-  if (!item) {
-    return 0;
+function findAncestors(
+  name: string,
+  item: ExpenseItem = expenses
+): Array<string> | undefined {
+  if (!item) return;
+
+  if (item.name === name) {
+    return [];
   }
+
+  if ("children" in item) {
+    for (const child of item.children) {
+      const ancestors = findAncestors(name, child);
+      if (ancestors) {
+        return [...ancestors, item.name];
+      }
+    }
+  }
+
+  return;
+}
+
+export function calcAmount(item: ExpenseItem = expenses): number {
   if ("amount" in item) {
     return item.amount;
   }
@@ -226,15 +245,41 @@ export function calcAmount(item: ExpenseItem = expenses): number {
   return sum(item.children.map(calcAmount));
 }
 
-export const useExpense = (expenseName?: string) => {
+export function findExamples(
+  item: ExpenseItem = expenses
+): [ExpenseItemExample, ...ExpenseItemExample[]] {
+  if ("amount" in item) {
+    return item.examples;
+  }
+
+  return item.children.flatMap(findExamples) as [
+    ExpenseItemExample,
+    ...ExpenseItemExample[],
+  ];
+}
+
+export const useExpense = (
+  expenseName?: string
+): [
+  ExpenseItem,
+  number,
+  Array<string>,
+  [ExpenseItemExample, ...ExpenseItemExample[]],
+] => {
   const { budgetName } = useBudget();
   console.log("budgetName: ", budgetName);
   if (!expenseName) {
     const amount = calcAmount(expenses);
-    return [expenses, amount, undefined] as const;
+    const examples = findExamples(expenses);
+    return [expenses, amount, [], examples] as const;
   }
   const expense = findByName(expenseName, expenses);
   const amount = calcAmount(expense);
-  const parent = findParent(expenseName, expenses);
-  return [expense, amount, parent] as const;
+  const ancestors = findAncestors(expenseName, expenses);
+  const examples = findExamples(expense);
+  if (!expense || !ancestors) {
+    throw new Error("Expense not found");
+  }
+
+  return [expense, amount, ancestors, examples] as const;
 };

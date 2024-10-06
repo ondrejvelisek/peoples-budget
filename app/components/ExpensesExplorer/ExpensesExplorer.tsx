@@ -1,51 +1,72 @@
 import { type FC } from "react";
-import { Button } from "../ui/button";
-import { RiArrowLeftLine } from "react-icons/ri";
 import { ExpenseItem } from "./ExpenseItem";
-import { calcAmount, useExpense } from "@/data/expenses";
-import { formatCurrency } from "@/lib/utils";
-import { Link } from "@tanstack/react-router";
+import { useExpense } from "@/data/expenses";
+import { useParams } from "@tanstack/react-router";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { cn } from "@/lib/utils";
+
+export const ANIMATION_DURATION = 500;
+export const ANIMATION_DURATION_CLASS = "duration-500";
 
 export const ExpensesExplorer: FC<{
   expenseName?: string;
-}> = ({ expenseName }) => {
-  const [expense, amount, parent] = useExpense(expenseName);
+  className?: string;
+}> = ({ expenseName, className }) => {
+  const { expenseName: urlExpenseName } = useParams({ strict: false });
+  const [urlExpense, , urlAncestors] = useExpense(urlExpenseName);
+  const [expense] = useExpense(expenseName);
+  const [animateChildrenRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
+  const [animateHeaderRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
 
-  if (!expense) {
-    return <div>Not found</div>;
+  if (!urlExpense || !urlExpenseName) {
+    return <div>Výdaj nenalezen</div>;
   }
 
+  const isParent = urlAncestors.at(0) === expense.name;
+  const isSubject = expense.name === urlExpenseName;
+
+  const urlChildren =
+    "children" in urlExpense ? urlExpense.children : undefined;
+
+  const isChild = urlChildren?.some((child) => child.name === expense.name);
+
+  const relation = isParent
+    ? "parent"
+    : isSubject
+      ? "subject"
+      : isChild
+        ? "child"
+        : undefined;
+
+  const children = "children" in expense ? expense.children : undefined;
+
   return (
-    <div className="flex flex-col gap-4 p-2 md:p-4">
-      <header className="px-2">
-        {parent && (
-          <Button
-            variant="ghost"
-            size="sm"
-            className="-mx-3 -my-2 text-xs font-normal text-neutral-400"
-            asChild
-          >
-            <Link to="/2024/$expenseName" params={{ expenseName: parent.name }}>
-              <RiArrowLeftLine /> {parent.title}
-            </Link>
-          </Button>
-        )}
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-xl leading-tight md:text-2xl">{expense.title}</h2>
-          <span>{formatCurrency(amount)}</span>
-        </div>
-      </header>
-      {"children" in expense && (
-        <ul className="flex flex-col gap-3">
-          {expense.children.map((child) => (
-            <ExpenseItem
-              key={child.name}
-              name={child.name}
-              title={child.title}
-              amount={calcAmount(child)}
-              percentage={calcAmount(child) / amount}
-            />
-          ))}
+    <div
+      ref={animateHeaderRef}
+      className={cn(
+        "overflow-hidden rounded-lg border-x border-b-2 border-neutral-600/10 border-b-neutral-600/20 outline outline-2 outline-stone-600/5 transition-all",
+        ANIMATION_DURATION_CLASS,
+        {
+          "border-transparent outline-transparent rounded-xs":
+            relation !== "child",
+          "mx-1": relation === "child",
+        },
+        className
+      )}
+    >
+      {relation && <ExpenseItem name={expense.name} relation={relation} />}
+      {children && (
+        <ul ref={animateChildrenRef} className={cn("flex flex-col gap-3")}>
+          {children.map(
+            (child) =>
+              (isSubject ||
+                child.name === urlExpenseName ||
+                urlAncestors.includes(child.name)) && (
+                <li key={child.name}>
+                  <ExpensesExplorer expenseName={child.name} />
+                </li>
+              )
+          )}
         </ul>
       )}
     </div>

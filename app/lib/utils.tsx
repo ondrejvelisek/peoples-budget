@@ -52,7 +52,7 @@ export const withProviders =
     );
 
 export const formatCurrency = new Intl.NumberFormat("cs-CZ", {
-  style: "currency",
+  style: "decimal",
   currency: "CZK",
   notation: "compact",
 }).format;
