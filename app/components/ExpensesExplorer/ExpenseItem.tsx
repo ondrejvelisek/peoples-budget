@@ -32,8 +32,8 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
         "relative block h-auto w-full bg-white transition-all",
         ANIMATION_DURATION_CLASS,
         {
-          "p-1": relation === "parent",
-          "py-2 px-1 pb-5 active:bg-transparent hover:bg-transparent":
+          "px-2 py-1": relation === "parent",
+          "py-2 px-2 pb-5 active:bg-transparent hover:bg-transparent":
             relation === "subject",
           "p-2": relation === "child",
         },

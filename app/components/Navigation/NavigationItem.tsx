@@ -49,7 +49,7 @@ export const NavigationItem: FC<
         <TooltipContent
           side="right"
           sideOffset={-4}
-          className="m-0 hidden rounded-l-none border-none bg-sand-100 shadow-none md:block"
+          className="m-0 -ml-1 hidden rounded-l-none border-none bg-sand-100 shadow-none md:block"
           asChild
         >
           <Button variant="ghost" className="rounded-xl rounded-l-none pl-1">

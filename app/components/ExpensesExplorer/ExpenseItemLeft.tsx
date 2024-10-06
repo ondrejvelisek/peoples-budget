@@ -29,15 +29,17 @@ export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
           }
         )}
       >
-        <RiArrowLeftLine
+        <span
           className={cn(
-            "w-[1.5em] pr-0.5 transition-all",
+            "max-w-[1em] overflow-hidden text-neutral-400 transition-all",
             ANIMATION_DURATION_CLASS,
             {
-              "w-0": relation !== "parent",
+              "max-w-0 opacity-0": relation !== "parent",
             }
           )}
-        />
+        >
+          <RiArrowLeftLine className="pr-0.5" />
+        </span>
         <span>{title}</span>
       </div>
       <div

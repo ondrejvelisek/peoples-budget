@@ -47,7 +47,7 @@ export const ExpensesExplorer: FC<{
         "overflow-hidden rounded-lg border-x border-b-2 border-neutral-600/10 border-b-neutral-600/20 outline outline-2 outline-stone-600/5 transition-all",
         ANIMATION_DURATION_CLASS,
         {
-          "border-transparent outline-transparent rounded-xs":
+          "border-transparent outline-transparent rounded-xs border-x-0 border-b-0":
             relation !== "child",
           "mx-1": relation === "child",
         },

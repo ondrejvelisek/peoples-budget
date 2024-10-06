@@ -47,7 +47,7 @@ export const NavigationSidebar: FC = () => {
             side="right"
             sideOffset={6}
             asChild
-            className="m-0 hidden bg-sand-200 text-sand-500 shadow-none md:block"
+            className="m-0 -ml-1 hidden bg-sand-200 text-sand-500 shadow-none md:block"
           >
             <div className="border-none p-3 pl-1 text-xs leading-loose">
               Vytvořeno s láskou k Česku
