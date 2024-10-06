@@ -24,7 +24,7 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
 
       <div
         className={cn(
-          "absolute inset-x-0 bottom-0 top-10 overflow-y-auto rounded-2xl bg-white transition-all duration-300 md:left-[--sidebar-w] md:top-0 md:rounded-r-none",
+          "absolute inset-x-0 -bottom-0.5 top-10 overflow-y-auto rounded-2xl border-x border-b-2 border-sand-600/20 bg-white outline outline-4 outline-sand-500/5 transition-all duration-300 md:left-[--sidebar-w] md:top-0 md:rounded-r-none ",
           {
             "translate-x-[calc(var(--sidebar-w)-5%)] md:translate-x-0 scale-90 md:scale-100 botom-0 md:bottom-0":
               isOpen,
