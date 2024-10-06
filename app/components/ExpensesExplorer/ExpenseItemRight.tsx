@@ -27,15 +27,15 @@ export const ExpenseItemRight: FC<ExpenseItemRightProps> = ({
         className
       )}
     >
-      <div className="truncate font-bold">
+      <div className="truncate text-xs font-bold">
         {formatCurrency(relation === "child" ? example.amount : amount)}
       </div>
       <div
         className={cn(
-          "h-[1.3em] truncate text-xs font-normal transition-all",
+          "h-[1.3em] max-w-full truncate text-xs font-normal transition-all",
           ANIMATION_DURATION_CLASS,
           {
-            "h-0 opacity-0": relation !== "child",
+            "h-0 opacity-0 max-w-0": relation !== "child",
           }
         )}
       >

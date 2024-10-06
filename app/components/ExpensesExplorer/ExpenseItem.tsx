@@ -19,7 +19,8 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
   className,
   relation = "subject",
 }) => {
-  const [expense, amount, , examples] = useExpense(name);
+  const [expense, amount, ancestors, examples] = useExpense(name);
+  const isRoot = ancestors.length === 0;
   const example = examples[0];
   const title = expense?.title;
 
@@ -57,7 +58,7 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
         <ExpenseItemMeter
           amount={amount}
           className={cn("absolute inset-0")}
-          relation={relation}
+          relation={isRoot ? "parent" : relation}
         />
       </Link>
     </Button>

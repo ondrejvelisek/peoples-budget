@@ -5,8 +5,8 @@ import { useParams } from "@tanstack/react-router";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { cn } from "@/lib/utils";
 
-export const ANIMATION_DURATION = 500;
-export const ANIMATION_DURATION_CLASS = "duration-500";
+export const ANIMATION_DURATION = 400;
+export const ANIMATION_DURATION_CLASS = "duration-300";
 
 export const ExpensesExplorer: FC<{
   expenseName?: string;

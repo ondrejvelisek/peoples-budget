@@ -23,9 +23,8 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
       </div>
 
       <div
-        onClick={close}
         className={cn(
-          "absolute inset-x-0 bottom-0 top-10 overflow-y-auto rounded-2xl bg-white transition-all md:left-[--sidebar-w] md:top-0 md:rounded-r-none",
+          "absolute inset-x-0 bottom-0 top-10 overflow-y-auto rounded-2xl bg-white transition-all duration-300 md:left-[--sidebar-w] md:top-0 md:rounded-r-none",
           {
             "translate-x-[calc(var(--sidebar-w)-5%)] md:translate-x-0 scale-90 md:scale-100 botom-0 md:bottom-0":
               isOpen,
@@ -34,6 +33,7 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
         )}
       >
         {children}
+        {isOpen && <div className="absolute inset-0" onClick={close} />}
       </div>
     </div>
   );

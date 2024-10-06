@@ -30,7 +30,10 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
     >
       <div
         className={cn(
-          "h-full rounded bg-sky-300 transition-all",
+          "h-full rounded bg-sky-400 transition-all",
+          {
+            "bg-sky-200": relation === "subject",
+          },
           ANIMATION_DURATION_CLASS
         )}
         style={{ width: `max(5px, ${percentage * 100}%)` }}

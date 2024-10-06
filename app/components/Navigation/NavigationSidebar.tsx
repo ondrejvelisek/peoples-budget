@@ -20,7 +20,7 @@ export const NavigationSidebar: FC = () => {
   return (
     <div
       className={cn(
-        "flex w-full grow -translate-x-3/4 scale-90 flex-col justify-between overflow-y-auto transition-all md:translate-x-0 md:scale-100",
+        "flex w-full grow -translate-x-3/4 scale-90 flex-col justify-between overflow-y-auto transition-all duration-300 md:translate-x-0 md:scale-100",
         {
           "translate-x-0 scale-100": isOpen,
         }

@@ -52,7 +52,7 @@ export const NavigationHeader: FC = () => {
           <Button
             variant="ghost"
             onClick={() => setIsCondense(!isCondese)}
-            className={cn("hidden transition-transform md:block", {
+            className={cn("hidden transition-transform duration-300 md:block", {
               "-translate-x-[calc(var(--sidebar-w)-100%)]": isCondese,
               "text-sand-500": !isCondese,
             })}
