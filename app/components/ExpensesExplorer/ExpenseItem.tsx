@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { Button } from "../ui/button";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { calcAmount, useExpense } from "@/data/expenses";
+import { useExpense } from "@/data/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
 import { ExpenseItemMeter } from "./ExpenseItemMeter";

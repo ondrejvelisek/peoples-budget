@@ -1,5 +1,5 @@
-import { chain, sum } from "lodash";
-import { parse } from "papaparse";
+import _ from "lodash";
+import Papa from "papaparse";
 import expenses2025Csv from "./expenses_2025.csv?url";
 import sectorsTableCsv from "./sectors_table.csv?url";
 import typesTableCsv from "./types_table.csv?url";
@@ -31,7 +31,7 @@ async function parseCsv(
 ): Promise<Array<Record<string, string | number>>> {
   return new Promise<Array<Record<string, string | number>>>(
     (resolve, reject) =>
-      parse<Record<string, string | number>>(fileUrl, {
+      Papa.parse<Record<string, string | number>>(fileUrl, {
         download: true,
         header: true,
         dynamicTyping: true,
@@ -54,7 +54,7 @@ export const useExpensesData = (): ExpenseItem | undefined => {
     queryKey: ["loadCsv", sectorsTableCsv],
     queryFn: () => parseCsv(sectorsTableCsv),
     select(sectorsData) {
-      return chain(sectorsData)
+      return _(sectorsData)
         .keyBy("id")
         .mapValues("name")
         .mapValues((e) => e as string)
@@ -65,7 +65,7 @@ export const useExpensesData = (): ExpenseItem | undefined => {
     queryKey: ["loadCsv", typesTableCsv],
     queryFn: () => parseCsv(typesTableCsv),
     select(sectorsData) {
-      return chain(sectorsData)
+      return _(sectorsData)
         .keyBy("id")
         .mapValues("name")
         .mapValues((e) => e as string)
@@ -74,25 +74,25 @@ export const useExpensesData = (): ExpenseItem | undefined => {
   });
 
   if (expensesData && sectorsTable && typesTable) {
-    const grouped = chain(expensesData)
+    const grouped = _(expensesData)
       .groupBy((row) => row["sector_id"].toString().slice(0, 1))
       .map(
         (children, sectorId): ExpenseInnerItem => ({
           title: sectorsTable[sectorId],
           name: `odvetvi-${sectorId}`,
-          children: chain(children)
+          children: _(children)
             .groupBy((row) => row["sector_id"].toString().slice(0, 2))
             .map(
               (children, sectorId): ExpenseInnerItem => ({
                 title: sectorsTable[sectorId],
                 name: `odvetvi-${sectorId}-odvetvi-${sectorId}`,
-                children: chain(children)
+                children: _(children)
                   .groupBy((row) => row["type_id"].toString().slice(0, 2))
                   .map(
                     (children, typeId): ExpenseLeafItem => ({
                       title: typesTable[typeId],
                       name: `odvetvi-${sectorId}-odvetvi-${sectorId}-druh-${typeId}`,
-                      amount: sum(children.map((row) => row["amount"])),
+                      amount: _.sum(children.map((row) => row["amount"])),
                       examples: [],
                     })
                   )
@@ -175,7 +175,7 @@ export function calcAmount(item: ExpenseItem): number {
     return item.amount;
   }
 
-  return sum(item.children.map(calcAmount));
+  return _.sum(item.children.map(calcAmount));
 }
 
 export function findExamples(item: ExpenseItem): ExpenseItemExample[] {

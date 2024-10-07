@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { cn, formatCurrency } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { RiArrowLeftLine } from "react-icons/ri";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 
@@ -12,7 +12,6 @@ type ExpenseItemLeftProps = {
 
 export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
   title,
-  amount,
   className,
   relation = "subject",
 }) => {

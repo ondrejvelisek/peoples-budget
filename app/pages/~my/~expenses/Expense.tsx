@@ -7,7 +7,7 @@ import {
 import ExpenseChild from "./ExpenseChild";
 
 export default function Expense({ name }: { name: string }) {
-  const expense: ExpenseItem | null = findByName(name);
+  const expense: ExpenseItem | undefined = findByName(name);
   if (!expense) {
     return <div>Not found</div>;
   }
