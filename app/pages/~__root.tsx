@@ -7,6 +7,7 @@ import Navigation from "../components/Navigation/Navigation";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 
 import mainCss from "../main.css?url";
+import manifest from "../manifest.json?url";
 
 import { StrictMode } from "react";
 import { seo } from "@/lib/utils";
@@ -33,7 +34,10 @@ export const Route = createRootRoute({
         "Lidový rozpočet, Rozpočet lidu, Rozpočet národa, rozpočet, státní rozpočet, finance, peníze, česká republika, interaktivní, výdaje, příjmy",
     }),
   ],
-  links: () => [{ rel: "stylesheet", href: mainCss }],
+  links: () => [
+    { rel: "manifest", href: manifest },
+    { rel: "stylesheet", href: mainCss },
+  ],
 });
 
 function RootComponent() {
