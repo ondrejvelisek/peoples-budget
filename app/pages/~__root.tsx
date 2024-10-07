@@ -12,6 +12,7 @@ import manifest from "../manifest.json?url";
 import { StrictMode } from "react";
 import { seo } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useExpensesData } from "@/data/expenses";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -41,6 +42,7 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  useExpensesData();
   return (
     <RootDocument>
       <TooltipProvider>

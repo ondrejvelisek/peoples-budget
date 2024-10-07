@@ -1,9 +1,10 @@
 import { type FC } from "react";
 import { ExpenseItem } from "./ExpenseItem";
-import { useExpense } from "@/data/expenses";
+import { calcAmount, useExpense } from "@/data/expenses";
 import { useParams } from "@tanstack/react-router";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { cn } from "@/lib/utils";
+import { sortBy } from "lodash";
 
 export const ANIMATION_DURATION = 400;
 export const ANIMATION_DURATION_CLASS = "duration-300";
@@ -57,7 +58,7 @@ export const ExpensesExplorer: FC<{
       {relation && <ExpenseItem name={expense.name} relation={relation} />}
       {children && (
         <ul ref={animateChildrenRef} className={cn("flex flex-col gap-3")}>
-          {children.map(
+          {sortBy(children, (child) => -calcAmount(child)).map(
             (child) =>
               (isSubject ||
                 child.name === urlExpenseName ||

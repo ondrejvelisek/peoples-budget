@@ -1,0 +1,841 @@
+id,id_level,id_1,id_2,id_3,id_4,name_short,name,name_long
+1,1,1,,,,Daňové příjmy,Daňové příjmy,Daňové příjmy
+11,2,1,11,,,"Daně z P, zisku","Daně z příjmů, zisku a kapitálových výnosů","Daně z příjmů, zisku a kapitálových výnosů"
+111,3,1,11,111,,DP fyz. osob,Daně z příjmů fyzických osob,Daně z příjmů fyzických osob
+1111,4,1,11,111,1111,DP FO ze záv.čin,Daň z příjmů fyzických osob ze závislé činnosti a funkčních,Daň z příjmů fyzických osob ze závislé činnosti a funkčních požitků
+1111,4,1,11,111,1111,DP FO - plátci,Daň z příjmů fyzických osob placená plátci,Daň z příjmů fyzických osob placená plátci
+1112,4,1,11,111,1112,DP FO z SVČ,Daň z příjmů fyzických osob ze samostatné výdělečné činnosti,Daň z příjmů fyzických osob ze samostatné výdělečné činnosti
+1112,4,1,11,111,1112,DP FO - poplatník,Daň z příjmů fyzických osob placená poplatníky,Daň z příjmů fyzických osob placená poplatníky
+1113,4,1,11,111,1113,DP FO z kapitálu,Daň z příjmů fyzických osob z kapitálových výnosů,Daň z příjmů fyzických osob z kapitálových výnosů
+1113,4,1,11,111,1113,DP FO - srážkou,Daň z příjmů fyzických osob vybíraná srážkou,Daň z příjmů fyzických osob vybíraná srážkou
+1119,4,1,11,111,1119,Zrušené D FO,"Zrušené daně, jejichž předmětem je příjem fyzických osob","Zrušené daně, jejichž předmětem je příjem fyzických osob"
+112,3,1,11,112,,DP práv.osob,Daně z příjmů právnických osob,Daně z příjmů právnických osob
+1121,4,1,11,112,1121,DP PrO,Daň z příjmů právnických osob,Daň z příjmů právnických osob
+1122,4,1,11,112,1122,DP PrO za obce,Daň z příjmů právnických osob za obce,Daň z příjmů právnických osob za obce
+1123,4,1,11,112,1123,DP PrO za kraje,Daň z příjmů právnických osob za kraje,Daň z příjmů právnických osob za kraje
+1129,4,1,11,112,1129,Zrušené daně PrO,"Zrušené daně, jejichž předmětem je příjem právnických osob","Zrušené daně, jejichž předmětem je příjem právnických osob"
+12,2,1,12,,,D ze zboží tuz,Daně ze zboží a služeb v tuzemsku,Daně ze zboží a služeb v tuzemsku
+121,3,1,12,121,,Obec D ze zbož,Obecné daně ze zboží a služeb v tuzemsku,Obecné daně ze zboží a služeb v tuzemsku
+1211,4,1,12,121,1211,DPH,Daň z přidané hodnoty,Daň z přidané hodnoty
+1219,4,1,12,121,1219,Zrušené D zboží,Zrušené daně ze zboží a služeb,Zrušené daně ze zboží a služeb
+122,3,1,12,122,,Zvlášt D ze zbož,Zvláštní daně a poplatky ze zboží a služeb v tuzemsku,Zvláštní daně a poplatky ze zboží a služeb v tuzemsku
+1221,4,1,12,122,1221,SpD z min.olejů,Spotřební daň z minerálních olejů,Spotřební daň z minerálních olejů
+1222,4,1,12,122,1222,SpD z lihu,Spotřební daň z lihu,Spotřební daň z lihu
+1223,4,1,12,122,1223,SpD  z piva,Spotřební daň z piva,Spotřební daň z piva
+1224,4,1,12,122,1224,SpD z vína ,Spotřební daň z vína a meziproduktů,Spotřební daň z vína a meziproduktů
+1225,4,1,12,122,1225,SpD z  tabák.výr,Spotřební daň z tabákových výrobků,Spotřební daň z tabákových výrobků
+1226,4,1,12,122,1226,Popl za ozón,Poplatek za látky poškozující nebo ohrožující ozónovou vrstv,Poplatek za látky poškozující nebo ohrožující ozónovou vrstvu Země
+1227,4,1,12,122,1227,Přípl.Prod.Kinem,Příplatek k ceně vstupného na veřejnou produkci kinematograf,Příplatek k ceně vstupného na veřejnou produkci kinematografického díla
+1227,4,1,12,122,1227,Audioviz. poplatky,Audiovizuální poplatky,Audiovizuální poplatky
+1228,4,1,12,122,1228,SpD ze surov. tabáku,Spotřební daň ze surového tabáku,Spotřební daň ze surového tabáku
+1229,4,1,12,122,1229,SpD-zahřív.tab.výr.,Spotřební daň ze zahřívaných tabákových výrobků,Spotřební daň ze zahřívaných tabákových výrobků
+123,3,1,12,123,,Zvlášt D ze zboží,Zvláštní daně a poplatky ze zboží a služeb v tuzemsku,Zvláštní daně a poplatky ze zboží a služeb v tuzemsku
+1231,4,1,12,123,1231,Daň z zem.pl. a plyn,Daň ze zemního plynu a některých dalších plynů,Daň ze zemního plynu a některých dalších plynů
+1232,4,1,12,123,1232,Daň z pevných paliv,Daň z pevných paliv,Daň z pevných paliv
+1233,4,1,12,123,1233,Daň z elektřiny,Daň z elektřiny,Daň z elektřiny
+1234,4,1,12,123,1234,Odvod z el. ze sl. z,Odvod z elektřiny ze slunečního záření,Odvod z elektřiny ze slunečního záření
+1235,4,1,12,123,1235,Daň z digit. služeb,Daň z digitálních služeb,Daň z digitálních služeb
+13,2,1,13,,,DaP vybr.čin,Daně a poplatky z vybraných činností a služeb,Daně a poplatky z vybraných činností a služeb
+132,3,1,13,132,,Daně z mot.voz.,Daně a poplatky z provozu motorových vozidel,Daně a poplatky z provozu motorových vozidel
+1321,4,1,13,132,1321,Daň silniční,Daň silniční,Daň silniční
+1322,4,1,13,132,1322,Popl.-dálnice,Poplatek za užívání dálnic a rychlostních silnic,Poplatek za užívání dálnic a rychlostních silnic
+133,3,1,13,133,,Poplatky ŽP,Poplatky a odvody v oblasti  životního prostředí,Poplatky a odvody v oblasti  životního prostředí
+1331,4,1,13,133,1331,P-odp.v. povrch,Poplatky za vypouštění odpadních vod do vod povrchových,Poplatky za vypouštění odpadních vod do vod povrchových
+1331,4,1,13,133,1331,P-vypouštění odp.vod,Poplatek za vypouštění odpadních vod do vod povrchových,Poplatek za vypouštění odpadních vod do vod povrchových
+1332,4,1,13,133,1332,P znečiš. ovzd.,Poplatky za znečišťování ovzduší,Poplatky za znečišťování ovzduší
+1333,4,1,13,133,1333,P za ulož.odpadů,Poplatky za uložení odpadů,Poplatky za uložení odpadů
+1334,4,1,13,133,1334,Odv.-odn.zem.p.,Odvody za odnětí půdy ze zemědělského půdního fondu,Odvody za odnětí půdy ze zemědělského půdního fondu
+1335,4,1,13,133,1335,P za odn.les.p.,Poplatky za odnětí pozemků plnění funkcí lesa,Poplatky za odnětí pozemků plnění funkcí lesa
+1336,4,1,13,133,1336,P-odp.v.-podzemí,Poplatek za povolené vypouštění odpadních vod do vod podzemn,Poplatek za povolené vypouštění odpadních vod do vod podzemních
+1337,4,1,13,133,1337,Poplatek za kom.odp.,"Poplatek za provoz systému shromažďování, sběru, přepravy, t","Poplatek za provoz systému shromažďování, sběru, přepravy, třídění, využívání a odstraňování komunálních odpadů"
+1337,4,1,13,133,1337,Popl.za komun.odpad,Poplatek za komunální odpad,Poplatek za komunální odpad
+1338,4,1,13,133,1338,P za obaly,Registrační a evidenční poplatky za obaly,Registrační a evidenční poplatky za obaly
+1339,4,1,13,133,1339,OstPopl ŽivProst,Ostatní poplatky a odvody v oblasti životního prostředí,Ostatní poplatky a odvody v oblasti životního prostředí
+134,3,1,13,134,,Místní poplatky,Místní poplatky z vybraných činností a služeb,Místní poplatky z vybraných činností a služeb
+1340,4,1,13,134,1340,Popl.za syst.odpadů,Poplatek za provoz systému odpadů,"Poplatek za provoz systému shromažďování, sběru, přepravy, třídění, využívání a odstraňování komunálních odpadů"
+1341,4,1,13,134,1341,Poplatek ze psů,Poplatek ze psů,Poplatek ze psů
+1342,4,1,13,134,1342,P za pobyt,Poplatek za lázeňský nebo rekreační pobyt,Poplatek za lázeňský nebo rekreační pobyt
+1342,4,1,13,134,1342,Poplatek z pobytu,Poplatek z pobytu,Poplatek z pobytu
+1343,4,1,13,134,1343,Popl.-už.prostr.,Poplatek za užívání veřejného prostranství,Poplatek za užívání veřejného prostranství
+1344,4,1,13,134,1344,Popl.ze vstup.,Poplatek ze vstupného,Poplatek ze vstupného
+1345,4,1,13,134,1345,Popl.z ubyt.kap.,Poplatek z ubytovací kapacity,Poplatek z ubytovací kapacity
+1346,4,1,13,134,1346,Popl.pov.vjezdu,Poplatek za povolení k vjezdu do vybraných míst,Poplatek za povolení k vjezdu do vybraných míst
+1348,4,1,13,134,1348,P za staveb.p.,Poplatek za zhodnocení stavebního pozemku,Poplatek za zhodnocení stavebního pozemku
+1349,4,1,13,134,1349,Zrušené místní p,Zrušené místní poplatky,Zrušené místní poplatky
+135,3,1,13,135,,Ost.odv.z čin.,Ostatní odvody z vybraných činností a služeb,Ostatní odvody z vybraných činností a služeb
+1353,4,1,13,135,1353,P žadat. Řid.opr,Příjmy za zkoušky z odborné způsobilosti od žadatelů o řidič,Příjmy za zkoušky z odborné způsobilosti od žadatelů o řidičské oprávnění
+1354,4,1,13,135,1354,P licen.TIR.dopr,Příjmy z licencí pro kamionovou dopravu,Příjmy z licencí pro kamionovou dopravu
+1356,4,1,13,135,1356,P.úhr.dob.ner.geo.pr,Příjmy úhrad za dobývání nerostů a popl. za geolog. práce,Příjmy úhrad za dobývání nerostů a poplatků za geologické práce
+1357,4,1,13,135,1357,Popl.-podzemní voda,Poplatek za odebrané množství podzemní vody,Poplatek za odebrané množství podzemní vody
+1358,4,1,13,135,1358,Popl-minerál.voda,Poplatek za využívání zdroje přírodní minerální vody,Poplatek za využívání zdroje přírodní minerální vody
+1359,4,1,13,135,1359,Ost.odvody neuv.,Ostatní odvody z vybraných činností a služeb jinde neuvedené,Ostatní odvody z vybraných činností a služeb jinde neuvedené
+136,3,1,13,136,,Správní popl.,Správní poplatky,Správní poplatky
+1361,4,1,13,136,1361,Správní popl.,Správní poplatky,Správní poplatky
+1362,4,1,13,136,1362,Soudní poplatky,Soudní poplatky,Soudní poplatky
+137,3,1,13,137,,Popl.na čin.spr.úřad,Poplatky na činnost správních úřadů,Poplatky na činnost správních úřadů
+1371,4,1,13,137,1371,Popl.na činnost ERÚ,Poplatek na činnost Energetického regulačního úřadu,Poplatek na činnost Energetického regulačního úřadu
+1372,4,1,13,137,1372,Popl.SÚJB za žádost,Poplatek SÚJB za žádost o vydání povolení,Poplatek Státnímu úřadu pro jadernou bezpečnost za žádost o vydání povolení
+1373,4,1,13,137,1373,Udržovací popl.SÚJB,Udržovací poplatek Státnímu úřadu pro jadernou bezpečnost,Udržovací poplatek Státnímu úřadu pro jadernou bezpečnost
+1379,4,1,13,137,1379,Ost.popl.-čin.spr.úř,Ostatní poplatky na činnost správních úřadů,Ostatní poplatky na činnost správních úřadů
+138,3,1,13,138,,"Daně, popl.jiné v HH","Daně, poplatky a jiná obdob. peněž. pl. v oblasti HH","Daně, poplatky a jiná obdobná peněžitá plnění v oblasti hazardních her"
+1381,4,1,13,138,1381,Daň z hazardních her,Daň z hazardních her,Daň z hazardních her
+1381,4,1,13,138,1381,Daň z hazardních her,Daň z hazardních her s výjimkou dílčí daně z technických her,Daň z hazardních her s výjimkou dílčí daně z technických her
+1382,4,1,13,138,1382,Zruš.odv.lot.kromVHP,Zrušený odvod z loterií a podob. her kromě z výher. hr. př.,Zrušený odvod z loterií a podobných her kromě z výherních hracích přístrojů
+1383,4,1,13,138,1383,Zrušený odvod z VHP,Zrušený odvod z výherních hracích přístrojů,Zrušený odvod z výherních hracích přístrojů
+1384,4,1,13,138,1384,Zruš.odvod st.dozor,Zrušený odvod za státní dozor,Zrušený odvod za státní dozor
+1385,4,1,13,138,1385,Daň z technic. her,Dílčí daň z technických her,Dílčí daň z technických her
+14,2,1,14,,,Daně ze zahr.,Daně a cla za zboží a služby ze zahraničí,Daně a cla za zboží a služby ze zahraničí
+140,3,1,14,140,,Daně ze zahr.,Daně a cla za zboží a služby ze zahraničí,Daně a cla za zboží a služby ze zahraničí
+1401,4,1,14,140,1401,Clo,Clo,Clo
+1409,4,1,14,140,1409,Zruš.D mezinár.,Zrušené daně z mezinárodního obchodu a transakcí,Zrušené daně z mezinárodního obchodu a transakcí
+15,2,1,15,,,Majetkové daně,Majetkové daně,Majetkové daně
+151,3,1,15,151,,Daně z majetku,Daně z majetku,Daně z majetku
+1511,4,1,15,151,1511,Daň z nemovitosti,Daň z nemovitosti,Daň z nemovitosti
+1511,4,1,15,151,1511,Daň z nemovit. věcí,Daň z nemovitých věcí,Daň z nemovitých věcí
+152,3,1,15,152,,Daně z maj.přev.,Daně z majetkových a kapitálových převodů,Daně z majetkových a kapitálových převodů
+1521,4,1,15,152,1521,Daň dědická,Daň dědická,Daň dědická
+1522,4,1,15,152,1522,Daň darovací,Daň darovací,Daň darovací
+1523,4,1,15,152,1523,Daň z přev.nem.,Daň z převodu nemovitostí,Daň z převodu nemovitostí
+1523,4,1,15,152,1523,Daň z nabytí nemov.,Daň z nabytí nemovitých věcí,Daň z nabytí nemovitých věcí
+1529,4,1,15,152,1529,ZrušD z převodů,Zrušené daně z majetkových a kapitálových převodů,Zrušené daně z majetkových a kapitálových převodů
+16,2,1,16,,,Povinné pojistné,Povinné pojistné,Povinné pojistné
+161,3,1,16,161,,Poj. na SZ,Pojistné na sociální zabezpečení a příspěvek na státní polit,Pojistné na sociální zabezpečení a příspěvek na státní politiku zaměstnanosti
+1611,4,1,16,161,1611,Poj.důchP zamv.,Pojistné na důchodové pojištění od zaměstnavatelů,Pojistné na důchodové pojištění od zaměstnavatelů
+1612,4,1,16,161,1612,Poj.důchP zamc,Pojistné na důchodové pojištění od zaměstnanců,Pojistné na důchodové pojištění od zaměstnanců
+1613,4,1,16,161,1613,Poj.důchP OSVČ,Pojistné na důchodové pojištění od osob samostatně výdělečně,"""Pojistné na důchodové pojištění od osob samostatně výdělečně činných (dále jen """"OSVČ"""")"""
+1614,4,1,16,161,1614,Poj.nemP-zamv.,Pojistné na nemocenské pojištění od zaměstnavatelů,Pojistné na nemocenské pojištění od zaměstnavatelů
+1615,4,1,16,161,1615,Poj.nemP-zamc,Pojistné na nemocenské pojištění od zaměstnanců,Pojistné na nemocenské pojištění od zaměstnanců
+1617,4,1,16,161,1617,Přísp. SPZ zamv.,Příspěvky na státní politiku zaměstnanosti od zaměstnavatelů,Příspěvky na státní politiku zaměstnanosti od zaměstnavatelů
+1618,4,1,16,161,1618,Přísp.SPZ zamc.,Příspěvky na státní politiku zaměstnanosti od zaměstnanců,Příspěvky na státní politiku zaměstnanosti od zaměstnanců
+162,3,1,16,162,,Poj. na SZ,Pojistné na sociální zabezpečení a  příspěvek na státní   po,Pojistné na sociální zabezpečení a  příspěvek na státní   politiku zaměstnanosti
+1621,4,1,16,162,1621,Přísp. SPZ OSVČ,Příspěvky na státní politiku zaměstnanosti od OSVČ,Příspěvky na státní politiku zaměstnanosti od OSVČ
+1627,4,1,16,162,1627,Přirážky k poj.,Přirážky k pojistnému,Přirážky k pojistnému
+1628,4,1,16,162,1628,Přísl.pojistného,Příslušenství pojistného,Příslušenství pojistného
+1629,4,1,16,162,1629,Ne.pojist.na soc.zab,"Nevyjasněné, neidentifikované a nezařazené příjmy z pojistné","Nevyjasněné, neidentifikované a nezařazené příjmy z pojistného na sociální zabezpečení"
+163,3,1,16,163,,Poj. zdravP,Pojistné na veřejné zdravotní pojištění,Pojistné na veřejné zdravotní pojištění
+1631,4,1,16,163,1631,Poj.zdravP zamv,Pojistné na veřejné zdravotní pojištění od zaměstnavatelů,Pojistné na veřejné zdravotní pojištění od zaměstnavatelů
+1632,4,1,16,163,1632,Poj.zdravP zamc.,Pojistné na veřejné zdravotní pojištění od zaměstnanců,Pojistné na veřejné zdravotní pojištění od zaměstnanců
+1633,4,1,16,163,1633,Poj.zdravP OSVČ,Pojistné na veřejné zdravotní pojištění od OSVČ,Pojistné na veřejné zdravotní pojištění od OSVČ
+1638,4,1,16,163,1638,Přísl.poj.zdravP,Příslušenství pojistného na veřejné zdravotní pojištění,Příslušenství pojistného na veřejné zdravotní pojištění
+169,3,1,16,169,,ZrušenéD z mezd,Zrušené daně z objemu mezd,Zrušené daně z objemu mezd
+1691,4,1,16,169,1691,ZrušenéD z mezd,Zrušené daně a odvody  z objemu mezd,Zrušené daně a odvody  z objemu mezd
+17,2,1,17,,,Ost.daň.příjmy,Ostatní daňové příjmy,Ostatní daňové příjmy
+170,3,1,17,170,,Ost.daň.příjmy,Ostatní daňové příjmy,Ostatní daňové příjmy
+1701,4,1,17,170,1701,Nerozúčt.neid.P,"Nerozúčtované, neidentifikované a nezařaditelné daňové příjm","Nerozúčtované, neidentifikované a nezařaditelné daňové příjmy"
+1702,4,1,17,170,1702,Tržby z kolků,Tržby z prodeje kolků,Tržby z prodeje kolků
+1703,4,1,17,170,1703,Odvody ZPS,Odvody nahrazující zaměstnávání občanů se změněnou pracovní,Odvody nahrazující zaměstnávání občanů se změněnou pracovní schopností
+1704,4,1,17,170,1704,Příslušenství,Příslušenství,Příslušenství
+1706,4,1,17,170,1706,Dávky z cukru,Dávky z cukru,Dávky z cukru
+2,1,2,,,,Nedaňové příjmy,Nedaňové příjmy,Nedaňové příjmy
+21,2,2,21,,,"P z vl.čin.,odv.",Příjmy z vlastní činnosti a odvody přebytků organizací s pří,Příjmy z vlastní činnosti a odvody přebytků organizací s přímým vztahem
+211,3,2,21,211,,P z vl.činnosti,Příjmy z vlastní činnosti,Příjmy z vlastní činnosti
+2111,4,2,21,211,2111,P ze sl.a výr.,Příjmy z poskytování služeb a výrobků,Příjmy z poskytování služeb a výrobků
+2112,4,2,21,211,2112,P z prod.zboží,Příjmy z prodeje zboží (již nakoupeného za účelem prodeje),Příjmy z prodeje zboží (již nakoupeného za účelem prodeje)
+2113,4,2,21,211,2113,P ze školného,Příjmy ze školného,Příjmy ze školného
+2114,4,2,21,211,2114,Mýtné,Mýtné,Mýtné
+2119,4,2,21,211,2119,OstP z vl. čin.,Ostatní příjmy z vlastní činnosti,Ostatní příjmy z vlastní činnosti
+212,3,2,21,212,,Odvody přeb.org.,Odvody přebytků organizací s přímým vztahem,Odvody přebytků organizací s přímým vztahem
+2121,4,2,21,212,2121,Odv. přeb.banky,Odvody přebytků ústřední banky,Odvody přebytků ústřední banky
+2122,4,2,21,212,2122,Odvody PO,Odvody příspěvkových organizací,Odvody příspěvkových organizací
+2123,4,2,21,212,2123,Ost.odvody PO,Ostatní odvody příspěvkových organizací,Ostatní odvody příspěvkových organizací
+2124,4,2,21,212,2124,Odvody šk.PO,"Odvody školských právnických osob zřízených státem, kraji a","Odvody školských právnických osob zřízených státem, kraji a obcemi"
+2125,4,2,21,212,2125,Přev.z fondůs.p.doSR,Převody z fondů státních podniků do státního rozpočtu,Převody z fondů státních podniků do státního rozpočtu
+2129,4,2,21,212,2129,Ost. odv.přebyt.,Ostatní odvody přebytků organizací s přímým vztahem,Ostatní odvody přebytků organizací s přímým vztahem
+213,3,2,21,213,,P z pron.maj.,Příjmy z pronájmu majetku,Příjmy z pronájmu majetku
+2131,4,2,21,213,2131,P z pron.poz.,Příjmy z pronájmu pozemků,Příjmy z pronájmu pozemků
+2132,4,2,21,213,2132,P z pron.nemov.,Příjmy z pronájmu ostatních nemovitostí a jejich částí,Příjmy z pronájmu ostatních nemovitostí a jejich částí
+2132,4,2,21,213,2132,P z pron.ost.nemovi.,Příjmy z pronájmu ostatních nemovitých věcí a jejich částí,Příjmy z pronájmu ostatních nemovitých věcí a jejich částí
+2133,4,2,21,213,2133,P z pron.mov.v.,Příjmy z pronájmu movitých věcí,Příjmy z pronájmu movitých věcí
+2139,4,2,21,213,2139,Ost.P pron.maj.,Ostatní příjmy z pronájmu majetku,Ostatní příjmy z pronájmu majetku
+214,3,2,21,214,,Výnosy z fin.maj.,Výnosy z finančního majetku,Výnosy z finančního majetku
+2140,4,2,21,214,2140,Neúr.př.z der.ne dl.,Neúrokové př. z finanč. derivátů kromě k vlastním dluhopisům,Neúrokové příjmy z finančních derivátů kromě k vlastním dluhopisům
+2141,4,2,21,214,2141,Příjmy z úroků,Příjmy z úroků (část),Příjmy z úroků (část)
+2142,4,2,21,214,2142,P z podílu zisku,Příjmy z podílů na zisku a dividend,Příjmy z podílů na zisku a dividend
+2143,4,2,21,214,2143,Real.kurz.zisky,Realizované kurzové zisky,Realizované kurzové zisky
+2143,4,2,21,214,2143,Kurs.rozdíly příjmů,Kursové rozdíly v příjmech,Kursové rozdíly v příjmech
+2144,4,2,21,214,2144,P z úroků ze SD,Příjmy z úroků ze státních dluhopisů,Příjmy z úroků ze státních dluhopisů
+2145,4,2,21,214,2145,P z úroků z KD,Příjmy z úroků z komunálních dluhopisů,Příjmy z úroků z komunálních dluhopisů
+2146,4,2,21,214,2146,Úroky z fin.derivátů,Úrokové příjmy z finančních derivátů,Úrokové příjmy z finančních derivátů
+2146,4,2,21,214,2146,Úroky z der.k vl.dl.,Úrokové příjmy z finančních derivátů k vlastním dluhopisům,Úrokové příjmy z finančních derivátů k vlastním dluhopisům
+2147,4,2,21,214,2147,Fin.deriváty-neúroky,Neúrokové příjmy z finančních derivátů,Neúrokové příjmy z finančních derivátů
+2147,4,2,21,214,2147,Neúr.př.zfin.der.dl.,Neúrokové příjmy z finančních derivátů k vlastním dluhopisům,Neúrokové příjmy z finančních derivátů k vlastním dluhopisům
+2148,4,2,21,214,2148,Úroky z der.kr.vl.dl,Úrokové příjmy z finančních derivátů kromě k vlastním dluhop,Úrokové příjmy z finančních derivátů kromě k vlastním dluhopisům
+2149,4,2,21,214,2149,Ost.výnosy fin.majet,Ostatní příjmy z výnosů finančního majetku,Ostatní příjmy z výnosů finančního majetku
+215,3,2,21,215,,Soudní poplatky,Soudní poplatky,Soudní poplatky
+2151,4,2,21,215,2151,Soudní poplatky,Soudní poplatky,Soudní poplatky
+22,2,2,22,,,"Skč.platby,vratT",Přijaté sankční platby a vratky transferů,Přijaté sankční platby a vratky transferů
+221,3,2,22,221,,Přijaté sankční plat,Přijaté sankční platby,Přijaté sankční platby
+2211,4,2,22,221,2211,Sankč.platby od st.,"Sankční platby přijaté od státu, obcí a krajů","Sankční platby přijaté od státu, obcí a krajů"
+2212,4,2,22,221,2212,Sankč.platby jiných,Sankční platby přijaté od jiných subjektů,Sankční platby přijaté od jiných subjektů
+222,3,2,22,222,,Přij.vratT,Přijaté vratky transferů a ostatní příjmy z finančního vypoř,Přijaté vratky transferů a ostatní příjmy z finančního vypořádání předchozích let
+222,3,2,22,222,,Přij.vratkyT a ost.P,Přijaté vratky transferů a ost. příjmy z finančn. vypořádání,Přijaté vratky transferů a ostatní příjmy z finančního vypořádání
+2221,4,2,22,222,2221,Přij.vratT j. VR,Přijaté vratky transferů od jiných veřejných rozpočtů,Přijaté vratky transferů od jiných veřejných rozpočtů
+2222,4,2,22,222,2222,P z fin. vypoř.,Ostatní příjmy z finančního vypořádání předchozích let od ji,Ostatní příjmy z finančního vypořádání předchozích let od jiných veřejných rozpočtů
+2223,4,2,22,222,2223,P z FV OkU a obc,Příjmy z finančního vypořádání minulých let mezi krajem a ob,Příjmy z finančního vypořádání minulých let mezi krajem a obcemi
+2224,4,2,22,222,2224,Vratky z NF,Vratky nevyužitých prostředků z Národního fondu,Vratky nevyužitých prostředků z Národního fondu
+2225,4,2,22,222,2225,Plateb.neschop.,Úhrady prostředků vynaložených podle zákona o ochraně zaměst,Úhrady prostředků vynaložených podle zákona o ochraně zaměstnanců při platební neschopnosti zaměstnavatele
+2226,4,2,22,222,2226,P z FV obce,Příjmy z finančního vypořádání minulých let mezi obcemi,Příjmy z finančního vypořádání minulých let mezi obcemi
+2227,4,2,22,222,2227,P z FV RR a ÚSC,Příjmy z finančního vypořádání minulých let mezi regionální,"Příjmy z finančního vypořádání minulých let mezi regionální radou a kraji, obcemi a dobrovolnými svazky obcí"
+2229,4,2,22,222,2229,Ostatní vratky,Ostatní přijaté vratky transferů,Ostatní přijaté vratky transferů
+23,2,2,23,,,P zprod.nek.maj.,Příjmy z prodeje nekapitálového majetku a ostatnínedaňové př,Příjmy z prodeje nekapitálového majetku a ostatnínedaňové příjmy
+231,3,2,23,231,,P z krát. maj.,Příjmy z prodeje krátkodobého a drobného dlouhodobého majetk,Příjmy z prodeje krátkodobého a drobného dlouhodobého majetku
+2310,4,2,23,231,2310,P z krát. maj.,Příjmy z prodeje krátkodobého a drobného dlouhodobého majetk,Příjmy z prodeje krátkodobého a drobného dlouhodobého majetku
+232,3,2,23,232,,Ost.nedaň.příjmy,Ostatní nedaňové příjmy,Ostatní nedaňové příjmy
+2321,4,2,23,232,2321,Přij.neinv.dary,Přijaté neinvestiční dary,Přijaté neinvestiční dary
+2322,4,2,23,232,2322,Přij.poj.náhrady,Přijaté pojistné náhrady,Přijaté pojistné náhrady
+2324,4,2,23,232,2324,Přij.nekap.přísp,Přijaté nekapitálové příspěvky a náhrady,Přijaté nekapitálové příspěvky a náhrady
+2325,4,2,23,232,2325,Vratky z NF,Vratky prostředků z Národního fondu pro vyrovnání kursových,Vratky prostředků z Národního fondu pro vyrovnání kursových rozdílů
+2326,4,2,23,232,2326,Vratky z NF z MS,Vratky prostředků z Národního fondu související s neplněním,Vratky prostředků z Národního fondu související s neplněním závazků z mezinárodních smluv
+2326,4,2,23,232,2326,Prostředky z NF z MS,Prostředky přijaté z NF - neplnění závazků z mezinár. smluv,Prostředky přijaté z Národního fondu související s neplněním závazků z mezinárodních smluv
+2327,4,2,23,232,2327,Úhrada ES,"Úhrada prostředků, které státní rozpočet odvedl Evropským sp","Úhrada prostředků, které státní rozpočet odvedl Evropským společenstvím za Národní fond"
+2327,4,2,23,232,2327,Úhr.pr.odv. EU za NF,"Úhrada prostředků, které státní rozpočet odvedl EU za NF","Úhrada prostředků, které státní rozpočet odvedl Evropské unii za Národní fond"
+2328,4,2,23,232,2328,Neid.příjmy,Neidentifikované příjmy,Neidentifikované příjmy
+2329,4,2,23,232,2329,Ost. nedaňP,Ostatní nedaňové příjmy jinde nezařazené,Ostatní nedaňové příjmy jinde nezařazené
+234,3,2,23,234,,P využ.přírody,Příjmy z využívání výhradních práv k přírodním zdrojům,Příjmy z využívání výhradních práv k přírodním zdrojům
+2341,4,2,23,234,2341,Popl. za miner.v,Poplatek za využívání zdroje přírodní minerální vody,Poplatek za využívání zdroje přírodní minerální vody
+2342,4,2,23,234,2342,Popl. za podz.v,Platby za odebrané množství podzemní vody,Platby za odebrané množství podzemní vody
+2342,4,2,23,234,2342,Plat.podz.v.a spr.t.,Platby za odebrané množství podz. vody a za správu vod. toků,Platby za odebrané množství podzemní vody a za správu vodních toků
+2342,4,2,23,234,2342,Pl.-vod.toky povodí,Platba k úhradě správy vodních toků a správy povodí,Platba k úhradě správy vodních toků a správy povodí
+2343,4,2,23,234,2343,Příjmy za nerost,Příjmy z úhrad dobývacího prostoru a z vydobytých nerostů,Příjmy z úhrad dobývacího prostoru a z vydobytých nerostů
+2343,4,2,23,234,2343,P z dob.pr. a nerost,Příjmy dobíhaj. úhrad z dobýv. prostoru a z vydobyt. ner.,Příjmy dobíhajících úhrad z dobývacího prostoru a z vydobytých nerostů
+235,3,2,23,235,,P z maj.práv,Příjmy za využívání dalších majetkových práv,Příjmy za využívání dalších majetkových práv
+2351,4,2,23,235,2351,Popl.za patent,Poplatky za udržování patentu v platnosti,Poplatky za udržování patentu v platnosti
+2352,4,2,23,235,2352,Popl.za evr.pat.,Poplatky za udržování evropského patentu v platnosti,Poplatky za udržování evropského patentu v platnosti
+2353,4,2,23,235,2353,Popl. za léky,Poplatky za udržování dodatkového ochranného osvědčení pro l,Poplatky za udržování dodatkového ochranného osvědčení pro léčiva
+236,3,2,23,236,,Dobrov.pojistné,Dobrovolné pojistné,Dobrovolné pojistné
+2361,4,2,23,236,2361,Poj.nemoc. OSVČ,Pojistné na nemocenské pojištění od OSVČ,Pojistné na nemocenské pojištění od OSVČ
+2362,4,2,23,236,2362,Dobro. poj.důch.,Dobrovolné pojistné na důchodové pojištění,Dobrovolné pojistné na důchodové pojištění
+239,3,2,23,239,,Dočasné zatř. příjmů,Dočasné zatřídění příjmů,Dočasné zatřídění příjmů
+2391,4,2,23,239,2391,Dočasné zatř. příjmů,Dočasné zatřídění příjmů,Dočasné zatřídění příjmů
+24,2,2,24,,,Přij.spl.půjček,Přijaté splátky půjčených prostředků,Přijaté splátky půjčených prostředků
+241,3,2,24,241,,SplPůj od PS,Splátky půjčených prostředků od podnikatelských subjektů,Splátky půjčených prostředků od podnikatelských subjektů
+2411,4,2,24,241,2411,SplPůj. od PS-FO,Splátky půjčených prostředků od podnikatelských subjektů-fyz,Splátky půjčených prostředků od podnikatelských subjektů-fyzických osob
+2412,4,2,24,241,2412,SplPůj od PS-PrO,Splátky půjčených prostředků od podnikatelských subjektů-prá,Splátky půjčených prostředků od podnikatelských subjektů-právnických  osob
+2413,4,2,24,241,2413,Splátky půj.pr.,Splátky půjčených prostředků od podnikatelských finančních s,Splátky půjčených prostředků od podnikatelských finančních subjektů-právnických osob
+2414,4,2,24,241,2414,SplPůj od PS-ST,Splátky půjčených prostředků od podniků ve vlastnictví státu,Splátky půjčených prostředků od podniků ve vlastnictví státu
+242,3,2,24,242,,SplPůj od OPS,Splátky půjčených prostředků od obecně prospěšných společnos,Splátky půjčených prostředků od obecně prospěšných společností a podobných subjektů
+2420,4,2,24,242,2420,SplPůj od OPS,Splátky půjčených prostředků od obecně prospěšných společnos,Splátky půjčených prostředků od obecně prospěšných společností a podobných subjektů
+243,3,2,24,243,,Splát.od ústředí,Splátky půjčených prostředků od veřejných rozpočtů ústřední,Splátky půjčených prostředků od veřejných rozpočtů ústřední úrovně
+2431,4,2,24,243,2431,SplPůj od SR,Splátky půjčených prostředků od státního rozpočtu,Splátky půjčených prostředků od státního rozpočtu
+2432,4,2,24,243,2432,SplPůj od SF,Splátky půjčených prostředků  od státních fondů,Splátky půjčených prostředků  od státních fondů
+2433,4,2,24,243,2433,Spl.od zvl.fondů,Splátky půjčených prostředků od zvláštních fondů ústřední úr,Splátky půjčených prostředků od zvláštních fondů ústřední úrovně
+2434,4,2,24,243,2434,SplPůj od FSaZP,Splátky půjčených prostředků  od fondů sociálního a zdravotn,Splátky půjčených prostředků  od fondů sociálního a zdravotního pojištění
+2439,4,2,24,243,2439,Ostat. spl.půjč.,Ostatní splátky půjčených prostředků od veřejných rozpočtů,Ostatní splátky půjčených prostředků od veřejných rozpočtů
+244,3,2,24,244,,Splátky od území,Splátky půjčených prostředků  od veřejných rozpočtů územní ú,Splátky půjčených prostředků  od veřejných rozpočtů územní úrovně
+2441,4,2,24,244,2441,SplPůj od obcí,Splátky půjčených prostředků od obcí,Splátky půjčených prostředků od obcí
+2442,4,2,24,244,2442,SplPůj od krajů,Splátky půjčených prostředků od krajů,Splátky půjčených prostředků od krajů
+2443,4,2,24,244,2443,SplPůj od RR,Splátky půjčených prostředků od regionálních rad,Splátky půjčených prostředků od regionálních rad
+2449,4,2,24,244,2449,Ost. spl.-území,Ostatní splátky půjčených prostředků od veřejných rozpočtů ú,Ostatní splátky půjčených prostředků od veřejných rozpočtů územní úrovně
+245,3,2,24,245,,SplPůj zříz.org.,Splátky půjčených prostředků  od zřízených a podobných subje,Splátky půjčených prostředků  od zřízených a podobných subjektů
+2451,4,2,24,245,2451,SplPůj od PO,Splátky půjčených prostředků od příspěvkových organizací,Splátky půjčených prostředků od příspěvkových organizací
+2452,4,2,24,245,2452,Splátky půj. VŠ,Splátky půjčených prostředků od vysokých škol,Splátky půjčených prostředků od vysokých škol
+2459,4,2,24,245,2459,Spl. ostatní,Splátky půjčených prostředků od ostatních zřízených a podobn,Splátky půjčených prostředků od ostatních zřízených a podobných subjektů
+246,3,2,24,246,,SplPůj od obyv.,Splátky půjčených prostředků  od obyvatelstva,Splátky půjčených prostředků  od obyvatelstva
+2460,4,2,24,246,2460,Spl. od obyvatel,Splátky půjčených prostředků od obyvatelstva,Splátky půjčených prostředků od obyvatelstva
+247,3,2,24,247,,SplPůj ze zahr.,Splátky půjčených prostředků  ze zahraničí,Splátky půjčených prostředků  ze zahraničí
+2470,4,2,24,247,2470,SplPůj ze zahr.,Splátky půjčených prostředků ze zahraničí,Splátky půjčených prostředků ze zahraničí
+248,3,2,24,248,,Splátky za úhr.dluhů,Splátky za úhradu dluhů nebo dodávek,Splátky za úhradu dluhů nebo dodávek
+2481,4,2,24,248,2481,Příjmy od dluž.,Příjmy od dlužníků za realizace záruk,Příjmy od dlužníků za realizace záruk
+2482,4,2,24,248,2482,Splátky od dluž.,Splátky od dlužníků za zaplacení dodávek,Splátky od dlužníků za zaplacení dodávek
+25,2,2,25,,,Příjmy sdílené s EÚ,Příjmy sdílené s nadnárodním orgánem,Příjmy sdílené s nadnárodním orgánem
+251,3,2,25,251,,Příjmy sdílené s EÚ,Příjmy sdílené s Evropskou unií,Příjmy sdílené s Evropskou unií
+2511,4,2,25,251,2511,Podíl na clech,Podíl na clech,Podíl na clech
+2512,4,2,25,251,2512,Podíl dávek z cukru,Podíl na dávkách z cukru,Podíl na dávkách z cukru
+2513,4,2,25,251,2513,Podíl na DPH z TS EU,Podíl na DPH z telekomunikačních služeb spravované pro EU,Podíl na DPH z telekomunikačních služeb spravované pro EU
+2513,4,2,25,251,2513,Podíl na DPH EU,Podíl na DPH z telekom. a pod. služeb spravované pro EU,Podíl na DPH z telekomunikačních a podobných služeb spravované pro EU
+3,1,3,,,,Kapitál.příjmy,Kapitálové příjmy,Kapitálové příjmy
+31,2,3,31,,,"P-prod.DM, ost.",Příjmy z prodeje dlouhodobého majetku a ostatní kapitálové p,Příjmy z prodeje dlouhodobého majetku a ostatní kapitálové příjmy
+311,3,3,31,311,,P z prod.DM,Příjmy z prodeje dlouhodobého majetku (kromě drobného),Příjmy z prodeje dlouhodobého majetku (kromě drobného)
+3111,4,3,31,311,3111,P z prod.pozemků,Příjmy z prodeje pozemků,Příjmy z prodeje pozemků
+3112,4,3,31,311,3112,P z prod.ost.nem,Příjmy z prodeje ostatních nemovitostí a jejich částí,Příjmy z prodeje ostatních nemovitostí a jejich částí
+3112,4,3,31,311,3112,P z prod.ost.nemov.,Příjmy z prodeje ostatních nemovitých věcí a jejich částí,Příjmy z prodeje ostatních nemovitých věcí a jejich částí
+3113,4,3,31,311,3113,P z prod.ost.HDM,Příjmy z prodeje ostatního hmotného dlouhodobého majetku,Příjmy z prodeje ostatního hmotného dlouhodobého majetku
+3114,4,3,31,311,3114,P z prod. NDM,Příjmy z prodeje nehmotného dlouhodobého majetku,Příjmy z prodeje nehmotného dlouhodobého majetku
+3119,4,3,31,311,3119,OstatníP -DM,Ostatní příjmy z prodeje dlouhodobého majetku,Ostatní příjmy z prodeje dlouhodobého majetku
+312,3,3,31,312,,Ost.kap. příjmy,Ostatní kapitálové příjmy,Ostatní kapitálové příjmy
+3121,4,3,31,312,3121,Přij.dary na DM,Přijaté dary na pořízení dlouhodobého majetku,Přijaté dary na pořízení dlouhodobého majetku
+3122,4,3,31,312,3122,PřijPřísp.na DM,Přijaté příspěvky na pořízení dlouhodobého majetku,Přijaté příspěvky na pořízení dlouhodobého majetku
+3129,4,3,31,312,3129,Ost.inv. příjmy,Ostatní investiční příjmy jinde nezařazené,Ostatní investiční příjmy jinde nezařazené
+32,2,3,32,,,P z prodeje dl.fin.m,Příjmy z prodeje dlouhodobého finančního majetku,Příjmy z prodeje dlouhodobého finančního majetku
+320,3,3,32,320,,P z prodeje dl.fin.m,Příjmy z prodeje dlouhodobého finančního majetku,Příjmy z prodeje dlouhodobého finančního majetku
+3201,4,3,32,320,3201,P z prod. akcií,Příjmy z prodeje akcií,Příjmy z prodeje akcií
+3202,4,3,32,320,3202,P z prod. MP,Příjmy z prodeje majetkových podílů,Příjmy z prodeje majetkových podílů
+3203,4,3,32,320,3203,P z prodeje dluhopis,Příjmy z prodeje dluhopisů,Příjmy z prodeje dluhopisů
+3209,4,3,32,320,3209,Ost.P z dl.fin.maj.,Ostatní příjmy z prodeje dlouhodobého finančního majetku,Ostatní příjmy z prodeje dlouhodobého finančního majetku
+4,1,4,,,,Přijaté transfer,Přijaté transfery,Přijaté transfery
+41,2,4,41,,,NeinvT přijaté,Neinvestiční přijaté transfery,Neinvestiční přijaté transfery
+411,3,4,41,411,,NeinvT od ústř.R,Neinvestiční přijaté transfery od veřejných rozpočtů ústředn,Neinvestiční přijaté transfery od veřejných rozpočtů ústřední úrovně
+4111,4,4,41,411,4111,NeinvT z VPS,Neinvestiční přijaté transfery z všeobecné pokladní správy s,Neinvestiční přijaté transfery z všeobecné pokladní správy státního rozpočtu
+4112,4,4,41,411,4112,NeinvT ze SR SDV,Neinvestiční přijaté transfery ze státního rozpočtu v rámci,Neinvestiční přijaté transfery ze státního rozpočtu v rámci souhrnného dotačního vztahu
+4113,4,4,41,411,4113,NeinvT ze SF,Neinvestiční přijaté transfery ze státních fondů,Neinvestiční přijaté transfery ze státních fondů
+4114,4,4,41,411,4114,NeinvT z zvl.ú.F,Neinvestiční přijaté transfery ze zvláštních fondů ústřední,Neinvestiční přijaté transfery ze zvláštních fondů ústřední úrovně
+4115,4,4,41,411,4115,NeinvT od FSaZP,Neinvestiční přijaté transfery od fondů sociálního a zdravot,Neinvestiční přijaté transfery od fondů sociálního a zdravotního pojištění
+4116,4,4,41,411,4116,NeinvT ze SR,Ostatní neinvestiční přijaté transfery ze státního rozpočtu,Ostatní neinvestiční přijaté transfery ze státního rozpočtu
+4118,4,4,41,411,4118,NeinvPřev z NF,Neinvestiční převody z Národního fondu,Neinvestiční převody z Národního fondu
+4119,4,4,41,411,4119,Ost.NeinvT ústř.,Ostatní neinvestiční přijaté transfery od rozpočtů ústřední,Ostatní neinvestiční přijaté transfery od rozpočtů ústřední úrovně
+412,3,4,41,412,,NeinvT od územ.R,Neinvestiční přijaté transfery od veřejných rozpočtů územní,Neinvestiční přijaté transfery od veřejných rozpočtů územní úrovně
+4121,4,4,41,412,4121,NeinvT od obcí,Neinvestiční přijaté transfery od obcí,Neinvestiční přijaté transfery od obcí
+4122,4,4,41,412,4122,NeinvT od krajů,Neinvestiční přijaté transfery od krajů,Neinvestiční přijaté transfery od krajů
+4123,4,4,41,412,4123,NeinvT od RR,Neinvestiční přijaté transfery od regionálních rad,Neinvestiční přijaté transfery od regionálních rad
+4129,4,4,41,412,4129,NeinvT od územ.R,Ostatní neinvestiční přijaté transfery od rozpočtů územní úr,Ostatní neinvestiční přijaté transfery od rozpočtů územní úrovně
+413,3,4,41,413,,Přev. z vl.fondů,Převody z vlastních fondů,Převody z vlastních fondů
+413,3,4,41,413,,Př.fondy (bez subj),Převody z vl.fondů a ve vztahu k útvarům bez plné práv.subj.,Převody z vlastních fondů a ve vztahu k útvarům bez plné právní subjektivity
+413,3,4,41,413,,Nivpř.fondy+bez subj,Neinv. převody z vl. fondů a k útvarům bez plné právní subj.,Neinvestiční převody z vlastních fondů a ve vztahu k útvarům bez plné právní subjektivity
+4131,4,4,41,413,4131,Přev. z fondů HČ,Převody z vlastních fondů hospodářské (podnikatelské) činnos,Převody z vlastních fondů hospodářské (podnikatelské) činnosti
+4132,4,4,41,413,4132,Přev.z o.vlast.F,Převody z ostatních vlastních fondů,Převody z ostatních vlastních fondů
+4133,4,4,41,413,4133,Přev.z RF ne OSS,Převody z vlastních rezervních fondů (jiných než organizační,Převody z vlastních rezervních fondů (jiných než organizačních složek státu)
+4134,4,4,41,413,4134,Přev.z rozp.účtů,Převody z rozpočtových účtů,Převody z rozpočtových účtů
+4135,4,4,41,413,4135,Převod z RF OSS,Převody z rezervních fondů organizačních složek státu,Převody z rezervních fondů organizačních složek státu
+4136,4,4,41,413,4136,Převod z j.F OSS,Převody z jiných fondů organizačních složek státu,Převody z jiných fondů organizačních složek státu
+4137,4,4,41,413,4137,Přev.statut.m.příjmy,Převody mezi statut.městy (Prahou) a obvody/částmi-příjmy,Převody mezi statutárními městy (hl.m. Prahou) a jejich městskými obvody nebo částmi - příjmy
+4137,4,4,41,413,4137,Nivpř.statut.m.příj.,Neinv.převody-statutární města (Praha) a obvody/části-příjmy,Neinvestiční převody mezi statutárními městy (hl. m. Prahou) a jejich městskými obvody nebo částmi - příjmy
+4138,4,4,41,413,4138,Přev. z vl. pokladny,Převody z vlastní pokladny,Převody z vlastní pokladny
+4139,4,4,41,413,4139,Ost.Přev z vl.F,Ostatní převody z vlastních fondů,Ostatní převody z vlastních fondů
+414,3,4,41,414,,Přev.z vl.F přes rok,Převody z vlastních fondů přes rok,Převody z vlastních fondů přes rok
+4140,4,4,41,414,4140,Přev.z vl.F přes rok,Převody z vlastních fondů přes rok,Převody z vlastních fondů přes rok
+415,3,4,41,415,,NeinvT ze zahr.,Neinvestiční přijaté transfery ze zahraničí,Neinvestiční přijaté transfery ze zahraničí
+4151,4,4,41,415,4151,NeinvT od ciz.st,Neinvestiční přijaté transfery od cizích států,Neinvestiční přijaté transfery od cizích států
+4152,4,4,41,415,4152,NeinvT od mez.in,Neinvestiční přijaté transfery od mezinárodních institucí,Neinvestiční přijaté transfery od mezinárodních institucí
+4152,4,4,41,415,4152,Neinv.př.transf.,Neinv. př. transf. od mez. inst. a někt. ciz.org. a práv.os.,Neinvestiční přijaté transfery od mezinárodních institucí a některých cizích orgánů a právnických osob
+4153,4,4,41,415,4153,NeinvT od EU,Neinvestiční transfery přijaté od Evropské unie,Neinvestiční transfery přijaté od Evropské unie
+4155,4,4,41,415,4155,Neinv.transfery z FM,Neinvestiční transfery z finančních mechanismů,Neinvestiční transfery z finančních mechanismů
+4156,4,4,41,415,4156,Neinv.transfery NATO,Neinvestiční transfery od NATO,Neinvestiční transfery od NATO
+4159,4,4,41,415,4159,NeinvT ze zahr.,Ostatní neinvestiční přijaté transfery ze zahraničí,Ostatní neinvestiční přijaté transfery ze zahraničí
+416,3,4,41,416,,NeinvT ze SFA,Neinvestiční přijaté transfery ze státních finančních aktiv,Neinvestiční přijaté transfery ze státních finančních aktiv
+4160,4,4,41,416,4160,NeinvT ze SFA,Neinvestiční přijaté transfery ze státních finančních aktiv,Neinvestiční přijaté transfery ze státních finančních aktiv
+42,2,4,42,,,InvT přijaté,Investiční přijaté transfery,Investiční přijaté transfery
+421,3,4,42,421,,InvT od ústř.R,Investiční přijaté transfery od veřejných rozpočtů ústřední,Investiční přijaté transfery od veřejných rozpočtů ústřední úrovně
+4211,4,4,42,421,4211,InvT z VPS,Investiční přijaté transfery z všeobecné pokladní správy stá,Investiční přijaté transfery z všeobecné pokladní správy státního rozpočtu
+4212,4,4,42,421,4212,InvT ze SR SDV,Investiční přijaté transfery ze státního rozpočtu v rámci so,Investiční přijaté transfery ze státního rozpočtu v rámci souhrnného dotačního vztahu
+4213,4,4,42,421,4213,InvT ze SF,Investiční přijaté transfery ze státních fondů,Investiční přijaté transfery ze státních fondů
+4214,4,4,42,421,4214,InvT z zvl.Fústř,Investiční přijaté transfery ze zvláštních fondů ústřední úr,Investiční přijaté transfery ze zvláštních fondů ústřední úrovně
+4216,4,4,42,421,4216,InvT ze SR,Ostatní investiční přijaté transfery ze státního rozpočtu,Ostatní investiční přijaté transfery ze státního rozpočtu
+4218,4,4,42,421,4218,InvPřevod z NF,Investiční převody z Národního fondu,Investiční převody z Národního fondu
+4219,4,4,42,421,4219,Ost.InvT z ústřR,Ostatní investiční přijaté transfery od veřejných rozpočtů ú,Ostatní investiční přijaté transfery od veřejných rozpočtů ústřední úrovně
+422,3,4,42,422,,InvT od územ.R,Investiční přijaté transfery od veřejných rozpočtů územní úr,Investiční přijaté transfery od veřejných rozpočtů územní úrovně
+4221,4,4,42,422,4221,InvT od obcí,Investiční přijaté transfery od obcí,Investiční přijaté transfery od obcí
+4222,4,4,42,422,4222,InvT od krajů,Investiční přijaté transfery od krajů,Investiční přijaté transfery od krajů
+4223,4,4,42,422,4223,InvT od RR,Investiční přijaté transfery od regionálních rad,Investiční přijaté transfery od regionálních rad
+4229,4,4,42,422,4229,Ost.InvT z územR,Ostatní investiční přijaté transfery od rozpočtů územní úrov,Ostatní investiční přijaté transfery od rozpočtů územní úrovně
+423,3,4,42,423,,InvT z zahraničí,Investiční přijaté transfery ze zahraničí,Investiční přijaté transfery ze zahraničí
+4231,4,4,42,423,4231,InvT od ciz.stát,Investiční přijaté transfery od cizích států,Investiční přijaté transfery od cizích států
+4232,4,4,42,423,4232,InvT od mez.inst,Investiční přijaté transfery od mezinárodních institucí,Investiční přijaté transfery od mezinárodních institucí
+4233,4,4,42,423,4233,InvT od EU,Investiční transfery přijaté od Evropské unie,Investiční transfery přijaté od Evropské unie
+4234,4,4,42,423,4234,Inv.transfery z FM,Investiční transfery z finančních mechanismů,Investiční transfery z finančních mechanismů
+4235,4,4,42,423,4235,Inv.transfery NATO,Investiční transfery od NATO,Investiční transfery od NATO
+424,3,4,42,424,,InvT ze SFA,Investiční přijaté transfery ze státních finančních aktiv,Investiční přijaté transfery ze státních finančních aktiv
+4240,4,4,42,424,4240,InvT ze SFA,Investiční přijaté transfery ze státních finančních aktiv,Investiční přijaté transfery ze státních finančních aktiv
+425,3,4,42,425,,Invpř.fondy+bez subj,Inv. převody z vl. fondů a k útvarům bez plné právní subj.,Investiční převody z vlastních fondů a ve vztahu k útvarům bez plné právní subjektivity
+4251,4,4,42,425,4251,Invpř.statut.m.příj.,Inv.převody-statutární města (Praha) a obvody/části - příjmy,Investiční převody mezi statutárními městy (hl. m. Prahou) a jejich městskými obvody nebo částmi - příjmy
+5,1,5,,,,Běžné výdaje,Běžné výdaje,Běžné výdaje
+50,2,5,50,,,V na platy a poj,"Výdaje na platy, ostatní platby za provedenou práci a pojist","Výdaje na platy, ostatní platby za provedenou práci a pojistné"
+50,2,5,50,,,Platy a souvis.výd.,Platy a podobné a související výdaje,Platy a podobné a související výdaje
+501,3,5,50,501,,Platy,Platy,Platy
+5011,4,5,50,501,5011,Platy zamc v PP,Platy zaměstnanců v pracovním poměru,Platy zaměstnanců v pracovním poměru
+5011,4,5,50,501,5011,Platy zam.PP vyj. SM,Platy zam. v prac. poměru vyjma zam. na služeb. místech,Platy zaměstnanců v pracovním poměru vyjma zaměstnanců na služebních místech
+5012,4,5,50,501,5012,Platy zamc. SP,Platy zaměstnanců ozbrojených sborů a složek ve služebním po,Platy zaměstnanců ozbrojených sborů a složek ve služebním poměru
+5012,4,5,50,501,5012,Platy zam.bez.ozb.SP,Platy zaměstnanců bezp. sborů a ozbrojených sil ve SP,Platy zaměstnanců bezpečnostních sborů a ozbrojených sil ve služebním poměru
+5013,4,5,50,501,5013,Platy-st.správa,Platy státních zaměstnanců ve správních úřadech,Platy státních zaměstnanců ve správních úřadech
+5013,4,5,50,501,5013,Platy zam.SM zák.oSS,Platy zam. na služebních místech podle zák. o státní službě,Platy zaměstnanců na služebních místech podle zákona o státní službě
+5014,4,5,50,501,5014,Platy zamc odv.,Platy zaměstnanců v pracovním poměru odvozované od platů úst,Platy zaměstnanců v pracovním poměru odvozované od platů ústavních činitelů
+5019,4,5,50,501,5019,Ostatní platy,Ostatní platy,Ostatní platy
+502,3,5,50,502,,Ost.platby-prác,Ostatní platby za provedenou práci,Ostatní platby za provedenou práci
+5021,4,5,50,502,5021,OOV,Ostatní osobní výdaje,Ostatní osobní výdaje
+5022,4,5,50,502,5022,Platy představit,Platy představitelů státní moci a některých orgánů,Platy představitelů státní moci a některých orgánů
+5023,4,5,50,502,5023,"Odm.čl.zastup.ob,kr.",Odměny členů zastupitelstev obcí a krajů,Odměny členů zastupitelstev obcí a krajů
+5024,4,5,50,502,5024,Odstupné,Odstupné,Odstupné
+5025,4,5,50,502,5025,Odbytné,Odbytné,Odbytné
+5026,4,5,50,502,5026,Odchodné,Odchodné,Odchodné
+5027,4,5,50,502,5027,NáležOs vojen.cv,Náležitosti osob vykon. voj. cvičení a další voj. službu,Náležitosti osob vykonávajících vojenská cvičení a další vojenskou službu
+5027,4,5,50,502,5027,Nálež voj. v záloze,Peněžní náležitosti vojáků v záloze ve službě,Peněžní náležitosti vojáků v záloze ve službě
+5028,4,5,50,502,5028,Káz.odměny-pen.dary,Kázeňské odměny poskytnuté formou peněžitých darů,Kázeňské odměny poskytnuté formou peněžitých darů
+5029,4,5,50,502,5029,Ost.platby-práce,Ostatní platby za provedenou práci jinde nezařazené,Ostatní platby za provedenou práci jinde nezařazené
+503,3,5,50,503,,Povin.poj.zamv,Povinné pojistné placené zaměstnavatelem,Povinné pojistné placené zaměstnavatelem
+5031,4,5,50,503,5031,Povinné poj.soc.,Povinné pojistné na sociální zabezpečení a příspěvek na stát,Povinné pojistné na sociální zabezpečení a příspěvek na státní politiku zaměstnanosti
+5032,4,5,50,503,5032,Poj. na VZP,Povinné pojistné na veřejné zdravotní pojištění,Povinné pojistné na veřejné zdravotní pojištění
+5038,4,5,50,503,5038,Pov. úraz.pojist,Povinné pojistné na úrazové pojištění,Povinné pojistné na úrazové pojištění
+5039,4,5,50,503,5039,Poj. plac.zamv.,Ostatní povinné pojistné placené zaměstnavatelem,Ostatní povinné pojistné placené zaměstnavatelem
+504,3,5,50,504,,Odměny DušVlastn,Odměny za užití duševního vlastnictví,Odměny za užití duševního vlastnictví
+5041,4,5,50,504,5041,Odměny DušVlastn,Odměny za užití duševního vlastnictví,Odměny za užití duševního vlastnictví
+5042,4,5,50,504,5042,Odměny za užití SW,Odměny za užití počítačových programů,Odměny za užití počítačových programů
+505,3,5,50,505,,Mzdové náhrady,Mzdové náhrady,Mzdové náhrady
+5051,4,5,50,505,5051,Mzdové náhrady,Mzdové náhrady,Mzdové náhrady
+506,3,5,50,506,,Mzdy - cizí právo,Mzdy podle cizího práva,Mzdy podle cizího práva
+5061,4,5,50,506,5061,Mzdy - cizí právo,Mzdy podle cizího práva,Mzdy podle cizího práva
+51,2,5,51,,,"Neinv.nákupy,V",Neinvestiční nákupy a související výdaje,Neinvestiční nákupy a související výdaje
+512,3,5,51,512,,Podlimit.věc.břemena,Podlimitní věcná břemena,Podlimitní věcná břemena
+512,3,5,51,512,,Úpravy hmotn. věcí,V. na někt. úpravy hm. věcí a poř. někt. práv k hmotným v.,Výdaje na některé úpravy hmotných věcí a pořízení některých práv k hmotným věcem
+5122,4,5,51,512,5122,Podlimit.věc.břemena,Podlimitní věcná břemena,Podlimitní věcná břemena
+5123,4,5,51,512,5123,Podlimit.techn.zhodn,Podlimitní technické zhodnocení,Podlimitní technické zhodnocení
+513,3,5,51,513,,Nákup materiálu,Nákup materiálu,Nákup materiálu
+5131,4,5,51,513,5131,Potraviny,Potraviny,Potraviny
+5132,4,5,51,513,5132,Ochr.pomůcky,Ochranné pomůcky,Ochranné pomůcky
+5133,4,5,51,513,5133,"Léky, zdrav.mat.",Léky a zdravotnický materiál,Léky a zdravotnický materiál
+5134,4,5,51,513,5134,"Prádlo,oděv,obuv","Prádlo, oděv a obuv","Prádlo, oděv a obuv"
+5135,4,5,51,513,5135,Učeb.bezpl.potř.,Učebnice a bezplatně poskytované školní potřeby,Učebnice a bezplatně poskytované školní potřeby
+5136,4,5,51,513,5136,"Knihy,učeb.pom.","Knihy, učební pomůcky a tisk","Knihy, učební pomůcky a tisk"
+5137,4,5,51,513,5137,Drob.hm.dl. maj.,Drobný hmotný dlouhodobý majetek,Drobný hmotný dlouhodobý majetek
+5138,4,5,51,513,5138,Nákup zboží,Nákup zboží (za účelem dalšího prodeje),Nákup zboží (za účelem dalšího prodeje)
+5139,4,5,51,513,5139,Nákup. maj.j.,Nákup materiálu jinde nezařazený,Nákup materiálu jinde nezařazený
+514,3,5,51,514,,"Úroky,ost.fin.V",Úroky a ostatní finanční výdaje,Úroky a ostatní finanční výdaje
+5141,4,5,51,514,5141,Úroky vlastní,Úroky vlastní,Úroky vlastní
+5142,4,5,51,514,5142,Real.kurz.ztrát,Realizované kurzové ztráty,Realizované kurzové ztráty
+5142,4,5,51,514,5142,Kurs.rozdíly výdajů,Kursové rozdíly ve výdajích,Kursové rozdíly ve výdajích
+5143,4,5,51,514,5143,Úroky cizí,Úroky vzniklé převzetím cizích závazků,Úroky vzniklé převzetím cizích závazků
+5144,4,5,51,514,5144,Popl. dluh.služb,Poplatky dluhové služby,Poplatky dluhové služby
+5145,4,5,51,514,5145,Finan. deriváty,Finanční deriváty,Finanční deriváty
+5145,4,5,51,514,5145,Fin.deriváty-neúroky,Neúrokové výdaje na finanční deriváty,Neúrokové výdaje na finanční deriváty
+5145,4,5,51,514,5145,Neúr.výd.fin.der.dl.,Neúrokové výdaje na finanční deriváty k vlastním dluhopisům,Neúrokové výdaje na finanční deriváty k vlastním dluhopisům
+5146,4,5,51,514,5146,Fin.deriváty - úroky,Úrokové výdaje na finanční deriváty,Úrokové výdaje na finanční deriváty
+5146,4,5,51,514,5146,Deriváty-úroky dluh.,Úrokové výdaje na finanční deriváty k vlastním dluhopisům,Úrokové výdaje na finanční deriváty k vlastním dluhopisům
+5147,4,5,51,514,5147,Deriváty-úroky nedl.,Úrokové výdaje na fin. deriváty kromě k vlastním dluhopisům,Úrokové výdaje na finanční deriváty kromě k vlastním dluhopisům
+5148,4,5,51,514,5148,Neúr.výd.der.ne dl.,Neúrokové výd. na finanč. deriváty kromě k vlast. dluhopisům,Neúrokové výdaje na finanční deriváty kromě k vlastním dluhopisům
+5149,4,5,51,514,5149,Ost. úroky,Ostatní úroky a ostatní finanční výdaje,Ostatní úroky a ostatní finanční výdaje
+515,3,5,51,515,,"Voda,palivo,en.","Nákup vody, paliv a energie","Nákup vody, paliv a energie"
+5151,4,5,51,515,5151,Studená voda,Studená voda,Studená voda
+5152,4,5,51,515,5152,Teplo,Teplo,Teplo
+5153,4,5,51,515,5153,Plyn,Plyn,Plyn
+5154,4,5,51,515,5154,El.energie,Elektrická energie,Elektrická energie
+5155,4,5,51,515,5155,Pevná paliva,Pevná paliva,Pevná paliva
+5156,4,5,51,515,5156,"PHM, maziva",Pohonné hmoty a maziva,Pohonné hmoty a maziva
+5157,4,5,51,515,5157,Teplá voda,Teplá voda,Teplá voda
+5159,4,5,51,515,5159,N ost.paliv a en,Nákup ostatních paliv a energie,Nákup ostatních paliv a energie
+516,3,5,51,516,,Nákup služeb,Nákup služeb,Nákup služeb
+5161,4,5,51,516,5161,Služby pošt,Služby pošt,Služby pošt
+5161,4,5,51,516,5161,Poštovní služby,Poštovní služby,Poštovní služby
+5162,4,5,51,516,5162,Telekomunikace,Služby telekomunikací a radiokomunikací,Služby telekomunikací a radiokomunikací
+5162,4,5,51,516,5162,Služby elektron.kom.,Služby elektronických komunikací,Služby elektronických komunikací
+5163,4,5,51,516,5163,Sl.peněž.ústavů,Služby peněžních ústavů,Služby peněžních ústavů
+5164,4,5,51,516,5164,Nájemné,Nájemné,Nájemné
+5165,4,5,51,516,5165,Nájemné za půdu,Nájemné za půdu,Nájemné za půdu
+5166,4,5,51,516,5166,"Konzult.,por.sl.","Konzultační, poradenské a právní služby","Konzultační, poradenské a právní služby"
+5167,4,5,51,516,5167,"Sl.školení, vzd.",Služby školení a vzdělávání,Služby školení a vzdělávání
+5168,4,5,51,516,5168,Zpracování dat,Služby zpracování dat,Služby zpracování dat
+5168,4,5,51,516,5168,Zpracování dat,Zpracování dat a služby související s inf.a komunik.technol.,Zpracování dat a služby související s informačními a komunikačními technologiemi
+5169,4,5,51,516,5169,Nákup ost.služeb,Nákup ostatních služeb,Nákup ostatních služeb
+517,3,5,51,517,,Ostatní nákupy,Ostatní nákupy,Ostatní nákupy
+5171,4,5,51,517,5171,Opravy a údržba,Opravy a udržování,Opravy a udržování
+5172,4,5,51,517,5172,Programové vyb.,Programové vybavení,Programové vybavení
+5173,4,5,51,517,5173,Cestovné,Cestovné (tuzemské i zahraniční),Cestovné (tuzemské i zahraniční)
+5173,4,5,51,517,5173,Cestovné,Cestovné,Cestovné
+5175,4,5,51,517,5175,Pohoštění,Pohoštění,Pohoštění
+5176,4,5,51,517,5176,Popl. na konfer.,Účastnické poplatky na konference,Účastnické poplatky na konference
+5177,4,5,51,517,5177,Nák.uměl.předm.,Nákup uměleckých předmětů,Nákup uměleckých předmětů
+5177,4,5,51,517,5177,Neaktivní,Neaktivní,Neaktivní
+5177,4,5,51,517,5177,Nákup archiválií,Nákup archiválií,Nákup archiválií
+5178,4,5,51,517,5178,Náj.-fin.leasing,Nájemné za nájem s právem koupě,Nájemné za nájem s právem koupě
+5179,4,5,51,517,5179,Ostatní nákupy,Ostatní nákupy jinde nezařazené,Ostatní nákupy jinde nezařazené
+518,3,5,51,518,,Poskyt.zálohy,"Poskytnuté zálohy, jistiny, záruky a vládní úvěry","Poskytnuté zálohy, jistiny, záruky a vládní úvěry"
+518,3,5,51,518,,Netransf. přev. org.,"Netransfer. převody uvnitř organizace, povinnosti a jistoty","Výdaje na netransferové převody uvnitř organizace, na převzaté povinnosti a na jistoty"
+5181,4,5,51,518,5181,Posk zál.vnitř.,Poskytnuté zálohy vnitřním organizačním jednotkám,Poskytnuté zálohy vnitřním organizačním jednotkám
+5181,4,5,51,518,5181,Převody vnitřním OJ,Převody vnitřním organizačním jednotkám,Převody vnitřním organizačním jednotkám
+5182,4,5,51,518,5182,Zál.vl.pokladně,Poskytované zálohy vlastní pokladně,Poskytované zálohy vlastní pokladně
+5182,4,5,51,518,5182,Převody vl. pokladně,Převody vlastní pokladně,Převody vlastní pokladně
+5183,4,5,51,518,5183,V na záruky,Výdaje na realizaci záruk,Výdaje na realizaci záruk
+5184,4,5,51,518,5184,Výdaje-vl.úvěry,Výdaje na vládní úvěry,Výdaje na vládní úvěry
+5185,4,5,51,518,5185,Přev. do elektr.pen.,Převody do elektronických peněženek,Převody do elektronických peněženek
+5189,4,5,51,518,5189,Ost. zálohy,Ostatní poskytované zálohy a jistiny,Ostatní poskytované zálohy a jistiny
+5189,4,5,51,518,5189,Jistoty,Jistoty,Jistoty
+519,3,5,51,519,,V souv.s nákupy,"Výdaje související s neinvestičními nákupy, příspěvky, náhra","Výdaje související s neinvestičními nákupy, příspěvky, náhrady a věcné dary"
+5191,4,5,51,519,5191,Zaplacené sankc,Zaplacené sankce,Zaplacené sankce
+5192,4,5,51,519,5192,NeinvPřísp.náhr.,Poskytnuté neinvestiční příspěvky a náhrady (část),Poskytnuté neinvestiční příspěvky a náhrady (část)
+5192,4,5,51,519,5192,Poskytnuté náhrady,Poskytnuté náhrady,Poskytnuté náhrady
+5193,4,5,51,519,5193,Dopr.úz. obsluž.,Výdaje na dopravní územní obslužnost,Výdaje na dopravní územní obslužnost
+5194,4,5,51,519,5194,Věcné dary,Věcné dary,Věcné dary
+5195,4,5,51,519,5195,Odvody za zdr.p.,Odvody za neplnění povinnosti zaměstnávat zdravotně postižen,Odvody za neplnění povinnosti zaměstnávat zdravotně postižené
+5196,4,5,51,519,5196,Náhr. úst.funkc.,Náhrady a příspěvky související s výkonem ústavní funkce a f,Náhrady a příspěvky související s výkonem ústavní funkce a funkce soudce
+5197,4,5,51,519,5197,Náhrady- zahr.,Náhrady zvýšených nákladů spojených s výkonem funkce v zahra,Náhrady zvýšených nákladů spojených s výkonem funkce v zahraničí
+5198,4,5,51,519,5198,Finan.náhrady církve,Finanční náhrady v rámci majetkového vyrovnání s církvemi,Finanční náhrady v rámci majetkového vyrovnání s církvemi
+5199,4,5,51,519,5199,OstV s nákupy,Ostatní výdaje související s neinvestičními nákupy,Ostatní výdaje související s neinvestičními nákupy
+52,2,5,52,,,NeinT soukr.PS,Neinvestiční transfery soukromoprávním subjektům,Neinvestiční transfery soukromoprávním subjektům
+521,3,5,52,521,,Nein.T podnik.subj.,Neinvestiční transfery podnikatelským subjektům,Neinvestiční transfery podnikatelským subjektům
+5211,4,5,52,521,5211,NeinvT Finst.,Neinvestiční transfery finančním institucím,Neinvestiční transfery finančním institucím
+5212,4,5,52,521,5212,NeinvT nef. FO,Neinvestiční transfery nefinančním podnikatelskýmsubjektům-f,Neinvestiční transfery nefinančním podnikatelskýmsubjektům-fyzickým osobám
+5213,4,5,52,521,5213,NeinvT nef.PrO,Neinvestiční transfery nefinančním podnikatelským subjektům-,Neinvestiční transfery nefinančním podnikatelským subjektům-právnickým osobám
+5214,4,5,52,521,5214,NeinT s.fin.inst,Neinvestiční transfery finančním a podobným institucím ve vl,Neinvestiční transfery finančním a podobným institucím ve vlastnictví státu
+5215,4,5,52,521,5215,NeinT PS-ST,Neinvestiční transfery vybraným podnikatelským subjektům ve,Neinvestiční transfery vybraným podnikatelským subjektům ve vlastnictví státu
+5216,4,5,52,521,5216,Neinv. T nemocnicím,Neinv. transf. obecním a krajským nemocnicím - obchod. spol.,Neinvestiční transfery obecním a krajským nemocnicím - obchodním společnostem
+5219,4,5,52,521,5219,Ost.neinvT PS,Ostatní neinvestiční transfery podnikatelským subjektům,Ostatní neinvestiční transfery podnikatelským subjektům
+522,3,5,52,522,,Neinv.T nezisk.org.,Neinvestiční transfery neziskovým a podobným organizacím,Neinvestiční transfery neziskovým a podobným organizacím
+5221,4,5,52,522,5221,NeinvT OPS,Neinvestiční transfery obecně prospěšným společnostem,Neinvestiční transfery obecně prospěšným společnostem
+5221,4,5,52,522,5221,"Neinv T fund., OPS","Neinv. transf. fundacím, ústavům a obecně prospěšným společ.","Neinvestiční transfery fundacím, ústavům a obecně prospěšným společnostem"
+5222,4,5,52,522,5222,NeinvT obč.sdruž,Neinvestiční transfery občanským sdružením,Neinvestiční transfery občanským sdružením
+5222,4,5,52,522,5222,NeinvT Spolkům,Neinvestiční transfery spolkům,Neinvestiční transfery spolkům
+5223,4,5,52,522,5223,NeinvT církvím,Neinvestiční transfery církvím a náboženským společnostem,Neinvestiční transfery církvím a náboženským společnostem
+5224,4,5,52,522,5224,NeinvT pol.str.,Neinvestiční transfery politickým stranám a hnutím,Neinvestiční transfery politickým stranám a hnutím
+5225,4,5,52,522,5225,NeinvT sp.vl.j.,Neinvestiční transfery společenstvím vlastníků jednotek,Neinvestiční transfery společenstvím vlastníků jednotek
+5229,4,5,52,522,5229,Ost.neinvD NZO,Ostatní neinvestiční transfery neziskovým a podobným organiz,Ostatní neinvestiční transfery neziskovým a podobným organizacím
+525,3,5,52,525,,NeinT nemoc.poj.,Neinvestiční transfery v souvislosti s nemocenským pojištění,Neinvestiční transfery v souvislosti s nemocenským pojištěním
+5250,4,5,52,525,5250,Ref.1/2mzdy DPN,Refundace poloviny náhrady mzdy za dočasnou pracovní neschop,Refundace poloviny náhrady mzdy za dočasnou pracovní neschopnost
+53,2,5,53,,,NeinT veřej.PS,Neinvestiční transfery veřejnoprávním subjektům amezi peněžn,Neinvestiční transfery veřejnoprávním subjektům amezi peněžními fondy téhož subjektu
+53,2,5,53,,,Neinv.T veř.sub.p.F,Neinv.T veř.subj. a mezi peněž. F téhož subj.a pl.daní,Neinvestiční transfery veřejnoprávním subjektům a mezi peněžními fondy téhož subjektu a platby daní
+531,3,5,53,531,,NeinvT VP-ústř.,Neinvestiční transfery veřejným rozpočtům ústřední úrovně,Neinvestiční transfery veřejným rozpočtům ústřední úrovně
+5311,4,5,53,531,5311,NeinvT SR,Neinvestiční transfery státnímu rozpočtu,Neinvestiční transfery státnímu rozpočtu
+5312,4,5,53,531,5312,NeinvT SF,Neinvestiční transfery státním fondům,Neinvestiční transfery státním fondům
+5313,4,5,53,531,5313,NeinvT ZF ústř.,Neinvestiční transfery zvláštním fondům ústřední úrovně,Neinvestiční transfery zvláštním fondům ústřední úrovně
+5314,4,5,53,531,5314,NeinvT FSaZP,Neinvestiční transfery fondům sociálního a veřejného zdravot,Neinvestiční transfery fondům sociálního a veřejného zdravotního pojištění
+5315,4,5,53,531,5315,OdvodD za zam.,Odvod daně za zaměstnance,Odvod daně za zaměstnance
+5316,4,5,53,531,5316,OdvodP SZ,Odvod pojistného na sociální zabezpečení a  příspěvku na stá,Odvod pojistného na sociální zabezpečení a  příspěvku na státní politiku zaměstnanosti za zaměstnance
+5317,4,5,53,531,5317,Odvod VZP zamc.,Odvod pojistného na veřejné zdravotní pojištění za zaměstnan,Odvod pojistného na veřejné zdravotní pojištění za zaměstnance
+5318,4,5,53,531,5318,NeinvT do SFA,Neinvestiční transfery prostředků do státních finančních akt,Neinvestiční transfery prostředků do státních finančních aktiv
+5319,4,5,53,531,5319,Ost.neinvT VR,Ostatní neinvestiční transfery jiným veřejným rozpočtům,Ostatní neinvestiční transfery jiným veřejným rozpočtům
+532,3,5,53,532,,NeinvT VRÚÚ,Neinvestiční transfery veřejným rozpočtům územní úrovně,Neinvestiční transfery veřejným rozpočtům územní úrovně
+5321,4,5,53,532,5321,NeinvT obcím,Neinvestiční transfery obcím,Neinvestiční transfery obcím
+5322,4,5,53,532,5322,NeinvT obcím-SV,Neinvestiční transfery obcím v rámci souhrnného dotačního vz,Neinvestiční transfery obcím v rámci souhrnného dotačního vztahu
+5323,4,5,53,532,5323,NeinvT krajům,Neinvestiční transfery krajům,Neinvestiční transfery krajům
+5324,4,5,53,532,5324,NeinvT krajům-SV,Neinvestiční transfery krajům v rámci souhrnného dotačního v,Neinvestiční transfery krajům v rámci souhrnného dotačního vztahu
+5325,4,5,53,532,5325,NeinvT RR,Neinvestiční transfery regionálním radám,Neinvestiční transfery regionálním radám
+5329,4,5,53,532,5329,Ost.neivT-území,Ostatní neinvestiční transfery veřejným rozpočtům územní úro,Ostatní neinvestiční transfery veřejným rozpočtům územní úrovně
+533,3,5,53,533,,NeinvTransf.PO,Neinvestiční transfery příspěvkovým a podobným organizacím,Neinvestiční transfery příspěvkovým a podobným organizacím
+5331,4,5,53,533,5331,Neinv.pří.vl.PO,Neinvestiční příspěvky zřízeným příspěvkovým organizacím,Neinvestiční příspěvky zřízeným příspěvkovým organizacím
+5332,4,5,53,533,5332,NeinvD VŠ,Neinvestiční transfery vysokým školám,Neinvestiční transfery vysokým školám
+5333,4,5,53,533,5333,NeinT šk.pr.osob,Neinvestiční transfery školským právnickým osobámzřízeným st,"Neinvestiční transfery školským právnickým osobámzřízeným státem, kraji a obcemi"
+5334,4,5,53,533,5334,NeinT veř.výz.in,Neinvestiční transfery veřejným výzkumným institucím,Neinvestiční transfery veřejným výzkumným institucím
+5336,4,5,53,533,5336,Neinv. D zříz.PO,Neinvestiční dotace zřízeným příspěvkovým organizacím,Neinvestiční dotace zřízeným příspěvkovým organizacím
+5336,4,5,53,533,5336,Neinv.transf.zříz.PO,Neinvestiční transfery zřízeným příspěvkovým organizacím,Neinvestiční transfery zřízeným příspěvkovým organizacím
+5339,4,5,53,533,5339,Neinv. T cizím PO,Neinvestiční  transfery cizím příspěvkovým organizacím,Neinvestiční  transfery cizím příspěvkovým organizacím
+534,3,5,53,534,,Přev.vl.fondům,Převody vlastním fondům,Převody vlastním fondům
+534,3,5,53,534,,Př.fondy (bez subj),Převody vl.fondům a ve vztahu k útvarům bez plné práv.subj.,Převody vlastním fondům a ve vztahu k útvarům bez plné právní subjektivity
+534,3,5,53,534,,Nivpř.fondy+bez subj,Neinv. převody vl. fondů a k útvarům bez plné právní subj.,Neinvestiční převody vlastním fondům a ve vztahu k útvarům bez plné právní subjektivity
+5341,4,5,53,534,5341,Přev.fondům HČ,Převody vlastním fondům hospodářské (podnikatelské) činnosti,Převody vlastním fondům hospodářské (podnikatelské) činnosti
+5342,4,5,53,534,5342,Převody FKSP,Převody FKSP a sociálnímu fondu obcí a krajů,Převody fondu kulturních a sociálních potřeb a sociálnímu fondu obcí a krajů
+5342,4,5,53,534,5342,Základní příděl FKSP,Základní příděl FKSP a sociálnímu fondu obcí a krajů,Základní příděl fondu kulturních a sociálních potřeb a sociálnímu fondu obcí a krajů
+5343,4,5,53,534,5343,Přev.jin.fondům,Převody jiným vlastním fondům a účtům nemajícím charakter ve,Převody jiným vlastním fondům a účtům nemajícím charakter veřejných rozpočtů
+5343,4,5,53,534,5343,Přev.na úč. záv.str.,Převody na účet závodního stravování,Převody na účet závodního stravování
+5343,4,5,53,534,5343,Přev.na účty nev.roz,Převody na účty nemající povahu veřejných rozpočtů,Převody na účty nemající povahu veřejných rozpočtů
+5344,4,5,53,534,5344,Převody vl.RF,Převody vlastním rezervním fondům územních rozpočtů,Převody vlastním rezervním fondům územních rozpočtů
+5345,4,5,53,534,5345,Přev.vl.rozp.úč.,Převody vlastním rozpočtovým účtům,Převody vlastním rozpočtovým účtům
+5346,4,5,53,534,5346,Přev.dofondů OSS,Převody do fondů organizačních složek státu,Převody do fondů organizačních složek státu
+5347,4,5,53,534,5347,Přev.statut.m.výdaje,Převody mezi statut.městy (Prahou) a obvody/částmi-výdaje,Převody mezi statutárními městy (hl.m.Prahou) a jejich městskými obvody nebo částmi - výdaje
+5347,4,5,53,534,5347,Nivpř.statut.m.výdaj,Neinv.převody-statutární města (Praha) a obvody/části-výdaje,Neinvestiční převody mezi statutárními městy (hl. m. Prahou) a jejich městskými obvody nebo částmi - výdaje
+5348,4,5,53,534,5348,Přev. do vl.pokladny,Převody do vlastní pokladny,Převody do vlastní pokladny
+5349,4,5,53,534,5349,Ost. přev. vl.F,Ostatní převody vlastním fondům,Ostatní převody vlastním fondům
+535,3,5,53,535,,Pře.do vl.F přes rok,Převody do vlastních fondů přes rok,Převody do vlastních fondů přes rok
+5350,4,5,53,535,5350,Pře.do vl.F přes rok,Převody do vlastních fondů přes rok,Převody do vlastních fondů přes rok
+536,3,5,53,536,,"Daně,popl.,vrat.",Ostatní neinvestiční transfery jiným veřejným rozpočtům,Ostatní neinvestiční transfery jiným veřejným rozpočtům
+536,3,5,53,536,,Ost.neinv.T veř.roz,"Ostat.neinv.transf.jiným veř.rozp.,pl.daní a další povin.pl.","Ostatní neinvestiční transfery jiným veřejným rozpočtům, platby daní a další povinné platby"
+5361,4,5,53,536,5361,Nákup kolků,Nákup kolků,Nákup kolků
+5362,4,5,53,536,5362,Platby daní SR,Platby daní a poplatků státnímu rozpočtu,Platby daní a poplatků státnímu rozpočtu
+5363,4,5,53,536,5363,Úhr.skcí jiným R,Úhrady sankcí jiným rozpočtům,Úhrady sankcí jiným rozpočtům
+5364,4,5,53,536,5364,Vratky T - ústředí,Vratky veřejným rozpočtům ústřední úrovně transferů poskytnu,Vratky veřejným rozpočtům ústřední úrovně transferů poskytnutých v minulých rozpočtových obdobích
+5364,4,5,53,536,5364,Vratky T - ústředí,Vratky transf. poskytnutých z veř. rozpočtů ústřední úrovně,Vratky transferů poskytnutých z veřejných rozpočtů ústřední úrovně
+5364,4,5,53,536,5364,Vratky T-veřej.rozp.,Vratky transferů poskytnutých z veřejných rozpočtů,Vratky transferů poskytnutých z veřejných rozpočtů
+5365,4,5,53,536,5365,PlatDaň ÚSC a SF,"Platby daní a poplatků krajům, obcím a státním fondům","Platby daní a poplatků krajům, obcím a státním fondům"
+5366,4,5,53,536,5366,V FV kraj-obce,Výdaje z finančního vypořádání minulých let mezi krajem a ob,Výdaje z finančního vypořádání minulých let mezi krajem a obcemi
+5367,4,5,53,536,5367,V fin.vyp - obce,Výdaje z finančního vypořádání minulých let mezi obcemi,Výdaje z finančního vypořádání minulých let mezi obcemi
+5368,4,5,53,536,5368,V fin.vyp RR-ÚSC,Výdaje z finančního vypořádání minulých let mezi regionální,"Výdaje z finančního vypořádání minulých let mezi regionální radou a kraji, obcemi a dobrovolnými svazky obcí"
+5369,4,5,53,536,5369,Ost. neinvT VR,Ostatní neinvestiční transfery jiným veřejným rozpočtům,Ostatní neinvestiční transfery jiným veřejným rozpočtům
+54,2,5,54,,,NeinvT obyv.,Neinvestiční transfery obyvatelstvu,Neinvestiční transfery obyvatelstvu
+541,3,5,54,541,,Sociální dávky,Sociální dávky,Sociální dávky
+5410,4,5,54,541,5410,Sociální dávky,Sociální dávky,Sociální dávky
+542,3,5,54,542,,Náhr.pl.obyv.,Náhrady placené obyvatelstvu,Náhrady placené obyvatelstvu
+5421,4,5,54,542,5421,Náhr.úraz.poj.,Náhrady z úrazového pojištění,Náhrady z úrazového pojištění
+5422,4,5,54,542,5422,Náhr.pov.rehab.,Náhrady povahy rehabilitací,Náhrady povahy rehabilitací
+5423,4,5,54,542,5423,Náhrady mezd,Náhrady mezd podle zákona č. 118/2000 Sb.,Náhrady mezd podle zákona č. 118/2000 Sb.
+5424,4,5,54,542,5424,Náhrady mezd,Náhrady mezd v době nemoci,Náhrady mezd v době nemoci
+5425,4,5,54,542,5425,Příspěvek dárci,Příspěvek na pohřeb dárce org.a náhrada posk.žijícímu dárci,Příspěvek na náklady pohřbu dárce orgánu a náhrada poskytovaná žijícímu dárci
+5429,4,5,54,542,5429,Ost.náhr. obyv.,Ostatní náhrady placené obyvatelstvu,Ostatní náhrady placené obyvatelstvu
+549,3,5,54,549,,OstatníT obyv.,Ostatní neinvestiční transfery obyvatelstvu,Ostatní neinvestiční transfery obyvatelstvu
+5491,4,5,54,549,5491,"Stipendia ž,st,dokt.","Stipendia žákům, studentům a doktorandům","Stipendia žákům, studentům a doktorandům"
+5492,4,5,54,549,5492,Dary obyv.,Dary obyvatelstvu,Dary obyvatelstvu
+5493,4,5,54,549,5493,Neinv.T fyz.osob,Účelové neinvestiční transfery nepodnikajícím fyzickým osobá,Účelové neinvestiční transfery nepodnikajícím fyzickým osobám
+5493,4,5,54,549,5493,Neinv.T fyz.osob,Účelové neinvestiční transfery fyzickým osobám,Účelové neinvestiční transfery fyzickým osobám
+5494,4,5,54,549,5494,NeinvT obyv.,Neinvestiční transfery obyvatelstvu nemající charakter daru,Neinvestiční transfery obyvatelstvu nemající charakter daru
+5495,4,5,54,549,5495,Stabil.přísp.vojákům,Stabilizační příspěvek vojákům,Stabilizační příspěvek vojákům
+5496,4,5,54,549,5496,Služ.př.voj.-bydlení,Služební příspěvek vojákům na bydlení,Služební příspěvek vojákům na bydlení
+5497,4,5,54,549,5497,Náborový příspěvek,Náborový příspěvek,Náborový příspěvek
+5498,4,5,54,549,5498,Kv.př.a jed.pen.v.v,Kvalifikační příspěvek a jednorázová peněžní výpomoc vojákům,Kvalifikační příspěvek a jednorázová peněžní výpomoc vojákům
+5499,4,5,54,549,5499,Ost. neinvT obyv,Ostatní neinvestiční transfery obyvatelstvu,Ostatní neinvestiční transfery obyvatelstvu
+55,2,5,55,,,NeinvT do zahr.,Neinvestiční transfery do zahraničí,Neinvestiční transfery do zahraničí
+55,2,5,55,,,NeinvT a pl.do zahr.,Neinvestiční transfery a související platby do zahraničí,Neinvestiční transfery a související platby do zahraničí
+551,3,5,55,551,,NeinvT mez.org.,Neinvestiční T mezinárodním org. a nadnárodním orgánům,Neinvestiční transfery mezinárodním organizacím anadnárodním orgánům
+551,3,5,55,551,,NeinvT mez.vl.org.,NeinvT mezinár.vládním organiz. a nadnár. orgánům,Neinvestiční transfery mezinárodním vládním organizacím a nadnárodním orgánům
+5511,4,5,55,551,5511,NeinvT mez.org.,Neinvestiční transfery mezinárodním organizacím,Neinvestiční transfery mezinárodním organizacím
+5511,4,5,55,551,5511,NeinvT mez.vl.org.,Neinvestiční transfery mezinárodním vládním organizacím,Neinvestiční transfery mezinárodním vládním organizacím
+5512,4,5,55,551,5512,NeinvT nadn.org.,Neinvestiční transfery nadnárodním orgánům,Neinvestiční transfery nadnárodním orgánům
+5513,4,5,55,551,5513,Vratky ES,Vratky neoprávněně použitých nebo zadržených prostředků Evro,Vratky neoprávněně použitých nebo zadržených prostředků Evropských společenství
+5513,4,5,55,551,5513,Vr.neop.použ.zadr.EU,Vratky neoprávněně použitých nebo zadržených prostředků EU,Vratky neoprávněně použitých nebo zadržených prostředků Evropské unii
+5514,4,5,55,551,5514,Odv.EU dle DPH,Odvody vlastních zdrojů Evropských společenství do rozpočtu,Odvody vlastních zdrojů Evropských společenství do rozpočtu Evropské unie podle daně z přidané hodnoty
+5514,4,5,55,551,5514,Odvody vl.zdr.EU-DPH,Odvody vlastních zdrojů EU do rozpočtu EU podle DPH,Odvody vlastních zdrojů Evropské unie do rozpočtu Evropské unie podle daně z přidané hodnoty
+5515,4,5,55,551,5515,Odv.ES do rozp.EUHND,Odvody vlastních zdrojů Evropských společenství do rozpočtu,Odvody vlastních zdrojů Evropských společenství do rozpočtu Evropské unie podle hrubého národního důchodu
+5515,4,5,55,551,5515,Odvody vl.zdr.EU-HND,Odvody vlastních zdrojů EU do rozpočtu EU podle HND,Odvody vlastních zdrojů Evropské unie do rozpočtu Evropské unie podle hrubého národního důchodu
+5516,4,5,55,551,5516,Odv.EU krytí záp.úr.,Odvody Evropské unii ke krytí záporných úroků,Odvody Evropské unii ke krytí záporných úroků
+5517,4,5,55,551,5517,Odvody vl.zdr.EU-pla,Odvody vl. zdr. EU do rozp. EU-objem nerecykl. plast. obalů,Odvody vlastních zdrojů Evropské unie do rozpočtu Evropské unie podle objemu nerecyklovaných plastových obalů
+552,3,5,55,552,,NeinvT ciz.stát.,Neinvestiční transfery cizím státům,Neinvestiční transfery cizím státům
+5520,4,5,55,552,5520,NeinvT ciz. st.,Neinvestiční transfery cizím státům,Neinvestiční transfery cizím státům
+553,3,5,55,553,,NeinvT ost.zahr.,Ostatní neinvestiční transfery do zahraničí,Ostatní neinvestiční transfery do zahraničí
+5531,4,5,55,553,5531,Pen. dary zahr.,Peněžní dary do zahraničí,Peněžní dary do zahraničí
+5532,4,5,55,553,5532,Ost.neinvT zahr,Ostatní neinvestiční transfery do zahraničí,Ostatní neinvestiční transfery do zahraničí
+554,3,5,55,554,,Člen.přísp.mezinár.O,Členské příspěvky mezinárodním organizacím,Členské příspěvky mezinárodním organizacím
+5541,4,5,55,554,5541,Člen.přísp. mez.vl.O,Členské příspěvky mezinárodním vládním organizacím,Členské příspěvky mezinárodním vládním organizacím
+5542,4,5,55,554,5542,Člen.přís.mez.nevl.O,Členské příspěvky mezinárodním nevládním organizacím,Členské příspěvky mezinárodním nevládním organizacím
+56,2,5,56,,,Neinv půj.,Neinvestiční půjčené prostředky,Neinvestiční půjčené prostředky
+561,3,5,56,561,,NeinvPůj. PS,Neinvestiční půjčené prostředky  podnikatelským subjektům,Neinvestiční půjčené prostředky  podnikatelským subjektům
+5611,4,5,56,561,5611,NeinvPůj  Finst,Neinvestiční půjčené prostředky finančním institucím,Neinvestiční půjčené prostředky finančním institucím
+5612,4,5,56,561,5612,Nein.půj.nef.pod.-Fo,Neinvestiční půjčené prostředky nefinančním podnikatelským s,Neinvestiční půjčené prostředky nefinančním podnikatelským subjektům-fyzickým osobám
+5613,4,5,56,561,5613,Nein.půj.nef.pod.-Po,Neinvestiční půjčené prostředky nefinančním podnikatelským s,Neinvestiční půjčené prostředky nefinančním podnikatelským subjektům-právnickým osobám
+5614,4,5,56,561,5614,Nein.Půj StFinIn,Neinvestiční půjčené prostředky finančním a podobným institu,Neinvestiční půjčené prostředky finančním a podobným institucím ve vlastnictví státu
+5615,4,5,56,561,5615,Nein.Půj StPS,Neinvestiční půjčené prostředky vybraným podnikatelským subj,Neinvestiční půjčené prostředky vybraným podnikatelským subjektům ve vlastnictví státu
+5619,4,5,56,561,5619,Ost.neiv půj.PS,Ostatní neinvestiční půjčené prostředky podnikatelským subje,Ostatní neinvestiční půjčené prostředky podnikatelským subjektům
+562,3,5,56,562,,NeinvPůj NZO,Neinvestiční půjčené prostředky neziskovým a podobným organi,Neinvestiční půjčené prostředky neziskovým a podobným organizacím
+5621,4,5,56,562,5621,Neinv. půj. OPS,Neinvestiční půjčené prostředky obecně prospěšným společnost,Neinvestiční půjčené prostředky obecně prospěšným společnostem
+5621,4,5,56,562,5621,"Neinv půj. fund.,OPS","Neinv. půjč. pr. fundacím, ústavům a obecně prospěšným spol.","Neinvestiční půjčené prostředky fundacím, ústavům a obecně prospěšným společnostem"
+5622,4,5,56,562,5622,NeinvPůj obč.sdr,Neinvestiční půjčené prostředky občanským sdružením,Neinvestiční půjčené prostředky občanským sdružením
+5622,4,5,56,562,5622,NeinvPůj spolkům,Neinvestiční půjčené prostředky spolkům,Neinvestiční půjčené prostředky spolkům
+5623,4,5,56,562,5623,NeinvPůj církví,Neinvestiční půjčené prostředky církvím a náboženským společ,Neinvestiční půjčené prostředky církvím a náboženským společnostem
+5624,4,5,56,562,5624,NeinvPůj spol.,Neinvestiční půjčené prostředky společenstvím vlastníků jedn,Neinvestiční půjčené prostředky společenstvím vlastníků jednotek
+5629,4,5,56,562,5629,Ost. neinvPůj,Ostatní neinvestiční půjčené prostředky neziskovým a podobný,Ostatní neinvestiční půjčené prostředky neziskovým a podobným organizacím
+563,3,5,56,563,,NeinvPůj VR-ústř,Neinvestiční půjčené prostředky veřejným rozpočtům ústřední,Neinvestiční půjčené prostředky veřejným rozpočtům ústřední úrovně
+5631,4,5,56,563,5631,NeinvPůj SR,Neinvestiční půjčené prostředky státnímu rozpočtu,Neinvestiční půjčené prostředky státnímu rozpočtu
+5632,4,5,56,563,5632,NeinvPůj SF,Neinvestiční půjčené prostředky státním fondům,Neinvestiční půjčené prostředky státním fondům
+5633,4,5,56,563,5633,NeinvPůj ZFústř.,Neinvestiční půjčené prostředky zvláštním fondům ústřední úr,Neinvestiční půjčené prostředky zvláštním fondům ústřední úrovně
+5634,4,5,56,563,5634,NeinvPůj FSaZP,Neinvestiční půjčené prostředky fondům sociálního a zdravotn,Neinvestiční půjčené prostředky fondům sociálního a zdravotního pojištění
+5639,4,5,56,563,5639,Ost.neinvPůj VR,Ostatní neinvestiční půjčené prostředky jiným veřejným rozpo,Ostatní neinvestiční půjčené prostředky jiným veřejným rozpočtům
+564,3,5,56,564,,NeinvPůj. VR-úz.,Neinvestiční půjčené prostředky veřejným rozpočtům územní úr,Neinvestiční půjčené prostředky veřejným rozpočtům územní úrovně
+5641,4,5,56,564,5641,NeinvPůj obcím,Neinvestiční půjčené prostředky obcím,Neinvestiční půjčené prostředky obcím
+5642,4,5,56,564,5642,NeinvPůj krajům,Neinvestiční půjčené prostředky krajům,Neinvestiční půjčené prostředky krajům
+5643,4,5,56,564,5643,Nein.Půj RR,Neinvestiční půjčené prostředky regionálním radám,Neinvestiční půjčené prostředky regionálním radám
+5649,4,5,56,564,5649,Ost.neinvPůj úz,Ostatní neinvestiční půjčené prostředky veřejným rozpočtům ú,Ostatní neinvestiční půjčené prostředky veřejným rozpočtům územní úrovně
+565,3,5,56,565,,NeinvPůj  PO,Neinvestiční půjčené prostředky příspěvkovým a podobným orga,Neinvestiční půjčené prostředky příspěvkovým a podobným organizacím
+5651,4,5,56,565,5651,NeinvPůj PO,Neinvestiční půjčené prostředky zřízeným příspěvkovým organi,Neinvestiční půjčené prostředky zřízeným příspěvkovým organizacím
+5652,4,5,56,565,5652,Neinv.půj. VŠ,Neinvestiční půjčené prostředky vysokým školám,Neinvestiční půjčené prostředky vysokým školám
+5659,4,5,56,565,5659,NeinvPůj. ost.PO,Neinvestiční půjčené prostředky ostatním příspěvkovým organi,Neinvestiční půjčené prostředky ostatním příspěvkovým organizacím
+566,3,5,56,566,,NeinvPůj obyv.,Neinvestiční půjčené prostředky obyvatelstvu,Neinvestiční půjčené prostředky obyvatelstvu
+5660,4,5,56,566,5660,NeinvPůj obyv.,Neinvestiční půjčené prostředky obyvatelstvu,Neinvestiční půjčené prostředky obyvatelstvu
+567,3,5,56,567,,NeinvPůj  zahr.,Neinvestiční půjčené prostředky do zahraničí,Neinvestiční půjčené prostředky do zahraničí
+5670,4,5,56,567,5670,NeinvPůj  zahr.,Neinvestiční půjčené prostředky do zahraničí,Neinvestiční půjčené prostředky do zahraničí
+57,2,5,57,,,NeinP NF,Neinvestiční převody Národnímu fondu,Neinvestiční převody Národnímu fondu
+571,3,5,57,571,,Převody NF Phare,Převody Národnímu fondu na spolufinancování programu Phare,Převody Národnímu fondu na spolufinancování programu Phare
+5710,4,5,57,571,5710,Převody NF Phare,Převody Národnímu fondu na spolufinancování programu Phare,Převody Národnímu fondu na spolufinancování programu Phare
+572,3,5,57,572,,Převody NF Ispa,Převody Národnímu fondu na spolufinancování programu Ispa,Převody Národnímu fondu na spolufinancování programu Ispa
+5720,4,5,57,572,5720,Převody na Ispa,Převody Národnímu fondu na spolufinancování programu Ispa,Převody Národnímu fondu na spolufinancování programu Ispa
+573,3,5,57,573,,Převody NFSapard,Převody Národnímu fondu na spolufinancování programu Sapard,Převody Národnímu fondu na spolufinancování programu Sapard
+5730,4,5,57,573,5730,Převody NFSapard,Převody Národnímu fondu na spolufinancování programu Sapard,Převody Národnímu fondu na spolufinancování programu Sapard
+574,3,5,57,574,,Převod NF komun,Převody Národnímu fondu na spolufinancování komunitárních pr,Převody Národnímu fondu na spolufinancování komunitárních programů
+5740,4,5,57,574,5740,Převod NF komun.,Převody Národnímu fondu na spolufinancování komunitárních pr,Převody Národnímu fondu na spolufinancování komunitárních programů
+575,3,5,57,575,,Převod NF na ost,Převody Národnímu fondu na spolufinancování ostatních progra,Převody Národnímu fondu na spolufinancování ostatních programů Evropských společenství a ČR
+575,3,5,57,575,,Přev.NF progr.EUaČR,Převody NF na spolufinancování ostatních programů EU a ČR,Převody Národnímu fondu na spolufinancování ostatních programů Evropské unie a ČR
+5750,4,5,57,575,5750,Převod NF na ost,Převody Národnímu fondu na spolufinancování ostatních progra,Převody Národnímu fondu na spolufinancování ostatních programů Evropských společenství a ČR
+5750,4,5,57,575,5750,Přev.NF progr.EUaČR,Převody NF na spolufinancování ostatních programů EU a ČR,Převody Národnímu fondu na spolufinancování ostatních programů Evropské unie a ČR
+576,3,5,57,576,,Převod NF ze zah,Převody Národnímu fondu na spolufinancování související s po,Převody Národnímu fondu na spolufinancování související s poskytnutím pomoci ČR ze zahraničí
+5760,4,5,57,576,5760,Převod NF ze zah,Převody Národnímu fondu na spolufinancování související s po,Převody Národnímu fondu na spolufinancování související s poskytnutím pomoci ČR ze zahraničí
+577,3,5,57,577,,Převod NF kurs,Převody ze státního rozpočtu do Národního fondu na vyrovnání,Převody ze státního rozpočtu do Národního fondu na vyrovnání kursových rozdílů
+5770,4,5,57,577,5770,Převod NF kurs,Převody ze státního rozpočtu do Národního fondu na vyrovnání,Převody ze státního rozpočtu do Národního fondu na vyrovnání kursových rozdílů
+579,3,5,57,579,,Ost. přev. NF,Ostatní převody do Národního fondu,Ostatní převody do Národního fondu
+5790,4,5,57,579,5790,Ost. přev. NF,Ostatní převody do Národního fondu,Ostatní převody do Národního fondu
+58,2,5,58,,,Náhr. za nezpůs.újmu,Výdaje na náhrady za nezpůsobenou újmu,Výdaje na náhrady za nezpůsobenou újmu
+581,3,5,58,581,,Náhr. za nezpůs.újmu,Výdaje na náhrady za nezpůsobenou újmu,Výdaje na náhrady za nezpůsobenou újmu
+5811,4,5,58,581,5811,Náhr. za nezpůs.újmu,Výdaje na náhrady za nezpůsobenou újmu,Výdaje na náhrady za nezpůsobenou újmu
+59,2,5,59,,,NeinvV ost.,Ostatní neinvestiční výdaje,Ostatní neinvestiční výdaje
+590,3,5,59,590,,NeinvV ost.,Ostatní neinvestiční výdaje,Ostatní neinvestiční výdaje
+5901,4,5,59,590,5901,Nespec. rezervy,Nespecifikované rezervy,Nespecifikované rezervy
+5902,4,5,59,590,5902,Ost.FV minul.let,Ostatní výdaje z finančního vypořádání minulých let,Ostatní výdaje z finančního vypořádání minulých let
+5903,4,5,59,590,5903,Rezerva na kriz. op.,Rezerva na krizová opatření,Rezerva na krizová opatření
+5904,4,5,59,590,5904,Převod D zpět poskyt,Převody domněle neoprávněně použ. dotací zpět poskytovateli,Převody domněle neoprávněně použitých dotací zpět poskytovateli
+5909,4,5,59,590,5909,Ost. neinvV,Ostatní neinvestiční výdaje jinde nezařazené,Ostatní neinvestiční výdaje jinde nezařazené
+599,3,5,59,599,,Dočasné zatř. výdajů,Dočasné zatřídění výdajů,Dočasné zatřídění výdajů
+5991,4,5,59,599,5991,Dočasné zatř. výdajů,Dočasné zatřídění výdajů,Dočasné zatřídění výdajů
+6,1,6,,,,Kapitál. výdaje,Kapitálové výdaje,Kapitálové výdaje
+61,2,6,61,,,Inv. výdaje,Investiční nákupy a související výdaje,Investiční nákupy a související výdaje
+611,3,6,61,611,,Pořízení DNM,Pořízení dlouhodobého nehmotného majetku,Pořízení dlouhodobého nehmotného majetku
+6111,4,6,61,611,6111,Programové vyb.,Programové vybavení,Programové vybavení
+6112,4,6,61,611,6112,Ocenitelná práva,Ocenitelná práva,Ocenitelná práva
+6113,4,6,61,611,6113,Nehm.výsl.výzk.,Nehmotné výsledky výzkumné a obdobné činnosti,Nehmotné výsledky výzkumné a obdobné činnosti
+6119,4,6,61,611,6119,Ost. nákupy DNM,Ostatní nákup dlouhodobého nehmotného majetku,Ostatní nákup dlouhodobého nehmotného majetku
+612,3,6,61,612,,Pořízení DHM,Pořízení dlouhodobého hmotného majetku,Pořízení dlouhodobého hmotného majetku
+6121,4,6,61,612,6121,"Budovy,stavby","Budovy, haly a stavby","Budovy, haly a stavby"
+6122,4,6,61,612,6122,"Stroje,zařízení","Stroje, přístroje a zařízení","Stroje, přístroje a zařízení"
+6123,4,6,61,612,6123,Dopr. prostředky,Dopravní prostředky,Dopravní prostředky
+6124,4,6,61,612,6124,Pěstitel.celky,Pěstitelské celky trvalých porostů,Pěstitelské celky trvalých porostů
+6125,4,6,61,612,6125,Výp. technika,Výpočetní technika,Výpočetní technika
+6127,4,6,61,612,6127,Umělecká díla,Umělecká díla a předměty,Umělecká díla a předměty
+6127,4,6,61,612,6127,Kuturní předměty,Kuturní předměty,Kuturní předměty
+6129,4,6,61,612,6129,Ost. nák. DHM,Nákup dlouhodobého hmotného majetku jinde nezařazený,Nákup dlouhodobého hmotného majetku jinde nezařazený
+613,3,6,61,613,,Pozemky,Pozemky,Pozemky
+6130,4,6,61,613,6130,Pozemky,Pozemky,Pozemky
+614,3,6,61,614,,Nadlim.věc.bř.pr.sta,Nadlimitní věcná břemena a právo stavby,Nadlimitní věcná břemena a právo stavby
+6141,4,6,61,614,6141,Právo stavby,Právo stavby,Právo stavby
+6142,4,6,61,614,6142,Nadlimit.věc.břemena,Nadlimitní věcná břemena,Nadlimitní věcná břemena
+62,2,6,62,,,Nák.akcií a MP,Nákup akcií a majetkových podílů,Nákup akcií a majetkových podílů
+62,2,6,62,,,Nák.akc. maj.p.a vk.,Nákup akcií a majetkových podílů a vklady do fundací a ústav,Nákup akcií a majetkových podílů a vklady do fundací a ústavů
+620,3,6,62,620,,Nák.akcií a MP,Nákup akcií a majetkových podílů,Nákup akcií a majetkových podílů
+6201,4,6,62,620,6201,Nákup akcií,Nákup akcií,Nákup akcií
+6202,4,6,62,620,6202,Nákup MP,Nákup majetkových podílů,Nákup majetkových podílů
+6209,4,6,62,620,6209,Nákup maj.nároků,Nákup ostatních majetkových nároků,Nákup ostatních majetkových nároků
+621,3,6,62,621,,Vklady do fun.a úst.,Vklady do fundací a ústavů,Vklady do fundací a ústavů
+6211,4,6,62,621,6211,Vklady do nadací,Vklady do nadací,Vklady do nadací
+6212,4,6,62,621,6212,Vklady do nadač.F,Vklady do nadačních fondů,Vklady do nadačních fondů
+6213,4,6,62,621,6213,Vklady do ústavů,Vklady do ústavů,Vklady do ústavů
+63,2,6,63,,,Invest.transfery,Investiční transfery,Investiční transfery
+631,3,6,63,631,,Inv.T podnik.subj.,Investiční transfery podnikatelským subjektům,Investiční transfery podnikatelským subjektům
+6311,4,6,63,631,6311,InvT Fin.Inst.,Investiční transfery finančním institucím,Investiční transfery finančním institucím
+6312,4,6,63,631,6312,Inv.Tnef.pod.sub-Fos,Investiční transfery nefinančním podnikatelským subjektům-fy,Investiční transfery nefinančním podnikatelským subjektům-fyzickým osobám
+6313,4,6,63,631,6313,Inv.Tnef.pod.sub-Pos,Investiční transfery nefinančním podnikatelským subjektům-pr,Investiční transfery nefinančním podnikatelským subjektům-právnickým osobám
+6314,4,6,63,631,6314,InvT st.Fin.Inst,Investiční transfery finančním a podobným institucím ve vlas,Investiční transfery finančním a podobným institucím ve vlastnictví státu
+6315,4,6,63,631,6315,InvT stát. PS,Investiční transfery vybraným podnikatelským subjektům ve vl,Investiční transfery vybraným podnikatelským subjektům ve vlastnictví státu
+6316,4,6,63,631,6316,Inv. T nemocnicím,Inv. transf. obecním a krajským nemocnicím - obchod. společ.,Investiční transfery obecním a krajským nemocnicím - obchodním společnostem
+6319,4,6,63,631,6319,InvT ost. PS,Ostatní investiční transfery podnikatelským subjektům,Ostatní investiční transfery podnikatelským subjektům
+632,3,6,63,632,,Inv.T nezisk.org.,Investiční transfery neziskovým a podobným organizacím,Investiční transfery neziskovým a podobným organizacím
+6321,4,6,63,632,6321,InvT OPS,Investiční transfery obecně prospěšným společnostem,Investiční transfery obecně prospěšným společnostem
+6321,4,6,63,632,6321,"Inv. T fund., OPS","Inv. transf. fundacím, ústavům a obecně prospěšným společn.","Investiční transfery fundacím, ústavům a obecně prospěšným společnostem"
+6322,4,6,63,632,6322,InvT ObčSdruž,Investiční transfery občanským sdružením,Investiční transfery občanským sdružením
+6322,4,6,63,632,6322,InvT Spolkům,Investiční transfery spolkům,Investiční transfery spolkům
+6323,4,6,63,632,6323,InvT církvím,Investiční transfery církvím a náboženským společnostem,Investiční transfery církvím a náboženským společnostem
+6324,4,6,63,632,6324,InvT spol.vlast.,Investiční transfery společenstvím vlastníků jednotek,Investiční transfery společenstvím vlastníků jednotek
+6329,4,6,63,632,6329,InvT ost.NZO,Ostatní investiční transfery neziskovým a podobným organizac,Ostatní investiční transfery neziskovým a podobným organizacím
+633,3,6,63,633,,Inv.T - ústředí,Investiční transfery veřejným rozpočtům ústřední úrovně,Investiční transfery veřejným rozpočtům ústřední úrovně
+6331,4,6,63,633,6331,InvT SR,Investiční transfery státnímu rozpočtu,Investiční transfery státnímu rozpočtu
+6332,4,6,63,633,6332,InvT SF,Investiční transfery státním fondům,Investiční transfery státním fondům
+6333,4,6,63,633,6333,InvT ZvlFo ústř.,Investiční transfery zvláštním fondům ústřední úrovně,Investiční transfery zvláštním fondům ústřední úrovně
+6334,4,6,63,633,6334,InvT fondům SaZP,Investiční transfery fondům sociálního a zdravotního pojiště,Investiční transfery fondům sociálního a zdravotního pojištění
+6335,4,6,63,633,6335,InvT SFA,Investiční transfery státním finančním aktivům,Investiční transfery státním finančním aktivům
+6339,4,6,63,633,6339,InvT j.veř.rozp.,Ostatní investiční transfery jiným veřejným rozpočtům,Ostatní investiční transfery jiným veřejným rozpočtům
+634,3,6,63,634,,InvT VRÚÚ,Investiční transfery veřejným rozpočtům územní úrovně,Investiční transfery veřejným rozpočtům územní úrovně
+6341,4,6,63,634,6341,InvT obcím,Investiční transfery obcím,Investiční transfery obcím
+6342,4,6,63,634,6342,InvT krajům,Investiční transfery krajům,Investiční transfery krajům
+6343,4,6,63,634,6343,InvT obcím SDV,Investiční transfery obcím v rámci souhrnného dotačního vzta,Investiční transfery obcím v rámci souhrnného dotačního vztahu
+6344,4,6,63,634,6344,InvT krajům SDV,Investiční transfery krajům v rámci souhrnného dotačního vzt,Investiční transfery krajům v rámci souhrnného dotačního vztahu
+6345,4,6,63,634,6345,InvT RR,Investiční transfery regionálním radám,Investiční transfery regionálním radám
+6349,4,6,63,634,6349,Ost.InvT - území,Ostatní investiční transfery veřejným rozpočtům územní úrovn,Ostatní investiční transfery veřejným rozpočtům územní úrovně
+635,3,6,63,635,,Inv.T PO apod.org,Investiční transfery příspěvkovým a podobným organizacím,Investiční transfery příspěvkovým a podobným organizacím
+6351,4,6,63,635,6351,InvT PO,Investiční transfery zřízeným příspěvkovým organizacím,Investiční transfery zřízeným příspěvkovým organizacím
+6352,4,6,63,635,6352,InvT VŠ,Investiční transfery vysokým školám,Investiční transfery vysokým školám
+6353,4,6,63,635,6353,"InvT ŠPO st.,ÚSC",Investiční transfery školským právnickým osobám zřízeným stá,"Investiční transfery školským právnickým osobám zřízeným státem, kraji a obcemi"
+6354,4,6,63,635,6354,InvT veř.výzk.in,Investiční transfery veřejným výzkumným institucím,Investiční transfery veřejným výzkumným institucím
+6356,4,6,63,635,6356,Jiné transf.zříz.PO,Jiné investiční transfery zřízeným příspěvkovým organizacím,Jiné investiční transfery zřízeným příspěvkovým organizacím
+6359,4,6,63,635,6359,InvT ost. PO,Investiční transfery ostatním příspěvkovým organizacím,Investiční transfery ostatním příspěvkovým organizacím
+636,3,6,63,636,,Inv. přev. vl F,Investiční převody vlastním fondům,Investiční převody vlastním fondům
+636,3,6,63,636,,Invpř.fondy+bez subj,Inv.převody vl. fondům a k útvarům bez plné právní subj.,Investiční převody vlastním fondům a ve vztahu k útvarům bez plné právní subjektivity
+6361,4,6,63,636,6361,InvPřev RF OSS,Investiční převody do rezervního fondu organizačních složek,Investiční převody do rezervního fondu organizačních složek státu
+6362,4,6,63,636,6362,Přev.inv.pr.do FKSP,Převody investičních prostředků zpět do FKSP,Převody investičních prostředků zpět do FKSP
+6363,4,6,63,636,6363,Invpř.statut.m.výdaj,Inv.převody-statutární města (Praha) a obvody/části - výdaje,Investiční převody mezi statutárními městy (hl. m. Prahou) a jejich městskými obvody nebo částmi - výdaje
+637,3,6,63,637,,InvT obyvatel.,Investiční transfery obyvatelstvu,Investiční transfery obyvatelstvu
+6371,4,6,63,637,6371,InvT nepod. FO,Účelové investiční transfery nepodnikajícím fyzickým osobám,Účelové investiční transfery nepodnikajícím fyzickým osobám
+6379,4,6,63,637,6379,Ost. InvT obyv.,Ostatní investiční transfery obyvatelstvu,Ostatní investiční transfery obyvatelstvu
+638,3,6,63,638,,InvT. do zahr.,Investiční transfery do zahraničí,Investiční transfery do zahraničí
+6380,4,6,63,638,6380,InvT do zahr.,Investiční transfery do zahraničí,Investiční transfery do zahraničí
+64,2,6,64,,,Inv. půj.,Investiční půjčené prostředky,Investiční půjčené prostředky
+641,3,6,64,641,,InvPůj PS,Investiční půjčené prostředky podnikatelským subjektům,Investiční půjčené prostředky podnikatelským subjektům
+6411,4,6,64,641,6411,InvPůj Finst.,Investiční půjčené prostředky finančním institucím,Investiční půjčené prostředky finančním institucím
+6412,4,6,64,641,6412,In.půj.nef.pod.subFo,Investiční půjčené prostředky nefinančním podnikatelským sub,Investiční půjčené prostředky nefinančním podnikatelským subjektům-fyzickým osobám
+6413,4,6,64,641,6413,In.půj.nef.pod.subPo,Investiční půjčené prostředky nefinančním podnikatelským sub,Investiční půjčené prostředky nefinančním podnikatelským subjektům-právnickým osobám
+6414,4,6,64,641,6414,InPůj st.FinIns,Investiční půjčené prostředky finančním a podobným institucí,Investiční půjčené prostředky finančním a podobným institucím ve vlastnictví státu
+6415,4,6,64,641,6415,InPůj st.PS,Investiční půjčené prostředky vybraným podnikatelským subjek,Investiční půjčené prostředky vybraným podnikatelským subjektům ve vlastnictví státu
+6419,4,6,64,641,6419,Ost.InvPůjč PO,Ostatní investiční půjčené prostředky podnikatelským subjekt,Ostatní investiční půjčené prostředky podnikatelským subjektům
+642,3,6,64,642,,InvPůj NZO,Investiční půjčené prostředky neziskovým a podobným organiza,Investiční půjčené prostředky neziskovým a podobným organizacím
+6421,4,6,64,642,6421,InvPůj OPS,Investiční půjčené prostředky obecně prospěšným společnostem,Investiční půjčené prostředky obecně prospěšným společnostem
+6421,4,6,64,642,6421,"Inv. půj. fund., OPS","Inv. půjč. pr. fundacím, ústavům a obecně prospěšným společ.","Investiční půjčené prostředky fundacím, ústavům a obecně prospěšným společnostem"
+6422,4,6,64,642,6422,InvPůj obč.sdruž,Investiční půjčené prostředky občanským sdružením,Investiční půjčené prostředky občanským sdružením
+6422,4,6,64,642,6422,InvPůj prost.spolkům,Investiční půjčené prostředky spolkům,Investiční půjčené prostředky spolkům
+6423,4,6,64,642,6423,InvPůj církvím,Investiční půjčené prostředky církvím a náboženským společno,Investiční půjčené prostředky církvím a náboženským společnostem
+6424,4,6,64,642,6424,InvPůj sp.vl.j,Investiční půjčené prostředky společenstvím vlastníků jednot,Investiční půjčené prostředky společenstvím vlastníků jednotek
+6429,4,6,64,642,6429,Ost.InvPůj.NZO,Ostatní investiční půjčené prostředky neziskovým a podobným,Ostatní investiční půjčené prostředky neziskovým a podobným organizacím
+643,3,6,64,643,,InvPůj VR-ústřed,Investiční půjčené prostředky veřejným rozpočtům ústřední úr,Investiční půjčené prostředky veřejným rozpočtům ústřední úrovně
+6431,4,6,64,643,6431,InvPůj SR,Investiční půjčené prostředky státnímu rozpočtu,Investiční půjčené prostředky státnímu rozpočtu
+6432,4,6,64,643,6432,InvPůj SF,Investiční půjčené prostředky státním fondům,Investiční půjčené prostředky státním fondům
+6433,4,6,64,643,6433,InvPůj F ústředí,Investiční půjčené prostředky zvláštním fondům ústřední úrov,Investiční půjčené prostředky zvláštním fondům ústřední úrovně
+6434,4,6,64,643,6434,InvPůj FSaZP,Investiční půjčené prostředky fondům sociálního a zdravotníh,Investiční půjčené prostředky fondům sociálního a zdravotního pojištění
+6439,4,6,64,643,6439,Ost. invPůj VR,Ostatní investiční půjčené prostředky jiným veřejným rozpočt,Ostatní investiční půjčené prostředky jiným veřejným rozpočtům
+644,3,6,64,644,,InvPůj VR území,Investiční půjčené prostředky veřejným rozpočtům územní úrov,Investiční půjčené prostředky veřejným rozpočtům územní úrovně
+6441,4,6,64,644,6441,InvPůj obcím,Investiční půjčené prostředky obcím,Investiční půjčené prostředky obcím
+6442,4,6,64,644,6442,InvPůj krajům,Investiční půjčené prostředky krajům,Investiční půjčené prostředky krajům
+6443,4,6,64,644,6443,InPůj RR,Investiční půjčené prostředky regionálním radám,Investiční půjčené prostředky regionálním radám
+6449,4,6,64,644,6449,Ost.invPůj VR úz,Ostatní investiční půjčené prostředky veřejným rozpočtům mís,Ostatní investiční půjčené prostředky veřejným rozpočtům místní úrovně
+645,3,6,64,645,,InvPůj zříz.PO,Investiční půjčené prostředky  příspěvkovým a podobným organ,Investiční půjčené prostředky  příspěvkovým a podobným organizacím
+6451,4,6,64,645,6451,InvPůj zříz.PO,Investiční půjčené prostředky zřízeným příspěvkovým organiza,Investiční půjčené prostředky zřízeným příspěvkovým organizacím
+6452,4,6,64,645,6452,InvPůj VŠ,Investiční půjčené prostředky vysokým školám,Investiční půjčené prostředky vysokým školám
+6459,4,6,64,645,6459,InvPůj ost. PO,Investiční půjčené prostředky ostatním příspěvkovým organiza,Investiční půjčené prostředky ostatním příspěvkovým organizacím
+646,3,6,64,646,,InvPůj. obyv.,Investiční půjčené prostředky obyvatelstvu,Investiční půjčené prostředky obyvatelstvu
+6460,4,6,64,646,6460,InvPůj obyv.,Investiční půjčené prostředky obyvatelstvu,Investiční půjčené prostředky obyvatelstvu
+647,3,6,64,647,,InvPůj do zahr.,Investiční půjčené prostředky do zahraničí,Investiční půjčené prostředky do zahraničí
+6470,4,6,64,647,6470,InvPůj do zahr,Investiční půjčené prostředky do zahraničí,Investiční půjčené prostředky do zahraničí
+67,2,6,67,,,InvP NF,Investiční převody Národnímu fondu,Investiční převody Národnímu fondu
+671,3,6,67,671,,InvP NF Phare,Investiční převody Národnímu fondu na spolufinancování progr,Investiční převody Národnímu fondu na spolufinancování programu Phare
+6710,4,6,67,671,6710,InvP NF Phare,Investiční převody Národnímu fondu na spolufinancování progr,Investiční převody Národnímu fondu na spolufinancování programu Phare
+672,3,6,67,672,,InvP NF Ispa,Investiční převody Národnímu fondu na spolufinancování progr,Investiční převody Národnímu fondu na spolufinancování programu Ispa
+6720,4,6,67,672,6720,InvP NF Ispa,Investiční převody Národnímu fondu na spolufinancování progr,Investiční převody Národnímu fondu na spolufinancování programu Ispa
+673,3,6,67,673,,InvP NF Sapard,Investiční převody Národnímu fondu na spolufinancování progr,Investiční převody Národnímu fondu na spolufinancování programu Sapard
+6730,4,6,67,673,6730,InvPřev NFSapard,Investiční převody Národnímu fondu na spolufinancování progr,Investiční převody Národnímu fondu na spolufinancování programu Sapard
+674,3,6,67,674,,InvP NF komun,Investiční převody Národnímu fondu na spolufinancování komun,Investiční převody Národnímu fondu na spolufinancování komunitárních programů
+6740,4,6,67,674,6740,InvP NF Komunit,Investiční převody Národnímu fondu na spolufinancování komun,Investiční převody Národnímu fondu na spolufinancování komunitárních programů
+675,3,6,67,675,,InvP NF ES a ČR,Investiční převody Národnímu fondu na spolufinancování ostat,Investiční převody Národnímu fondu na spolufinancování ostatních programů Evropských společenství aČR
+675,3,6,67,675,,Inv.přev.NF pr.EUaČR,Inv. převody NF na spolufinancování ost. programů EU a ČR,Investiční převody Národnímu fondu na spolufinancování ostatních programů Evropské unie a ČR
+6750,4,6,67,675,6750,InvP NF ES a ČR,Investiční převody Národnímu fondu na spolufinancování ostat,Investiční převody Národnímu fondu na spolufinancování ostatních programů Evropských společenství a ČR
+6750,4,6,67,675,6750,Inv.přev.NF pr.EUaČR,Inv. převody NF na spolufinancování ost. programů EU a ČR,Investiční převody Národnímu fondu na spolufinancování ostatních programů Evropské unie a ČR
+676,3,6,67,676,,InvP NF zahr.,Investiční převody Národnímu fondu na spolufinancování souvi,Investiční převody Národnímu fondu na spolufinancování související s poskytnutím pomoci ČR ze zahraničí
+6760,4,6,67,676,6760,InvP NF zahr,Investiční převody Národnímu fondu na spolufinancování souvi,Investiční převody Národnímu fondu na spolufinancování související s poskytnutím pomoci ČR ze zahraničí
+679,3,6,67,679,,Ost.invPřev NF,Ostatní investiční převody do Národního fondu,Ostatní investiční převody do Národního fondu
+6790,4,6,67,679,6790,Ost. invPřev NF,Ostatní investiční převody do Národního fondu,Ostatní investiční převody do Národního fondu
+69,2,6,69,,,Ost.kapitálové V,Ostatní kapitálové výdaje,Ostatní kapitálové výdaje
+690,3,6,69,690,,Ost.kapitálové V,Ostatní kapitálové výdaje,Ostatní kapitálové výdaje
+6901,4,6,69,690,6901,Rezervy kap. V,Rezervy kapitálových výdajů,Rezervy kapitálových výdajů
+6909,4,6,69,690,6909,Ost. kapV,Ostatní kapitálové výdaje jinde nezařazené,Ostatní kapitálové výdaje jinde nezařazené
+8,1,8,,,,Financování,Financování,Financování
+81,2,8,81,,,Financ.tuzemsko,Financování z tuzemska,Financování z tuzemska
+811,3,8,81,811,,Krdb.financování,Krátkodobé financování,Krátkodobé financování
+8111,4,8,81,811,8111,Krdb.vyd.dluhop.,Krátkodobé vydané dluhopisy,Krátkodobé vydané dluhopisy
+8112,4,8,81,811,8112,Uhraz.splá.dluh.,Uhrazené splátky krátkodobých vydaných dluhopisů,Uhrazené splátky krátkodobých vydaných dluhopisů
+8113,4,8,81,811,8113,Krdb.přij.půjč.,Krátkodobé přijaté půjčené prostředky,Krátkodobé přijaté půjčené prostředky
+8114,4,8,81,811,8114,Uhraz.splá.půjč,Uhrazené splátky krátkodobých přijatých půjčených prostředků,Uhrazené splátky krátkodobých přijatých půjčených prostředků
+8115,4,8,81,811,8115,Zm.stavu.krdb.pr,Změna stavu krátkodobých prostředků na bankovníchúčtech,Změna stavu krátkodobých prostředků na bankovníchúčtech
+8115,4,8,81,811,8115,Zm.stavu.KP kr.OSFA,Změna stavu krátk.prost.na bank.účtech kromě OSFA,"Změna stavu krátkodobých prostředků na bankovních účtech kromě účtů státních finančních aktiv, které tvoří kapitolu OSFA"
+8115,4,8,81,811,8115,Zm.st.kr.pr.BÚ krSFA,Změny st.krátk.pr.na bank.úč. kr. změn st. účtů SFA-kap.OSFA,"Změny stavu krátkodobých prostředků na bankovních účtech kromě změn stavů účtů státních finančních aktiv, které tvoří kapitolu OSFA"
+8116,4,8,81,811,8116,Změna stavu OSFA,Změna stavu bank.účtů krátkodobých prostředků kapitoly OSFA,"Změna stavu bankovních účtů krátkodobých prostředků státních finančních aktiv, které tvoří kapitolu OSFA"
+8116,4,8,81,811,8116,Změna st. BÚ OSFA,"Změny stavu bank.účtů krátk.prostř. SFA, kt. tvoří kap. OSFA","Změny stavu bankovních účtů krátkodobých prostředků státních finančních aktiv, které  tvoří kapitolu OSFA"
+8117,4,8,81,811,8117,Akt.krdb likv-P,Aktivní krátkodobé operace řízení likvidity - příjmy,Aktivní krátkodobé operace řízení likvidity - příjmy
+8118,4,8,81,811,8118,Akt.krdb likv-V,Aktivní krátkodobé operace řízení likvidity - výdaje,Aktivní krátkodobé operace řízení likvidity - výdaje
+812,3,8,81,812,,Dldb.financování,Dlouhodobé financování,Dlouhodobé financování
+8121,4,8,81,812,8121,Dlhd.vyd.dluhop.,Dlouhodobé vydané dluhopisy,Dlouhodobé vydané dluhopisy
+8122,4,8,81,812,8122,Uhraz.splá.dluh.,Uhrazené splátky dlouhodobých vydaných dluhopisů,Uhrazené splátky dlouhodobých vydaných dluhopisů
+8123,4,8,81,812,8123,Dlhd.přij.půjčky,Dlouhodobé přijaté půjčené prostředky,Dlouhodobé přijaté půjčené prostředky
+8124,4,8,81,812,8124,Uhraz.spl.dhdb.,Uhrazené splátky dlouhodobých přijatých půjčenýchprostředků,Uhrazené splátky dlouhodobých přijatých půjčenýchprostředků
+8125,4,8,81,812,8125,Zm.stavu dlhd.pr,Změna stavu dlouhodobých prostředků na bankovních účtech,Změna stavu dlouhodobých prostředků na bankovních účtech
+8127,4,8,81,812,8127,Akt.dldb.likv-P,Aktivní dlouhodobé operace řízení likvidity - příjmy,Aktivní dlouhodobé operace řízení likvidity - příjmy
+8128,4,8,81,812,8128,Akt.dldb.likv-V,Aktivní dlouhodobé operace řízení likvidity - výdaje,Aktivní dlouhodobé operace řízení likvidity - výdaje
+82,2,8,82,,,Financ.zahraničí,Financování ze zahraničí,Financování ze zahraničí
+821,3,8,82,821,,Krdb  financ.,Krátkodobé financování,Krátkodobé financování
+8211,4,8,82,821,8211,Krdb.vyd.dluhop.,Krátkodobé vydané dluhopisy,Krátkodobé vydané dluhopisy
+8212,4,8,82,821,8212,Uhr.spl.krdb.dl.,Uhrazené splátky krátkodobých vydaných dluhopisů,Uhrazené splátky krátkodobých vydaných dluhopisů
+8213,4,8,82,821,8213,Krdb.přij.půjč.,Krátkodobé přijaté půjčené prostředky,Krátkodobé přijaté půjčené prostředky
+8214,4,8,82,821,8214,Uhr.krdb.půjčky,Uhrazené splátky krátkodobých přijatých půjčenýchprostředků,Uhrazené splátky krátkodobých přijatých půjčenýchprostředků
+8215,4,8,82,821,8215,Zm.stavu.KP zahr.,Změna stavu bank.účtů krátk.prost.zahr.kromě úvěrů,Změna stavu bankovních účtů krátkodobých prostředků ze zahraničí jiných než ze zahraničních dlouhodobých úvěrů
+8215,4,8,82,821,8215,Zm.stavu krdb.pr,Změna stavu krátkodobých prostředků na bankovníchúčtech,Změna stavu krátkodobých prostředků na bankovníchúčtech
+8216,4,8,82,821,8216,Změna stavu-zah.úvěr,Změna stavu bank.účtů krátk.prost.z dlouh.úvěrů ze zahraničí,Změna stavu bankovních účtů krátkodobých prostředků z dlouhodobých úvěrů ze zahraničí
+8217,4,8,82,821,8217,Akt.krdb likv-P,Aktivní krátkodobé operace řízení likvidity - příjmy,Aktivní krátkodobé operace řízení likvidity - příjmy
+8218,4,8,82,821,8218,Akt.krdb likv-V,Aktivní krátkodobé operace řízení likvidity - výdaje,Aktivní krátkodobé operace řízení likvidity - výdaje
+822,3,8,82,822,,Dlhd. financ.,Dlouhodobé financování,Dlouhodobé financování
+8221,4,8,82,822,8221,Dlhd. vyd.dluhop,Dlouhodobé vydané dluhopisy,Dlouhodobé vydané dluhopisy
+8222,4,8,82,822,8222,Uhraz.dhdb.dluh.,Uhrazené splátky dlouhodobých vydaných dluhopisů,Uhrazené splátky dlouhodobých vydaných dluhopisů
+8223,4,8,82,822,8223,Dldb.přij.půjč.,Dlouhodobé přijaté půjčené prostředky,Dlouhodobé přijaté půjčené prostředky
+8224,4,8,82,822,8224,Uhr.splá.půjček,Uhrazené splátky dlouhodobých přijatých půjčených prostředků,Uhrazené splátky dlouhodobých přijatých půjčených prostředků
+8225,4,8,82,822,8225,Zm.stavu dlhd.pr,Změna stavu dlouhodobých prostředků na bankovních účtech,Změna stavu dlouhodobých prostředků na bankovních účtech
+8227,4,8,82,822,8227,Akt.krdb likv-P,Aktivní dlouhodobé operace řízení likvidity - příjmy,Aktivní dlouhodobé operace řízení likvidity - příjmy
+8228,4,8,82,822,8228,Akt.krdb likv-V,Aktivní dlouhodobé operace řízení likvidity - výdaje,Aktivní dlouhodobé operace řízení likvidity - výdaje
+83,2,8,83,,,Jiné k financování,Pohyby na účtech pro financování nepatřící na jiné položky,Pohyby na účtech pro financování nepatřící na jiné financující položky
+830,3,8,83,830,,Jiné k financování,Pohyby na účtech pro financování nepatřící na jiné položky,Pohyby na účtech pro financování nepatřící na jiné financující položky
+8300,4,8,83,830,8300,Jiné k financování,Pohyby na účtech pro financování nepatřící na jiné položky,Pohyby na účtech pro financování nepatřící na jiné financující položky
+8301,4,8,83,830,8301,Převody EIB,Převody ve vztahu k úvěrům od Evropské investiční banky,Převody ve vztahu k úvěrům od Evropské investiční banky
+8302,4,8,83,830,8302,Operace OSFA,Operace na bankovních účtech OSFA,"Operace na bankovních účtech státních finančních aktiv, které tvoří kapitolu OSFA"
+84,2,8,84,,,Akt.fin.z jad a důch,Aktivní financ. z jader. účtu a účtu rezervy důchod. pojišt.,Aktivní financování z jaderného účtu a účtu rezervy důchodového pojištění
+84,2,8,84,,,Akt.fin.z jad a důch,Aktivní financování z jaderného a důchodového účtu,Aktivní financování z jaderného a důchodového účtu
+841,3,8,84,841,,KD akt.fin z jad.úč,Krátkodobé akt. fin.-jader. a účet rezervy důchod. pojišt.,Krátkodobé aktivní financování z jaderného účtu a účtu rezervy důchodového pojištění
+841,3,8,84,841,,KD akt.financování,Krátkodobé aktivní financ.z jaderného a důchodového účtu,Krátkodobé aktivní financování z jaderného a důchodového účtu
+8413,4,8,84,841,8413,KD příj.půjčky,Krátkodobé přijaté půjčené prostředky,Krátkodobé přijaté půjčené prostředky
+8414,4,8,84,841,8414,KD úhrada splátek,Uhrazené splátky krátkodobých přijatých půjčených prostředků,Uhrazené splátky krátkodobých přijatých půjčených prostředků
+8417,4,8,84,841,8417,KD akt.fin.příjmy,Krátkodobé aktivní fin.z jaderného a důchodového účtu-příjmy,Krátkodobé aktivní financování z jaderného a důchodového účtu - příjmy
+8417,4,8,84,841,8417,KD akt.fin z JU - P,Krátkodobé akt. fin.-jader. a účet rezervy důchod. pojišt.-P,Krátkodobé aktivní financování z jaderného účtu a účtu rezervy důchodového pojištění - příjmy
+8418,4,8,84,841,8418,KD akt.fin z JU - V,Krátkodobé akt. fin.-jader. a účet rezervy důchod. pojišt.-V,Krátkodobé aktivní financování z jaderného účtu a účtu rezervy důchodového pojištění - výdaje
+8418,4,8,84,841,8418,KD akt.fin.výdaje,Krátkodobé aktivní fin.z jaderného a důchodového účtu-výdaje,Krátkodobé aktivní financování z jaderného a důchodového účtu - výdaje
+842,3,8,84,842,,DDakt.fin. z JaDúč,Dlouhodobé aktivní fin.z jaderného a důchodového účtu,Dlouhodobé aktivní financování z jaderného a důchodového účtu
+842,3,8,84,842,,DD akt.fin. z Jad.úč,Dlouhodobé akt. fin.-jader. a účet rezervy důchod. pojišt.,Dlouhodobé aktivní financování z jaderného účtu a účtu rezervy důchodového pojištění
+8427,4,8,84,842,8427,DD akt.fin z JU - P,Dlouhodobé akt. fin.-jader. a účet rezervy důchod. pojišt.-P,Dlouhodobé aktivní financování z jaderného účtu a účtu rezervy důchodového pojištění - příjmy
+8427,4,8,84,842,8427,DD akt.fin.příjmy,Dlouhodobé aktivní fin.z jaderného a důchodového účtu-příjmy,Dlouhodobé aktivní financování z jaderného a důchodového účtu - příjmy
+8428,4,8,84,842,8428,DD akt.fin.výdaje,Dlouhodobé aktivní fin.z jaderného a důchodového účtu-výdaje,Dlouhodobé aktivní financování z jaderného a důchodového účtu - výdaje
+8428,4,8,84,842,8428,DD akt.fin z JU - V,Dlouhodobé akt. fin.-jader. a účet rezervy důchod. pojišt.-V,Dlouhodobé aktivní financování z jaderného účtu a účtu rezervy důchodového pojištění - výdaje
+89,2,8,89,,,Opravné položky,Opravné položky k peněžním operacím,Opravné položky k peněžním operacím
+890,3,8,89,890,,Opravné položky,Opravné položky k peněžním operacím,Opravné položky k peněžním operacím
+8901,4,8,89,890,8901,Operace pen.účtů,Operace z peněžních účtů organizace nemající charakter příjm,Operace z peněžních účtů organizace nemající charakter příjmů a výdajů vládního sektoru
+8902,4,8,89,890,8902,Nereal.kurz.rozd,Nerealizované kurzové rozdíly,Nerealizované kurzové rozdíly
+8902,4,8,89,890,8902,Kurs.rozd.deviz.účtů,Nerealizované kursové rozdíly pohybů na devizových účtech,Nerealizované kursové rozdíly pohybů na devizových účtech
+8905,4,8,89,890,8905,Vyrovnání  schodku,Nepřevedené částky vyrovnávající schodek a saldo stát. pokl.,Nepřevedené částky vyrovnávající schodek a saldo státní pokladny
+8905,4,8,89,890,8905,Část.k vyrov.schodku,Nepřevedené částky vyrovnávající schodek,Nepřevedené částky vyrovnávající schodek

@@ -5,3 +5,7 @@ declare module "*.css?url" {
 declare module "*.json?url" {
   export default string;
 }
+
+declare module "*.csv?url" {
+  export default string;
+}

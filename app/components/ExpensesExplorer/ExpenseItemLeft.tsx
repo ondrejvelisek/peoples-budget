@@ -42,7 +42,7 @@ export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
         </span>
         <span>{title}</span>
       </div>
-      <div
+      {/*<div
         className={cn(
           "h-[1.3em] truncate font-bold transition-all",
           ANIMATION_DURATION_CLASS,
@@ -52,7 +52,7 @@ export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
         )}
       >
         {formatCurrency(amount)}
-      </div>
+      </div>*/}
     </div>
   );
 };

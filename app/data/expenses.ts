@@ -1,5 +1,9 @@
-import { useBudget } from "@/components/BudgetProvider/BudgetProvider";
-import { sum } from "lodash";
+import { chain, sum } from "lodash";
+import { parse } from "papaparse";
+import expenses2025Csv from "./expenses_2025.csv?url";
+import sectorsTableCsv from "./sectors_table.csv?url";
+import typesTableCsv from "./types_table.csv?url";
+import { useQuery } from "@tanstack/react-query";
 
 export type ExpenseItemExample = {
   title: string;
@@ -13,175 +17,104 @@ type ExpenseBaseItem = {
 
 type ExpenseLeafItem = ExpenseBaseItem & {
   amount: number;
-  examples: [ExpenseItemExample, ...ExpenseItemExample[]];
+  examples: ExpenseItemExample[];
 };
 
 type ExpenseInnerItem = ExpenseBaseItem & {
-  children: [ExpenseItem, ...ExpenseItem[]];
+  children: ExpenseItem[];
 };
 
 export type ExpenseItem = ExpenseInnerItem | ExpenseLeafItem;
 
-export const expenses: ExpenseInnerItem = {
-  title: "Státní rozpočet ČR",
-  name: "rozpocet",
-  children: [
-    {
-      title: "Obrana a Bezpečnost",
-      name: "obrana-bezpecnost",
-      children: [
-        {
-          title: "Armáda",
-          name: "armada",
-          amount: 740000000000,
-          examples: [{ title: "Plat vojáka", amount: 45000 }],
+async function parseCsv(
+  fileUrl: string
+): Promise<Array<Record<string, string | number>>> {
+  return new Promise<Array<Record<string, string | number>>>(
+    (resolve, reject) =>
+      parse<Record<string, string | number>>(fileUrl, {
+        download: true,
+        header: true,
+        dynamicTyping: true,
+        complete(results) {
+          if (results.errors.length > 0) {
+            reject(results.errors);
+          }
+          resolve(results.data);
         },
-        {
-          title: "Policie",
-          name: "policie",
-          amount: 700000000000,
-          examples: [{ title: "Plat policisty", amount: 35000 }],
-        },
-        {
-          title: "Soudnictví",
-          name: "soudnictvi",
-          amount: 300000000000,
-          examples: [{ title: "Plat soudce", amount: 125000 }],
-        },
-        {
-          title: "Hasiči",
-          name: "hasici",
-          amount: 30000000000,
-          examples: [{ title: "Plat hasiče", amount: 50000 }],
-        },
-        {
-          title: "Záchranný systém",
-          name: "zachranny-system",
-          amount: 30000000000,
-          examples: [{ title: "Plat záchranáře", amount: 60000 }],
-        },
-      ],
+      })
+  );
+}
+
+export const useExpensesData = (): ExpenseItem | undefined => {
+  const { data: expensesData } = useQuery({
+    queryKey: ["loadCsv", expenses2025Csv],
+    queryFn: () => parseCsv(expenses2025Csv),
+  });
+  const { data: sectorsTable } = useQuery({
+    queryKey: ["loadCsv", sectorsTableCsv],
+    queryFn: () => parseCsv(sectorsTableCsv),
+    select(sectorsData) {
+      return chain(sectorsData)
+        .keyBy("id")
+        .mapValues("name")
+        .mapValues((e) => e as string)
+        .value();
     },
-    {
-      title: "Školství a Výzkum",
-      name: "skolstvi-vyzkum",
-      children: [
-        {
-          title: "Školství",
-          name: "skolstvi",
-          amount: 740000000000,
-          examples: [{ title: "Plat učitele ZŠ", amount: 40000 }],
-        },
-        {
-          title: "Věda a výzkum",
-          name: "veda-vyzkum",
-          amount: 300000000000,
-          examples: [{ title: "Stipendium doktoranda", amount: 25000 }],
-        },
-      ],
+  });
+  const { data: typesTable } = useQuery({
+    queryKey: ["loadCsv", typesTableCsv],
+    queryFn: () => parseCsv(typesTableCsv),
+    select(sectorsData) {
+      return chain(sectorsData)
+        .keyBy("id")
+        .mapValues("name")
+        .mapValues((e) => e as string)
+        .value();
     },
-    {
-      title: "Doprava",
-      name: "doprava",
-      children: [
-        {
-          title: "Silniční",
-          name: "silnicni",
-          amount: 740000000000,
-          examples: [{ title: "km postavených dálnic", amount: 112 }],
-        },
-        {
-          title: "Železniční",
-          name: "zeleznicni",
-          amount: 300000000000,
-          examples: [{ title: "opravených zastávek", amount: 250 }],
-        },
-      ],
-    },
-    {
-      title: "Sociální systém",
-      name: "socialni-system",
-      children: [
-        {
-          title: "Starobní důchody",
-          name: "starobni-duchody",
-          amount: 740000000000,
-          examples: [{ title: "starobní důchod", amount: 22000 }],
-        },
-        {
-          title: "Invalidní důchody",
-          name: "invalidni-duchody",
-          amount: 30000000000,
-          examples: [{ title: "Invalidní důchod 3.", amount: 35000 }],
-        },
-        {
-          title: "Pracovní neschpnost",
-          name: "pracovni neschopnost",
-          amount: 3000000000,
-          examples: [{ title: "Náhrada platu v %", amount: 66 }],
-        },
-      ],
-    },
-    {
-      title: "Zdravotnictví",
-      name: "zdravotnictvi",
-      children: [
-        {
-          title: "Invalidní důchody",
-          name: "invalidni-duchody",
-          amount: 30000000000,
-          examples: [{ title: "Invalidní důchod 3.", amount: 35000 }],
-        },
-        {
-          title: "Pracovní neschpnost",
-          name: "pracovni neschopnost",
-          amount: 3000000000,
-          examples: [{ title: "Náhrada platu v %", amount: 66 }],
-        },
-      ],
-    },
-    {
-      title: "Dotace",
-      name: "dotace",
-      children: [
-        {
-          title: "Dotace do podnikání",
-          name: "dotace-podnikani",
-          amount: 30000000000,
-          examples: [{ title: "Počet dotačních programů", amount: 350 }],
-        },
-        {
-          title: "Životní prostředí",
-          name: "zivotni-prostredi",
-          amount: 3000000000,
-          examples: [{ title: "Vysazených stromů", amount: 660 }],
-        },
-      ],
-    },
-    {
-      title: "Dluh a Rezerva",
-      name: "dluh-rezerva",
-      children: [
-        {
-          title: "Dluh",
-          name: "dluh",
-          amount: 30000000000,
-          examples: [{ title: "Splátka dluhu", amount: 3500000 }],
-        },
-        {
-          title: "Rezerva",
-          name: "rezerva",
-          amount: 300000000,
-          examples: [{ title: "Rezerva v %", amount: 5 }],
-        },
-      ],
-    },
-  ],
+  });
+
+  if (expensesData && sectorsTable && typesTable) {
+    const grouped = chain(expensesData)
+      .groupBy((row) => row["sector_id"].toString().slice(0, 1))
+      .map(
+        (children, sectorId): ExpenseInnerItem => ({
+          title: sectorsTable[sectorId],
+          name: `odvetvi-${sectorId}`,
+          children: chain(children)
+            .groupBy((row) => row["sector_id"].toString().slice(0, 2))
+            .map(
+              (children, sectorId): ExpenseInnerItem => ({
+                title: sectorsTable[sectorId],
+                name: `odvetvi-${sectorId}-odvetvi-${sectorId}`,
+                children: chain(children)
+                  .groupBy((row) => row["type_id"].toString().slice(0, 2))
+                  .map(
+                    (children, typeId): ExpenseLeafItem => ({
+                      title: typesTable[typeId],
+                      name: `odvetvi-${sectorId}-odvetvi-${sectorId}-druh-${typeId}`,
+                      amount: sum(children.map((row) => row["amount"])),
+                      examples: [],
+                    })
+                  )
+                  .value(),
+              })
+            )
+            .value(),
+        })
+      )
+      .value();
+
+    return {
+      title: "Výdaje 2025",
+      name: "vydaje",
+      children: grouped,
+    };
+  }
 };
 
 export function findByName(
   name: string,
-  item: ExpenseItem = expenses
+  item: ExpenseItem
 ): ExpenseItem | undefined {
   if (item.name === name) {
     return item;
@@ -199,7 +132,7 @@ export function findByName(
 
 export function findParent(
   name: string,
-  root: ExpenseItem = expenses
+  root: ExpenseItem
 ): ExpenseItem | undefined {
   if ("children" in root) {
     for (const child of root.children) {
@@ -217,7 +150,7 @@ export function findParent(
 
 function findAncestors(
   name: string,
-  item: ExpenseItem = expenses
+  item: ExpenseItem
 ): Array<string> | undefined {
   if (!item) return;
 
@@ -237,7 +170,7 @@ function findAncestors(
   return;
 }
 
-export function calcAmount(item: ExpenseItem = expenses): number {
+export function calcAmount(item: ExpenseItem): number {
   if ("amount" in item) {
     return item.amount;
   }
@@ -245,35 +178,41 @@ export function calcAmount(item: ExpenseItem = expenses): number {
   return sum(item.children.map(calcAmount));
 }
 
-export function findExamples(
-  item: ExpenseItem = expenses
-): [ExpenseItemExample, ...ExpenseItemExample[]] {
+export function findExamples(item: ExpenseItem): ExpenseItemExample[] {
   if ("amount" in item) {
     return item.examples;
   }
 
-  return item.children.flatMap(findExamples) as [
-    ExpenseItemExample,
-    ...ExpenseItemExample[],
-  ];
+  return item.children.flatMap(findExamples);
 }
 
 export const useExpense = (
   expenseName?: string
-): [
-  ExpenseItem,
-  number,
-  Array<string>,
-  [ExpenseItemExample, ...ExpenseItemExample[]],
-] => {
-  const { budgetName } = useBudget();
-  console.log("budgetName: ", budgetName);
+): [ExpenseItem, number, Array<string>, ExpenseItemExample[]] => {
+  const expenses = useExpensesData();
+  if (!expenses) {
+    return [
+      {
+        title: "Výdaje 2025",
+        name: "vydaje",
+        children: [],
+      },
+      0,
+      [],
+      [],
+    ] as const;
+  }
   if (!expenseName) {
     const amount = calcAmount(expenses);
     const examples = findExamples(expenses);
     return [expenses, amount, [], examples] as const;
   }
   const expense = findByName(expenseName, expenses);
+  if (!expense) {
+    const amount = calcAmount(expenses);
+    const examples = findExamples(expenses);
+    return [expenses, amount, [], examples] as const;
+  }
   const amount = calcAmount(expense);
   const ancestors = findAncestors(expenseName, expenses);
   const examples = findExamples(expense);

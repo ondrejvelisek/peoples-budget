@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { Button } from "../ui/button";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { useExpense } from "@/data/expenses";
+import { calcAmount, useExpense } from "@/data/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
 import { ExpenseItemMeter } from "./ExpenseItemMeter";
@@ -20,8 +20,9 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
   relation = "subject",
 }) => {
   const [expense, amount, ancestors, examples] = useExpense(name);
+  const [, parentAmount] = useExpense(ancestors.at(0));
   const isRoot = ancestors.length === 0;
-  const example = examples[0];
+  const example = examples.at(0);
   const title = expense?.title;
 
   return (
@@ -52,11 +53,13 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
             example={example}
             amount={amount}
             relation={relation}
+            className="shrink-0"
           />
         </div>
 
         <ExpenseItemMeter
           amount={amount}
+          parentAmount={parentAmount}
           className={cn("absolute inset-0")}
           relation={isRoot ? "parent" : relation}
         />

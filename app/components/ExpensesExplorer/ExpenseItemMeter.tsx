@@ -1,27 +1,31 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
-import { calcAmount, expenses } from "@/data/expenses";
+import { calcAmount, useExpensesData } from "@/data/expenses";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 import { useMounted } from "@mantine/hooks";
 
 type ExpenseItemMeterProps = {
   amount: number;
+  parentAmount: number;
   className?: string;
   relation: "parent" | "subject" | "child";
 };
 
 export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
   amount,
+  parentAmount,
   className,
   relation = "subject",
 }) => {
-  const percentage = amount / calcAmount(expenses);
+  const expenses = useExpensesData();
+  const localPercentage = amount / parentAmount;
+  const globalPercentage = expenses ? amount / calcAmount(expenses) : 0;
   const mounted = useMounted();
 
   return (
     <div
       className={cn(
-        "absolute inset-0 h-1 rounded transition-all",
+        "absolute inset-0 h-1 rounded transition-all z-10",
         ANIMATION_DURATION_CLASS,
         {
           "h-0": relation === "parent",
@@ -32,14 +36,20 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
     >
       <div
         className={cn(
-          "h-full rounded bg-sky-400 transition-all",
-          {
-            "bg-sky-200": relation === "subject",
-          },
+          "absolute h-full rounded bg-sky-200 transition-all inset-0 z-20",
           ANIMATION_DURATION_CLASS
         )}
         style={{
-          width: mounted ? `max(0.25rem, ${percentage * 100}%)` : "0px",
+          width: mounted ? `max(0.25rem, ${localPercentage * 100}%)` : "0px",
+        }}
+      />
+      <div
+        className={cn(
+          "absolute h-full rounded bg-sky-400 transition-all inset-0 z-30",
+          ANIMATION_DURATION_CLASS
+        )}
+        style={{
+          width: mounted ? `max(0.25rem, ${globalPercentage * 100}%)` : "0px",
         }}
       />
     </div>
