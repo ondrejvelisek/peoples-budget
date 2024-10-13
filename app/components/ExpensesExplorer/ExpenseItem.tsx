@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { Button } from "../ui/button";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { useChildrenExpenseDimension, useExpense, type ExpenseKey } from "@/data/expenses";
+import { useExpense, type ExpenseKey } from "@/data/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
 import { ExpenseItemMeter } from "./ExpenseItemMeter";
@@ -27,7 +27,6 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
   }
 
   const isRoot = expenseKey.length === 0;
-  const title = expense.title;
 
   return (
     <Button
@@ -47,7 +46,9 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
     >
       <Link
         to="/2024/$"
-        params={{ _splat: { expenseKey, expenseDimension: expense.childrenDimension } }}
+        params={{
+          _splat: { expenseKey, expenseDimension: expense.childrenDimension },
+        }}
         disabled={relation === "subject"}
       >
         <div className="flex grow items-baseline justify-between gap-4">

@@ -1,4 +1,4 @@
-import { createFileRoute, useParams } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer";
 import { IncomeThumbnail } from "@/components/IncomeThumbnail/IncomeThumbnail";
 import type { ExpenseKey } from "@/data/expenses";

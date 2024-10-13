@@ -6,7 +6,7 @@ import tailwind from "eslint-plugin-tailwindcss";
 
 export default config(
   {
-    ignores: ["**/dist/", "**/.vinxi/", "**/.output/"],
+    ignores: ["**/dist/", "**/.vinxi/", "**/.output/", "**/.vercel/"],
   },
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],

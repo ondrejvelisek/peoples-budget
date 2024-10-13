@@ -10,7 +10,7 @@
     "serve": "bunx --bun vinxi serve",
     "tscheck": "bunx --bun tsc --noEmit",
     "lint": "bunx --bun eslint --flag unstable_ts_config",
-    "validate": "tscheck && lint"
+    "validate": "pnpm tscheck && pnpm lint"
   },
   "devDependencies": {
     "@eslint/js": "^9.10.0",
@@ -33,7 +33,7 @@
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.6.2",
-    "typescript-eslint": "^8.5.0",
+    "typescript-eslint": "^8.8.1",
     "vite": "^5.4.3"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
-import { useExpense, useExpensesData } from "@/data/expenses";
+import { useExpense } from "@/data/expenses";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 import { useMounted } from "@mantine/hooks";
 
@@ -27,7 +27,7 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
   return (
     <div
       className={cn(
-        "absolute inset-0 h-1 rounded transition-all z-10",
+        "absolute inset-0 z-10 h-1 rounded transition-all",
         ANIMATION_DURATION_CLASS,
         {
           "h-0": relation === "parent",
@@ -38,7 +38,7 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
     >
       <div
         className={cn(
-          "absolute h-full rounded bg-sky-200 transition-all inset-0 z-20",
+          "absolute inset-0 z-20 h-full rounded bg-sky-200 transition-all",
           ANIMATION_DURATION_CLASS
         )}
         style={{
@@ -47,7 +47,7 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
       />
       <div
         className={cn(
-          "absolute h-full rounded bg-sky-400 transition-all inset-0 z-30",
+          "absolute inset-0 z-30 h-full rounded bg-sky-400 transition-all",
           ANIMATION_DURATION_CLASS
         )}
         style={{

@@ -4,7 +4,7 @@ import { useExpense, type ExpenseKey } from "@/data/expenses";
 import { useParams } from "@tanstack/react-router";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { cn } from "@/lib/utils";
-import _, { isEqual } from "lodash";
+import { isEqual } from "lodash";
 
 export const ANIMATION_DURATION = 400;
 export const ANIMATION_DURATION_CLASS = "duration-300";
