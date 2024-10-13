@@ -1,4 +1,5 @@
-import { keyBy, sum } from "lodash";
+import lodash from "lodash";
+const { keyBy, sum } = lodash;
 import Papa from "papaparse";
 import expenses2025Csv from "./expenses_2025.csv?url";
 import sectorsTableCsv from "./sectors_table.csv?url";
