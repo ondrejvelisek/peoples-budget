@@ -1,5 +1,5 @@
 import lodash from "lodash";
-const { keyBy, sum } = lodash;
+const { keyBy, sum, groupBy } = lodash;
 import Papa from "papaparse";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import type { SimpleQueryResult } from "@/lib/utils";
@@ -171,12 +171,9 @@ export const useExpenseChildren = (
   const numOfOfficeChars =
     numOfOfficeDimensions === 0 ? 0 : numOfOfficeDimensions === 1 ? 3 : 7;
 
-  const grouped = Object.groupBy(
-    expenses,
-    ({ sector_id, type_id, office_id }) => {
-      return `${String(sector_id).slice(0, numOfSectorChars)}/${String(type_id).slice(0, numOfTypeChars)}/${String(office_id).slice(0, numOfOfficeChars)}`;
-    }
-  );
+  const grouped = groupBy(expenses, ({ sector_id, type_id, office_id }) => {
+    return `${String(sector_id).slice(0, numOfSectorChars)}/${String(type_id).slice(0, numOfTypeChars)}/${String(office_id).slice(0, numOfOfficeChars)}`;
+  });
 
   const childrenData = Object.entries(grouped)
     .map(([key, expenses = []]) => {
