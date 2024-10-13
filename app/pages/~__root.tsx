@@ -1,7 +1,7 @@
 import {
   Outlet,
   ScrollRestoration,
-  createRootRoute,
+  createRootRouteWithContext,
 } from "@tanstack/react-router";
 import Navigation from "../components/Navigation/Navigation";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
@@ -13,8 +13,11 @@ import { StrictMode } from "react";
 import { seo } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useExpensesData } from "@/data/expenses";
+import type { QueryClient } from "@tanstack/react-query";
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   component: RootComponent,
   meta: () => [
     {

@@ -1,3 +1,5 @@
+import type { ExpenseDimension } from "@/data/expenses";
+import type { DefaultError, UseQueryResult } from "@tanstack/react-query";
 import { clsx, type ClassValue } from "clsx";
 import type { FC, PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
@@ -60,3 +62,11 @@ export const formatCurrency = new Intl.NumberFormat("cs-CZ", {
 export const formatPercent = new Intl.NumberFormat("cs-CZ", {
   style: "percent",
 }).format;
+
+export type SimpleQueryResult<TData = unknown, TError = DefaultError> = Pick<
+  UseQueryResult<TData, TError>,
+  "data" | "error" | "isPending" | "isFetching"
+>;
+
+export const isDimension = (value?: string): value is ExpenseDimension|undefined =>
+  !value || ["odvetvi", "druh", "urad"].includes(value);

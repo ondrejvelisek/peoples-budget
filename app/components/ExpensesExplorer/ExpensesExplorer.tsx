@@ -1,35 +1,33 @@
 import { type FC } from "react";
 import { ExpenseItem } from "./ExpenseItem";
-import { calcAmount, useExpense } from "@/data/expenses";
+import { useExpense, type ExpenseKey } from "@/data/expenses";
 import { useParams } from "@tanstack/react-router";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { cn } from "@/lib/utils";
-import _ from "lodash";
+import _, { isEqual } from "lodash";
 
 export const ANIMATION_DURATION = 400;
 export const ANIMATION_DURATION_CLASS = "duration-300";
 
 export const ExpensesExplorer: FC<{
-  expenseName?: string;
+  expenseKey?: ExpenseKey;
   className?: string;
-}> = ({ expenseName, className }) => {
-  const { expenseName: urlExpenseName } = useParams({ strict: false });
-  const [urlExpense, , urlAncestors] = useExpense(urlExpenseName);
-  const [expense] = useExpense(expenseName);
+}> = ({ expenseKey, className }) => {
+  const urlExpenseKey = useParams({ strict: false })._splat?.expenseKey;
+  const { data: urlExpense } = useExpense(urlExpenseKey);
+  const { data: expense } = useExpense(expenseKey);
   const [animateChildrenRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
   const [animateHeaderRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
 
-  if (!urlExpense || !urlExpenseName) {
-    return <div>Výdaj nenalezen</div>;
+  if (!urlExpense || !urlExpenseKey || !expense) {
+    return <div>Výdaj nenalezen</div>; // TODO add loading and error
   }
 
-  const isParent = urlAncestors.at(0) === expense.name;
-  const isSubject = expense.name === urlExpenseName;
-
-  const urlChildren =
-    "children" in urlExpense ? urlExpense.children : undefined;
-
-  const isChild = urlChildren?.some((child) => child.name === expense.name);
+  const isSubject = isEqual(urlExpenseKey, expense.key);
+  const isParent = isEqual(urlExpense.parent, expense.key);
+  const isChild = urlExpense.children?.some((childKey) =>
+    isEqual(childKey, expense.key)
+  );
 
   const relation = isParent
     ? "parent"
@@ -39,11 +37,9 @@ export const ExpensesExplorer: FC<{
         ? "child"
         : undefined;
 
-  const children = "children" in expense ? expense.children : undefined;
-
   return (
     <div
-      ref={animateHeaderRef}
+      ref={relation ? animateHeaderRef : undefined}
       className={cn(
         "overflow-hidden rounded-lg border-x border-b-2 border-neutral-600/10 border-b-neutral-600/20 outline outline-2 outline-stone-600/5 transition-all",
         ANIMATION_DURATION_CLASS,
@@ -55,16 +51,25 @@ export const ExpensesExplorer: FC<{
         className
       )}
     >
-      {relation && <ExpenseItem name={expense.name} relation={relation} />}
-      {children && (
-        <ul ref={animateChildrenRef} className={cn("flex flex-col gap-3")}>
-          {_.sortBy(children, (child) => -calcAmount(child)).map(
-            (child) =>
+      {relation && <ExpenseItem expenseKey={expense.key} relation={relation} />}
+      {expense.children && (
+        <ul
+          ref={relation ? animateChildrenRef : undefined}
+          className={cn("flex flex-col gap-3")}
+        >
+          {expense.children.map(
+            (childKey) =>
               (isSubject ||
-                child.name === urlExpenseName ||
-                urlAncestors.includes(child.name)) && (
-                <li key={child.name}>
-                  <ExpensesExplorer expenseName={child.name} />
+                isEqual(childKey, urlExpenseKey) ||
+                childKey.every((segment, index) =>
+                  isEqual(segment, urlExpenseKey[index])
+                )) && (
+                <li
+                  key={childKey
+                    .map(({ dimension, id }) => `${dimension}/${id}`)
+                    .join("/")}
+                >
+                  <ExpensesExplorer expenseKey={childKey} />
                 </li>
               )
           )}

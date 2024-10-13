@@ -22,10 +22,7 @@ import { Route as CompareIndexImport } from './pages/~compare/~index'
 import { Route as AgregatedIndexImport } from './pages/~agregated/~index'
 import { Route as R2025IndexImport } from './pages/~2025/~index'
 import { Route as R2024ProvidersIndexImport } from './pages/~2024/~_providers.index'
-import { Route as MyExpensesExpenseNameImport } from './pages/~my/~expenses/~$expenseName'
-import { Route as R2024ProvidersExpenseNameImport } from './pages/~2024/~_providers.$expenseName'
-import { Route as MyIncomesIndexImport } from './pages/~my/~incomes/~index'
-import { Route as MyExpensesIndexImport } from './pages/~my/~expenses/~index'
+import { Route as R2024ProvidersSplatImport } from './pages/~2024/~_providers.$'
 
 // Create Virtual Routes
 
@@ -83,24 +80,9 @@ const R2024ProvidersIndexRoute = R2024ProvidersIndexImport.update({
   getParentRoute: () => R2024ProvidersRoute,
 } as any)
 
-const MyExpensesExpenseNameRoute = MyExpensesExpenseNameImport.update({
-  path: '/my/expenses/$expenseName',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const R2024ProvidersExpenseNameRoute = R2024ProvidersExpenseNameImport.update({
-  path: '/$expenseName',
+const R2024ProvidersSplatRoute = R2024ProvidersSplatImport.update({
+  path: '/$',
   getParentRoute: () => R2024ProvidersRoute,
-} as any)
-
-const MyIncomesIndexRoute = MyIncomesIndexImport.update({
-  path: '/my/incomes/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MyExpensesIndexRoute = MyExpensesIndexImport.update({
-  path: '/my/expenses/',
-  getParentRoute: () => rootRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -170,33 +152,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R2024ProvidersImport
       parentRoute: typeof R2024Route
     }
-    '/my/expenses/': {
-      id: '/my/expenses/'
-      path: '/my/expenses'
-      fullPath: '/my/expenses'
-      preLoaderRoute: typeof MyExpensesIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/my/incomes/': {
-      id: '/my/incomes/'
-      path: '/my/incomes'
-      fullPath: '/my/incomes'
-      preLoaderRoute: typeof MyIncomesIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/2024/_providers/$expenseName': {
-      id: '/2024/_providers/$expenseName'
-      path: '/$expenseName'
-      fullPath: '/2024/$expenseName'
-      preLoaderRoute: typeof R2024ProvidersExpenseNameImport
+    '/2024/_providers/$': {
+      id: '/2024/_providers/$'
+      path: '/$'
+      fullPath: '/2024/$'
+      preLoaderRoute: typeof R2024ProvidersSplatImport
       parentRoute: typeof R2024ProvidersImport
-    }
-    '/my/expenses/$expenseName': {
-      id: '/my/expenses/$expenseName'
-      path: '/my/expenses/$expenseName'
-      fullPath: '/my/expenses/$expenseName'
-      preLoaderRoute: typeof MyExpensesExpenseNameImport
-      parentRoute: typeof rootRoute
     }
     '/2024/_providers/': {
       id: '/2024/_providers/'
@@ -211,12 +172,12 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface R2024ProvidersRouteChildren {
-  R2024ProvidersExpenseNameRoute: typeof R2024ProvidersExpenseNameRoute
+  R2024ProvidersSplatRoute: typeof R2024ProvidersSplatRoute
   R2024ProvidersIndexRoute: typeof R2024ProvidersIndexRoute
 }
 
 const R2024ProvidersRouteChildren: R2024ProvidersRouteChildren = {
-  R2024ProvidersExpenseNameRoute: R2024ProvidersExpenseNameRoute,
+  R2024ProvidersSplatRoute: R2024ProvidersSplatRoute,
   R2024ProvidersIndexRoute: R2024ProvidersIndexRoute,
 }
 
@@ -243,10 +204,7 @@ export interface FileRoutesByFullPath {
   '/published': typeof PublishedIndexRoute
   '/support': typeof SupportIndexRoute
   '/2024': typeof R2024ProvidersRouteWithChildren
-  '/my/expenses': typeof MyExpensesIndexRoute
-  '/my/incomes': typeof MyIncomesIndexRoute
-  '/2024/$expenseName': typeof R2024ProvidersExpenseNameRoute
-  '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
+  '/2024/$': typeof R2024ProvidersSplatRoute
   '/2024/': typeof R2024ProvidersIndexRoute
 }
 
@@ -259,10 +217,7 @@ export interface FileRoutesByTo {
   '/published': typeof PublishedIndexRoute
   '/support': typeof SupportIndexRoute
   '/2024': typeof R2024ProvidersIndexRoute
-  '/my/expenses': typeof MyExpensesIndexRoute
-  '/my/incomes': typeof MyIncomesIndexRoute
-  '/2024/$expenseName': typeof R2024ProvidersExpenseNameRoute
-  '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
+  '/2024/$': typeof R2024ProvidersSplatRoute
 }
 
 export interface FileRoutesById {
@@ -276,10 +231,7 @@ export interface FileRoutesById {
   '/support/': typeof SupportIndexRoute
   '/2024': typeof R2024RouteWithChildren
   '/2024/_providers': typeof R2024ProvidersRouteWithChildren
-  '/my/expenses/': typeof MyExpensesIndexRoute
-  '/my/incomes/': typeof MyIncomesIndexRoute
-  '/2024/_providers/$expenseName': typeof R2024ProvidersExpenseNameRoute
-  '/my/expenses/$expenseName': typeof MyExpensesExpenseNameRoute
+  '/2024/_providers/$': typeof R2024ProvidersSplatRoute
   '/2024/_providers/': typeof R2024ProvidersIndexRoute
 }
 
@@ -294,10 +246,7 @@ export interface FileRouteTypes {
     | '/published'
     | '/support'
     | '/2024'
-    | '/my/expenses'
-    | '/my/incomes'
-    | '/2024/$expenseName'
-    | '/my/expenses/$expenseName'
+    | '/2024/$'
     | '/2024/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -309,10 +258,7 @@ export interface FileRouteTypes {
     | '/published'
     | '/support'
     | '/2024'
-    | '/my/expenses'
-    | '/my/incomes'
-    | '/2024/$expenseName'
-    | '/my/expenses/$expenseName'
+    | '/2024/$'
   id:
     | '__root__'
     | '/'
@@ -324,10 +270,7 @@ export interface FileRouteTypes {
     | '/support/'
     | '/2024'
     | '/2024/_providers'
-    | '/my/expenses/'
-    | '/my/incomes/'
-    | '/2024/_providers/$expenseName'
-    | '/my/expenses/$expenseName'
+    | '/2024/_providers/$'
     | '/2024/_providers/'
   fileRoutesById: FileRoutesById
 }
@@ -341,9 +284,6 @@ export interface RootRouteChildren {
   PublishedIndexRoute: typeof PublishedIndexRoute
   SupportIndexRoute: typeof SupportIndexRoute
   R2024Route: typeof R2024RouteWithChildren
-  MyExpensesIndexRoute: typeof MyExpensesIndexRoute
-  MyIncomesIndexRoute: typeof MyIncomesIndexRoute
-  MyExpensesExpenseNameRoute: typeof MyExpensesExpenseNameRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -355,9 +295,6 @@ const rootRouteChildren: RootRouteChildren = {
   PublishedIndexRoute: PublishedIndexRoute,
   SupportIndexRoute: SupportIndexRoute,
   R2024Route: R2024RouteWithChildren,
-  MyExpensesIndexRoute: MyExpensesIndexRoute,
-  MyIncomesIndexRoute: MyIncomesIndexRoute,
-  MyExpensesExpenseNameRoute: MyExpensesExpenseNameRoute,
 }
 
 export const routeTree = rootRoute
@@ -379,10 +316,7 @@ export const routeTree = rootRoute
         "/my/",
         "/published/",
         "/support/",
-        "/2024",
-        "/my/expenses/",
-        "/my/incomes/",
-        "/my/expenses/$expenseName"
+        "/2024"
       ]
     },
     "/": {
@@ -416,22 +350,13 @@ export const routeTree = rootRoute
       "filePath": "~2024/~_providers.tsx",
       "parent": "/2024",
       "children": [
-        "/2024/_providers/$expenseName",
+        "/2024/_providers/$",
         "/2024/_providers/"
       ]
     },
-    "/my/expenses/": {
-      "filePath": "~my/~expenses/~index.tsx"
-    },
-    "/my/incomes/": {
-      "filePath": "~my/~incomes/~index.tsx"
-    },
-    "/2024/_providers/$expenseName": {
-      "filePath": "~2024/~_providers.$expenseName.tsx",
+    "/2024/_providers/$": {
+      "filePath": "~2024/~_providers.$.tsx",
       "parent": "/2024/_providers"
-    },
-    "/my/expenses/$expenseName": {
-      "filePath": "~my/~expenses/~$expenseName.tsx"
     },
     "/2024/_providers/": {
       "filePath": "~2024/~_providers.index.tsx",

@@ -1,10 +1,8 @@
 import { type FC } from "react";
 import { cn, formatCurrency } from "@/lib/utils";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
-import type { ExpenseItemExample } from "@/data/expenses";
 
 type ExpenseItemRightProps = {
-  example?: ExpenseItemExample;
   amount: number;
   className?: string;
   relation: "parent" | "subject" | "child";

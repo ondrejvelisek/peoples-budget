@@ -1,224 +1,283 @@
-import _ from "lodash";
+import _, { keyBy, sum } from "lodash";
 import Papa from "papaparse";
 import expenses2025Csv from "./expenses_2025.csv?url";
 import sectorsTableCsv from "./sectors_table.csv?url";
 import typesTableCsv from "./types_table.csv?url";
+import officesTableCsv from "./offices_table.csv?url";
 import { useQuery } from "@tanstack/react-query";
+import type { SimpleQueryResult } from "@/lib/utils";
 
-export type ExpenseItemExample = {
+export type ExpenseDimension = "odvetvi" | "druh" | "urad";
+
+export type ExpenseKey = Array<{
+  dimension: ExpenseDimension;
+  id: string;
+}>;
+
+export type ExpenseItem = {
+  key: ExpenseKey;
   title: string;
   amount: number;
+  children: Array<ExpenseKey>;
+  childrenDimension?: ExpenseDimension;
+  parent?: ExpenseKey;
 };
 
-type ExpenseBaseItem = {
-  title: string;
-  name: string;
-};
-
-type ExpenseLeafItem = ExpenseBaseItem & {
-  amount: number;
-  examples: ExpenseItemExample[];
-};
-
-type ExpenseInnerItem = ExpenseBaseItem & {
-  children: ExpenseItem[];
-};
-
-export type ExpenseItem = ExpenseInnerItem | ExpenseLeafItem;
-
-async function parseCsv(
-  fileUrl: string
-): Promise<Array<Record<string, string | number>>> {
-  return new Promise<Array<Record<string, string | number>>>(
-    (resolve, reject) =>
-      Papa.parse<Record<string, string | number>>(fileUrl, {
-        download: true,
-        header: true,
-        dynamicTyping: true,
-        complete(results) {
-          if (results.errors.length > 0) {
-            reject(results.errors);
-          }
-          resolve(results.data);
-        },
-      })
+async function parseCsv<
+  T extends Record<string, string | number> = Record<string, string | number>,
+>(fileUrl: string): Promise<Array<T>> {
+  return new Promise<Array<T>>((resolve, reject) =>
+    Papa.parse<T>(fileUrl, {
+      download: true,
+      header: true,
+      dynamicTyping: true,
+      complete(results) {
+        if (results.errors.length > 0) {
+          reject(results.errors);
+        }
+        resolve(results.data);
+      },
+    })
   );
 }
 
-export const useExpensesData = (): ExpenseItem | undefined => {
-  const { data: expensesData } = useQuery({
-    queryKey: ["loadCsv", expenses2025Csv],
-    queryFn: () => parseCsv(expenses2025Csv),
-  });
-  const { data: sectorsTable } = useQuery({
-    queryKey: ["loadCsv", sectorsTableCsv],
-    queryFn: () => parseCsv(sectorsTableCsv),
-    select(sectorsData) {
-      return _(sectorsData)
-        .keyBy("id")
-        .mapValues("name")
-        .mapValues((e) => e as string)
-        .value();
-    },
-  });
-  const { data: typesTable } = useQuery({
-    queryKey: ["loadCsv", typesTableCsv],
-    queryFn: () => parseCsv(typesTableCsv),
-    select(sectorsData) {
-      return _(sectorsData)
-        .keyBy("id")
-        .mapValues("name")
-        .mapValues((e) => e as string)
-        .value();
-    },
-  });
-
-  if (expensesData && sectorsTable && typesTable) {
-    const grouped = _(expensesData)
-      .groupBy((row) => row["sector_id"].toString().slice(0, 1))
-      .map(
-        (children, sectorId): ExpenseInnerItem => ({
-          title: sectorsTable[sectorId],
-          name: `odvetvi-${sectorId}`,
-          children: _(children)
-            .groupBy((row) => row["sector_id"].toString().slice(0, 2))
-            .map(
-              (children, sectorId): ExpenseInnerItem => ({
-                title: sectorsTable[sectorId],
-                name: `odvetvi-${sectorId}-odvetvi-${sectorId}`,
-                children: _(children)
-                  .groupBy((row) => row["type_id"].toString().slice(0, 2))
-                  .map(
-                    (children, typeId): ExpenseLeafItem => ({
-                      title: typesTable[typeId],
-                      name: `odvetvi-${sectorId}-odvetvi-${sectorId}-druh-${typeId}`,
-                      amount: _.sum(children.map((row) => row["amount"])),
-                      examples: [],
-                    })
-                  )
-                  .value(),
-              })
-            )
-            .value(),
-        })
-      )
-      .value();
-
-    return {
-      title: "Výdaje 2025",
-      name: "vydaje",
-      children: grouped,
-    };
-  }
+type ExpensesDataRecord = {
+  sector_id: number;
+  type_id: number;
+  office_id: number;
+  amount: number;
 };
 
-export function findByName(
-  name: string,
-  item: ExpenseItem
-): ExpenseItem | undefined {
-  if (item.name === name) {
-    return item;
+type SectorsTableRecord = {
+  id: number;
+  name_short: string;
+  name: string;
+  name_long: string;
+};
+
+type TypesTableRecord = {
+  id: number;
+  name_short: string;
+  name: string;
+  name_long: string;
+};
+
+type OfficesTableRecord = {
+  id: number;
+  name: string;
+};
+
+type ExpensesData = {
+  expenses: Array<ExpensesDataRecord>;
+  sectors: Record<string, SectorsTableRecord>;
+  types: Record<string, TypesTableRecord>;
+  offices: Record<string, OfficesTableRecord>;
+};
+
+export const useExpensesData = (): SimpleQueryResult<ExpensesData> => {
+  const { data, isPending, isFetching, error } = useQuery({
+    queryKey: ["loadCsv", expenses2025Csv],
+    queryFn: async () => {
+      const expenses = await parseCsv<ExpensesDataRecord>(expenses2025Csv);
+      const sectorsTable = await parseCsv<SectorsTableRecord>(sectorsTableCsv);
+      const sectors = keyBy(sectorsTable, "id");
+      const typesTable = await parseCsv<TypesTableRecord>(typesTableCsv);
+      const types = keyBy(typesTable, "id");
+      const officesTable = await parseCsv<OfficesTableRecord>(officesTableCsv);
+      const offices = keyBy(officesTable, "id");
+      return { expenses, sectors, types, offices };
+    },
+    staleTime: 60 * 60 * 1000, // 1 hour
+    gcTime: 1000, //
+  });
+  return { data, isPending, isFetching, error };
+};
+
+export const useExpenseKeyData = (
+  expenseKey: ExpenseKey
+): SimpleQueryResult<ExpensesData> => {
+  const result = useExpensesData();
+  if (!result.data) {
+    return result;
   }
 
-  if ("children" in item) {
-    for (const child of item.children) {
-      const found = findByName(name, child);
-      if (found) {
-        return found;
+  const {
+    data: { expenses, ...restData },
+    ...restResult
+  } = result;
+
+  const filteredExpenses = expenses.filter((expense) =>
+    expenseKey.every(({ dimension, id }) => {
+      if (dimension === "odvetvi") {
+        return String(expense.sector_id).startsWith(id);
       }
+      if (dimension === "druh") {
+        return String(expense.type_id).startsWith(id);
+      }
+      if (dimension === "urad") {
+        return String(expense.office_id).startsWith(id);
+      }
+    })
+  );
+
+  return {
+    data: { expenses: filteredExpenses, ...restData },
+    ...restResult,
+  };
+};
+
+export const useExpenseChildren = (
+  expenseKey: ExpenseKey
+): SimpleQueryResult<Array<ExpenseKey>> => {
+  const { data, ...restResult } = useExpenseKeyData(expenseKey);
+  const childrenDimension = useChildrenExpenseDimension(expenseKey.length);
+
+  if (!data || !childrenDimension) {
+    return {
+      data: [],
+      ...restResult,
+    };
+  }
+
+  const { expenses } = data;
+
+  const numOfSectorDimensions =
+    expenseKey.filter(({ dimension }) => dimension === "odvetvi").length +
+    (childrenDimension === "odvetvi" ? 1 : 0);
+  const numOfSectorChars = numOfSectorDimensions;
+
+  const numOfTypeDimensions =
+    expenseKey.filter(({ dimension }) => dimension === "druh").length +
+    (childrenDimension === "druh" ? 1 : 0);
+  const numOfTypeChars =
+    numOfTypeDimensions === 0 ? 0 : numOfTypeDimensions + 1;
+
+  const numOfOfficeDimensions =
+    expenseKey.filter(({ dimension }) => dimension === "urad").length +
+    (childrenDimension === "urad" ? 1 : 0);
+  const numOfOfficeChars =
+    numOfOfficeDimensions === 0 ? 0 : numOfOfficeDimensions === 1 ? 3 : 7;
+
+  const grouped = Object.groupBy(
+    expenses,
+    ({ sector_id, type_id, office_id }) => {
+      return `${String(sector_id).slice(0, numOfSectorChars)}/${String(type_id).slice(0, numOfTypeChars)}/${String(office_id).slice(0, numOfOfficeChars)}`;
     }
-  }
-}
+  );
 
-export function findParent(
-  name: string,
-  root: ExpenseItem
-): ExpenseItem | undefined {
-  if ("children" in root) {
-    for (const child of root.children) {
-      if (child.name === name) {
-        return root;
+  const childrenData = Object.entries(grouped)
+    .map(([key, expenses = []]) => {
+      const [sectorId, typeId, officeId] = key.split("/");
+      const amount = sum(expenses.map((expense) => expense.amount));
+      if (childrenDimension === "odvetvi") {
+        return { id: sectorId, amount } as const;
       }
-
-      const found = findParent(name, child);
-      if (found) {
-        return found;
+      if (childrenDimension === "druh") {
+        return { id: typeId, amount } as const;
       }
-    }
-  }
-}
-
-function findAncestors(
-  name: string,
-  item: ExpenseItem
-): Array<string> | undefined {
-  if (!item) return;
-
-  if (item.name === name) {
-    return [];
-  }
-
-  if ("children" in item) {
-    for (const child of item.children) {
-      const ancestors = findAncestors(name, child);
-      if (ancestors) {
-        return [...ancestors, item.name];
+      if (childrenDimension === "urad") {
+        return { id: officeId, amount } as const;
       }
-    }
+      throw new Error(`Invalid dimension: ${childrenDimension}`);
+    })
+    .sort((a, b) => b.amount - a.amount);
+
+  const children = childrenData.map(({ id }) => [
+    ...expenseKey,
+    { dimension: childrenDimension, id },
+  ]);
+
+  return {
+    data: children,
+    ...restResult,
+  };
+};
+
+export const useChildrenExpenseDimension = (
+  level?: number
+): ExpenseDimension | undefined => {
+  if (level === undefined) {
+    return undefined;
   }
-
-  return;
-}
-
-export function calcAmount(item: ExpenseItem): number {
-  if ("amount" in item) {
-    return item.amount;
-  }
-
-  return _.sum(item.children.map(calcAmount));
-}
-
-export function findExamples(item: ExpenseItem): ExpenseItemExample[] {
-  if ("amount" in item) {
-    return item.examples;
-  }
-
-  return item.children.flatMap(findExamples);
-}
+  const dimensions = [
+    "odvetvi",
+    "odvetvi",
+    "odvetvi",
+    "druh",
+    "druh",
+    "druh",
+    "urad",
+    "urad",
+  ] as const;
+  return dimensions[level];
+};
 
 export const useExpense = (
-  expenseName?: string
-): [ExpenseItem, number, Array<string>, ExpenseItemExample[]] => {
-  const expenses = useExpensesData();
-  if (!expenses) {
-    return [
-      {
-        title: "Výdaje 2025",
-        name: "vydaje",
-        children: [],
-      },
-      0,
-      [],
-      [],
-    ] as const;
-  }
-  if (!expenseName) {
-    const amount = calcAmount(expenses);
-    const examples = findExamples(expenses);
-    return [expenses, amount, [], examples] as const;
-  }
-  const expense = findByName(expenseName, expenses);
-  if (!expense) {
-    const amount = calcAmount(expenses);
-    const examples = findExamples(expenses);
-    return [expenses, amount, [], examples] as const;
-  }
-  const amount = calcAmount(expense);
-  const ancestors = findAncestors(expenseName, expenses);
-  const examples = findExamples(expense);
-  if (!expense || !ancestors) {
-    throw new Error("Expense not found");
+  expenseKey?: ExpenseKey
+): SimpleQueryResult<ExpenseItem> => {
+  const { data, ...restResult } = useExpenseKeyData(expenseKey ?? []);
+  const { data: children } = useExpenseChildren(expenseKey ?? []);
+  const childrenDimension = useChildrenExpenseDimension(
+    expenseKey?.length ?? 0
+  );
+
+  if (!data || !children) {
+    return {
+      data: undefined,
+      ...restResult,
+    };
   }
 
-  return [expense, amount, ancestors, examples] as const;
+  const { expenses, sectors, types, offices } = data;
+
+  const amount = sum(expenses.map((expense) => expense.amount));
+
+  const rootExpense = {
+    key: [],
+    title: "Všechny výdaje",
+    amount,
+    children,
+    childrenDimension,
+    parent: undefined,
+  };
+
+  if (!expenseKey) {
+    return {
+      data: rootExpense,
+      ...restResult,
+    };
+  }
+
+  const lastKey = expenseKey.at(-1);
+
+  if (!lastKey) {
+    return {
+      data: rootExpense,
+      ...restResult,
+    };
+  }
+
+  let title = "";
+  if (lastKey.dimension === "odvetvi") {
+    const sector = sectors[lastKey.id];
+    title = sector.name;
+  } else if (lastKey.dimension === "druh") {
+    const type = types[lastKey.id];
+    title = type.name;
+  } else if (lastKey.dimension === "urad") {
+    const office = offices[lastKey.id];
+    title = office.name;
+  }
+
+  return {
+    data: {
+      key: expenseKey,
+      title,
+      amount,
+      children,
+      childrenDimension,
+      parent: expenseKey.slice(0, -1),
+    },
+    ...restResult,
+  };
 };

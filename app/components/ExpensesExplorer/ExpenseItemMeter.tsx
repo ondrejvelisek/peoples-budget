@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
-import { calcAmount, useExpensesData } from "@/data/expenses";
+import { useExpense, useExpensesData } from "@/data/expenses";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 import { useMounted } from "@mantine/hooks";
 
@@ -17,9 +17,11 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
   className,
   relation = "subject",
 }) => {
-  const expenses = useExpensesData();
+  const { data: rootExpense } = useExpense();
   const localPercentage = amount / parentAmount;
-  const globalPercentage = expenses ? amount / calcAmount(expenses) : 0;
+  const globalPercentage = rootExpense?.amount
+    ? amount / rootExpense?.amount
+    : 0;
   const mounted = useMounted();
 
   return (
