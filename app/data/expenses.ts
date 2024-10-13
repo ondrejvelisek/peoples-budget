@@ -1,11 +1,7 @@
 import lodash from "lodash";
 const { keyBy, sum } = lodash;
 import Papa from "papaparse";
-import expenses2025Csv from "./expenses_2025.csv?url";
-import sectorsTableCsv from "./sectors_table.csv?url";
-import typesTableCsv from "./types_table.csv?url";
-import officesTableCsv from "./offices_table.csv?url";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 import type { SimpleQueryResult } from "@/lib/utils";
 
 export type ExpenseDimension = "odvetvi" | "druh" | "urad";
@@ -26,10 +22,9 @@ export type ExpenseItem = {
 
 async function parseCsv<
   T extends Record<string, string | number> = Record<string, string | number>,
->(fileUrl: string): Promise<Array<T>> {
+>(csvString: string): Promise<Array<T>> {
   return new Promise<Array<T>>((resolve, reject) =>
-    Papa.parse<T>(fileUrl, {
-      download: true,
+    Papa.parse<T>(csvString, {
       header: true,
       dynamicTyping: true,
       complete(results) {
@@ -75,22 +70,39 @@ type ExpensesData = {
   offices: Record<string, OfficesTableRecord>;
 };
 
-export const useExpensesData = (): SimpleQueryResult<ExpensesData> => {
-  const { data, isPending, isFetching, error } = useQuery({
-    queryKey: ["loadCsv", expenses2025Csv],
+export const expensesDataQueryOptions = () =>
+  queryOptions({
+    queryKey: ["loadCsv"],
     queryFn: async () => {
-      const expenses = await parseCsv<ExpensesDataRecord>(expenses2025Csv);
-      const sectorsTable = await parseCsv<SectorsTableRecord>(sectorsTableCsv);
+      const expenses2025Csv = await import("./expenses_2025.csv?raw");
+      const expenses = await parseCsv<ExpensesDataRecord>(
+        expenses2025Csv.default
+      );
+      const sectorsTableCsv = await import("./sectors_table.csv?raw");
+      const sectorsTable = await parseCsv<SectorsTableRecord>(
+        sectorsTableCsv.default
+      );
       const sectors = keyBy(sectorsTable, "id");
-      const typesTable = await parseCsv<TypesTableRecord>(typesTableCsv);
+      const typesTableCsv = await import("./types_table.csv?raw");
+      const typesTable = await parseCsv<TypesTableRecord>(
+        typesTableCsv.default
+      );
       const types = keyBy(typesTable, "id");
-      const officesTable = await parseCsv<OfficesTableRecord>(officesTableCsv);
+      const officesTableCsv = await import("./offices_table.csv?raw");
+      const officesTable = await parseCsv<OfficesTableRecord>(
+        officesTableCsv.default
+      );
       const offices = keyBy(officesTable, "id");
       return { expenses, sectors, types, offices };
     },
     staleTime: 60 * 60 * 1000, // 1 hour
     gcTime: 1000, //
   });
+
+export const useExpensesData = (): SimpleQueryResult<ExpensesData> => {
+  const { data, isPending, isFetching, error } = useQuery(
+    expensesDataQueryOptions()
+  );
   return { data, isPending, isFetching, error };
 };
 

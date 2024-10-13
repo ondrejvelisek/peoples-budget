@@ -9,3 +9,7 @@ declare module "*.json?url" {
 declare module "*.csv?url" {
   export default string;
 }
+
+declare module "*.csv?raw" {
+  export default string;
+}
