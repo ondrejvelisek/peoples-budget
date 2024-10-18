@@ -64,8 +64,8 @@ export const NavigationHeader: FC = () => {
             )}
           </Button>
         </TooltipTrigger>
-        <TooltipContent side={isCondese ? "right" : "bottom"} asChild>
-          <p>{isCondese ? "Rozbalit menu" : "Sbalit menu"}</p>
+        <TooltipContent side={isCondese ? "right" : "bottom"}>
+          {isCondese ? "Rozbalit menu" : "Sbalit menu"}
         </TooltipContent>
       </Tooltip>
     </nav>
