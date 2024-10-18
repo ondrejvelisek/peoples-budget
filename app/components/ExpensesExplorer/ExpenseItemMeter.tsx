@@ -2,7 +2,6 @@ import { type FC } from "react";
 import { cn } from "@/lib/utils";
 import { useExpense } from "@/data/expenses";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
-import { useMounted } from "@mantine/hooks";
 
 type ExpenseItemMeterProps = {
   amount: number;
@@ -22,7 +21,6 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
   const globalPercentage = rootExpense?.amount
     ? amount / rootExpense?.amount
     : 0;
-  const mounted = useMounted();
 
   return (
     <div
@@ -42,7 +40,7 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
           ANIMATION_DURATION_CLASS
         )}
         style={{
-          width: mounted ? `max(0.25rem, ${localPercentage * 100}%)` : "0px",
+          width: `max(0.25rem, ${localPercentage * 100}%)`,
         }}
       />
       <div
@@ -51,7 +49,7 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
           ANIMATION_DURATION_CLASS
         )}
         style={{
-          width: mounted ? `max(0.25rem, ${globalPercentage * 100}%)` : "0px",
+          width: `max(0.25rem, ${globalPercentage * 100}%)`,
         }}
       />
     </div>
