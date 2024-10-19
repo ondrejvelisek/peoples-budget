@@ -24,6 +24,6 @@ export default defineConfig({
     quoteStyle: "single",
   },
   vite: {
-    plugins: () => [tsconfigPaths()],
+    plugins: [tsconfigPaths()],
   },
 });
