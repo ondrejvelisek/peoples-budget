@@ -31,11 +31,13 @@ const R2024Import = createFileRoute('/2024')()
 // Create/Update Routes
 
 const R2024Route = R2024Import.update({
+  id: '/2024',
   path: '/2024',
   getParentRoute: () => rootRoute,
 } as any)
 
 const IndexRoute = IndexImport.update({
+  id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
@@ -46,41 +48,49 @@ const R2024ProvidersRoute = R2024ProvidersImport.update({
 } as any)
 
 const SupportIndexRoute = SupportIndexImport.update({
+  id: '/support/',
   path: '/support/',
   getParentRoute: () => rootRoute,
 } as any)
 
 const PublishedIndexRoute = PublishedIndexImport.update({
+  id: '/published/',
   path: '/published/',
   getParentRoute: () => rootRoute,
 } as any)
 
 const MyIndexRoute = MyIndexImport.update({
+  id: '/my/',
   path: '/my/',
   getParentRoute: () => rootRoute,
 } as any)
 
 const CompareIndexRoute = CompareIndexImport.update({
+  id: '/compare/',
   path: '/compare/',
   getParentRoute: () => rootRoute,
 } as any)
 
 const AgregatedIndexRoute = AgregatedIndexImport.update({
+  id: '/agregated/',
   path: '/agregated/',
   getParentRoute: () => rootRoute,
 } as any)
 
 const R2025IndexRoute = R2025IndexImport.update({
+  id: '/2025/',
   path: '/2025/',
   getParentRoute: () => rootRoute,
 } as any)
 
 const R2024ProvidersIndexRoute = R2024ProvidersIndexImport.update({
+  id: '/',
   path: '/',
   getParentRoute: () => R2024ProvidersRoute,
 } as any)
 
 const R2024ProvidersSplatRoute = R2024ProvidersSplatImport.update({
+  id: '/$',
   path: '/$',
   getParentRoute: () => R2024ProvidersRoute,
 } as any)

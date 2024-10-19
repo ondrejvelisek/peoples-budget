@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { Button } from "../ui/button";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { useExpense, type ExpenseKey } from "@/data/expenses";
+import { useChildrenExpenseDimension, useExpense, type ExpenseKey } from "@/data/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
 import { ExpenseItemMeter } from "./ExpenseItemMeter";
@@ -21,6 +21,7 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
 }) => {
   const { data: expense } = useExpense(expenseKey);
   const { data: parentExpense } = useExpense(expense?.parent);
+  const expenseDimension = useChildrenExpenseDimension(expenseKey.length);
 
   if (!expense || !parentExpense) {
     return null; // TODO loading and error
@@ -47,7 +48,7 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
       <Link
         to="/2024/$"
         params={{
-          _splat: { expenseKey, expenseDimension: expense.childrenDimension },
+          _splat: { expenseKey, expenseDimension },
         }}
         disabled={relation === "subject"}
       >

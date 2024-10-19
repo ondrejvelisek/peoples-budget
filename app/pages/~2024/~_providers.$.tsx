@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer";
 import { IncomeThumbnail } from "@/components/IncomeThumbnail/IncomeThumbnail";
-import { expensesDataQueryOptions, type ExpenseKey } from "@/data/expenses";
+import { expenseQueryOptions, type ExpenseKey } from "@/data/expenses";
 import { isDimension } from "@/lib/utils";
 
 export const Route = createFileRoute("/2024/_providers/$")({
@@ -44,8 +44,24 @@ export const Route = createFileRoute("/2024/_providers/$")({
       ...rest,
     }),
   },
-  loader: async ({ context }) => {
-    await context.queryClient.ensureQueryData(expensesDataQueryOptions());
+  loader: async ({ context, params }) => {
+    const expenseKey = params._splat.expenseKey;
+
+    const { children } = await context.queryClient.ensureQueryData(
+      expenseQueryOptions(expenseKey)
+    );
+    const ancestors =
+      expenseKey.length > 0
+        ? expenseKey
+            .slice(0, expenseKey.length - 1)
+            .map((_, index) => expenseKey.slice(0, index))
+        : [];
+
+    await Promise.all(
+      [...ancestors, ...children].map((relativesKey) =>
+        context.queryClient.ensureQueryData(expenseQueryOptions(relativesKey))
+      )
+    );
   },
 });
 

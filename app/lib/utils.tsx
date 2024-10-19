@@ -1,8 +1,11 @@
 import type { ExpenseDimension } from "@/data/expenses";
 import type { DefaultError, UseQueryResult } from "@tanstack/react-query";
 import { clsx, type ClassValue } from "clsx";
-import type { FC, PropsWithChildren } from "react";
+import { type FC, type PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
+import Papa from "papaparse";
+import lodash from "lodash";
+const { isArray } = lodash;
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -68,5 +71,44 @@ export type SimpleQueryResult<TData = unknown, TError = DefaultError> = Pick<
   "data" | "error" | "isPending" | "isFetching"
 >;
 
-export const isDimension = (value?: string): value is ExpenseDimension|undefined =>
+export const isDimension = (
+  value?: string
+): value is ExpenseDimension | undefined =>
   !value || ["odvetvi", "druh", "urad"].includes(value);
+
+export async function parseCsv<
+  T extends Record<string, string | number> = Record<string, string | number>,
+  A = Array<T>,
+>(
+  csvContent: string,
+  filter?: (record: T) => boolean,
+  reduce?: (record: T, acc?: A) => A,
+  initAcc?: A
+): Promise<A> {
+  return new Promise<A>((resolve) => {
+    let acc = reduce ? (initAcc as A) : ([] as A & Array<T>);
+
+    Papa.parse<T>(csvContent, {
+      dynamicTyping: true,
+      header: true,
+      skipEmptyLines: true,
+      step({ data: record }) {
+        if (filter?.(record) ?? true) {
+          if (reduce) {
+            acc = reduce(record, acc);
+          } else if (isArray(acc)) {
+            acc.push(record);
+          } else {
+            throw new Error("Unexpected accumulator type");
+          }
+        }
+      },
+      complete() {
+        if (!acc) {
+          throw new Error("No csv records found");
+        }
+        resolve(acc);
+      },
+    });
+  });
+}
