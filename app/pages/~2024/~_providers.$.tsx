@@ -52,9 +52,7 @@ export const Route = createFileRoute("/2024/_providers/$")({
     );
     const ancestors =
       expenseKey.length > 0
-        ? expenseKey
-            .slice(0, expenseKey.length - 1)
-            .map((_, index) => expenseKey.slice(0, index))
+        ? expenseKey.map((_, index) => expenseKey.slice(0, index))
         : [];
 
     await Promise.all(
