@@ -1,11 +1,12 @@
 import lodash from "lodash";
 const { isEqual, uniqWith } = lodash;
-import { queryOptions, useQuery } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
 import { parseCsv, type SimpleQueryResult } from "@/lib/utils";
 import expenses2025Csv from "./expenses_2025.csv?raw";
 import { createServerFn } from "@tanstack/start";
 import { getExpensesTables, type ExpensesTables } from "./tables";
 import { FlatCache } from "flat-cache";
+import { useLoaderData } from "@tanstack/react-router";
 const cache = new FlatCache({
   ttl: 60 * 60 * 1000, // 1 hour
   lruSize: 10000, // 10,000 items
@@ -180,10 +181,11 @@ export const expenseQueryOptions = (expenseKey: ExpenseKey) =>
 export const useExpense = (
   expenseKey: ExpenseKey = []
 ): SimpleQueryResult<ExpenseItem> => {
-  const { data, isPending, isFetching, error } = useQuery(
-    expenseQueryOptions(expenseKey)
-  );
-  return { data, isPending, isFetching, error };
+  const expenses = useLoaderData({ from: "/2024/_providers/$" });
+
+  const expense = expenses.find((expense) => isEqual(expense.key, expenseKey));
+
+  return { data: expense, isPending: false, isFetching: false, error: null };
 };
 
 export const useChildrenExpenseDimension = (

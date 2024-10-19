@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer";
 import { IncomeThumbnail } from "@/components/IncomeThumbnail/IncomeThumbnail";
-import { expenseQueryOptions, type ExpenseKey } from "@/data/expenses";
+import { getExpense, type ExpenseItem, type ExpenseKey } from "@/data/expenses";
 import { isDimension } from "@/lib/utils";
 
 export const Route = createFileRoute("/2024/_providers/$")({
@@ -44,24 +44,23 @@ export const Route = createFileRoute("/2024/_providers/$")({
       ...rest,
     }),
   },
-  loader: async ({ context, params }) => {
+  loader: async ({ params }): Promise<Array<ExpenseItem>> => {
     const expenseKey = params._splat.expenseKey;
 
-    const { children } = await context.queryClient.ensureQueryData(
-      expenseQueryOptions(expenseKey)
-    );
+    const expense = await getExpense({ expenseKey });
     const ancestors =
       expenseKey.length > 0
-        ? expenseKey
-            .slice(0, expenseKey.length - 1)
-            .map((_, index) => expenseKey.slice(0, index))
+        ? expenseKey.map((_, index) => expenseKey.slice(0, index))
         : [];
 
-    await Promise.all(
-      [...ancestors, ...children].map((relativesKey) =>
-        context.queryClient.ensureQueryData(expenseQueryOptions(relativesKey))
+    const relatives = await Promise.all(
+      [...ancestors, ...expense.children].map(
+        (relativesKey): Promise<ExpenseItem> =>
+          getExpense({ expenseKey: relativesKey })
       )
     );
+
+    return [expense, ...relatives];
   },
 });
 
