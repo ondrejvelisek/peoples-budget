@@ -2,18 +2,21 @@ import { type FC } from "react";
 import { cn } from "@/lib/utils";
 import { RiArrowLeftLine } from "react-icons/ri";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
+import Skeleton from "react-loading-skeleton";
 
 type ExpenseItemLeftProps = {
-  title: string;
-  amount: number;
+  title?: string;
+  amount?: number;
   className?: string;
   relation: "parent" | "subject" | "child";
+  isLoading?: boolean;
 };
 
 export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
   title,
   className,
   relation = "subject",
+  isLoading = false,
 }) => {
   return (
     <div className={cn("overflow-hidden", className)}>
@@ -39,7 +42,7 @@ export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
         >
           <RiArrowLeftLine className="pr-0.5" />
         </span>
-        <span>{title}</span>
+        {isLoading ? <Skeleton width="8em" /> : <span>{title}</span>}
       </div>
       {/*<div
         className={cn(

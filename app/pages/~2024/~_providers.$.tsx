@@ -29,10 +29,14 @@ export const Route = createFileRoute("/2024/_providers/$")({
           .reduce((acc, _, index, arr) => {
             if (index % 2 === 0) {
               const dimension = arr[index];
-              if (!isDimension(dimension)) {
-                throw new Error(`Invalid dimension: ${dimension}`);
+              const id = arr[index + 1];
+              if (!dimension || !isDimension(dimension)) {
+                throw new Error(`Invalid expense dimension: ${dimension}`);
               }
-              acc.push({ dimension, id: arr[index + 1] });
+              if (!id) {
+                throw new Error(`Invalid expense id: ${id}`);
+              }
+              acc.push({ dimension, id });
             }
             return acc;
           }, [] as ExpenseKey) ?? [];

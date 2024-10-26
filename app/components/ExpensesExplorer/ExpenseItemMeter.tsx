@@ -4,10 +4,11 @@ import { useExpense } from "@/data/expenses";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 
 type ExpenseItemMeterProps = {
-  amount: number;
-  parentAmount: number;
+  amount?: number;
+  parentAmount?: number;
   className?: string;
   relation: "parent" | "subject" | "child";
+  isLoading?: boolean;
 };
 
 export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
@@ -15,11 +16,17 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
   parentAmount,
   className,
   relation = "subject",
+  isLoading = false,
 }) => {
-  const { data: rootExpense } = useExpense();
-  const localPercentage = amount / parentAmount;
+  const { data: rootExpense, isPending } = useExpense();
+
+  if (isLoading || isPending || amount === undefined) {
+    return null;
+  }
+
+  const localPercentage = parentAmount ? amount / parentAmount : 0;
   const globalPercentage = rootExpense?.amount
-    ? amount / rootExpense?.amount
+    ? amount / rootExpense.amount
     : 0;
 
   return (

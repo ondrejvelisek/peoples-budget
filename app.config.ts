@@ -5,7 +5,7 @@ export default defineConfig({
   server: {
     preset: "vercel",
     prerender: {
-      routes: ["/"],
+      routes: ["/", "/2024/odvetvi", "/2024/druh", "/2024/urad"],
       crawlLinks: true,
     },
   },

@@ -2,7 +2,11 @@ import { type FC } from "react";
 import { Button } from "../ui/button";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { useChildrenExpenseDimension, useExpense, type ExpenseKey } from "@/data/expenses";
+import {
+  useChildrenExpenseDimension,
+  useExpense,
+  type ExpenseKey,
+} from "@/data/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
 import { ExpenseItemMeter } from "./ExpenseItemMeter";
@@ -12,21 +16,21 @@ type ExpenseItemProps = {
   expenseKey: ExpenseKey;
   className?: string;
   relation?: "parent" | "subject" | "child";
+  isLoading?: boolean;
 };
 
 export const ExpenseItem: FC<ExpenseItemProps> = ({
   expenseKey,
   className,
   relation = "subject",
+  isLoading = false,
 }) => {
-  const { data: expense } = useExpense(expenseKey);
-  const { data: parentExpense } = useExpense(expense?.parent);
+  const { data: expense, isPending } = useExpense(expenseKey);
+  const { data: parentExpense, isPending: isParentPending } = useExpense(
+    expense?.parent
+  );
   const expenseDimension = useChildrenExpenseDimension(expenseKey.length);
-
-  if (!expense || !parentExpense) {
-    return null; // TODO loading and error
-  }
-
+  const isAnyLoading = isPending || isParentPending || isLoading;
   const isRoot = expenseKey.length === 0;
 
   return (
@@ -50,27 +54,30 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
         params={{
           _splat: { expenseKey, expenseDimension },
         }}
-        disabled={relation === "subject"}
+        disabled={relation === "subject" || isAnyLoading}
       >
         <div className="flex grow items-baseline justify-between gap-4">
           <ExpenseItemLeft
-            title={expense.title}
-            amount={expense.amount}
+            title={expense?.title}
+            amount={expense?.amount}
             relation={relation}
+            isLoading={isAnyLoading}
           />
 
           <ExpenseItemRight
-            amount={expense.amount}
+            amount={expense?.amount}
             relation={relation}
             className="shrink-0"
+            isLoading={isAnyLoading}
           />
         </div>
 
         <ExpenseItemMeter
-          amount={expense.amount}
-          parentAmount={parentExpense.amount}
+          amount={expense?.amount}
+          parentAmount={parentExpense?.amount}
           className={cn("absolute inset-0")}
           relation={isRoot ? "parent" : relation}
+          isLoading={isAnyLoading}
         />
       </Link>
     </Button>

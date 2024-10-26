@@ -13,7 +13,7 @@ export const ANIMATION_DURATION_CLASS = "duration-300";
 export const ExpensesExplorer: FC<{
   expenseKey?: ExpenseKey;
   className?: string;
-}> = ({ expenseKey, className }) => {
+}> = ({ expenseKey = [], className }) => {
   const urlExpenseKey = useParams({ strict: false })._splat?.expenseKey;
   const { data: urlExpense, isPending: isUrlPending } =
     useExpense(urlExpenseKey);
@@ -21,19 +21,13 @@ export const ExpensesExplorer: FC<{
   const [animateChildrenRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
   const [animateHeaderRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
 
-  if (isUrlPending || isPending) {
-    return <div>... Loading in</div>; // TODO add loading and error
-  }
-
-  if (!urlExpense || !urlExpenseKey || !expense) {
-    return <div>Výdaj nenalezen</div>; // TODO add loading and error
-  }
-
-  const isSubject = isEqual(urlExpenseKey, expense.key);
-  const isParent = isEqual(urlExpense.parent, expense.key);
-  const isChild = urlExpense.children?.some((childKey) =>
-    isEqual(childKey, expense.key)
+  const isSubject = isEqual(urlExpenseKey, expenseKey);
+  const isParent = isEqual(urlExpenseKey?.slice(0, -1), expenseKey);
+  const isChild = urlExpense?.children?.some((childKey) =>
+    isEqual(childKey, expenseKey)
   );
+
+  const isLoading = isPending || isUrlPending;
 
   const relation = isParent
     ? "parent"
@@ -57,8 +51,14 @@ export const ExpensesExplorer: FC<{
         className
       )}
     >
-      {relation && <ExpenseItem expenseKey={expense.key} relation={relation} />}
-      {expense.children && (
+      {relation && (
+        <ExpenseItem
+          expenseKey={expenseKey}
+          relation={relation}
+          isLoading={isLoading}
+        />
+      )}
+      {!isLoading && expense?.children && (
         <ul
           ref={relation ? animateChildrenRef : undefined}
           className={cn("flex flex-col gap-3")}
@@ -68,7 +68,7 @@ export const ExpensesExplorer: FC<{
               (isSubject ||
                 isEqual(childKey, urlExpenseKey) ||
                 childKey.every((segment, index) =>
-                  isEqual(segment, urlExpenseKey[index])
+                  isEqual(segment, urlExpenseKey?.[index])
                 )) && (
                 <li
                   key={childKey

@@ -51,15 +51,15 @@ function reduceTitle(
   }
   if (lastKey.dimension === "odvetvi") {
     const sector = sectors[lastKey.id];
-    return sector.name;
+    return sector?.name ?? "Neznámé odvětví";
   }
   if (lastKey.dimension === "druh") {
     const type = types[lastKey.id];
-    return type.name;
+    return type?.name ?? "Neznámý druh";
   }
   if (lastKey.dimension === "urad") {
     const office = offices[lastKey.id];
-    return office.name;
+    return office?.name ?? "Neznámý úřad";
   }
   throw new Error(`Invalid dimension: ${lastKey.dimension}`);
 }
@@ -133,6 +133,7 @@ export const getExpense = createServerFn(
         if (dimension === "urad") {
           return String(record.office_id).startsWith(id);
         }
+        throw new Error(`Invalid dimension: ${dimension}`);
       });
     }
 
