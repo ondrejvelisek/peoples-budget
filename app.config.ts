@@ -7,6 +7,9 @@ export default defineConfig({
     prerender: {
       routes: ["/", "/2024/odvetvi", "/2024/druh", "/2024/urad"],
       crawlLinks: true,
+      ignore: [
+        /^\/(2024|2025)\/[^/\n]+\/[^/\n]+\/[^/\n]+\/[^/\n]+\/[^/\n]+\/[^\n]+$/,
+      ],
     },
   },
   react: {
