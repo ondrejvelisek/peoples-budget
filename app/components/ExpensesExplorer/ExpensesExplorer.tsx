@@ -15,10 +15,15 @@ export const ExpensesExplorer: FC<{
   className?: string;
 }> = ({ expenseKey, className }) => {
   const urlExpenseKey = useParams({ strict: false })._splat?.expenseKey;
-  const { data: urlExpense } = useExpense(urlExpenseKey);
-  const { data: expense } = useExpense(expenseKey);
+  const { data: urlExpense, isPending: isUrlPending } =
+    useExpense(urlExpenseKey);
+  const { data: expense, isPending } = useExpense(expenseKey);
   const [animateChildrenRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
   const [animateHeaderRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
+
+  if (isUrlPending || isPending) {
+    return <div>... Loading in</div>; // TODO add loading and error
+  }
 
   if (!urlExpense || !urlExpenseKey || !expense) {
     return <div>Výdaj nenalezen</div>; // TODO add loading and error

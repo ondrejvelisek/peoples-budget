@@ -7,9 +7,9 @@ import { createServerFn } from "@tanstack/start";
 import { getExpensesTables, type ExpensesTables } from "./tables";
 import { FlatCache } from "flat-cache";
 const cache = new FlatCache({
-  ttl: 60 * 60 * 1000, // 1 hour
-  lruSize: 10000, // 10,000 items
-  expirationInterval: 5 * 1000 * 60, // 5 minutes
+  ttl: 30 * 24 * 60 * 60 * 1000, // 1 month
+  lruSize: 1000,
+  expirationInterval: 24 * 60 * 1000 * 60, // 1 day
 });
 
 export type ExpenseDimension = "odvetvi" | "druh" | "urad";
