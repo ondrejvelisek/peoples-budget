@@ -69,12 +69,13 @@ export const Route = createFileRoute("/2024/_providers/$")({
 
     await Promise.all(
       [...ancestors, ...children].map((relativesKey) => {
-        const relativeExpenseDimension = expenseKey.at(relativesKey.length)?.dimension;
+        const relativeExpenseDimension = expenseKey.at(
+          relativesKey.length
+        )?.dimension;
         return context.queryClient.ensureQueryData(
           expenseQueryOptions(relativesKey, relativeExpenseDimension)
         );
-      }
-      )
+      })
     );
   },
 });

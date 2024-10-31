@@ -22,7 +22,8 @@ export const ExpensesExplorer: FC<{
   const [animateHeaderRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
 
   const isSubject = isEqual(urlExpenseKey, expenseKey);
-  const isParent = isEqual(urlExpenseKey?.slice(0, -1), expenseKey);
+  const isParent =
+    isEqual(urlExpenseKey?.slice(0, -1), expenseKey) && !isSubject;
   const isChild = urlExpense?.children?.some((childKey) =>
     isEqual(childKey, expenseKey)
   );
