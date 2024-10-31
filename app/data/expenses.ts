@@ -6,13 +6,16 @@ import expenses2025Csv from "./expenses_2025.csv?raw";
 import { createServerFn } from "@tanstack/start";
 import { getExpensesTables, type ExpensesTables } from "./tables";
 import { FlatCache } from "flat-cache";
+import {
+  accessChildrenExpenseDimension,
+  type ExpenseDimension,
+} from "./expenseDimensions";
+
 const cache = new FlatCache({
   ttl: 30 * 24 * 60 * 60 * 1000, // 1 month
   lruSize: 1000,
   expirationInterval: 24 * 60 * 1000 * 60, // 1 day
 });
-
-export type ExpenseDimension = "odvetvi" | "druh" | "urad";
 
 export type ExpenseKey = Array<{
   dimension: ExpenseDimension;
@@ -24,6 +27,7 @@ export type ExpenseItem = {
   title: string;
   amount: number;
   children: Array<ExpenseKey>;
+  childrenDimension?: ExpenseDimension;
   parent?: ExpenseKey;
 };
 
@@ -74,7 +78,7 @@ function reduceParent(expenseKey: ExpenseKey, acc: ExpenseItem | undefined) {
 
 function reduceChildren(
   expenseKey: ExpenseKey,
-  dimension: ExpenseDimension,
+  dimension: ExpenseDimension | undefined,
   record: ExpensesDataRecord,
   acc: ExpenseItem | undefined
 ): Array<ExpenseKey> {
@@ -102,6 +106,9 @@ function reduceChildren(
       numOfOfficeDimensions === 0 ? 0 : numOfOfficeDimensions === 1 ? 3 : 7;
     id = String(record.office_id).slice(0, numOfOfficeChars);
   }
+  if (!dimension) {
+    return acc?.children ?? [];
+  }
 
   const child: ExpenseKey = [...expenseKey, { dimension, id }];
 
@@ -112,10 +119,15 @@ function reduceChildren(
 
 export const getExpense = createServerFn(
   "GET",
-  async (params: { expenseKey: ExpenseKey }): Promise<ExpenseItem> => {
+  async (params: {
+    expenseKey: ExpenseKey;
+    expenseDimension?: ExpenseDimension;
+  }): Promise<ExpenseItem> => {
     const expenseKey = params.expenseKey;
-    const expenseKeyStr = JSON.stringify(expenseKey);
-    const cached = cache.get<ExpenseItem | undefined>(expenseKeyStr);
+    const childrenDimension =
+      params.expenseDimension ?? accessChildrenExpenseDimension(expenseKey);
+    const cacheKeyStr = JSON.stringify(params);
+    const cached = cache.get<ExpenseItem | undefined>(cacheKeyStr);
     if (cached) {
       return cached;
     }
@@ -146,7 +158,12 @@ export const getExpense = createServerFn(
         acc.key = expenseKey;
         acc.title = reduceTitle(expenseKey, tables);
         acc.amount = reduceAmount(record, acc);
-        acc.children = reduceChildren(expenseKey, "odvetvi", record, acc);
+        acc.children = reduceChildren(
+          expenseKey,
+          childrenDimension,
+          record,
+          acc
+        );
         acc.parent = reduceParent(expenseKey, acc);
         return acc;
       }
@@ -154,8 +171,9 @@ export const getExpense = createServerFn(
         key: expenseKey,
         title: reduceTitle(expenseKey, tables),
         amount: reduceAmount(record, acc),
-        children: reduceChildren(expenseKey, "odvetvi", record, acc),
+        children: reduceChildren(expenseKey, childrenDimension, record, acc),
         parent: reduceParent(expenseKey, acc),
+        childrenDimension,
       };
     }
 
@@ -165,15 +183,18 @@ export const getExpense = createServerFn(
       reduce
     );
 
-    cache.set(expenseKeyStr, expense);
+    cache.set(cacheKeyStr, expense);
     return expense;
   }
 );
 
-export const expenseQueryOptions = (expenseKey: ExpenseKey) =>
+export const expenseQueryOptions = (
+  expenseKey: ExpenseKey,
+  expenseDimension?: ExpenseDimension
+) =>
   queryOptions({
     queryKey: ["expense", expenseKey],
-    queryFn: async () => getExpense({ expenseKey }),
+    queryFn: async () => getExpense({ expenseKey, expenseDimension }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
     gcTime: 5 * 60 * 1000, // 5 minutes
   });
@@ -185,23 +206,4 @@ export const useExpense = (
     expenseQueryOptions(expenseKey)
   );
   return { data, isPending, isFetching, error };
-};
-
-export const useChildrenExpenseDimension = (
-  level?: number
-): ExpenseDimension | undefined => {
-  if (level === undefined) {
-    return undefined;
-  }
-  const dimensions = [
-    "odvetvi",
-    "odvetvi",
-    "odvetvi",
-    "druh",
-    "druh",
-    "druh",
-    "urad",
-    "urad",
-  ] as const;
-  return dimensions[level];
 };

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer";
 import { IncomeThumbnail } from "@/components/IncomeThumbnail/IncomeThumbnail";
 import { expenseQueryOptions, type ExpenseKey } from "@/data/expenses";
@@ -50,9 +50,17 @@ export const Route = createFileRoute("/2024/_providers/$")({
   },
   loader: async ({ context, params }) => {
     const expenseKey = params._splat.expenseKey;
-
+    const expenseDimension = params._splat.expenseDimension;
+    if (!expenseDimension) {
+      throw redirect({
+        to: "/2024/$",
+        params: {
+          _splat: { expenseKey, expenseDimension: "odvetvi" }, // TBD use cookie
+        },
+      });
+    }
     const { children } = await context.queryClient.ensureQueryData(
-      expenseQueryOptions(expenseKey)
+      expenseQueryOptions(expenseKey, expenseDimension)
     );
     const ancestors =
       expenseKey.length > 0
@@ -60,8 +68,12 @@ export const Route = createFileRoute("/2024/_providers/$")({
         : [];
 
     await Promise.all(
-      [...ancestors, ...children].map((relativesKey) =>
-        context.queryClient.ensureQueryData(expenseQueryOptions(relativesKey))
+      [...ancestors, ...children].map((relativesKey) => {
+        const relativeExpenseDimension = expenseKey.at(relativesKey.length)?.dimension;
+        return context.queryClient.ensureQueryData(
+          expenseQueryOptions(relativesKey, relativeExpenseDimension)
+        );
+      }
       )
     );
   },

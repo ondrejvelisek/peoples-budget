@@ -1,4 +1,4 @@
-import type { ExpenseDimension } from "@/data/expenses";
+import type { ExpenseDimension } from "@/data/expenseDimensions";
 import type { DefaultError, UseQueryResult } from "@tanstack/react-query";
 import { clsx, type ClassValue } from "clsx";
 import { type FC, type PropsWithChildren } from "react";

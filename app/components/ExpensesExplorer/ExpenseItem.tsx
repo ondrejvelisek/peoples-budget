@@ -3,7 +3,6 @@ import { Button } from "../ui/button";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import {
-  useChildrenExpenseDimension,
   useExpense,
   type ExpenseKey,
 } from "@/data/expenses";
@@ -29,7 +28,6 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
   const { data: parentExpense, isPending: isParentPending } = useExpense(
     expense?.parent
   );
-  const expenseDimension = useChildrenExpenseDimension(expenseKey.length);
   const isAnyLoading = isPending || isParentPending || isLoading;
   const isRoot = expenseKey.length === 0;
 
@@ -52,9 +50,9 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
       <Link
         to="/2024/$"
         params={{
-          _splat: { expenseKey, expenseDimension },
+          _splat: { expenseKey, expenseDimension: expense?.childrenDimension ?? "odvetvi" },
         }}
-        disabled={relation === "subject" || isAnyLoading}
+        disabled={relation === "subject" || isAnyLoading || !expense}
       >
         <div className="flex grow items-baseline justify-between gap-4">
           <ExpenseItemLeft
