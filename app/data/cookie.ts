@@ -2,7 +2,7 @@ import { getCookie, getResponseHeader, setCookie } from "vinxi/http?server";
 import Cookies from "js-cookie";
 
 import useClientCookie from "react-use-cookie";
-import { useDebugValue } from "react";
+import { useEffect } from "react";
 
 export function accessCookie(
   name: string
@@ -45,10 +45,12 @@ export function accessCookie(
 
 export const isComponentRender = () => {
   try {
-    useDebugValue("render check");
+    useEffect(() => {
+      console.debug("isComponentRender: true");
+    });
     return true;
   } catch (e) {
-    console.debug("isComponentRender error", e);
+    console.debug("isComponentRender: false; error", e);
     return false;
   }
 };
