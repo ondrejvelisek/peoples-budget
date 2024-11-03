@@ -7,3 +7,9 @@ declare module "eslint-plugin-react" {
     },
   };
 }
+
+declare module "eslint-plugin-react-compiler";
+
+declare module "vinxi/http?server" {
+  export * from "vinxi/http";
+}

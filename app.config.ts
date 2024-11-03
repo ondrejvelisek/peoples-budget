@@ -1,5 +1,6 @@
 import { defineConfig } from "@tanstack/start/config";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { isoImport } from "vite-plugin-iso-import";
 
 export default defineConfig({
   server: {
@@ -27,6 +28,6 @@ export default defineConfig({
     quoteStyle: "single",
   },
   vite: {
-    plugins: [tsconfigPaths()],
+    plugins: [tsconfigPaths(), isoImport()],
   },
 });

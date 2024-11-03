@@ -3,6 +3,7 @@ import pluginJs from "@eslint/js";
 import tseslint, { config } from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import tailwind from "eslint-plugin-tailwindcss";
+import reactCompiler from "eslint-plugin-react-compiler";
 
 export default config(
   {
@@ -18,6 +19,14 @@ export default config(
   {
     rules: {
       "react/react-in-jsx-scope": "off",
+    },
+  },
+  {
+    plugins: {
+      "react-compiler": reactCompiler,
+    },
+    rules: {
+      "react-compiler/react-compiler": "error",
     },
   },
   ...tailwind.configs["flat/recommended"],

@@ -1,15 +1,20 @@
 import lodash from "lodash";
 const { isEqual, uniqWith } = lodash;
-import { queryOptions, useQuery } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  queryOptions,
+  useQuery,
+} from "@tanstack/react-query";
 import { parseCsv, type SimpleQueryResult } from "@/lib/utils";
 import expenses2025Csv from "./expenses_2025.csv?raw";
 import { createServerFn } from "@tanstack/start";
 import { getExpensesTables, type ExpensesTables } from "./tables";
 import { FlatCache } from "flat-cache";
 import {
-  accessChildrenExpenseDimension,
+  useChildrenExpenseDimension,
   type ExpenseDimension,
 } from "./expenseDimensions";
+import { useParams } from "@tanstack/react-router";
 
 const cache = new FlatCache({
   ttl: 30 * 24 * 60 * 60 * 1000, // 1 month
@@ -121,11 +126,10 @@ export const getExpense = createServerFn(
   "GET",
   async (params: {
     expenseKey: ExpenseKey;
-    expenseDimension?: ExpenseDimension;
+    childrenDimension?: ExpenseDimension;
   }): Promise<ExpenseItem> => {
     const expenseKey = params.expenseKey;
-    const childrenDimension =
-      params.expenseDimension ?? accessChildrenExpenseDimension(expenseKey);
+    const childrenDimension = params.childrenDimension;
     const cacheKeyStr = JSON.stringify(params);
     const cached = cache.get<ExpenseItem | undefined>(cacheKeyStr);
     if (cached) {
@@ -190,20 +194,26 @@ export const getExpense = createServerFn(
 
 export const expenseQueryOptions = (
   expenseKey: ExpenseKey,
-  expenseDimension?: ExpenseDimension
+  childrenDimension?: ExpenseDimension
 ) =>
   queryOptions({
-    queryKey: ["expense", expenseKey],
-    queryFn: async () => getExpense({ expenseKey, expenseDimension }),
+    queryKey: ["expense", expenseKey, childrenDimension],
+    queryFn: async () => getExpense({ expenseKey, childrenDimension }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
     gcTime: 5 * 60 * 1000, // 5 minutes
+    placeholderData: keepPreviousData,
   });
 
 export const useExpense = (
   expenseKey: ExpenseKey = []
 ): SimpleQueryResult<ExpenseItem> => {
+  const splat = useParams({ strict: false })._splat;
+  if (!splat) {
+    throw new Error("useExpense: Missing splat in url");
+  }
+  const childrenDimension = useChildrenExpenseDimension(splat, expenseKey);
   const { data, isPending, isFetching, error } = useQuery(
-    expenseQueryOptions(expenseKey)
+    expenseQueryOptions(expenseKey, childrenDimension)
   );
   return { data, isPending, isFetching, error };
 };

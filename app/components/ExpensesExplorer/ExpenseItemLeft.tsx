@@ -1,10 +1,13 @@
 import { type FC } from "react";
-import { cn } from "@/lib/utils";
+import { cn, formatCurrency } from "@/lib/utils";
 import { RiArrowLeftLine } from "react-icons/ri";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 import Skeleton from "react-loading-skeleton";
+import { Link } from "@tanstack/react-router";
+import { useExpense, type ExpenseKey } from "@/data/expenses";
 
 type ExpenseItemLeftProps = {
+  expenseKey?: ExpenseKey;
   title?: string;
   amount?: number;
   className?: string;
@@ -13,13 +16,32 @@ type ExpenseItemLeftProps = {
 };
 
 export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
+  expenseKey,
   title,
+  amount,
   className,
   relation = "subject",
   isLoading = false,
 }) => {
+  const { data: expense, isPending } = useExpense(expenseKey);
   return (
-    <div className={cn("overflow-hidden", className)}>
+    <Link
+      to="/2024/$"
+      params={{
+        _splat: {
+          expenseKey: expenseKey ?? [],
+          expenseDimension: expense?.childrenDimension ?? "odvetvi",
+        },
+      }}
+      disabled={
+        relation === "subject" ||
+        isLoading ||
+        isPending ||
+        !expense ||
+        !expenseKey
+      }
+      className={cn("grow overflow-hidden", className)}
+    >
       <div
         className={cn(
           "flex items-center truncate transition-all",
@@ -44,17 +66,21 @@ export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
         </span>
         {isLoading ? <Skeleton width="8em" /> : <span>{title}</span>}
       </div>
-      {/*<div
+      <div
         className={cn(
           "h-[1.3em] truncate font-bold transition-all",
           ANIMATION_DURATION_CLASS,
           {
-            "h-0 opacity-0": relation !== "child",
+            "h-0 opacity-0": relation === "parent",
           }
         )}
       >
-        {formatCurrency(amount)}
-      </div>*/}
-    </div>
+        {isLoading ? (
+          <Skeleton width="4em" />
+        ) : amount !== undefined ? (
+          formatCurrency(amount)
+        ) : null}
+      </div>
+    </Link>
   );
 };

@@ -1,7 +1,5 @@
-import { getCookie, getResponseHeader, setCookie } from "vinxi/http";
 import type { ExpenseKey } from "./expenses";
-import loadsh from "lodash";
-const { isEqual } = loadsh;
+import { accessCookie } from "./cookie";
 
 export type ExpenseDimension = "odvetvi" | "druh" | "urad";
 export type ExpenseDimensions = [
@@ -29,7 +27,8 @@ const defaultDimensions: ExpenseDimensions = [
 ];
 
 function accessChildrenExpenseDimensions() {
-  const cookie = getCookie(EXPENSE_DIMENSIONS_COOKIE_NAME);
+  const [cookie, setCookie] = accessCookie(EXPENSE_DIMENSIONS_COOKIE_NAME);
+
   const cookieChildrenExpenseDimension = cookie?.split(",") as
     | ExpenseDimensions
     | undefined;
@@ -37,23 +36,12 @@ function accessChildrenExpenseDimensions() {
   const currentChildrenExpenseDimension =
     cookieChildrenExpenseDimension ?? defaultDimensions;
 
-  const setCookieHeader = getResponseHeader("set-cookie");
-
-  console.error("Current children expense dimensions", setCookieHeader);
-
   function setChildrenExpenseDimension(
     newChildrenExpenseDimension: ExpenseDimensions
   ) {
-    // this deduplicates setting the cookie mulitple times
-    if (
-      !isEqual(currentChildrenExpenseDimension, newChildrenExpenseDimension) &&
-      (!setCookieHeader ||
-        (typeof setCookieHeader === "object" && setCookieHeader.length === 0))
-    ) {
-      const newChildrenExpenseDimensionStr =
-        newChildrenExpenseDimension.join(",");
-      setCookie(EXPENSE_DIMENSIONS_COOKIE_NAME, newChildrenExpenseDimensionStr);
-    }
+    const newChildrenExpenseDimensionStr =
+      newChildrenExpenseDimension.join(",");
+    setCookie(newChildrenExpenseDimensionStr);
   }
 
   return [
@@ -87,17 +75,43 @@ function shiftDimension(
   }) as ExpenseDimensions;
 }
 
+type ExpensesSplatParam = {
+  expenseKey: ExpenseKey;
+  expenseDimension: ExpenseDimension | undefined;
+};
+
 export function accessChildrenExpenseDimension(
+  splat: ExpensesSplatParam,
   expenseKey: ExpenseKey
-): ExpenseDimension | undefined {
+) {
+  const { expenseKey: urlExpenseKey, expenseDimension: urlExpenseDimension } =
+    splat;
   const [childrenExpenseDimensions, persistChildrenExpenseDimension] =
     accessChildrenExpenseDimensions();
+
+  if (expenseKey.length === urlExpenseKey.length && urlExpenseDimension) {
+    return urlExpenseDimension;
+  }
+
+  const ancestorDimension = urlExpenseKey[expenseKey.length]?.dimension;
+  if (ancestorDimension) {
+    return ancestorDimension;
+  }
 
   const expenseDimensions = expenseKey
     .map(({ dimension }) => dimension)
     .reduce<ExpenseDimensions>(shiftDimension, childrenExpenseDimensions);
 
+  const childrenExpenseDimension = expenseDimensions.at(expenseKey.length);
+
   persistChildrenExpenseDimension(expenseDimensions);
 
-  return expenseDimensions.at(expenseKey.length);
+  return childrenExpenseDimension;
+}
+
+export function useChildrenExpenseDimension(
+  splat: ExpensesSplatParam,
+  expenseKey: ExpenseKey
+) {
+  return accessChildrenExpenseDimension(splat, expenseKey);
 }

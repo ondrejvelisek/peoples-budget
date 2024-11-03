@@ -12,12 +12,17 @@ export const ANIMATION_DURATION_CLASS = "duration-300";
 
 export const ExpensesExplorer: FC<{
   expenseKey?: ExpenseKey;
+  isFetching?: boolean;
   className?: string;
-}> = ({ expenseKey = [], className }) => {
+}> = ({ expenseKey = [], isFetching: isParentFetching = false, className }) => {
   const urlExpenseKey = useParams({ strict: false })._splat?.expenseKey;
   const { data: urlExpense, isPending: isUrlPending } =
     useExpense(urlExpenseKey);
-  const { data: expense, isPending } = useExpense(expenseKey);
+  const {
+    data: expense,
+    isPending,
+    isFetching: isExpenseFetching,
+  } = useExpense(expenseKey);
   const [animateChildrenRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
   const [animateHeaderRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
 
@@ -28,7 +33,7 @@ export const ExpensesExplorer: FC<{
     isEqual(childKey, expenseKey)
   );
 
-  const isLoading = isPending || isUrlPending;
+  const isLoading = isPending || isUrlPending || isParentFetching;
 
   const relation = isParent
     ? "parent"
@@ -76,7 +81,10 @@ export const ExpensesExplorer: FC<{
                     .map(({ dimension, id }) => `${dimension}/${id}`)
                     .join("/")}
                 >
-                  <ExpensesExplorer expenseKey={childKey} />
+                  <ExpensesExplorer
+                    expenseKey={childKey}
+                    isFetching={isExpenseFetching}
+                  />
                 </li>
               )
           )}

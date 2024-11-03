@@ -3,6 +3,7 @@ import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer
 import { IncomeThumbnail } from "@/components/IncomeThumbnail/IncomeThumbnail";
 import { expenseQueryOptions, type ExpenseKey } from "@/data/expenses";
 import { isDimension } from "@/lib/utils";
+import { accessChildrenExpenseDimension } from "@/data/expenseDimensions";
 
 export const Route = createFileRoute("/2024/_providers/$")({
   component: ExpensePage,
@@ -49,19 +50,25 @@ export const Route = createFileRoute("/2024/_providers/$")({
     }),
   },
   loader: async ({ context, params }) => {
-    const expenseKey = params._splat.expenseKey;
-    const expenseDimension = params._splat.expenseDimension;
+    const splat = params._splat;
+    const expenseKey = splat.expenseKey;
+    const expenseDimension = splat.expenseDimension;
     if (!expenseDimension) {
+      const childrenDimension = accessChildrenExpenseDimension(
+        splat,
+        expenseKey
+      );
       throw redirect({
         to: "/2024/$",
         params: {
-          _splat: { expenseKey, expenseDimension: "odvetvi" }, // TBD use cookie
+          _splat: { expenseKey, expenseDimension: childrenDimension },
         },
       });
     }
     const { children } = await context.queryClient.ensureQueryData(
       expenseQueryOptions(expenseKey, expenseDimension)
     );
+
     const ancestors =
       expenseKey.length > 0
         ? expenseKey.map((_, index) => expenseKey.slice(0, index))
@@ -69,11 +76,12 @@ export const Route = createFileRoute("/2024/_providers/$")({
 
     await Promise.all(
       [...ancestors, ...children].map((relativesKey) => {
-        const relativeExpenseDimension = expenseKey.at(
-          relativesKey.length
-        )?.dimension;
+        const childrenDimension = accessChildrenExpenseDimension(
+          splat,
+          relativesKey
+        );
         return context.queryClient.ensureQueryData(
-          expenseQueryOptions(relativesKey, relativeExpenseDimension)
+          expenseQueryOptions(relativesKey, childrenDimension)
         );
       })
     );

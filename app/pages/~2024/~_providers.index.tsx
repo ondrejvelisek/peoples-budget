@@ -1,9 +1,17 @@
+import { accessChildrenExpenseDimension } from "@/data/expenseDimensions";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/2024/_providers/")({
-  beforeLoad: () =>
-    redirect({
+  beforeLoad() {
+    const childrenDimension = accessChildrenExpenseDimension(
+      { expenseKey: [], expenseDimension: undefined },
+      []
+    );
+    return redirect({
       to: "/2024/$",
-      params: { _splat: { expenseKey: [], expenseDimension: "odvetvi" } },
-    }),
+      params: {
+        _splat: { expenseKey: [], expenseDimension: childrenDimension },
+      },
+    });
+  },
 });

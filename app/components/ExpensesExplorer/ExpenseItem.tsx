@@ -1,18 +1,13 @@
 import { type FC } from "react";
-import { Button } from "../ui/button";
-import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import {
-  useExpense,
-  type ExpenseKey,
-} from "@/data/expenses";
+import { useExpense, type ExpenseKey } from "@/data/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
 import { ExpenseItemMeter } from "./ExpenseItemMeter";
 import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 
 type ExpenseItemProps = {
-  expenseKey: ExpenseKey;
+  expenseKey?: ExpenseKey;
   className?: string;
   relation?: "parent" | "subject" | "child";
   isLoading?: boolean;
@@ -29,12 +24,10 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
     expense?.parent
   );
   const isAnyLoading = isPending || isParentPending || isLoading;
-  const isRoot = expenseKey.length === 0;
+  const isRoot = expenseKey?.length === 0;
 
   return (
-    <Button
-      variant="ghost"
-      asChild
+    <div
       className={cn(
         "relative block h-auto w-full bg-white transition-all",
         ANIMATION_DURATION_CLASS,
@@ -47,37 +40,30 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
         className
       )}
     >
-      <Link
-        to="/2024/$"
-        params={{
-          _splat: { expenseKey, expenseDimension: expense?.childrenDimension ?? "odvetvi" },
-        }}
-        disabled={relation === "subject" || isAnyLoading || !expense}
-      >
-        <div className="flex grow items-baseline justify-between gap-4">
-          <ExpenseItemLeft
-            title={expense?.title}
-            amount={expense?.amount}
-            relation={relation}
-            isLoading={isAnyLoading}
-          />
-
-          <ExpenseItemRight
-            amount={expense?.amount}
-            relation={relation}
-            className="shrink-0"
-            isLoading={isAnyLoading}
-          />
-        </div>
-
-        <ExpenseItemMeter
+      <div className="flex grow items-baseline justify-between gap-4">
+        <ExpenseItemLeft
+          expenseKey={expenseKey}
+          title={expense?.title}
           amount={expense?.amount}
-          parentAmount={parentExpense?.amount}
-          className={cn("absolute inset-0")}
-          relation={isRoot ? "parent" : relation}
+          relation={relation}
           isLoading={isAnyLoading}
         />
-      </Link>
-    </Button>
+
+        <ExpenseItemRight
+          amount={expense?.amount}
+          relation={relation}
+          className="shrink-0"
+          isLoading={isAnyLoading}
+        />
+      </div>
+
+      <ExpenseItemMeter
+        amount={expense?.amount}
+        parentAmount={parentExpense?.amount}
+        className={cn("absolute inset-0")}
+        relation={isRoot ? "parent" : relation}
+        isLoading={isAnyLoading}
+      />
+    </div>
   );
 };
