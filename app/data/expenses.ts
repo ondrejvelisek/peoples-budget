@@ -1,5 +1,5 @@
 import lodash from "lodash";
-const { isEqual, uniqWith } = lodash;
+const { isEqual } = lodash;
 import {
   keepPreviousData,
   queryOptions,
@@ -117,7 +117,13 @@ function reduceChildren(
 
   const child: ExpenseKey = [...expenseKey, { dimension, id }];
 
-  const children = uniqWith([...(acc?.children ?? []), child], isEqual);
+  if (acc && acc.children.find((ch) => isEqual(ch, child))) {
+    return acc.children;
+  }
+
+  const children = acc?.children ?? [];
+
+  children.push(child);
 
   return children;
 }
@@ -159,8 +165,6 @@ export const getExpense = createServerFn(
     ): ExpenseItem {
       if (acc) {
         // more performant than creating new object
-        acc.key = expenseKey;
-        acc.title = reduceTitle(expenseKey, tables);
         acc.amount = reduceAmount(record, acc);
         acc.children = reduceChildren(
           expenseKey,
@@ -168,7 +172,6 @@ export const getExpense = createServerFn(
           record,
           acc
         );
-        acc.parent = reduceParent(expenseKey, acc);
         return acc;
       }
       return {
