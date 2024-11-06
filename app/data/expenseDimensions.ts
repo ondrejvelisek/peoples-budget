@@ -1,7 +1,14 @@
 import type { ExpenseKey } from "./expenses";
 import { accessCookie } from "./cookie";
 
-export type ExpenseDimension = "odvetvi" | "druh" | "urad";
+export const EXPENSE_DIMENSIONS = {
+  odvetvi: "Odvětví",
+  druh: "Druh",
+  urad: "Úřad",
+} as const;
+
+export type ExpenseDimension = keyof (typeof EXPENSE_DIMENSIONS);
+
 export type ExpenseDimensions = [
   ExpenseDimension,
   ExpenseDimension,

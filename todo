@@ -4,6 +4,7 @@ Build & Deploy:
 Expenses:
     ✔ Allow to switch dimension @done (11/6/2024, 4:21:10 PM)
     ✔ Store choosen dimension into cookie @done (11/6/2024, 4:22:13 PM)
+    ☐ Sort expenses by amount
     ☐ Improve dimension switcher cooke shift behaviour (back and forth should result in the same state)
     ☐ Update look of dimension switcher
     ☐ Improve breadcrumb navigation
@@ -39,3 +40,5 @@ Misc:
     ☐ Add nice 404 page
     ☐ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution.
     ☐ Add README.md
+    ☐ Improve eslint and prettier config. Possibly on save behaviour.
+    ☐ Update package dependencies (it should help to remove unmet peer dependenc warnings)

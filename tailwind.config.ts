@@ -1,11 +1,12 @@
 import type { Config } from "tailwindcss";
 import tailwindAnimate from "tailwindcss-animate";
 import tailwindScrollbar from "tailwind-scrollbar";
+import tailwindContainers from "@tailwindcss/container-queries";
 
 export default {
   darkMode: ["class"],
   content: ["./app/**/*.{js,jsx,ts,tsx,html}"],
-  plugins: [tailwindAnimate, tailwindScrollbar],
+  plugins: [tailwindAnimate, tailwindScrollbar, tailwindContainers],
   theme: {
     extend: {
       borderRadius: {
