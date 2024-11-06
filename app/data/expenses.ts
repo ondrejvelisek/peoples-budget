@@ -139,8 +139,10 @@ export const getExpense = createServerFn(
     const cacheKeyStr = JSON.stringify(params);
     const cached = cache.get<ExpenseItem | undefined>(cacheKeyStr);
     if (cached) {
+      console.log("CACHE(getExpense): HIT", cacheKeyStr);
       return cached;
     }
+    console.log("CACHE(getExpense): MISS", cacheKeyStr);
 
     const tables = await getExpensesTables();
 

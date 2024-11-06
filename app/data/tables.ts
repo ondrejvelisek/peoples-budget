@@ -95,8 +95,10 @@ export const getExpensesTables = createServerFn(
   async (): Promise<ExpensesTables> => {
     const cached = cache.get<ExpensesTables | undefined>("expenses_tables");
     if (cached) {
+      console.log("CACHE(getExpensesTables): HIT");
       return cached;
     }
+    console.log("CACHE(getExpensesTables): MISS");
 
     const [sectors, types, offices] = await Promise.all([
       getSectorsTable(),

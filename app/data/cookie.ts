@@ -49,8 +49,9 @@ export const isComponentRender = () => {
       console.debug("isComponentRender: true");
     });
     return true;
-  } catch (e) {
-    console.debug("isComponentRender: false; error", e);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_err) {
+    console.debug("isComponentRender: false");
     return false;
   }
 };
