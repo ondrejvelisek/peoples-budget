@@ -1,0 +1,41 @@
+Build & Deploy:
+    ✔ Fix Vercel build @done (11/6/2024, 4:08:47 PM)
+
+Expenses:
+    ✔ Allow to switch dimension @done (11/6/2024, 4:21:10 PM)
+    ✔ Store choosen dimension into cookie @done (11/6/2024, 4:22:13 PM)
+    ☐ Improve dimension switcher cooke shift behaviour (back and forth should result in the same state)
+    ☐ Update look of dimension switcher
+    ☐ Improve breadcrumb navigation
+    ☐ Simplify some expenses names.
+    ☐ Restructuralize some expenses
+    ☐ Add shortcuts to expense when expense has just one child
+    ☐ Add examples
+    ☐ 2024 Expenses
+        ☐ Get data
+        ☐ Switch 24 and 25
+        ☐ Add to app
+
+Income:
+    ☐ Get data of Incomes from Monitor
+    ☐ Income explorer
+    ☐ Design aggregation bar
+
+About project page:
+    ☐ Namyslet sekce. Jaké informace chci předat a jak
+
+Support me page:
+    ☐ Research "Send money" service
+    ☐ Design site
+    ☐ Add fake door to other pages
+
+Bugs:
+    ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)
+
+Misc:
+    ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)
+    ☐ Add anonymous analytics to the app
+    ☐ Add nice Error boundaries
+    ☐ Add nice 404 page
+    ☐ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution.
+    ☐ Add README.md
