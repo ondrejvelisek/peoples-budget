@@ -4,9 +4,10 @@ Build & Deploy:
 Expenses:
     ✔ Allow to switch dimension @done (11/6/2024, 4:21:10 PM)
     ✔ Store choosen dimension into cookie @done (11/6/2024, 4:22:13 PM)
-    ☐ Sort expenses by amount
+    ✔ Sort expenses by amount @done (11/6/2024, 9:53:56 PM)
     ☐ Improve dimension switcher cooke shift behaviour (back and forth should result in the same state)
-    ☐ Update look of dimension switcher
+    ☐ Do not show children when hitting last level of hierarchy
+    ✔ Update look of dimension switcher @done (11/6/2024, 8:11:34 PM)
     ☐ Improve breadcrumb navigation
     ☐ Simplify some expenses names.
     ☐ Restructuralize some expenses

@@ -43,10 +43,7 @@ type ExpensesDataRecord = {
   amount: number;
 };
 
-function reduceAmount(
-  record: ExpensesDataRecord,
-  acc: ExpenseItem | undefined
-) {
+function reduceAmount(record: ExpensesDataRecord, acc?: ExpenseItem) {
   return acc ? acc.amount + record.amount : record.amount;
 }
 
@@ -73,7 +70,7 @@ function reduceTitle(
   throw new Error(`Invalid dimension: ${lastKey.dimension}`);
 }
 
-function reduceParent(expenseKey: ExpenseKey, acc: ExpenseItem | undefined) {
+function reduceParent(expenseKey: ExpenseKey, acc?: ExpenseItem) {
   return expenseKey.length
     ? acc?.parent
       ? acc.parent
@@ -81,12 +78,20 @@ function reduceParent(expenseKey: ExpenseKey, acc: ExpenseItem | undefined) {
     : undefined;
 }
 
+type ExpenseKeyWithAmount = ExpenseKey & {
+  amount: number;
+};
+
+type ExpenseItemWithChildrenAmount = Omit<ExpenseItem, "children"> & {
+  children: Array<ExpenseKeyWithAmount>;
+};
+
 function reduceChildren(
   expenseKey: ExpenseKey,
   dimension: ExpenseDimension | undefined,
   record: ExpensesDataRecord,
-  acc: ExpenseItem | undefined
-): Array<ExpenseKey> {
+  acc?: ExpenseItemWithChildrenAmount
+): Array<ExpenseKeyWithAmount> {
   let id = "";
   if (dimension === "odvetvi") {
     const numOfSectorDimensions =
@@ -115,9 +120,18 @@ function reduceChildren(
     return acc?.children ?? [];
   }
 
-  const child: ExpenseKey = [...expenseKey, { dimension, id }];
+  const child: ExpenseKeyWithAmount = Object.assign(
+    [...expenseKey, { dimension, id }],
+    { amount: record.amount }
+  );
 
-  if (acc && acc.children.find((ch) => isEqual(ch, child))) {
+  const existingChild =
+    acc &&
+    acc.children.find((ch) =>
+      ch.every((item, idx) => isEqual(item, child[idx]))
+    );
+  if (existingChild) {
+    existingChild.amount += record.amount;
     return acc.children;
   }
 
@@ -163,34 +177,30 @@ export const getExpense = createServerFn(
 
     function reduce(
       record: ExpensesDataRecord,
-      acc: ExpenseItem | undefined
-    ): ExpenseItem {
-      if (acc) {
-        // more performant than creating new object
-        acc.amount = reduceAmount(record, acc);
-        acc.children = reduceChildren(
-          expenseKey,
+      acc: ExpenseItemWithChildrenAmount | undefined
+    ): ExpenseItemWithChildrenAmount {
+      if (!acc) {
+        return {
+          key: expenseKey,
+          title: reduceTitle(expenseKey, tables),
+          amount: reduceAmount(record),
+          children: reduceChildren(expenseKey, childrenDimension, record),
+          parent: reduceParent(expenseKey),
           childrenDimension,
-          record,
-          acc
-        );
-        return acc;
+        };
       }
-      return {
-        key: expenseKey,
-        title: reduceTitle(expenseKey, tables),
-        amount: reduceAmount(record, acc),
-        children: reduceChildren(expenseKey, childrenDimension, record, acc),
-        parent: reduceParent(expenseKey, acc),
-        childrenDimension,
-      };
+      // more performant than creating new object
+      acc.amount = reduceAmount(record, acc);
+      acc.children = reduceChildren(expenseKey, childrenDimension, record, acc);
+      return acc;
     }
 
-    const expense = await parseCsv<ExpensesDataRecord, ExpenseItem>(
-      expenses2025Csv,
-      filter,
-      reduce
-    );
+    const expense = await parseCsv<
+      ExpensesDataRecord,
+      ExpenseItemWithChildrenAmount
+    >(expenses2025Csv, filter, reduce);
+
+    expense.children.sort((a, b) => b.amount - a.amount);
 
     cache.set(cacheKeyStr, expense);
     return expense;
