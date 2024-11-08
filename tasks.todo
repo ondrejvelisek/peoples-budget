@@ -15,6 +15,7 @@ Expenses:
     ☐ Simplify some expenses names.
     ☐ Restructuralize some expenses
     ☐ Add examples
+    ☐ Add possibility to full search expenses based on name 
     ☐ 2024 Expenses
         ☐ Get data
         ☐ Switch 24 and 25
@@ -38,7 +39,7 @@ Bugs:
 
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)
-    ☐ Add anonymous analytics to the app
+    ✔ Add anonymous analytics to the app @done (11/8/2024, 10:24:07 PM)
     ☐ Add nice Error boundaries
     ☐ Add nice 404 page
     ☐ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution.
