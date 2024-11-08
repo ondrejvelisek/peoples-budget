@@ -92,31 +92,34 @@ function reduceChildren(
   record: ExpensesDataRecord,
   acc?: ExpenseItemWithChildrenAmount
 ): Array<ExpenseKeyWithAmount> {
-  let id = "";
+  let id: undefined | string;
   if (dimension === "odvetvi") {
     const numOfSectorDimensions =
-      expenseKey.filter(({ dimension }) => dimension === "odvetvi").length +
-      (dimension === "odvetvi" ? 1 : 0);
-    const numOfSectorChars = numOfSectorDimensions;
-    id = String(record.sector_id).slice(0, numOfSectorChars);
+      expenseKey.filter(({ dimension }) => dimension === "odvetvi").length + 1;
+    if (numOfSectorDimensions <= 4) {
+      const numOfSectorChars = numOfSectorDimensions;
+      id = String(record.sector_id).slice(0, numOfSectorChars);
+    }
   }
   if (dimension === "druh") {
     const numOfTypeDimensions =
-      expenseKey.filter(({ dimension }) => dimension === "druh").length +
-      (dimension === "druh" ? 1 : 0);
-    const numOfTypeChars =
-      numOfTypeDimensions === 0 ? 0 : numOfTypeDimensions + 1;
-    id = String(record.type_id).slice(0, numOfTypeChars);
+      expenseKey.filter(({ dimension }) => dimension === "druh").length + 1;
+    if (numOfTypeDimensions <= 3) {
+      const numOfTypeChars =
+        numOfTypeDimensions === 0 ? 0 : numOfTypeDimensions + 1;
+      id = String(record.type_id).slice(0, numOfTypeChars);
+    }
   }
   if (dimension === "urad") {
     const numOfOfficeDimensions =
-      expenseKey.filter(({ dimension }) => dimension === "urad").length +
-      (dimension === "urad" ? 1 : 0);
-    const numOfOfficeChars =
-      numOfOfficeDimensions === 0 ? 0 : numOfOfficeDimensions === 1 ? 3 : 7;
-    id = String(record.office_id).slice(0, numOfOfficeChars);
+      expenseKey.filter(({ dimension }) => dimension === "urad").length + 1;
+    if (numOfOfficeDimensions <= 2) {
+      const numOfOfficeChars =
+        numOfOfficeDimensions === 0 ? 0 : numOfOfficeDimensions === 1 ? 3 : 7;
+      id = String(record.office_id).slice(0, numOfOfficeChars);
+    }
   }
-  if (!dimension) {
+  if (!dimension || !id) {
     return acc?.children ?? [];
   }
 

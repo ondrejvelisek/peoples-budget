@@ -5,13 +5,15 @@ Expenses:
     ✔ Allow to switch dimension @done (11/6/2024, 4:21:10 PM)
     ✔ Store choosen dimension into cookie @done (11/6/2024, 4:22:13 PM)
     ✔ Sort expenses by amount @done (11/6/2024, 9:53:56 PM)
-    ☐ Improve dimension switcher cooke shift behaviour (back and forth should result in the same state)
-    ☐ Do not show children when hitting last level of hierarchy
+    ✔ Improve dimension switcher cooke shift behaviour (back and forth should result in the same state) @done (11/6/2024, 10:13:36 PM)
     ✔ Update look of dimension switcher @done (11/6/2024, 8:11:34 PM)
-    ☐ Improve breadcrumb navigation
+    ✔ Do not show children when hitting last level of hierarchy @done (11/8/2024, 4:43:15 PM)
+    ☐ Disable unavailable dimensions (if there are no more granularity)
+    ☐ Redirect one level up when we are over dimensions levels
+    ☐ Add shortcuts to expense when expense has just one child
+    ☐ Improve breadcrumb navigationc
     ☐ Simplify some expenses names.
     ☐ Restructuralize some expenses
-    ☐ Add shortcuts to expense when expense has just one child
     ☐ Add examples
     ☐ 2024 Expenses
         ☐ Get data
