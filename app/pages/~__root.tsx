@@ -13,7 +13,6 @@ import { StrictMode } from "react";
 import { seo } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { QueryClient } from "@tanstack/react-query";
-import { logEvent } from "@/analytics/analytics";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -42,10 +41,6 @@ export const Route = createRootRouteWithContext<{
     { rel: "manifest", href: manifest },
     { rel: "stylesheet", href: mainCss },
   ],
-  loader: async ({ location }) => {
-    const page = location.pathname + location.searchStr;
-    logEvent({ type: "page-view", page });
-  },
 });
 
 function RootComponent() {

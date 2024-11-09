@@ -37,7 +37,7 @@ Support me page:
 Bugs:
     ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)
     ✔ Do not report analytics events during prerender @done (11/9/2024, 11:52:46 AM)
-
+    
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)
     ✔ Add anonymous analytics to the app @done (11/8/2024, 10:24:07 PM)
@@ -47,3 +47,5 @@ Misc:
     ☐ Add README.md
     ☐ Improve eslint and prettier config. Possibly on save behaviour.
     ☐ Update package dependencies (it should help to remove unmet peer dependenc warnings)
+    ✔ Add favicon @done (11/9/2024, 2:04:59 PM)
+    ☐ Update logo and visuals
