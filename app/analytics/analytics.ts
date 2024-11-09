@@ -15,8 +15,6 @@ const SCOPES = [
   "https://www.googleapis.com/auth/drive.file",
 ];
 
-console.error("TEST1 process.env", process.env);
-
 const jwt = new JWT({
   email: process.env["SHEET_USER_EMAIL"],
   key: process.env["SHEET_PRIVATE_KEY"],
@@ -37,7 +35,10 @@ export type Event = {
 export const logEvent = createServerFn(
   "POST",
   async ({ type, page }: { type: EventType; page: string }) => {
-    console.error("TEST2 process.env", process.env);
+    Object.keys(process.env).forEach((key) => {
+      console.error("TEST2 process.env", key, process.env[key]);
+    });
+
     if (["/favicon.ico"].includes(page)) {
       return;
     }
