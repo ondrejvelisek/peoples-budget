@@ -58,8 +58,14 @@ export const logEvent = createServerFn(
     });
     const url = getRequestURL();
 
-    const now = new Date();
-    const timestamp = now.toISOString().slice(0, -1);
+    // Which datetime I want to sent to my analytics?
+    const now = new Date(
+      new Date().toLocaleString("en-US", { timeZone: "Europe/Prague" })
+    );
+    const timestamp = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, -1);
+
     const event: Event = {
       timestamp,
       session,
