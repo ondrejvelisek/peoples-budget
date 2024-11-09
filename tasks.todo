@@ -36,7 +36,7 @@ Support me page:
 
 Bugs:
     ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)
-    ☐ Do not report analytics events during prerender
+    ✔ Do not report analytics events during prerender @done (11/9/2024, 11:52:46 AM)
 
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)

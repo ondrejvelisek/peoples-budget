@@ -8,7 +8,7 @@ import {
   setCookie,
 } from "vinxi/http?server";
 
-const DOC_ID = "1jNTJM1S3h4OuSxngN06A5V2rC8j2Z25D-fojuPoMNhM";
+const DOC_ID = process.env["SHEET_DOC_ID"];
 
 const SCOPES = [
   "https://www.googleapis.com/auth/spreadsheets",
@@ -20,7 +20,7 @@ const jwt = new JWT({
   key: process.env["SHEET_PRIVATE_KEY"],
   scopes: SCOPES,
 });
-const doc = new GoogleSpreadsheet(DOC_ID, jwt);
+const doc = DOC_ID ? new GoogleSpreadsheet(DOC_ID, jwt) : undefined;
 
 export type EventType = "page-view" | "init-page";
 
@@ -35,10 +35,12 @@ export type Event = {
 export const logEvent = createServerFn(
   "POST",
   async ({ type, page }: { type: EventType; page: string }) => {
-    Object.keys(process.env).forEach((key) => {
-      console.error("TEST2 process.env", key, process.env[key]);
-    });
-
+    if (!doc) {
+      return;
+    }
+    if (process.env["CI"]) {
+      return;
+    }
     if (["/favicon.ico"].includes(page)) {
       return;
     }
@@ -46,12 +48,11 @@ export const logEvent = createServerFn(
     if (isPreflight) {
       return;
     }
+
     let session = getCookie("session");
-    console.error("sessionId", session);
     if (!session) {
       session = randomString();
     }
-    console.error("sessionIdrandom", session);
     setCookie("session", session, {
       maxAge: 60 * 30, // 30 minutes
     });
@@ -67,15 +68,13 @@ export const logEvent = createServerFn(
       page,
     };
 
-    console.error("event", event);
-
     await doc.loadInfo();
     const eventsSheet = doc.sheetsByTitle["events"];
     await eventsSheet?.addRow(event);
   }
 );
 
-function randomString(length = 16) {
+function randomString(length = 32) {
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";
