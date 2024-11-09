@@ -36,13 +36,14 @@ Support me page:
 
 Bugs:
     ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)
+    ☐ Do not report analytics events during prerender
 
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)
     ✔ Add anonymous analytics to the app @done (11/8/2024, 10:24:07 PM)
     ☐ Add nice Error boundaries
     ☐ Add nice 404 page
-    ☐ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution.
+    ☐ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution. unstorage?
     ☐ Add README.md
     ☐ Improve eslint and prettier config. Possibly on save behaviour.
     ☐ Update package dependencies (it should help to remove unmet peer dependenc warnings)
