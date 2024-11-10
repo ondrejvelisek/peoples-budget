@@ -78,7 +78,6 @@
     "flat-cache": "^6.1.0",
     "google-auth-library": "^9.14.2",
     "google-spreadsheet": "^4.1.4",
-    "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "lucide-react": "^0.441.0",
     "papaparse": "^5.4.1",

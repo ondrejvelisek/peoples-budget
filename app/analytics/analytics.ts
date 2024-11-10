@@ -1,12 +1,8 @@
+import { accessCookie } from "@/data/cookie";
 import { createServerFn } from "@tanstack/start";
 import { JWT } from "google-auth-library";
 import { GoogleSpreadsheet } from "google-spreadsheet";
-import {
-  getCookie,
-  getRequestURL,
-  isPreflightRequest,
-  setCookie,
-} from "vinxi/http?server";
+import { getRequestURL, isPreflightRequest } from "vinxi/http?server";
 
 const DOC_ID = process.env["SHEET_DOC_ID"];
 
@@ -49,12 +45,14 @@ export const logEvent = createServerFn(
       return;
     }
 
-    let session = getCookie("session");
+    const [session, setSessionCookie] = accessCookie("session");
     if (!session) {
-      session = randomString();
+      // user navigates before JS was loaded. We track it when JS is loaded. See below.
+      return;
     }
-    setCookie("session", session, {
+    setSessionCookie(session, {
       maxAge: 60 * 30, // 30 minutes
+      deduplicate: false,
     });
     const url = getRequestURL();
 
@@ -88,4 +86,20 @@ function randomString(length = 32) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return result;
+}
+
+// when JS is loaded in the browser
+// set the cookie and send initial page-view event
+if (!import.meta.env.SSR) {
+  const [sessionCookie, setSessionCookie] = accessCookie("session");
+  if (!sessionCookie) {
+    setSessionCookie(randomString(), {
+      maxAge: 60 * 30, // 30 minutes
+      deduplicate: false,
+    });
+    await logEvent({
+      type: "init-page",
+      page: window.location.pathname + window.location.search,
+    });
+  }
 }

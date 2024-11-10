@@ -1,43 +1,62 @@
-import { getCookie, getResponseHeader, setCookie } from "vinxi/http?server";
-import Cookies from "js-cookie";
+import {
+  getCookie as getServerCookie,
+  getResponseHeader,
+  setCookie as setServerCookie,
+} from "vinxi/http?server";
 
-import useClientCookie from "react-use-cookie";
+import useClientCookie, {
+  setCookie as setClientCookie,
+  getCookie as getClientCookie,
+} from "react-use-cookie";
 import { useEffect } from "react";
 
-export function accessCookie(
-  name: string
-): [string | undefined, (value: string) => void] {
-  if (import.meta.env.SSR) {
-    const value = getCookie(name);
+type CookieOptions = {
+  maxAge?: number;
+  deduplicate?: boolean;
+};
 
-    function setValue(newValue: string) {
+type SetCookie = (value: string, options?: CookieOptions) => void;
+
+export function accessCookie(name: string): [string | undefined, SetCookie] {
+  if (import.meta.env.SSR) {
+    const value = getServerCookie(name);
+
+    const setValue: SetCookie = (newValue, options) => {
       // this deduplicates setting the cookie mulitple times
       const setCookieHeader = getResponseHeader("set-cookie");
+      const deduplicate = options?.deduplicate ?? true;
       if (
-        newValue !== value &&
-        (!setCookieHeader ||
-          (typeof setCookieHeader === "object" && setCookieHeader.length === 0))
+        !deduplicate ||
+        (newValue !== value &&
+          (!setCookieHeader ||
+            (typeof setCookieHeader === "object" &&
+              setCookieHeader.length === 0)))
       ) {
-        setCookie(name, newValue);
+        const maxAge = options?.maxAge ?? 60 * 60 * 24 * 30;
+        setServerCookie(name, newValue, { maxAge });
       }
-    }
+    };
     return [value, setValue] as const;
   } else if (isComponentRender()) {
     const [value, setClientValue] = useClientCookie(name);
-    function setValue(newValue: string) {
-      if (newValue !== value) {
-        setClientValue(newValue);
+    const setValue: SetCookie = (newValue, options) => {
+      const deduplicate = options?.deduplicate ?? true;
+      if (!deduplicate || newValue !== value) {
+        const days = options?.maxAge ? options?.maxAge / 60 / 60 / 24 : 30;
+        setClientValue(newValue, { days });
       }
-    }
+    };
     return [value, setValue] as const;
   } else {
-    const value = Cookies.get(name);
+    const value = getClientCookie(name);
 
-    function setValue(newValue: string) {
-      if (newValue !== value) {
-        Cookies.set(name, newValue);
+    const setValue: SetCookie = (newValue, options) => {
+      const deduplicate = options?.deduplicate ?? true;
+      if (!deduplicate || newValue !== value) {
+        const days = options?.maxAge ? options?.maxAge / 60 / 60 / 24 : 30;
+        setClientCookie(name, newValue, { days });
       }
-    }
+    };
 
     return [value, setValue] as const;
   }
