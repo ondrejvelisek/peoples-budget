@@ -20,7 +20,7 @@ function Page() {
 
   return (
     <button className="p-4" onClick={() => setCount((prev) => prev + 1)}>
-      {count}
+      {count} (TanStart v1.82.1)
     </button>
   );
 }
