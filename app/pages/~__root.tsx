@@ -3,28 +3,29 @@ import {
   ScrollRestoration,
   createRootRouteWithContext,
 } from "@tanstack/react-router";
-import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
+import { Meta, Scripts } from "@tanstack/start";
 
 import mainCss from "../main.css?url";
 
 import { StrictMode } from "react";
-import { useExpensesData } from "@/data/expenses";
 import type { QueryClient } from "@tanstack/react-query";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   component: RootComponent,
-  meta: () => [
-    {
-      charSet: "utf-8",
-    },
-    {
-      name: "viewport",
-      content: "width=device-width, initial-scale=1",
-    },
-  ],
-  links: () => [{ rel: "stylesheet", href: mainCss }],
+  head: () => ({
+    meta: [
+      {
+        charSet: "utf-8",
+      },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1",
+      },
+    ],
+    links: [{ rel: "stylesheet", href: mainCss }],
+  }),
 });
 
 function RootComponent() {
@@ -38,16 +39,16 @@ function RootComponent() {
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <StrictMode>
-      <Html>
-        <Head>
+      <html>
+        <head>
           <Meta />
-        </Head>
-        <Body>
+        </head>
+        <body>
           {children}
           <ScrollRestoration />
           <Scripts />
-        </Body>
-      </Html>
+        </body>
+      </html>
     </StrictMode>
   );
 }
