@@ -43,7 +43,7 @@ Misc:
     ✔ Add anonymous analytics to the app @done (11/8/2024, 10:24:07 PM)
     ☐ Add nice Error boundaries
     ☐ Add nice 404 page
-    ☐ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution. unstorage?
+    ✔ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution. unstorage? @done (11/23/2024, 10:12:08 AM)
     ☐ Add README.md
     ☐ Improve eslint and prettier config. Possibly on save behaviour.
     ☐ Update package dependencies (it should help to remove unmet peer dependenc warnings)
