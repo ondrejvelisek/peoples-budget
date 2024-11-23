@@ -15,9 +15,13 @@ import {
 } from "./expenseDimensions";
 import { useParams } from "@tanstack/react-router";
 import { kvStorage } from "./kvStorage";
-import { prefixStorage } from "unstorage";
+import { createStorage, prefixStorage } from "unstorage";
+import memoryDriver from "unstorage/drivers/memory";
 
 const expensesStorage = prefixStorage<ExpenseItem>(kvStorage, "expenses:");
+const expensesMemoryStorage = createStorage<ExpenseItem>({
+  driver: memoryDriver(),
+});
 
 export type ExpenseKey = Array<{
   dimension: ExpenseDimension;
@@ -152,6 +156,11 @@ export const getExpense = createServerFn(
     const childrenDimension = params.childrenDimension;
     const cacheKeyStr = JSON.stringify(params);
 
+    const memoryCached = await expensesMemoryStorage.getItem(cacheKeyStr);
+    if (memoryCached) {
+      console.log("CACHE(getExpense): memory HIT", cacheKeyStr);
+      return memoryCached;
+    }
     const cached = await expensesStorage.getItem(cacheKeyStr);
     if (cached) {
       console.log("CACHE(getExpense): HIT", cacheKeyStr);
@@ -203,6 +212,7 @@ export const getExpense = createServerFn(
 
     expense.children.sort((a, b) => b.amount - a.amount);
 
+    await expensesMemoryStorage.setItem(cacheKeyStr, expense);
     await expensesStorage.setItem(cacheKeyStr, expense);
     return expense;
   }
