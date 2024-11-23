@@ -9,18 +9,15 @@ import { parseCsv, type SimpleQueryResult } from "@/lib/utils";
 import expenses2025Csv from "./expenses_2025.csv?raw";
 import { createServerFn } from "@tanstack/start";
 import { getExpensesTables, type ExpensesTables } from "./tables";
-import { FlatCache } from "flat-cache";
 import {
   useChildrenExpenseDimension,
   type ExpenseDimension,
 } from "./expenseDimensions";
 import { useParams } from "@tanstack/react-router";
+import { kvStorage } from "./kvStorage";
+import { prefixStorage } from "unstorage";
 
-const cache = new FlatCache({
-  ttl: 30 * 24 * 60 * 60 * 1000, // 1 month
-  lruSize: 1000,
-  expirationInterval: 24 * 60 * 1000 * 60, // 1 day
-});
+const expensesStorage = prefixStorage<ExpenseItem>(kvStorage, "expenses:");
 
 export type ExpenseKey = Array<{
   dimension: ExpenseDimension;
@@ -154,7 +151,8 @@ export const getExpense = createServerFn(
     const expenseKey = params.expenseKey;
     const childrenDimension = params.childrenDimension;
     const cacheKeyStr = JSON.stringify(params);
-    const cached = cache.get<ExpenseItem | undefined>(cacheKeyStr);
+
+    const cached = await expensesStorage.getItem(cacheKeyStr);
     if (cached) {
       console.log("CACHE(getExpense): HIT", cacheKeyStr);
       return cached;
@@ -205,7 +203,7 @@ export const getExpense = createServerFn(
 
     expense.children.sort((a, b) => b.amount - a.amount);
 
-    cache.set(cacheKeyStr, expense);
+    await expensesStorage.setItem(cacheKeyStr, expense);
     return expense;
   }
 );

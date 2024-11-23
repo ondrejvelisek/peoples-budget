@@ -3,7 +3,8 @@ import sectorsCsv from "./sectors_table.csv?raw";
 import typesCsv from "./types_table.csv?raw";
 import officesCsv from "./offices_table.csv?raw";
 import { createServerFn } from "@tanstack/start";
-import { FlatCache } from "flat-cache";
+import memoryDriver from "unstorage/drivers/memory";
+import { createStorage } from "unstorage";
 
 export type SectorsTableRecord = {
   id: number;
@@ -84,16 +85,14 @@ export const getOfficesTable = createServerFn(
   }
 );
 
-const cache = new FlatCache({
-  ttl: 30 * 24 * 60 * 60 * 1000, // 1 month
-  lruSize: 1000,
-  expirationInterval: 24 * 60 * 1000 * 60, // 1 day
+export const kvMemoryStorage = createStorage<ExpensesTables>({
+  driver: memoryDriver(),
 });
 
 export const getExpensesTables = createServerFn(
   "GET",
   async (): Promise<ExpensesTables> => {
-    const cached = cache.get<ExpensesTables | undefined>("expenses_tables");
+    const cached = await kvMemoryStorage.getItem("expenses_tables");
     if (cached) {
       console.log("CACHE(getExpensesTables): HIT");
       return cached;
@@ -106,7 +105,11 @@ export const getExpensesTables = createServerFn(
       getOfficesTable(),
     ]);
 
-    cache.set("expenses_tables", { sectors, types, offices });
+    await kvMemoryStorage.setItem("expenses_tables", {
+      sectors,
+      types,
+      offices,
+    });
     return { sectors, types, offices };
   }
 );

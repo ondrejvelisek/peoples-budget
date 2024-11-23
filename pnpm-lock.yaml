@@ -94,7 +94,13 @@ importers:
         version: 1.73.1(@tanstack/react-router@1.73.1(@tanstack/router-generator@1.73.1)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912))(csstype@3.1.3)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)
       '@tanstack/start':
         specifier: ^1.73.1
-        version: 1.73.1(@types/node@20.12.14)(ioredis@5.4.1)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)(vite@5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
+        version: 1.73.1(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)(vite@5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
+      '@upstash/redis':
+        specifier: ^1.34.3
+        version: 1.34.3
+      '@vercel/kv':
+        specifier: ^3.0.0
+        version: 3.0.0
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -104,9 +110,6 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      flat-cache:
-        specifier: ^6.1.0
-        version: 6.1.0
       google-auth-library:
         specifier: ^9.14.2
         version: 9.14.2
@@ -149,6 +152,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.10)
+      unstorage:
+        specifier: ^1.13.1
+        version: 1.13.1(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)
       vaul:
         specifier: ^1.0.0
         version: 1.0.0(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
@@ -194,13 +200,13 @@ importers:
         version: 0.0.0-experimental-de2cfda-20240912
       eslint:
         specifier: ^9.10.0
-        version: 9.10.0(jiti@1.21.6)
+        version: 9.10.0(jiti@2.4.0)
       eslint-plugin-react:
         specifier: ^7.36.1
-        version: 7.36.1(eslint@9.10.0(jiti@1.21.6))
+        version: 7.36.1(eslint@9.10.0(jiti@2.4.0))
       eslint-plugin-react-compiler:
         specifier: 19.0.0-beta-6fc168f-20241025
-        version: 19.0.0-beta-6fc168f-20241025(eslint@9.10.0(jiti@1.21.6))
+        version: 19.0.0-beta-6fc168f-20241025(eslint@9.10.0(jiti@2.4.0))
       eslint-plugin-tailwindcss:
         specifier: ^3.17.4
         version: 3.17.4(tailwindcss@3.4.10)
@@ -224,10 +230,10 @@ importers:
         version: 5.6.3
       typescript-eslint:
         specifier: ^8.8.1
-        version: 8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)
+        version: 8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)
       vinxi:
         specifier: ^0.4.3
-        version: 0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
+        version: 0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
       vite:
         specifier: ^5.4.3
         version: 5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
@@ -1044,9 +1050,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@keyv/serialize@1.0.1':
-    resolution: {integrity: sha512-kKXeynfORDGPUEEl2PvTExM2zs+IldC6ZD8jPcfvI351MDNtfMlw9V9s4XZXuJNDK2qR5gbEKxRyoYx3quHUVQ==}
 
   '@mantine/hooks@7.12.2':
     resolution: {integrity: sha512-dVMw8jpM0hAzc8e7/GNvzkk9N0RN/m+PKycETB3H6lJGuXJJSRR4wzzgQKpEhHwPccktDpvb4rkukKDq2jA8Fg==}
@@ -2087,6 +2090,13 @@ packages:
     resolution: {integrity: sha512-0/TdC3aeRAsW7MDvYRwEc1Uwm0TIBfzjPFgg60UU2Haj5qsCs9cc3zNgY71edqE3LbWfF/WoZQd3lJoDXFQpag==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@upstash/redis@1.34.3':
+    resolution: {integrity: sha512-VT25TyODGy/8ljl7GADnJoMmtmJ1F8d84UXfGonRRF8fWYJz7+2J6GzW+a6ETGtk4OyuRTt7FRSvFG5GvrfSdQ==}
+
+  '@vercel/kv@3.0.0':
+    resolution: {integrity: sha512-pKT8fRnfyYk2MgvyB6fn6ipJPCdfZwiKDdw7vB+HL50rjboEBHDVBEcnwfkEpVSp2AjNtoaOUH7zG+bVC/rvSg==}
+    engines: {node: '>=14.6'}
+
   '@vercel/nft@0.26.5':
     resolution: {integrity: sha512-NHxohEqad6Ra/r4lGknO52uc/GrWILXAMs1BB4401GTqww0fw1bAqzpG1XHuDO+dprg4GvsD9ZLLSsdo78p9hQ==}
     engines: {node: '>=16'}
@@ -2373,9 +2383,6 @@ packages:
       magicast:
         optional: true
 
-  cacheable@1.8.1:
-    resolution: {integrity: sha512-BQU8fJtRc02n0TVitAUMJ1EfeG32lQl3tof+8exwxb/hRMk2oGMlzDFiaPvkD6mi7XLEP7Wb3cOjhHKVmP3jnw==}
-
   call-bind@1.0.7:
     resolution: {integrity: sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==}
     engines: {node: '>= 0.4'}
@@ -2532,6 +2539,9 @@ packages:
     peerDependenciesMeta:
       uWebSockets.js:
         optional: true
+
+  crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -2892,9 +2902,6 @@ packages:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
     engines: {node: '>=16'}
 
-  flat-cache@6.1.0:
-    resolution: {integrity: sha512-txr9o9zCbXvMOWZ1wZAID4U+CnYxdkSFqxxvd8Bs/a0ZidSs8V8diyv0CviKkPYEWHtbFJloF/QQO2WnkarnlA==}
-
   flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
 
@@ -3082,6 +3089,9 @@ packages:
   h3@1.12.0:
     resolution: {integrity: sha512-Zi/CcNeWBXDrFNlV0hUBJQR9F7a96RjMeAZweW/ZWkR9fuXrMcvKnSA63f/zZ9l0GgQOZDVHGvXivNN9PWOwhA==}
 
+  h3@1.13.0:
+    resolution: {integrity: sha512-vFEAu/yf8UMUcB4s43OaDaigcqpQd14yanmOsn+NcRX3/guSKncyE2rOYhq8RIchgJrPSs/QiIddnTTR1ddiAg==}
+
   has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
 
@@ -3123,9 +3133,6 @@ packages:
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
-
-  hookified@1.4.0:
-    resolution: {integrity: sha512-P2ETS9IFdI9g/qcpu0/ZYTiOPECBK4M07CQT+yAoMZr8eltlh4Lt7aizKscUS+ZzRyUpAPloFZmPNH74jQ7q6w==}
 
   http-errors@2.0.0:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
@@ -3374,6 +3381,10 @@ packages:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
 
+  jiti@2.4.0:
+    resolution: {integrity: sha512-H5UpaUI+aHOqZXlYOaFP/8AzKsg+guWu+Pr3Y8i7+Y3zr1aXAvCvTAQ1RxSc6oVD8R8c7brgNtTVP91E7upH/g==}
+    hasBin: true
+
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -3427,9 +3438,6 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  keyv@5.1.0:
-    resolution: {integrity: sha512-FUr1fbKVsj9IZkPkY9reJ80Lp2B3ldtFXH+xK0wvZYzOpwgHV1er3xP4JUhu2cgkV2X3BJQw+hzAbIGqa+hNIA==}
-
   klona@2.0.6:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
     engines: {node: '>= 8'}
@@ -3458,6 +3466,10 @@ packages:
 
   listhen@1.7.2:
     resolution: {integrity: sha512-7/HamOm5YD9Wb7CFgAZkKgVPA96WwhcTQoqtm2VTZGVbVVn3IWKRBTgrU7cchA3Q8k9iCsG8Osoi9GX4JsGM9g==}
+    hasBin: true
+
+  listhen@1.9.0:
+    resolution: {integrity: sha512-I8oW2+QL5KJo8zXNWX046M134WchxsXC7SawLPvRQpogCbkyQIaFxPE89A2HiwR7vAK2Dm2ERBAmyjTYGYEpBg==}
     hasBin: true
 
   local-pkg@0.5.0:
@@ -3696,8 +3708,14 @@ packages:
   ofetch@1.3.4:
     resolution: {integrity: sha512-KLIET85ik3vhEfS+3fDlc/BAZiAp+43QEC/yCo5zkNoY2YaKvNkOaFr/6wCFgFH1kuYQM5pMNi0Tg8koiIemtw==}
 
+  ofetch@1.4.1:
+    resolution: {integrity: sha512-QZj2DfGplQAr2oj9KzceK9Hwz6Whxazmn85yYeVuS3u9XTMOGMRx0kO95MQ+vLsj/S/NwBDMMLU5hpxvI6Tklw==}
+
   ohash@1.1.3:
     resolution: {integrity: sha512-zuHHiGTYTA1sYJ/wZN+t5HKZaH23i4yI1HMwbuXm24Nid7Dv0KcuRlKoNKS9UNfAVSBlnGLcuQrnOKWOZoEGaw==}
+
+  ohash@1.1.4:
+    resolution: {integrity: sha512-FlDryZAahJmEF3VR3w1KogSEdWX3WhA5GPakFx4J81kEAiHyLMpdLLElS8n8dfNadMgAne/MywcvmogzscVt4g==}
 
   on-finished@2.4.1:
     resolution: {integrity: sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==}
@@ -4469,19 +4487,19 @@ packages:
       webpack-sources:
         optional: true
 
-  unstorage@1.12.0:
-    resolution: {integrity: sha512-ARZYTXiC+e8z3lRM7/qY9oyaOkaozCeNd2xoz7sYK9fv7OLGhVsf+BZbmASqiK/HTZ7T6eAlnVq9JynZppyk3w==}
+  unstorage@1.13.1:
+    resolution: {integrity: sha512-ELexQHUrG05QVIM/iUeQNdl9FXDZhqLJ4yP59fnmn2jGUh0TEulwOgov1ubOb3Gt2ZGK/VMchJwPDNVEGWQpRg==}
     peerDependencies:
       '@azure/app-configuration': ^1.7.0
       '@azure/cosmos': ^4.1.1
       '@azure/data-tables': ^13.2.2
-      '@azure/identity': ^4.4.1
-      '@azure/keyvault-secrets': ^4.8.0
-      '@azure/storage-blob': ^12.24.0
+      '@azure/identity': ^4.5.0
+      '@azure/keyvault-secrets': ^4.9.0
+      '@azure/storage-blob': ^12.25.0
       '@capacitor/preferences': ^6.0.2
-      '@netlify/blobs': ^6.5.0 || ^7.0.0
+      '@netlify/blobs': ^6.5.0 || ^7.0.0 || ^8.1.0
       '@planetscale/database': ^1.19.0
-      '@upstash/redis': ^1.34.0
+      '@upstash/redis': ^1.34.3
       '@vercel/kv': ^1.0.1
       idb-keyval: ^6.2.1
       ioredis: ^5.4.1
@@ -5359,9 +5377,9 @@ snapshots:
   '@esbuild/win32-x64@0.23.1':
     optional: true
 
-  '@eslint-community/eslint-utils@4.4.0(eslint@9.10.0(jiti@1.21.6))':
+  '@eslint-community/eslint-utils@4.4.0(eslint@9.10.0(jiti@2.4.0))':
     dependencies:
-      eslint: 9.10.0(jiti@1.21.6)
+      eslint: 9.10.0(jiti@2.4.0)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.11.1': {}
@@ -5463,10 +5481,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
-
-  '@keyv/serialize@1.0.1':
-    dependencies:
-      buffer: 6.0.3
 
   '@mantine/hooks@7.12.2(react@19.0.0-rc-206df66e-20240912)':
     dependencies:
@@ -6371,7 +6385,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/start@1.73.1(@types/node@20.12.14)(ioredis@5.4.1)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)(vite@5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
+  '@tanstack/start@1.73.1(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)(vite@5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
     dependencies:
       '@tanstack/react-cross-context': 1.60.0(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)
       '@tanstack/react-router': 1.73.1(@tanstack/router-generator@1.73.1)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)
@@ -6380,15 +6394,15 @@ snapshots:
       '@tanstack/start-vite-plugin': 1.66.1
       '@vinxi/react': 0.2.5
       '@vinxi/react-server-dom': 0.0.3(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(vite@5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
-      '@vinxi/server-components': 0.4.3(vinxi@0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
-      '@vinxi/server-functions': 0.4.3(vinxi@0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
+      '@vinxi/server-components': 0.4.3(vinxi@0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
+      '@vinxi/server-functions': 0.4.3(vinxi@0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
       import-meta-resolve: 4.1.0
       isbot: 5.1.17
       jsesc: 3.0.2
       react: 19.0.0-rc-206df66e-20240912
       react-dom: 19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912)
       tiny-invariant: 1.3.3
-      vinxi: 0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
+      vinxi: 0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
       zod: 3.23.8
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -6524,15 +6538,15 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@typescript-eslint/eslint-plugin@8.8.1(@typescript-eslint/parser@8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3))(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)':
+  '@typescript-eslint/eslint-plugin@8.8.1(@typescript-eslint/parser@8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3))(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)':
     dependencies:
       '@eslint-community/regexpp': 4.11.1
-      '@typescript-eslint/parser': 8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)
+      '@typescript-eslint/parser': 8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)
       '@typescript-eslint/scope-manager': 8.8.1
-      '@typescript-eslint/type-utils': 8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)
-      '@typescript-eslint/utils': 8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)
+      '@typescript-eslint/type-utils': 8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)
+      '@typescript-eslint/utils': 8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)
       '@typescript-eslint/visitor-keys': 8.8.1
-      eslint: 9.10.0(jiti@1.21.6)
+      eslint: 9.10.0(jiti@2.4.0)
       graphemer: 1.4.0
       ignore: 5.3.2
       natural-compare: 1.4.0
@@ -6542,14 +6556,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)':
+  '@typescript-eslint/parser@8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.8.1
       '@typescript-eslint/types': 8.8.1
       '@typescript-eslint/typescript-estree': 8.8.1(typescript@5.6.3)
       '@typescript-eslint/visitor-keys': 8.8.1
       debug: 4.3.7
-      eslint: 9.10.0(jiti@1.21.6)
+      eslint: 9.10.0(jiti@2.4.0)
     optionalDependencies:
       typescript: 5.6.3
     transitivePeerDependencies:
@@ -6560,10 +6574,10 @@ snapshots:
       '@typescript-eslint/types': 8.8.1
       '@typescript-eslint/visitor-keys': 8.8.1
 
-  '@typescript-eslint/type-utils@8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)':
+  '@typescript-eslint/type-utils@8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)':
     dependencies:
       '@typescript-eslint/typescript-estree': 8.8.1(typescript@5.6.3)
-      '@typescript-eslint/utils': 8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)
+      '@typescript-eslint/utils': 8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)
       debug: 4.3.7
       ts-api-utils: 1.3.0(typescript@5.6.3)
     optionalDependencies:
@@ -6589,13 +6603,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)':
+  '@typescript-eslint/utils@8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@9.10.0(jiti@1.21.6))
+      '@eslint-community/eslint-utils': 4.4.0(eslint@9.10.0(jiti@2.4.0))
       '@typescript-eslint/scope-manager': 8.8.1
       '@typescript-eslint/types': 8.8.1
       '@typescript-eslint/typescript-estree': 8.8.1(typescript@5.6.3)
-      eslint: 9.10.0(jiti@1.21.6)
+      eslint: 9.10.0(jiti@2.4.0)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -6604,6 +6618,14 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.8.1
       eslint-visitor-keys: 3.4.3
+
+  '@upstash/redis@1.34.3':
+    dependencies:
+      crypto-js: 4.2.0
+
+  '@vercel/kv@3.0.0':
+    dependencies:
+      '@upstash/redis': 1.34.3
 
   '@vercel/nft@0.26.5':
     dependencies:
@@ -6645,7 +6667,7 @@ snapshots:
     transitivePeerDependencies:
       - uWebSockets.js
 
-  '@vinxi/plugin-directives@0.4.3(vinxi@0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
+  '@vinxi/plugin-directives@0.4.3(vinxi@0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
     dependencies:
       '@babel/parser': 7.25.7
       acorn: 8.12.1
@@ -6656,7 +6678,7 @@ snapshots:
       magicast: 0.2.11
       recast: 0.23.9
       tslib: 2.7.0
-      vinxi: 0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
+      vinxi: 0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
 
   '@vinxi/react-server-dom@0.0.3(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(vite@5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
     dependencies:
@@ -6667,27 +6689,27 @@ snapshots:
 
   '@vinxi/react@0.2.5': {}
 
-  '@vinxi/server-components@0.4.3(vinxi@0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
+  '@vinxi/server-components@0.4.3(vinxi@0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
     dependencies:
-      '@vinxi/plugin-directives': 0.4.3(vinxi@0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
+      '@vinxi/plugin-directives': 0.4.3(vinxi@0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
       acorn: 8.12.1
       acorn-loose: 8.4.0
       acorn-typescript: 1.4.13(acorn@8.12.1)
       astring: 1.9.0
       magicast: 0.2.11
       recast: 0.23.9
-      vinxi: 0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
+      vinxi: 0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
 
-  '@vinxi/server-functions@0.4.3(vinxi@0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
+  '@vinxi/server-functions@0.4.3(vinxi@0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
     dependencies:
-      '@vinxi/plugin-directives': 0.4.3(vinxi@0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
+      '@vinxi/plugin-directives': 0.4.3(vinxi@0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))
       acorn: 8.12.1
       acorn-loose: 8.4.0
       acorn-typescript: 1.4.13(acorn@8.12.1)
       astring: 1.9.0
       magicast: 0.2.11
       recast: 0.23.9
-      vinxi: 0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
+      vinxi: 0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
 
   '@vitejs/plugin-react@4.3.1(vite@5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0))':
     dependencies:
@@ -7004,11 +7026,6 @@ snapshots:
       pkg-types: 1.2.0
       rc9: 2.1.2
 
-  cacheable@1.8.1:
-    dependencies:
-      hookified: 1.4.0
-      keyv: 5.1.0
-
   call-bind@1.0.7:
     dependencies:
       es-define-property: 1.0.0
@@ -7146,6 +7163,8 @@ snapshots:
       which: 2.0.2
 
   crossws@0.2.4: {}
+
+  crypto-js@4.2.0: {}
 
   cssesc@3.0.0: {}
 
@@ -7441,19 +7460,19 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-plugin-react-compiler@19.0.0-beta-6fc168f-20241025(eslint@9.10.0(jiti@1.21.6)):
+  eslint-plugin-react-compiler@19.0.0-beta-6fc168f-20241025(eslint@9.10.0(jiti@2.4.0)):
     dependencies:
       '@babel/core': 7.25.8
       '@babel/parser': 7.25.8
       '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.25.8)
-      eslint: 9.10.0(jiti@1.21.6)
+      eslint: 9.10.0(jiti@2.4.0)
       hermes-parser: 0.20.1
       zod: 3.23.8
       zod-validation-error: 3.4.0(zod@3.23.8)
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-react@7.36.1(eslint@9.10.0(jiti@1.21.6)):
+  eslint-plugin-react@7.36.1(eslint@9.10.0(jiti@2.4.0)):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlast: 1.2.5
@@ -7461,7 +7480,7 @@ snapshots:
       array.prototype.tosorted: 1.1.4
       doctrine: 2.1.0
       es-iterator-helpers: 1.0.19
-      eslint: 9.10.0(jiti@1.21.6)
+      eslint: 9.10.0(jiti@2.4.0)
       estraverse: 5.3.0
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
@@ -7490,9 +7509,9 @@ snapshots:
 
   eslint-visitor-keys@4.0.0: {}
 
-  eslint@9.10.0(jiti@1.21.6):
+  eslint@9.10.0(jiti@2.4.0):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@9.10.0(jiti@1.21.6))
+      '@eslint-community/eslint-utils': 4.4.0(eslint@9.10.0(jiti@2.4.0))
       '@eslint-community/regexpp': 4.11.1
       '@eslint/config-array': 0.18.0
       '@eslint/eslintrc': 3.1.0
@@ -7527,7 +7546,7 @@ snapshots:
       strip-ansi: 6.0.1
       text-table: 0.2.0
     optionalDependencies:
-      jiti: 1.21.6
+      jiti: 2.4.0
     transitivePeerDependencies:
       - supports-color
 
@@ -7618,12 +7637,6 @@ snapshots:
     dependencies:
       flatted: 3.3.1
       keyv: 4.5.4
-
-  flat-cache@6.1.0:
-    dependencies:
-      cacheable: 1.8.1
-      flatted: 3.3.1
-      hookified: 1.4.0
 
   flatted@3.3.1: {}
 
@@ -7875,6 +7888,21 @@ snapshots:
     transitivePeerDependencies:
       - uWebSockets.js
 
+  h3@1.13.0:
+    dependencies:
+      cookie-es: 1.2.2
+      crossws: 0.2.4
+      defu: 6.1.4
+      destr: 2.0.3
+      iron-webcrypto: 1.2.1
+      ohash: 1.1.4
+      radix3: 1.1.2
+      ufo: 1.5.4
+      uncrypto: 0.1.3
+      unenv: 1.10.0
+    transitivePeerDependencies:
+      - uWebSockets.js
+
   has-bigints@1.0.2: {}
 
   has-flag@3.0.0: {}
@@ -7906,8 +7934,6 @@ snapshots:
       hermes-estree: 0.20.1
 
   hookable@5.5.3: {}
-
-  hookified@1.4.0: {}
 
   http-errors@2.0.0:
     dependencies:
@@ -8149,6 +8175,8 @@ snapshots:
 
   jiti@1.21.6: {}
 
+  jiti@2.4.0: {}
+
   js-tokens@4.0.0: {}
 
   js-tokens@9.0.0: {}
@@ -8201,10 +8229,6 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  keyv@5.1.0:
-    dependencies:
-      '@keyv/serialize': 1.0.1
-
   klona@2.0.6: {}
 
   knitwork@1.1.0: {}
@@ -8237,6 +8261,29 @@ snapshots:
       h3: 1.12.0
       http-shutdown: 1.2.2
       jiti: 1.21.6
+      mlly: 1.7.1
+      node-forge: 1.3.1
+      pathe: 1.1.2
+      std-env: 3.7.0
+      ufo: 1.5.4
+      untun: 0.1.3
+      uqr: 0.1.2
+    transitivePeerDependencies:
+      - uWebSockets.js
+
+  listhen@1.9.0:
+    dependencies:
+      '@parcel/watcher': 2.4.1
+      '@parcel/watcher-wasm': 2.4.1
+      citty: 0.1.6
+      clipboardy: 4.0.0
+      consola: 3.2.3
+      crossws: 0.2.4
+      defu: 6.1.4
+      get-port-please: 3.1.2
+      h3: 1.13.0
+      http-shutdown: 1.2.2
+      jiti: 2.4.0
       mlly: 1.7.1
       node-forge: 1.3.1
       pathe: 1.1.2
@@ -8365,7 +8412,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  nitropack@2.9.7:
+  nitropack@2.9.7(@upstash/redis@1.34.3)(@vercel/kv@3.0.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@netlify/functions': 2.8.1
@@ -8431,7 +8478,7 @@ snapshots:
       unctx: 2.3.1
       unenv: 1.10.0
       unimport: 3.12.0(rollup@4.21.2)
-      unstorage: 1.12.0(ioredis@5.4.1)
+      unstorage: 1.13.1(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)
       unwasm: 0.3.9
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -8537,7 +8584,15 @@ snapshots:
       node-fetch-native: 1.6.4
       ufo: 1.5.4
 
+  ofetch@1.4.1:
+    dependencies:
+      destr: 2.0.3
+      node-fetch-native: 1.6.4
+      ufo: 1.5.4
+
   ohash@1.1.3: {}
+
+  ohash@1.1.4: {}
 
   on-finished@2.4.1:
     dependencies:
@@ -9303,11 +9358,11 @@ snapshots:
     dependencies:
       csstype: 3.1.3
 
-  typescript-eslint@8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3):
+  typescript-eslint@8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.8.1(@typescript-eslint/parser@8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3))(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)
-      '@typescript-eslint/parser': 8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)
-      '@typescript-eslint/utils': 8.8.1(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.3)
+      '@typescript-eslint/eslint-plugin': 8.8.1(@typescript-eslint/parser@8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3))(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)
+      '@typescript-eslint/parser': 8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)
+      '@typescript-eslint/utils': 8.8.1(eslint@9.10.0(jiti@2.4.0))(typescript@5.6.3)
     optionalDependencies:
       typescript: 5.6.3
     transitivePeerDependencies:
@@ -9383,19 +9438,21 @@ snapshots:
       acorn: 8.12.1
       webpack-virtual-modules: 0.6.2
 
-  unstorage@1.12.0(ioredis@5.4.1):
+  unstorage@1.13.1(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1):
     dependencies:
       anymatch: 3.1.3
       chokidar: 3.6.0
+      citty: 0.1.6
       destr: 2.0.3
-      h3: 1.12.0
-      listhen: 1.7.2
+      h3: 1.13.0
+      listhen: 1.9.0
       lru-cache: 10.4.3
-      mri: 1.2.0
       node-fetch-native: 1.6.4
-      ofetch: 1.3.4
+      ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
+      '@upstash/redis': 1.34.3
+      '@vercel/kv': 3.0.0
       ioredis: 5.4.1
     transitivePeerDependencies:
       - uWebSockets.js
@@ -9486,7 +9543,7 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  vinxi@0.4.3(@types/node@20.12.14)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0):
+  vinxi@0.4.3(@types/node@20.12.14)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0):
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-syntax-jsx': 7.24.7(@babel/core@7.25.2)
@@ -9508,7 +9565,7 @@ snapshots:
       hookable: 5.5.3
       http-proxy: 1.18.1
       micromatch: 4.0.8
-      nitropack: 2.9.7
+      nitropack: 2.9.7(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)
       node-fetch-native: 1.6.4
       path-to-regexp: 6.3.0
       pathe: 1.1.2
@@ -9519,7 +9576,7 @@ snapshots:
       ufo: 1.5.4
       unctx: 2.3.1
       unenv: 1.10.0
-      unstorage: 1.12.0(ioredis@5.4.1)
+      unstorage: 1.13.1(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(ioredis@5.4.1)
       vite: 5.4.3(@types/node@20.12.14)(sugarss@4.0.1(postcss@8.4.45))(terser@5.32.0)
       zod: 3.23.8
     transitivePeerDependencies:
