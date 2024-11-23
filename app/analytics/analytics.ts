@@ -28,9 +28,10 @@ export type Event = {
   page: string; //  path of the event
 };
 
-export const logEvent = createServerFn(
-  "POST",
-  async ({ type, page }: { type: EventType; page: string }) => {
+export const logEvent = createServerFn({ method: "POST" })
+  .validator((data: { type: EventType; page: string }) => data)
+  .handler(({ data }) => {
+    const { type, page } = data;
     if (!doc) {
       return;
     }
@@ -50,6 +51,7 @@ export const logEvent = createServerFn(
       // user navigates before JS was loaded. We track it when JS is loaded. See below.
       return;
     }
+
     setSessionCookie(session, {
       maxAge: 60 * 30, // 30 minutes
       deduplicate: false,
@@ -72,11 +74,13 @@ export const logEvent = createServerFn(
       page,
     };
 
-    await doc.loadInfo();
-    const eventsSheet = doc.sheetsByTitle["events"];
-    await eventsSheet?.addRow(event);
-  }
-);
+    // dont block rendering page
+    (async () => {
+      await doc.loadInfo();
+      const eventsSheet = doc.sheetsByTitle["events"];
+      await eventsSheet?.addRow(event);
+    })();
+  });
 
 function randomString(length = 32) {
   const characters =
@@ -98,8 +102,10 @@ if (!import.meta.env.SSR) {
       deduplicate: false,
     });
     await logEvent({
-      type: "init-page",
-      page: window.location.pathname + window.location.search,
+      data: {
+        type: "init-page",
+        page: window.location.pathname + window.location.search,
+      },
     });
   }
 }

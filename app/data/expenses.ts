@@ -146,15 +146,15 @@ function reduceChildren(
   return children;
 }
 
-export const getExpense = createServerFn(
-  "GET",
-  async (params: {
-    expenseKey: ExpenseKey;
-    childrenDimension?: ExpenseDimension;
-  }): Promise<ExpenseItem> => {
-    const expenseKey = params.expenseKey;
-    const childrenDimension = params.childrenDimension;
-    const cacheKeyStr = JSON.stringify(params);
+export const getExpense = createServerFn()
+  .validator(
+    (data: { expenseKey: ExpenseKey; childrenDimension?: ExpenseDimension }) =>
+      data
+  )
+  .handler(async ({ data }): Promise<ExpenseItem> => {
+    const expenseKey = data.expenseKey;
+    const childrenDimension = data.childrenDimension;
+    const cacheKeyStr = JSON.stringify(data);
 
     const memoryCached = await expensesMemoryStorage.getItem(cacheKeyStr);
     if (memoryCached) {
@@ -215,8 +215,7 @@ export const getExpense = createServerFn(
     await expensesMemoryStorage.setItem(cacheKeyStr, expense);
     await expensesStorage.setItem(cacheKeyStr, expense);
     return expense;
-  }
-);
+  });
 
 export const expenseQueryOptions = (
   expenseKey: ExpenseKey,
@@ -224,7 +223,8 @@ export const expenseQueryOptions = (
 ) =>
   queryOptions({
     queryKey: ["expense", expenseKey, childrenDimension],
-    queryFn: async () => getExpense({ expenseKey, childrenDimension }),
+    queryFn: async () =>
+      getExpense({ data: { expenseKey, childrenDimension } }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
     gcTime: 5 * 60 * 1000, // 5 minutes
     placeholderData: keepPreviousData,

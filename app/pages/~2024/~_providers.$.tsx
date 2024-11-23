@@ -75,12 +75,12 @@ export const Route = createFileRoute("/2024/_providers/$")({
         : [];
 
     await Promise.all(
-      [...ancestors, ...children].map((relativesKey) => {
+      [...ancestors, ...children].map(async (relativesKey) => {
         const childrenDimension = accessChildrenExpenseDimension(
           splat,
           relativesKey
         );
-        return context.queryClient.ensureQueryData(
+        return await context.queryClient.ensureQueryData(
           expenseQueryOptions(relativesKey, childrenDimension)
         );
       })

@@ -7,7 +7,7 @@ export const EXPENSE_DIMENSIONS = {
   urad: "Úřad",
 } as const;
 
-export type ExpenseDimension = keyof (typeof EXPENSE_DIMENSIONS);
+export type ExpenseDimension = keyof typeof EXPENSE_DIMENSIONS;
 
 export type ExpenseDimensions = [
   ExpenseDimension,
