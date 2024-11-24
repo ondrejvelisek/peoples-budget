@@ -1,11 +1,11 @@
 import { type ComponentType, type ReactNode } from "react";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { cn } from "@/lib/utils";
 import lodash from "lodash";
 const { isEqual } = lodash;
+import { motion, AnimatePresence } from "framer-motion";
 
-export const ANIMATION_DURATION = 1000;
-export const ANIMATION_DURATION_CLASS = "duration-1000";
+export const ANIMATION_DURATION = 500;
+export const ANIMATION_DURATION_CLASS = "duration-500";
 
 export type ExplorerItemKey<T = unknown> = Array<T>;
 
@@ -18,30 +18,30 @@ export type ExplorerComponentProps<T = unknown> = {
 type ExplorerProps<T = unknown> = {
   itemKey: ExplorerItemKey<T>;
   childrenKeys?: Array<ExplorerItemKey<T>>;
+  childrenDimension?: string;
   subjectKey: ExplorerItemKey<T>;
   isLoading?: boolean;
   isFetching?: boolean;
   className?: string;
   ExplorerComponent: ComponentType<ExplorerComponentProps<T>>;
-  children: (arg: {
+  ExplorerItemComponent: ComponentType<{
     itemKey: ExplorerItemKey<T>;
     relation: "parent" | "subject" | "child" | undefined;
     isLoading: boolean;
-  }) => ReactNode;
+  }>;
 };
 
 export const Explorer = <T,>({
   itemKey,
   childrenKeys,
+  childrenDimension,
   subjectKey,
   isLoading = false,
   isFetching = false,
   className,
   ExplorerComponent,
-  children,
+  ExplorerItemComponent,
 }: ExplorerProps<T>): ReactNode => {
-  const [animateChildrenRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
-
   const isSubject = isEqual(subjectKey, itemKey);
   const isParent = isEqual(subjectKey?.slice(0, -1), itemKey) && !isSubject;
   const isChild = isEqual(subjectKey, itemKey.slice(0, -1)) && !isSubject;
@@ -67,40 +67,69 @@ export const Explorer = <T,>({
         className
       )}
     >
-      <div
-        className={cn(
-          "overflow-hidden transition-all max-h-20",
-          ANIMATION_DURATION_CLASS,
-          {
-            "max-h-10": relation === "parent",
-            "max-h-0": relation === undefined,
-          }
+      <AnimatePresence>
+        {relation && (
+          <motion.div
+            key={JSON.stringify(["header", itemKey])}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: ANIMATION_DURATION / 1000 }}
+          >
+            <ExplorerItemComponent
+              itemKey={itemKey}
+              relation={relation}
+              isLoading={isLoading}
+            />
+          </motion.div>
         )}
-      >
-        {children({ itemKey, relation, isLoading })}
-      </div>
-      {!isLoading && childrenKeys && (
-        <ul
-          ref={relation ? animateChildrenRef : undefined}
-          className={cn("flex flex-col gap-3")}
-        >
-          {childrenKeys.map(
-            (childKey) =>
-              (isSubject ||
-                isEqual(childKey, subjectKey) ||
-                childKey.every((segment, index) =>
-                  isEqual(segment, subjectKey?.[index])
-                )) && (
-                <li key={JSON.stringify(childKey)}>
-                  <ExplorerComponent
-                    itemKey={childKey}
-                    isParentFetching={isFetching}
-                  />
-                </li>
-              )
+      </AnimatePresence>
+      <div className="grid">
+        <AnimatePresence>
+          {(!isSubject || !isFetching) && !isLoading && childrenKeys && (
+            <motion.ul
+              className={cn("flex flex-col row-start-1 col-start-1 bg-white")}
+              initial={{ opacity: 0, scaleX: 0.95, y: 20 }}
+              animate={{ opacity: 1, scaleX: 1, y: 0 }}
+              exit={{ opacity: 0, scaleX: 0.95, y: 20 }}
+              key={JSON.stringify([childrenDimension, itemKey])}
+              transition={{ duration: ANIMATION_DURATION / 1000 }}
+            >
+              <AnimatePresence>
+                {childrenKeys.map(
+                  (childKey) =>
+                    (isSubject ||
+                      isEqual(childKey, subjectKey) ||
+                      childKey.every((segment, index) =>
+                        isEqual(segment, subjectKey?.[index])
+                      )) && (
+                      <motion.li
+                        className="overflow-hidden"
+                        key={JSON.stringify(["child", childKey])}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: ANIMATION_DURATION / 1000 }}
+                      >
+                        <ExplorerComponent
+                          itemKey={childKey}
+                          isParentFetching={isFetching}
+                          className={cn(
+                            "mt-0 transition-all",
+                            ANIMATION_DURATION_CLASS,
+                            {
+                              "mt-3": isSubject,
+                            }
+                          )}
+                        />
+                      </motion.li>
+                    )
+                )}
+              </AnimatePresence>
+            </motion.ul>
           )}
-        </ul>
-      )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

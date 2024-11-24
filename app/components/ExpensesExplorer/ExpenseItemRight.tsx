@@ -25,7 +25,7 @@ export const ExpenseItemRight: FC<ExpenseItemRightProps> = ({
         className
       )}
     >
-      {relation === "subject" && <ExpenseDimensionSwitcher />}
+      {<ExpenseDimensionSwitcher />}
       {/*<div
         className={cn(
           "h-[1.3em] max-w-full truncate text-xs font-normal transition-all",

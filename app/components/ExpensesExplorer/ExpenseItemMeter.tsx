@@ -32,10 +32,10 @@ export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
   return (
     <div
       className={cn(
-        "absolute inset-0 z-10 h-1 rounded transition-all",
+        "absolute inset-0 z-10 h-1 rounded transition-all opacity-1",
         ANIMATION_DURATION_CLASS,
         {
-          "h-0": relation === "parent",
+          "h-0 opacity-0": relation === "parent",
           "bg-neutral-200/80 mx-2": relation === "subject",
         },
         className

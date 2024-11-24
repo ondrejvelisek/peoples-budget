@@ -7,14 +7,14 @@ import { ExpenseItemMeter } from "./ExpenseItemMeter";
 import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
 
 type ExpenseItemProps = {
-  expenseKey?: ExpenseKey;
+  itemKey?: ExpenseKey;
   className?: string;
   relation?: "parent" | "subject" | "child";
   isLoading?: boolean;
 };
 
 export const ExpenseItem: FC<ExpenseItemProps> = ({
-  expenseKey,
+  itemKey: expenseKey,
   className,
   relation = "parent",
   isLoading = false,
@@ -32,15 +32,15 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
         "relative block h-auto w-full bg-white transition-all",
         ANIMATION_DURATION_CLASS,
         {
-          "px-2 py-1": relation === "parent",
-          "py-2 px-2 pb-5 active:bg-transparent hover:bg-transparent":
+          "px-2 pt-1": relation === "parent",
+          "pt-2 px-2 pb-5 active:bg-transparent hover:bg-transparent":
             relation === "subject",
-          "p-2": relation === "child",
+          "px-2 pt-2 pb-2": relation === "child",
         },
         className
       )}
     >
-      <div className="flex grow items-baseline justify-between gap-4">
+      <div className="flex grow justify-between gap-4">
         <ExpenseItemLeft
           expenseKey={expenseKey}
           title={expense?.title}
