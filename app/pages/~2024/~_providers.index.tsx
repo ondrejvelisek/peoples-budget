@@ -7,7 +7,7 @@ export const Route = createFileRoute("/2024/_providers/")({
       { expenseKey: [], expenseDimension: undefined },
       []
     );
-    return redirect({
+    throw redirect({
       to: "/2024/$",
       params: {
         _splat: { expenseKey: [], expenseDimension: childrenDimension },
