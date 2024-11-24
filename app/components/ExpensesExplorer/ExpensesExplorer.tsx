@@ -33,19 +33,12 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({
     <Explorer<ExpenseKey[number]>
       itemKey={itemKey}
       ExplorerComponent={ExpensesExplorer}
+      ExplorerItemComponent={ExpenseItem}
       subjectKey={urlExpenseKey}
       childrenKeys={expense?.children}
       isFetching={isExpenseFetching}
       isLoading={isLoading}
       className={className}
-    >
-      {({ itemKey, relation, isLoading }) => (
-        <ExpenseItem
-          expenseKey={itemKey}
-          relation={relation}
-          isLoading={isLoading}
-        />
-      )}
-    </Explorer>
+    />
   );
 };

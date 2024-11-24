@@ -23,11 +23,11 @@ type ExplorerProps<T = unknown> = {
   isFetching?: boolean;
   className?: string;
   ExplorerComponent: ComponentType<ExplorerComponentProps<T>>;
-  children: (arg: {
+  ExplorerItemComponent: ComponentType<{
     itemKey: ExplorerItemKey<T>;
     relation: "parent" | "subject" | "child" | undefined;
     isLoading: boolean;
-  }) => ReactNode;
+  }>;
 };
 
 export const Explorer = <T,>({
@@ -38,8 +38,9 @@ export const Explorer = <T,>({
   isFetching = false,
   className,
   ExplorerComponent,
-  children,
+  ExplorerItemComponent,
 }: ExplorerProps<T>): ReactNode => {
+  const [animateHeaderRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
   const [animateChildrenRef] = useAutoAnimate({ duration: ANIMATION_DURATION });
 
   const isSubject = isEqual(subjectKey, itemKey);
@@ -56,6 +57,7 @@ export const Explorer = <T,>({
 
   return (
     <div
+      ref={animateHeaderRef}
       className={cn(
         "overflow-hidden rounded-lg border-x border-b-2 border-neutral-600/10 border-b-neutral-600/20 outline outline-2 outline-stone-600/5 transition-all @container",
         ANIMATION_DURATION_CLASS,
@@ -67,39 +69,34 @@ export const Explorer = <T,>({
         className
       )}
     >
-      <div
-        className={cn(
-          "overflow-hidden transition-all max-h-20",
-          ANIMATION_DURATION_CLASS,
-          {
-            "max-h-10": relation === "parent",
-            "max-h-0": relation === undefined,
-          }
-        )}
-      >
-        {children({ itemKey, relation, isLoading })}
-      </div>
+      {relation && (
+        <ExplorerItemComponent
+          key={JSON.stringify(itemKey)}
+          itemKey={itemKey}
+          relation={relation}
+          isLoading={isLoading}
+        />
+      )}
       {!isLoading && childrenKeys && (
-        <ul
-          ref={relation ? animateChildrenRef : undefined}
-          className={cn("flex flex-col gap-3")}
-        >
-          {childrenKeys.map(
-            (childKey) =>
-              (isSubject ||
-                isEqual(childKey, subjectKey) ||
-                childKey.every((segment, index) =>
-                  isEqual(segment, subjectKey?.[index])
-                )) && (
-                <li key={JSON.stringify(childKey)}>
-                  <ExplorerComponent
-                    itemKey={childKey}
-                    isParentFetching={isFetching}
-                  />
-                </li>
-              )
-          )}
-        </ul>
+        <div key={JSON.stringify(["children", itemKey])}>
+          <ul ref={animateChildrenRef} className={cn("flex flex-col gap-3")}>
+            {childrenKeys.map(
+              (childKey) =>
+                (isSubject ||
+                  isEqual(childKey, subjectKey) ||
+                  childKey.every((segment, index) =>
+                    isEqual(segment, subjectKey?.[index])
+                  )) && (
+                  <li key={JSON.stringify(childKey)}>
+                    <ExplorerComponent
+                      itemKey={childKey}
+                      isParentFetching={isFetching}
+                    />
+                  </li>
+                )
+            )}
+          </ul>
+        </div>
       )}
     </div>
   );

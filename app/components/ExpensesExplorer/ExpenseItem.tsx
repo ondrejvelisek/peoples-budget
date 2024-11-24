@@ -7,24 +7,24 @@ import { ExpenseItemMeter } from "./ExpenseItemMeter";
 import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
 
 type ExpenseItemProps = {
-  expenseKey?: ExpenseKey;
+  itemKey?: ExpenseKey;
   className?: string;
   relation?: "parent" | "subject" | "child";
   isLoading?: boolean;
 };
 
 export const ExpenseItem: FC<ExpenseItemProps> = ({
-  expenseKey,
+  itemKey,
   className,
   relation = "parent",
   isLoading = false,
 }) => {
-  const { data: expense, isPending } = useExpense(expenseKey);
+  const { data: expense, isPending } = useExpense(itemKey);
   const { data: parentExpense, isPending: isParentPending } = useExpense(
     expense?.parent
   );
   const isAnyLoading = isPending || isParentPending || isLoading;
-  const isRoot = expenseKey?.length === 0;
+  const isRoot = itemKey?.length === 0;
 
   return (
     <div
@@ -42,7 +42,7 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
     >
       <div className="flex grow items-baseline justify-between gap-4">
         <ExpenseItemLeft
-          expenseKey={expenseKey}
+          expenseKey={itemKey}
           title={expense?.title}
           amount={expense?.amount}
           relation={relation}
