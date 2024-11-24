@@ -17,15 +17,15 @@ export const ExpenseItemRight: FC<ExpenseItemRightProps> = ({
   return (
     <div
       className={cn(
-        "max-w-[50%] overflow-hidden text-right opacity-100 transition-all",
+        "max-w-[50%] max-h-12 overflow-hidden text-right opacity-100 transition-all",
         ANIMATION_DURATION_CLASS,
         {
-          "max-w-0 opacity-0 grow-0": relation !== "subject",
+          "max-w-0 max-h-0 opacity-0 grow-0": relation !== "subject",
         },
         className
       )}
     >
-      {<ExpenseDimensionSwitcher />}
+      <ExpenseDimensionSwitcher />
       {/*<div
         className={cn(
           "h-[1.3em] max-w-full truncate text-xs font-normal transition-all",

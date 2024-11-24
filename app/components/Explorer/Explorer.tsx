@@ -106,9 +106,9 @@ export const Explorer = <T,>({
                       <motion.li
                         className="overflow-hidden"
                         key={JSON.stringify(["child", childKey])}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: ANIMATION_DURATION / 1000 }}
                       >
                         <ExplorerComponent

@@ -47,7 +47,8 @@ export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
           "flex items-center truncate transition-all",
           ANIMATION_DURATION_CLASS,
           {
-            "text-2xs font-normal text-neutral-400": relation === "parent",
+            "text-2xs font-normal text-neutral-400 leading-4":
+              relation === "parent",
             "text-xl font-light": relation === "subject",
             "text-xs font-normal": relation === "child",
           }
