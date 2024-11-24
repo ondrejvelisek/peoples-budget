@@ -34,6 +34,10 @@ export default {
       fontSize: {
         "2xs": "0.625rem",
       },
+
+      transitionDuration: {
+        "5000": "5000ms",
+      },
     },
   },
 } satisfies Config;

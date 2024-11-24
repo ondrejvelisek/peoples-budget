@@ -23,7 +23,7 @@ Expenses:
 
 Income:
     ✔ Get data of Incomes from Monitor @done (11/24/2024, 9:49:30 AM)
-    ☐ Extract Explorer as general component
+    ✔ Extract Explorer as general component @done (11/24/2024, 12:52:40 PM)
     ☐ Income explorer
     ☐ Design aggregation bar
 
@@ -39,6 +39,7 @@ Bugs:
     ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)
     ✔ Do not report analytics events during prerender @done (11/9/2024, 11:52:46 AM)
     ✔ Fix redirect when logging event @done (11/24/2024, 10:46:13 AM)
+    ☐ Fix animations
     
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)

@@ -4,7 +4,7 @@ import { useExpense, type ExpenseKey } from "@/data/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
 import { ExpenseItemMeter } from "./ExpenseItemMeter";
-import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
+import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
 
 type ExpenseItemProps = {
   expenseKey?: ExpenseKey;
@@ -16,7 +16,7 @@ type ExpenseItemProps = {
 export const ExpenseItem: FC<ExpenseItemProps> = ({
   expenseKey,
   className,
-  relation = "subject",
+  relation = "parent",
   isLoading = false,
 }) => {
   const { data: expense, isPending } = useExpense(expenseKey);

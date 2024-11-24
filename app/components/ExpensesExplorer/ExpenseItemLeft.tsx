@@ -1,10 +1,10 @@
 import { type FC } from "react";
 import { cn, formatCurrency } from "@/lib/utils";
 import { RiArrowLeftLine } from "react-icons/ri";
-import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "@tanstack/react-router";
 import { useExpense, type ExpenseKey } from "@/data/expenses";
+import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
 
 type ExpenseItemLeftProps = {
   expenseKey?: ExpenseKey;

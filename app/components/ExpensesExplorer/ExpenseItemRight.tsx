@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
-import { ANIMATION_DURATION_CLASS } from "./ExpensesExplorer";
 import { ExpenseDimensionSwitcher } from "./ExpenseDimensionSwitcher";
+import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
 
 type ExpenseItemRightProps = {
   amount?: number;
