@@ -13,8 +13,10 @@ export function createRouter() {
     defaultPreload: "intent",
   });
 
-  router.subscribe("onBeforeLoad", async ({ toLocation }) => {
-    await logEvent({ data: { type: "page-view", page: toLocation.pathname } });
+  router.subscribe("onLoad", async ({ toLocation }) => {
+    await logEvent({
+      data: { type: "page-view", page: toLocation.pathname },
+    });
   });
 
   return routerWithQueryClient(router, queryClient);

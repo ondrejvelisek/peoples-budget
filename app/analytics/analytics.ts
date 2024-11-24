@@ -101,11 +101,11 @@ if (!import.meta.env.SSR) {
       maxAge: 60 * 30, // 30 minutes
       deduplicate: false,
     });
-    await logEvent({
-      data: {
-        type: "init-page",
-        page: window.location.pathname + window.location.search,
-      },
-    });
   }
+  await logEvent({
+    data: {
+      type: "init-page",
+      page: window.location.pathname + window.location.search,
+    },
+  });
 }
