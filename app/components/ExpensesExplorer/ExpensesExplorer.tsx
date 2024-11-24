@@ -20,10 +20,10 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({
   const {
     data: expense,
     isPending,
-    isFetching: isExpenseFetching,
+    isFetching,
   } = useExpense(itemKey);
 
-  const isLoading = isPending || isParentFetching;
+  const isLoading = isPending;
 
   if (!urlExpenseKey) {
     return null;
@@ -33,19 +33,13 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({
     <Explorer<ExpenseKey[number]>
       itemKey={itemKey}
       ExplorerComponent={ExpensesExplorer}
+      ExplorerItemComponent={ExpenseItem}
       subjectKey={urlExpenseKey}
       childrenKeys={expense?.children}
-      isFetching={isExpenseFetching}
+      childrenDimension={expense?.childrenDimension}
+      isFetching={isFetching || isParentFetching}
       isLoading={isLoading}
       className={className}
-    >
-      {({ itemKey, relation, isLoading }) => (
-        <ExpenseItem
-          expenseKey={itemKey}
-          relation={relation}
-          isLoading={isLoading}
-        />
-      )}
-    </Explorer>
+    />
   );
 };

@@ -64,13 +64,10 @@ export function accessCookie(name: string): [string | undefined, SetCookie] {
 
 export const isComponentRender = () => {
   try {
-    useEffect(() => {
-      console.debug("isComponentRender: true");
-    });
+    useEffect(() => {}, []);
     return true;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (_err) {
-    console.debug("isComponentRender: false");
     return false;
   }
 };

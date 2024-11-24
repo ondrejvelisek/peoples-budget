@@ -68,10 +68,10 @@ export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
       </div>
       <div
         className={cn(
-          "h-[1.3em] truncate font-bold transition-all",
+          "max-h-[1.3em] truncate font-bold transition-all",
           ANIMATION_DURATION_CLASS,
           {
-            "h-0 opacity-0": relation === "parent",
+            "max-h-0 opacity-0": relation === "parent",
           }
         )}
       >

@@ -37,6 +37,7 @@ export default {
 
       transitionDuration: {
         "5000": "5000ms",
+        "15000": "15000ms",
       },
     },
   },
