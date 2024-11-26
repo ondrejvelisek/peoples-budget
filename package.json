@@ -4,10 +4,10 @@
   "type": "module",
   "types": "./types/index.d.ts",
   "scripts": {
-    "dev": "bunx --bun vinxi dev",
-    "build": "bunx --bun vinxi build --preset bun",
-    "start": "bunx --bun vinxi start --preset bun",
-    "serve": "bunx --bun vinxi serve",
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "serve": "vinxi serve",
     "tscheck": "bunx --bun tsc --noEmit",
     "lint": "bunx --bun eslint --flag unstable_ts_config",
     "validate": "pnpm tscheck && pnpm lint"
