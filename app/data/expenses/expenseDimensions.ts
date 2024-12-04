@@ -1,11 +1,7 @@
 import { useParams } from "@tanstack/react-router";
-import { accessChildrenDimension, type ItemKey } from "../dimensions";
+import { accessChildrenDimension, DIMENSIONS, type ItemKey } from "../dimensions";
 
-export const EXPENSE_DIMENSIONS = {
-  odvetvi: "Odvětví",
-  druh: "Druh",
-  urad: "Úřad",
-} as const;
+export const EXPENSE_DIMENSIONS = DIMENSIONS;
 
 export type ExpenseDimension = keyof typeof EXPENSE_DIMENSIONS;
 

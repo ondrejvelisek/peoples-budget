@@ -1,6 +1,12 @@
 import { accessCookie } from "./cookie";
 
-export type Dimension = string;
+export const DIMENSIONS = {
+  odvetvi: "Odvětví",
+  druh: "Druh",
+  urad: "Úřad",
+} as const;
+
+export type Dimension = keyof typeof DIMENSIONS;
 
 export type Dimensions = Array<Dimension>;
 
@@ -58,7 +64,7 @@ export function accessChildrenDimension<
   K extends ItemKey<D>,
 >(
   urlItemKey: K,
-  urlDimension: D|undefined,
+  urlDimension: D | undefined,
   itemKey: K,
   cookieName: string,
   defaultDimensions: A

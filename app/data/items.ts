@@ -56,7 +56,7 @@ function reduceTitle<D extends Dimension>(
     const office = offices[lastKey.id];
     return office?.name ?? "Neznámý úřad";
   }
-  throw new Error(`Invalid dimension: ${lastKey.dimension}`);
+  throw new Error(`Invalid dimension A: ${lastKey.dimension}`);
 }
 
 function reduceParent<D extends Dimension>(itemKey: ItemKey<D>, acc?: Item<D>) {
@@ -168,7 +168,7 @@ export const getItem = async <D extends Dimension>(
       if (dimension === "urad") {
         return String(record.office_id).startsWith(id);
       }
-      throw new Error(`Invalid dimension: ${dimension}`);
+      throw new Error(`Invalid dimension B: ${dimension}`);
     });
   }
 

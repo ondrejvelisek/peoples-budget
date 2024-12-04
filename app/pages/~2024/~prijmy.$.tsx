@@ -25,7 +25,7 @@ export const Route = createFileRoute("/2024/prijmy/$")({
       if (hasDimension) {
         incomeDimension = splatSegments?.at(-1);
         if (!isIncomeDimension(incomeDimension)) {
-          throw new Error(`Invalid dimension: ${incomeDimension}`);
+          throw new Error(`Invalid dimension C: ${incomeDimension}`);
         }
       }
       const incomeKey =

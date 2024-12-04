@@ -25,7 +25,7 @@ export const Route = createFileRoute("/2024/vydaje/$")({
       if (hasDimension) {
         expenseDimension = splatSegments?.at(-1);
         if (!isExpenseDimension(expenseDimension)) {
-          throw new Error(`Invalid dimension: ${expenseDimension}`);
+          throw new Error(`Invalid dimension D: ${expenseDimension}`);
         }
       }
       const expenseKey =

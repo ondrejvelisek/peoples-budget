@@ -1,10 +1,9 @@
 import { useParams } from "@tanstack/react-router";
-import { accessChildrenDimension, type ItemKey } from "../dimensions";
+import { accessChildrenDimension, DIMENSIONS, type ItemKey } from "../dimensions";
+import lodash from "lodash";
+const { omit } = lodash;
 
-export const INCOME_DIMENSIONS = {
-  druh: "Druh",
-  urad: "Úřad",
-} as const;
+export const INCOME_DIMENSIONS = omit(DIMENSIONS, "odvetvi");
 
 export type IncomeDimension = keyof typeof INCOME_DIMENSIONS;
 

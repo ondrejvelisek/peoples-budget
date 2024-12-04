@@ -1,12 +1,11 @@
 import { type FC } from "react";
-import { cn } from "@/lib/utils";
-import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
-import { ExplorerItemMeter } from "../Explorer/ExplorerItemMeter";
-import { useIncome } from "@/data/incomes/incomes";
+import { ExplorerItem } from "../Explorer/ExplorerItem";
+import type { LinkProps } from "@tanstack/react-router";
 import type { IncomeKey } from "@/data/incomes/incomeDimensions";
+import { useIncome } from "@/data/incomes/incomes";
 
 type IncomeItemProps = {
-  itemKey?: IncomeKey;
+  itemKey: IncomeKey;
   className?: string;
   relation?: "parent" | "subject" | "child";
   isLoading?: boolean;
@@ -14,7 +13,6 @@ type IncomeItemProps = {
 
 export const IncomeItem: FC<IncomeItemProps> = ({
   itemKey: incomeKey,
-  className,
   relation = "parent",
   isLoading = false,
 }) => {
@@ -22,35 +20,50 @@ export const IncomeItem: FC<IncomeItemProps> = ({
   const { data: parentIncome, isPending: isParentPending } = useIncome(
     income?.parent
   );
-  const { data: rootExpense, isPending: isRootPending } = useIncome([]);
+  const { data: rootIncome, isPending: isRootPending } = useIncome([]);
   const isAnyLoading =
     isPending || isParentPending || isRootPending || isLoading;
   const isRoot = incomeKey?.length === 0;
 
-  return (
-    <div
-      className={cn(
-        "relative block h-auto w-full bg-white transition-all",
-        ANIMATION_DURATION_CLASS,
-        {
-          "px-2 pt-1": relation === "parent",
-          "pt-2 px-2 pb-5 active:bg-transparent hover:bg-transparent":
-            relation === "subject",
-          "px-2 pt-2 pb-2": relation === "child",
+  const dimensionLinks: Array<LinkProps> = [
+    {
+      to: "/2024/prijmy/$",
+      params: {
+        _splat: {
+          incomeKey,
+          incomeDimension: "druh",
         },
-        className
-      )}
-    >
-      <div className="flex grow justify-between gap-4">{income?.title}</div>
+      },
+    },
+    {
+      to: "/2024/prijmy/$",
+      params: {
+        _splat: {
+          incomeKey,
+          incomeDimension: "urad",
+        },
+      },
+    },
+  ];
 
-      <ExplorerItemMeter
-        amount={income?.amount}
-        parentAmount={parentIncome?.amount}
-        rootAmount={rootExpense?.amount}
-        className={cn("absolute inset-0")}
-        relation={isRoot ? "parent" : relation}
-        isLoading={isAnyLoading}
-      />
-    </div>
+  return (
+    <ExplorerItem
+      title={income?.title}
+      amount={income?.amount}
+      parentAmount={parentIncome?.amount}
+      rootAmount={rootIncome?.amount}
+      relation={relation}
+      isLoading={isAnyLoading}
+      hideMeter={isRoot || relation === "parent"}
+      dimensionLinks={dimensionLinks}
+      currentDimension={income?.childrenDimension}
+      to="/2024/prijmy/$"
+      params={{
+        _splat: {
+          incomeKey,
+          incomeDimension: income?.childrenDimension,
+        },
+      }}
+    />
   );
 };

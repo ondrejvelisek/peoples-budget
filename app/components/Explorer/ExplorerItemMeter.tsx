@@ -7,8 +7,8 @@ type ExplorerItemMeterProps = {
   parentAmount?: number;
   rootAmount?: number;
   className?: string;
-  relation: "parent" | "subject" | "child";
-  isLoading?: boolean;
+  isHidden: boolean;
+  showBg: boolean;
 };
 
 export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
@@ -16,10 +16,10 @@ export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
   parentAmount,
   rootAmount,
   className,
-  relation = "subject",
-  isLoading = false,
+  isHidden,
+  showBg,
 }) => {
-  if (isLoading || amount === undefined) {
+  if (amount === undefined) {
     return null;
   }
 
@@ -32,8 +32,8 @@ export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
         "absolute inset-0 z-10 h-1 rounded transition-all opacity-1",
         ANIMATION_DURATION_CLASS,
         {
-          "h-0 opacity-0": relation === "parent",
-          "bg-neutral-200/80 mx-2": relation === "subject",
+          "h-0 opacity-0": isHidden,
+          "bg-neutral-200/80 mx-2": showBg,
         },
         className
       )}
