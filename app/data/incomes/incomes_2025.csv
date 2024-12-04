@@ -1,4 +1,4 @@
-type_id,org_id,amount
+type_id,office_id,amount
 2111,3010001,100000
 2111,3020001,6980000
 2112,3020001,20000

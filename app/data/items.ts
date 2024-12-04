@@ -7,10 +7,13 @@ import { createStorage, prefixStorage } from "unstorage";
 import memoryDriver from "unstorage/drivers/memory";
 import type { Dimension, ItemKey } from "./dimensions";
 
-const itemsStorage = prefixStorage<Item<Dimension>>(kvStorage, "items:");
 const itemsMemoryStorage = createStorage<Item<Dimension>>({
   driver: memoryDriver(),
 });
+
+const itemsStorage = import.meta.env.DEV
+  ? itemsMemoryStorage
+  : prefixStorage<Item<Dimension>>(kvStorage, "items:");
 
 export type Item<D extends Dimension> = {
   key: ItemKey<D>;
