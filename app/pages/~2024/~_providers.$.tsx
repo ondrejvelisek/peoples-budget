@@ -58,6 +58,9 @@ export const Route = createFileRoute("/2024/_providers/$")({
         splat,
         expenseKey
       );
+      if (!childrenDimension) {
+        throw new Error(`No children dimension found for ${expenseKey}`);
+      }
       throw redirect({
         to: "/2024/$",
         params: {

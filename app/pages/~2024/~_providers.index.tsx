@@ -7,6 +7,9 @@ export const Route = createFileRoute("/2024/_providers/")({
       { expenseKey: [], expenseDimension: undefined },
       []
     );
+    if (!childrenDimension) {
+      throw new Error(`No children dimension found for index route`);
+    }
     throw redirect({
       to: "/2024/$",
       params: {

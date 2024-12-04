@@ -36,7 +36,7 @@ export function accessCookie(name: string): [string | undefined, SetCookie] {
         setServerCookie(name, newValue, { maxAge });
       }
     };
-    return [value, setValue] as const;
+    return [value || undefined, setValue] as const;
   } else if (isComponentRender()) {
     const [value, setClientValue] = useClientCookie(name);
     const setValue: SetCookie = (newValue, options) => {
@@ -46,7 +46,7 @@ export function accessCookie(name: string): [string | undefined, SetCookie] {
         setClientValue(newValue, { days });
       }
     };
-    return [value, setValue] as const;
+    return [value || undefined, setValue] as const;
   } else {
     const value = getClientCookie(name);
 
@@ -58,7 +58,7 @@ export function accessCookie(name: string): [string | undefined, SetCookie] {
       }
     };
 
-    return [value, setValue] as const;
+    return [value || undefined, setValue] as const;
   }
 }
 
