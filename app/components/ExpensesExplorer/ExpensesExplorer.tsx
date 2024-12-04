@@ -1,8 +1,11 @@
 import { type FC } from "react";
 import { ExpenseItem } from "../ExpensesExplorer/ExpenseItem";
-import { useExpense, type ExpenseKey } from "@/data/expenses";
-import { useParams } from "@tanstack/react-router";
+import { useExpense } from "@/data/expenses/expenses";
 import { Explorer } from "../Explorer/Explorer";
+import {
+  useUrlExpenseSplat,
+  type ExpenseKey,
+} from "@/data/expenses/expenseDimensions";
 
 type ExpensesExplorerProps = {
   itemKey?: ExpenseKey;
@@ -16,21 +19,14 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({
   isParentFetching = false,
   className,
 }) => {
-  const urlExpenseKey = useParams({ strict: false })._splat?.expenseKey;
-  const {
-    data: expense,
-    isPending,
-    isFetching,
-  } = useExpense(itemKey);
+  const { data: expense, isPending, isFetching } = useExpense(itemKey);
 
   const isLoading = isPending;
 
-  if (!urlExpenseKey) {
-    return null;
-  }
+  const { expenseKey: urlExpenseKey } = useUrlExpenseSplat();
 
   return (
-    <Explorer<ExpenseKey[number]>
+    <Explorer<ExpenseKey>
       itemKey={itemKey}
       ExplorerComponent={ExpensesExplorer}
       ExplorerItemComponent={ExpenseItem}

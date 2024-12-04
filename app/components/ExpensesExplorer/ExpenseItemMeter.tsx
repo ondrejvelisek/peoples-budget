@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
-import { useExpense } from "@/data/expenses";
+import { useExpense } from "@/data/expenses/expenses";
 import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
 
 type ExpenseItemMeterProps = {

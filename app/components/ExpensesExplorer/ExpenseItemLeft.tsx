@@ -3,8 +3,9 @@ import { cn, formatCurrency } from "@/lib/utils";
 import { RiArrowLeftLine } from "react-icons/ri";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "@tanstack/react-router";
-import { useExpense, type ExpenseKey } from "@/data/expenses";
+import { useExpense } from "@/data/expenses/expenses";
 import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
+import type { ExpenseKey } from "@/data/expenses/expenseDimensions";
 
 type ExpenseItemLeftProps = {
   expenseKey?: ExpenseKey;
@@ -26,7 +27,7 @@ export const ExpenseItemLeft: FC<ExpenseItemLeftProps> = ({
   const { data: expense, isPending } = useExpense(expenseKey);
   return (
     <Link
-      to="/2024/$"
+      to="/2024/vydaje/$"
       params={{
         _splat: {
           expenseKey: expenseKey ?? [],

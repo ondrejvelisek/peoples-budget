@@ -1,10 +1,11 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
-import { useExpense, type ExpenseKey } from "@/data/expenses";
+import { useExpense } from "@/data/expenses/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
 import { ExpenseItemMeter } from "./ExpenseItemMeter";
 import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
+import type { ExpenseKey } from "@/data/expenses/expenseDimensions";
 
 type ExpenseItemProps = {
   itemKey?: ExpenseKey;

@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { Link, useParams } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { RiArrowDownSLine } from "react-icons/ri";
 
@@ -9,15 +9,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { EXPENSE_DIMENSIONS } from "@/data/expenseDimensions";
+import {
+  EXPENSE_DIMENSIONS,
+  useUrlExpenseSplat,
+} from "@/data/expenses/expenseDimensions";
 
 export const ExpenseDimensionSwitcher: FC = () => {
-  const splat = useParams({ strict: false })._splat;
-  const expenseKey = splat?.expenseKey;
-  const expenseDimension = splat?.expenseDimension;
-  if (!expenseKey) {
-    throw new Error("ExpenseDimensionSwitcher: Missing expenseKey in url");
-  }
+  const { expenseKey, expenseDimension } = useUrlExpenseSplat();
 
   return (
     <>
@@ -37,7 +35,7 @@ export const ExpenseDimensionSwitcher: FC = () => {
         <DropdownMenuContent>
           <DropdownMenuItem asChild>
             <Link
-              to="/2024/$"
+              to="/2024/vydaje/$"
               params={{ _splat: { expenseKey, expenseDimension: "odvetvi" } }}
               activeProps={{ className: "font-bold" }}
             >
@@ -46,7 +44,7 @@ export const ExpenseDimensionSwitcher: FC = () => {
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link
-              to="/2024/$"
+              to="/2024/vydaje/$"
               params={{ _splat: { expenseKey, expenseDimension: "druh" } }}
               activeProps={{ className: "font-bold" }}
             >
@@ -55,7 +53,7 @@ export const ExpenseDimensionSwitcher: FC = () => {
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link
-              to="/2024/$"
+              to="/2024/vydaje/$"
               params={{ _splat: { expenseKey, expenseDimension: "urad" } }}
               activeProps={{ className: "font-bold" }}
             >
@@ -68,7 +66,7 @@ export const ExpenseDimensionSwitcher: FC = () => {
         <TabsList>
           <TabsTrigger value="odvetvi" asChild>
             <Link
-              to="/2024/$"
+              to="/2024/vydaje/$"
               params={{ _splat: { expenseKey, expenseDimension: "odvetvi" } }}
             >
               Odvětví
@@ -76,7 +74,7 @@ export const ExpenseDimensionSwitcher: FC = () => {
           </TabsTrigger>
           <TabsTrigger value="druh" asChild>
             <Link
-              to="/2024/$"
+              to="/2024/vydaje/$"
               params={{ _splat: { expenseKey, expenseDimension: "druh" } }}
             >
               Druh
@@ -84,7 +82,7 @@ export const ExpenseDimensionSwitcher: FC = () => {
           </TabsTrigger>
           <TabsTrigger value="urad" asChild>
             <Link
-              to="/2024/$"
+              to="/2024/vydaje/$"
               params={{ _splat: { expenseKey, expenseDimension: "urad" } }}
             >
               Úřad

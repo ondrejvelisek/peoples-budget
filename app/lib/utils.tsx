@@ -1,4 +1,3 @@
-import type { ExpenseDimension } from "@/data/expenseDimensions";
 import type { DefaultError, UseQueryResult } from "@tanstack/react-query";
 import { clsx, type ClassValue } from "clsx";
 import { type FC, type PropsWithChildren } from "react";
@@ -71,11 +70,6 @@ export type SimpleQueryResult<TData = unknown, TError = DefaultError> = Pick<
   "data" | "error" | "isPending" | "isFetching"
 >;
 
-export const isDimension = (
-  value?: string
-): value is ExpenseDimension | undefined =>
-  !value || ["odvetvi", "druh", "urad"].includes(value);
-
 export async function parseCsv<
   T extends Record<string, string | number> = Record<string, string | number>,
   A = Array<T>,
@@ -112,3 +106,7 @@ export async function parseCsv<
     });
   });
 }
+
+export type Optional<T> = {
+  [K in keyof T]?: T[K];
+};

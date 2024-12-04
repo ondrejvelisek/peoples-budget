@@ -8,43 +8,26 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './pages/~__root'
 import { Route as IndexImport } from './pages/~index'
-import { Route as R2024ProvidersImport } from './pages/~2024/~_providers'
 import { Route as SupportIndexImport } from './pages/~support/~index'
 import { Route as PublishedIndexImport } from './pages/~published/~index'
 import { Route as MyIndexImport } from './pages/~my/~index'
 import { Route as CompareIndexImport } from './pages/~compare/~index'
 import { Route as AgregatedIndexImport } from './pages/~agregated/~index'
 import { Route as R2025IndexImport } from './pages/~2025/~index'
-import { Route as R2024ProvidersIndexImport } from './pages/~2024/~_providers.index'
-import { Route as R2024ProvidersSplatImport } from './pages/~2024/~_providers.$'
-
-// Create Virtual Routes
-
-const R2024Import = createFileRoute('/2024')()
+import { Route as R2024IndexImport } from './pages/~2024/~index'
+import { Route as R2024VydajeSplatImport } from './pages/~2024/~vydaje.$'
+import { Route as R2024PrijmySplatImport } from './pages/~2024/~prijmy.$'
 
 // Create/Update Routes
-
-const R2024Route = R2024Import.update({
-  id: '/2024',
-  path: '/2024',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any)
-
-const R2024ProvidersRoute = R2024ProvidersImport.update({
-  id: '/_providers',
-  getParentRoute: () => R2024Route,
 } as any)
 
 const SupportIndexRoute = SupportIndexImport.update({
@@ -83,16 +66,22 @@ const R2025IndexRoute = R2025IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const R2024ProvidersIndexRoute = R2024ProvidersIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => R2024ProvidersRoute,
+const R2024IndexRoute = R2024IndexImport.update({
+  id: '/2024/',
+  path: '/2024/',
+  getParentRoute: () => rootRoute,
 } as any)
 
-const R2024ProvidersSplatRoute = R2024ProvidersSplatImport.update({
-  id: '/$',
-  path: '/$',
-  getParentRoute: () => R2024ProvidersRoute,
+const R2024VydajeSplatRoute = R2024VydajeSplatImport.update({
+  id: '/2024/vydaje/$',
+  path: '/2024/vydaje/$',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const R2024PrijmySplatRoute = R2024PrijmySplatImport.update({
+  id: '/2024/prijmy/$',
+  path: '/2024/prijmy/$',
+  getParentRoute: () => rootRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -104,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/2024/': {
+      id: '/2024/'
+      path: '/2024'
+      fullPath: '/2024'
+      preLoaderRoute: typeof R2024IndexImport
       parentRoute: typeof rootRoute
     }
     '/2025/': {
@@ -148,163 +144,129 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupportIndexImport
       parentRoute: typeof rootRoute
     }
-    '/2024': {
-      id: '/2024'
-      path: '/2024'
-      fullPath: '/2024'
-      preLoaderRoute: typeof R2024Import
+    '/2024/prijmy/$': {
+      id: '/2024/prijmy/$'
+      path: '/2024/prijmy/$'
+      fullPath: '/2024/prijmy/$'
+      preLoaderRoute: typeof R2024PrijmySplatImport
       parentRoute: typeof rootRoute
     }
-    '/2024/_providers': {
-      id: '/2024/_providers'
-      path: '/2024'
-      fullPath: '/2024'
-      preLoaderRoute: typeof R2024ProvidersImport
-      parentRoute: typeof R2024Route
-    }
-    '/2024/_providers/$': {
-      id: '/2024/_providers/$'
-      path: '/$'
-      fullPath: '/2024/$'
-      preLoaderRoute: typeof R2024ProvidersSplatImport
-      parentRoute: typeof R2024ProvidersImport
-    }
-    '/2024/_providers/': {
-      id: '/2024/_providers/'
-      path: '/'
-      fullPath: '/2024/'
-      preLoaderRoute: typeof R2024ProvidersIndexImport
-      parentRoute: typeof R2024ProvidersImport
+    '/2024/vydaje/$': {
+      id: '/2024/vydaje/$'
+      path: '/2024/vydaje/$'
+      fullPath: '/2024/vydaje/$'
+      preLoaderRoute: typeof R2024VydajeSplatImport
+      parentRoute: typeof rootRoute
     }
   }
 }
 
 // Create and export the route tree
 
-interface R2024ProvidersRouteChildren {
-  R2024ProvidersSplatRoute: typeof R2024ProvidersSplatRoute
-  R2024ProvidersIndexRoute: typeof R2024ProvidersIndexRoute
-}
-
-const R2024ProvidersRouteChildren: R2024ProvidersRouteChildren = {
-  R2024ProvidersSplatRoute: R2024ProvidersSplatRoute,
-  R2024ProvidersIndexRoute: R2024ProvidersIndexRoute,
-}
-
-const R2024ProvidersRouteWithChildren = R2024ProvidersRoute._addFileChildren(
-  R2024ProvidersRouteChildren,
-)
-
-interface R2024RouteChildren {
-  R2024ProvidersRoute: typeof R2024ProvidersRouteWithChildren
-}
-
-const R2024RouteChildren: R2024RouteChildren = {
-  R2024ProvidersRoute: R2024ProvidersRouteWithChildren,
-}
-
-const R2024RouteWithChildren = R2024Route._addFileChildren(R2024RouteChildren)
-
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/2024': typeof R2024IndexRoute
   '/2025': typeof R2025IndexRoute
   '/agregated': typeof AgregatedIndexRoute
   '/compare': typeof CompareIndexRoute
   '/my': typeof MyIndexRoute
   '/published': typeof PublishedIndexRoute
   '/support': typeof SupportIndexRoute
-  '/2024': typeof R2024ProvidersRouteWithChildren
-  '/2024/$': typeof R2024ProvidersSplatRoute
-  '/2024/': typeof R2024ProvidersIndexRoute
+  '/2024/prijmy/$': typeof R2024PrijmySplatRoute
+  '/2024/vydaje/$': typeof R2024VydajeSplatRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/2024': typeof R2024IndexRoute
   '/2025': typeof R2025IndexRoute
   '/agregated': typeof AgregatedIndexRoute
   '/compare': typeof CompareIndexRoute
   '/my': typeof MyIndexRoute
   '/published': typeof PublishedIndexRoute
   '/support': typeof SupportIndexRoute
-  '/2024': typeof R2024ProvidersIndexRoute
-  '/2024/$': typeof R2024ProvidersSplatRoute
+  '/2024/prijmy/$': typeof R2024PrijmySplatRoute
+  '/2024/vydaje/$': typeof R2024VydajeSplatRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/2024/': typeof R2024IndexRoute
   '/2025/': typeof R2025IndexRoute
   '/agregated/': typeof AgregatedIndexRoute
   '/compare/': typeof CompareIndexRoute
   '/my/': typeof MyIndexRoute
   '/published/': typeof PublishedIndexRoute
   '/support/': typeof SupportIndexRoute
-  '/2024': typeof R2024RouteWithChildren
-  '/2024/_providers': typeof R2024ProvidersRouteWithChildren
-  '/2024/_providers/$': typeof R2024ProvidersSplatRoute
-  '/2024/_providers/': typeof R2024ProvidersIndexRoute
+  '/2024/prijmy/$': typeof R2024PrijmySplatRoute
+  '/2024/vydaje/$': typeof R2024VydajeSplatRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/2024'
     | '/2025'
     | '/agregated'
     | '/compare'
     | '/my'
     | '/published'
     | '/support'
-    | '/2024'
-    | '/2024/$'
-    | '/2024/'
+    | '/2024/prijmy/$'
+    | '/2024/vydaje/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/2024'
     | '/2025'
     | '/agregated'
     | '/compare'
     | '/my'
     | '/published'
     | '/support'
-    | '/2024'
-    | '/2024/$'
+    | '/2024/prijmy/$'
+    | '/2024/vydaje/$'
   id:
     | '__root__'
     | '/'
+    | '/2024/'
     | '/2025/'
     | '/agregated/'
     | '/compare/'
     | '/my/'
     | '/published/'
     | '/support/'
-    | '/2024'
-    | '/2024/_providers'
-    | '/2024/_providers/$'
-    | '/2024/_providers/'
+    | '/2024/prijmy/$'
+    | '/2024/vydaje/$'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R2024IndexRoute: typeof R2024IndexRoute
   R2025IndexRoute: typeof R2025IndexRoute
   AgregatedIndexRoute: typeof AgregatedIndexRoute
   CompareIndexRoute: typeof CompareIndexRoute
   MyIndexRoute: typeof MyIndexRoute
   PublishedIndexRoute: typeof PublishedIndexRoute
   SupportIndexRoute: typeof SupportIndexRoute
-  R2024Route: typeof R2024RouteWithChildren
+  R2024PrijmySplatRoute: typeof R2024PrijmySplatRoute
+  R2024VydajeSplatRoute: typeof R2024VydajeSplatRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R2024IndexRoute: R2024IndexRoute,
   R2025IndexRoute: R2025IndexRoute,
   AgregatedIndexRoute: AgregatedIndexRoute,
   CompareIndexRoute: CompareIndexRoute,
   MyIndexRoute: MyIndexRoute,
   PublishedIndexRoute: PublishedIndexRoute,
   SupportIndexRoute: SupportIndexRoute,
-  R2024Route: R2024RouteWithChildren,
+  R2024PrijmySplatRoute: R2024PrijmySplatRoute,
+  R2024VydajeSplatRoute: R2024VydajeSplatRoute,
 }
 
 export const routeTree = rootRoute
@@ -318,17 +280,22 @@ export const routeTree = rootRoute
       "filePath": "~__root.tsx",
       "children": [
         "/",
+        "/2024/",
         "/2025/",
         "/agregated/",
         "/compare/",
         "/my/",
         "/published/",
         "/support/",
-        "/2024"
+        "/2024/prijmy/$",
+        "/2024/vydaje/$"
       ]
     },
     "/": {
       "filePath": "~index.tsx"
+    },
+    "/2024/": {
+      "filePath": "~2024/~index.tsx"
     },
     "/2025/": {
       "filePath": "~2025/~index.tsx"
@@ -348,27 +315,11 @@ export const routeTree = rootRoute
     "/support/": {
       "filePath": "~support/~index.tsx"
     },
-    "/2024": {
-      "filePath": "~2024",
-      "children": [
-        "/2024/_providers"
-      ]
+    "/2024/prijmy/$": {
+      "filePath": "~2024/~prijmy.$.tsx"
     },
-    "/2024/_providers": {
-      "filePath": "~2024/~_providers.tsx",
-      "parent": "/2024",
-      "children": [
-        "/2024/_providers/$",
-        "/2024/_providers/"
-      ]
-    },
-    "/2024/_providers/$": {
-      "filePath": "~2024/~_providers.$.tsx",
-      "parent": "/2024/_providers"
-    },
-    "/2024/_providers/": {
-      "filePath": "~2024/~_providers.index.tsx",
-      "parent": "/2024/_providers"
+    "/2024/vydaje/$": {
+      "filePath": "~2024/~vydaje.$.tsx"
     }
   }
 }

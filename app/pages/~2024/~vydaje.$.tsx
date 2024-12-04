@@ -1,14 +1,18 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer";
 import { IncomeThumbnail } from "@/components/IncomeThumbnail/IncomeThumbnail";
-import { expenseQueryOptions, type ExpenseKey } from "@/data/expenses";
-import { isDimension } from "@/lib/utils";
-import { accessChildrenExpenseDimension } from "@/data/expenseDimensions";
+import { expenseQueryOptions } from "@/data/expenses/expenses";
+import {
+  accessChildrenExpenseDimension,
+  isExpenseDimension,
+  type ExpenseKey,
+  type ExpensesSplatParam,
+} from "@/data/expenses/expenseDimensions";
 
-export const Route = createFileRoute("/2024/_providers/$")({
+export const Route = createFileRoute("/2024/vydaje/$")({
   component: ExpensePage,
   params: {
-    parse: ({ _splat, ...rest }) => {
+    parse: ({ _splat, ...rest }): { _splat: ExpensesSplatParam } => {
       if (!_splat) {
         return {
           _splat: { expenseDimension: undefined, expenseKey: [] },
@@ -20,7 +24,7 @@ export const Route = createFileRoute("/2024/_providers/$")({
       let expenseDimension = undefined;
       if (hasDimension) {
         expenseDimension = splatSegments?.at(-1);
-        if (!isDimension(expenseDimension)) {
+        if (!isExpenseDimension(expenseDimension)) {
           throw new Error(`Invalid dimension: ${expenseDimension}`);
         }
       }
@@ -31,7 +35,7 @@ export const Route = createFileRoute("/2024/_providers/$")({
             if (index % 2 === 0) {
               const dimension = arr[index];
               const id = arr[index + 1];
-              if (!dimension || !isDimension(dimension)) {
+              if (!dimension || !isExpenseDimension(dimension)) {
                 throw new Error(`Invalid expense dimension: ${dimension}`);
               }
               if (!id) {
@@ -62,7 +66,7 @@ export const Route = createFileRoute("/2024/_providers/$")({
         throw new Error(`No children dimension found for ${expenseKey}`);
       }
       throw redirect({
-        to: "/2024/$",
+        to: "/2024/vydaje/$",
         params: {
           _splat: { expenseKey, expenseDimension: childrenDimension },
         },

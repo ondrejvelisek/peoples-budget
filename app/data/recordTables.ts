@@ -25,7 +25,7 @@ export type OfficesTableRecord = {
   name: string;
 };
 
-export type ExpensesTables = {
+export type RecordTables = {
   sectors: Record<string, SectorsTableRecord>;
   types: Record<string, TypesTableRecord>;
   offices: Record<string, OfficesTableRecord>;
@@ -82,18 +82,18 @@ export const getOfficesTable = createServerFn().handler(
   }
 );
 
-export const kvMemoryStorage = createStorage<ExpensesTables>({
+export const kvMemoryStorage = createStorage<RecordTables>({
   driver: memoryDriver(),
 });
 
-export const getExpensesTables = createServerFn().handler(
-  async (): Promise<ExpensesTables> => {
-    const cached = await kvMemoryStorage.getItem("expenses_tables");
+export const getRecordTables = createServerFn().handler(
+  async (): Promise<RecordTables> => {
+    const cached = await kvMemoryStorage.getItem("record_tables");
     if (cached) {
-      console.log("CACHE(getExpensesTables): HIT");
+      console.log("CACHE(getRecordTables): HIT");
       return cached;
     }
-    console.log("CACHE(getExpensesTables): MISS");
+    console.log("CACHE(getRecordTables): MISS");
 
     const [sectors, types, offices] = await Promise.all([
       getSectorsTable(),
@@ -101,7 +101,7 @@ export const getExpensesTables = createServerFn().handler(
       getOfficesTable(),
     ]);
 
-    await kvMemoryStorage.setItem("expenses_tables", {
+    await kvMemoryStorage.setItem("record_tables", {
       sectors,
       types,
       offices,

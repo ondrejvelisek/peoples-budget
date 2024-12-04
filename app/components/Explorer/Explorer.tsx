@@ -3,35 +3,35 @@ import { cn } from "@/lib/utils";
 import lodash from "lodash";
 const { isEqual } = lodash;
 import { motion, AnimatePresence } from "framer-motion";
+import type { Dimension, ItemKey } from "@/data/dimensions";
 
 export const ANIMATION_DURATION = 500;
 export const ANIMATION_DURATION_CLASS = "duration-500";
 
-export type ExplorerItemKey<T = unknown> = Array<T>;
 
-export type ExplorerComponentProps<T = unknown> = {
-  itemKey: ExplorerItemKey<T>;
+export type ExplorerComponentProps<K extends ItemKey<Dimension>> = {
+  itemKey: K;
   isParentFetching: boolean;
   className?: string;
 };
 
-type ExplorerProps<T = unknown> = {
-  itemKey: ExplorerItemKey<T>;
-  childrenKeys?: Array<ExplorerItemKey<T>>;
+type ExplorerProps<K extends ItemKey<Dimension>> = {
+  itemKey: K;
+  childrenKeys?: Array<K>;
   childrenDimension?: string;
-  subjectKey: ExplorerItemKey<T>;
+  subjectKey: K;
   isLoading?: boolean;
   isFetching?: boolean;
   className?: string;
-  ExplorerComponent: ComponentType<ExplorerComponentProps<T>>;
+  ExplorerComponent: ComponentType<ExplorerComponentProps<K>>;
   ExplorerItemComponent: ComponentType<{
-    itemKey: ExplorerItemKey<T>;
+    itemKey: K;
     relation: "parent" | "subject" | "child" | undefined;
     isLoading: boolean;
   }>;
 };
 
-export const Explorer = <T,>({
+export const Explorer = <K extends ItemKey<Dimension>>({
   itemKey,
   childrenKeys,
   childrenDimension,
@@ -41,7 +41,7 @@ export const Explorer = <T,>({
   className,
   ExplorerComponent,
   ExplorerItemComponent,
-}: ExplorerProps<T>): ReactNode => {
+}: ExplorerProps<K>): ReactNode => {
   const isSubject = isEqual(subjectKey, itemKey);
   const isParent = isEqual(subjectKey?.slice(0, -1), itemKey) && !isSubject;
   const isChild = isEqual(subjectKey, itemKey.slice(0, -1)) && !isSubject;
