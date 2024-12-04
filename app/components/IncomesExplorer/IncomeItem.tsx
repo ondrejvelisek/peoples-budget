@@ -1,8 +1,9 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
 import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
-import type { IncomeKey } from "@/data/incomes/incomeDimensions";
+import { ExplorerItemMeter } from "../Explorer/ExplorerItemMeter";
 import { useIncome } from "@/data/incomes/incomes";
+import type { IncomeKey } from "@/data/incomes/incomeDimensions";
 
 type IncomeItemProps = {
   itemKey?: IncomeKey;
@@ -15,8 +16,16 @@ export const IncomeItem: FC<IncomeItemProps> = ({
   itemKey: incomeKey,
   className,
   relation = "parent",
+  isLoading = false,
 }) => {
-  const { data: income } = useIncome(incomeKey);
+  const { data: income, isPending } = useIncome(incomeKey);
+  const { data: parentIncome, isPending: isParentPending } = useIncome(
+    income?.parent
+  );
+  const { data: rootExpense, isPending: isRootPending } = useIncome([]);
+  const isAnyLoading =
+    isPending || isParentPending || isRootPending || isLoading;
+  const isRoot = incomeKey?.length === 0;
 
   return (
     <div
@@ -33,6 +42,15 @@ export const IncomeItem: FC<IncomeItemProps> = ({
       )}
     >
       <div className="flex grow justify-between gap-4">{income?.title}</div>
+
+      <ExplorerItemMeter
+        amount={income?.amount}
+        parentAmount={parentIncome?.amount}
+        rootAmount={rootExpense?.amount}
+        className={cn("absolute inset-0")}
+        relation={isRoot ? "parent" : relation}
+        isLoading={isAnyLoading}
+      />
     </div>
   );
 };

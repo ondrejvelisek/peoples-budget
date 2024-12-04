@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { useExpense } from "@/data/expenses/expenses";
 import { ExpenseItemLeft } from "./ExpenseItemLeft";
 import { ExpenseItemRight } from "./ExpenseItemRight";
-import { ExpenseItemMeter } from "./ExpenseItemMeter";
+import { ExplorerItemMeter } from "../Explorer/ExplorerItemMeter";
 import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
 import type { ExpenseKey } from "@/data/expenses/expenseDimensions";
 
@@ -24,7 +24,9 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
   const { data: parentExpense, isPending: isParentPending } = useExpense(
     expense?.parent
   );
-  const isAnyLoading = isPending || isParentPending || isLoading;
+  const { data: rootExpense, isPending: isRootPending } = useExpense([]);
+  const isAnyLoading =
+    isPending || isParentPending || isRootPending || isLoading;
   const isRoot = expenseKey?.length === 0;
 
   return (
@@ -58,9 +60,10 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
         />
       </div>
 
-      <ExpenseItemMeter
+      <ExplorerItemMeter
         amount={expense?.amount}
         parentAmount={parentExpense?.amount}
+        rootAmount={rootExpense?.amount}
         className={cn("absolute inset-0")}
         relation={isRoot ? "parent" : relation}
         isLoading={isAnyLoading}

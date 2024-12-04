@@ -1,33 +1,30 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
-import { useExpense } from "@/data/expenses/expenses";
-import { ANIMATION_DURATION_CLASS } from "../Explorer/Explorer";
+import { ANIMATION_DURATION_CLASS } from "./Explorer";
 
-type ExpenseItemMeterProps = {
+type ExplorerItemMeterProps = {
   amount?: number;
   parentAmount?: number;
+  rootAmount?: number;
   className?: string;
   relation: "parent" | "subject" | "child";
   isLoading?: boolean;
 };
 
-export const ExpenseItemMeter: FC<ExpenseItemMeterProps> = ({
+export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
   amount,
   parentAmount,
+  rootAmount,
   className,
   relation = "subject",
   isLoading = false,
 }) => {
-  const { data: rootExpense, isPending } = useExpense();
-
-  if (isLoading || isPending || amount === undefined) {
+  if (isLoading || amount === undefined) {
     return null;
   }
 
   const localPercentage = parentAmount ? amount / parentAmount : 0;
-  const globalPercentage = rootExpense?.amount
-    ? amount / rootExpense.amount
-    : 0;
+  const globalPercentage = rootAmount ? amount / rootAmount : 0;
 
   return (
     <div
