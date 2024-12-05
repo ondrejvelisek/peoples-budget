@@ -1,9 +1,7 @@
-import { BudgetProvider } from "@/components/BudgetProvider/BudgetProvider";
 import { accessChildrenExpenseDimension } from "@/data/expenses/expenseDimensions";
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/2024/")({
-  component: Layout2024,
   beforeLoad() {
     const childrenDimension = accessChildrenExpenseDimension(
       { expenseKey: [], expenseDimension: undefined },
@@ -20,12 +18,3 @@ export const Route = createFileRoute("/2024/")({
     });
   },
 });
-
-function Layout2024() {
-  return (
-    <BudgetProvider budgetName="2024">
-      HERE
-      <Outlet />
-    </BudgetProvider>
-  );
-}
