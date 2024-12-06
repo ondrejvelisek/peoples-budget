@@ -11,25 +11,43 @@ export const IncomeThumbnail: FC<{
     indirectTaxes,
     payrollDeduction,
     employerContributions,
-  } = getPersonalIncome([], 93000);
+  } = getPersonalIncome([], 43000);
 
   const totalContributions =
     indirectTaxes + payrollDeduction + employerContributions;
 
-  const perc = perceivedNetIncome / (perceivedNetIncome + totalContributions);
-
   return (
     <div
       className={cn(
-        "flex min-h-10 items-center gap-4 px-3 text-2xs text-stone-400",
+        "flex min-h-10 items-center gap-2 px-3 text-2xs text-stone-400",
         className
       )}
     >
       {formatCurrency(perceivedNetIncome)}
       <Progress
-        value={perc * 100}
-        className="mr-1 h-1 bg-rose-400"
-        indicatorProps={{ className: "bg-lime-300" }}
+        className="mr-1 h-1"
+        indicatorsProps={[
+          {
+            className: "text-lime-400",
+            value: perceivedNetIncome,
+            description: "Vnímaný čistý příjem",
+          },
+          {
+            className: "text-amber-400",
+            value: indirectTaxes,
+            description: "DPH a Spotřební daně",
+          },
+          {
+            className: "text-orange-400",
+            value: payrollDeduction,
+            description: "Odvody zaměstnance",
+          },
+          {
+            className: "text-rose-500",
+            value: employerContributions,
+            description: "Odvody zaměstnavatele",
+          },
+        ]}
       />
       {formatCurrency(totalContributions)}
     </div>

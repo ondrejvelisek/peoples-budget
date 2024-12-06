@@ -1,33 +1,87 @@
 import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
 
-import { cn } from "@/lib/utils";
+import { cn, formatCurrency } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
+
+const ProgressIndicator = React.forwardRef<
+  React.ElementRef<typeof ProgressPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Indicator> & {
+    tooltipTitle?: string;
+    tooltipValue?: number;
+  }
+>(({ className, tooltipTitle, tooltipValue, ...restProps }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn("absolute size-full group", className)}
+      {...restProps}
+    >
+      <Tooltip>
+        <TooltipTrigger
+          className={cn(
+            "w-full absolute -inset-y-2 hover:scale-y-[2] transition-transform"
+          )}
+        >
+          <ProgressPrimitive.Indicator className={cn("size-full py-2")}>
+            <div
+              className={cn(
+                "size-full bg-current group-first:rounded-l-full group-last:rounded-r-full"
+              )}
+            />
+          </ProgressPrimitive.Indicator>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          <div>{tooltipTitle}</div>
+          <div>{formatCurrency(tooltipValue)}</div>
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  );
+});
 
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
-    indicatorProps: React.ComponentPropsWithoutRef<
-      typeof ProgressPrimitive.Indicator
+  Omit<
+    React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
+    "value"
+  > & {
+    indicatorsProps: Array<
+      React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Indicator> & {
+        value: number;
+        description?: string;
+      }
     >;
   }
->(({ className, value, indicatorProps, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative h-4 w-full overflow-hidden rounded-full bg-sand-100 dark:bg-sand-800",
-      className
-    )}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className={cn(
-        "size-full flex-1 bg-sand-900 transition-all dark:bg-sand-50",
-        indicatorProps.className
+>(({ className, indicatorsProps, ...props }, ref) => {
+  let totalValue = indicatorsProps.reduce((acc, { value }) => acc + value, 0);
+  let prevTotalValue = 0;
+  return (
+    <ProgressPrimitive.Root
+      ref={ref}
+      className={cn("relative w-full", className)}
+      {...props}
+    >
+      {indicatorsProps.map(
+        ({ value, description, className, ...restProps }, index) => {
+          prevTotalValue += value;
+          return (
+            <ProgressIndicator
+              key={index}
+              className={cn("origin-left", className)}
+              tooltipTitle={description}
+              tooltipValue={value}
+              style={{
+                transform: `translateX(${((prevTotalValue - value) / totalValue) * 100}%) scaleX(${(value / totalValue) * 100}%)`,
+              }}
+              {...restProps}
+            />
+          );
+        }
       )}
-      style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-    />
-  </ProgressPrimitive.Root>
-));
+    </ProgressPrimitive.Root>
+  );
+});
 Progress.displayName = ProgressPrimitive.Root.displayName;
 
 export { Progress };

@@ -14,9 +14,8 @@ export const ExpenseThumbnail: FC<{
     >
       Výdaje
       <Progress
-        value={70}
+        indicatorsProps={[{ className: "bg-sky-500", value: 70 }]}
         className="mr-1 h-1 bg-amber-400"
-        indicatorProps={{ className: "bg-sky-500" }}
       />
     </div>
   );
