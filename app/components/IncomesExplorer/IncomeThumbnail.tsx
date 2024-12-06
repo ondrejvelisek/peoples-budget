@@ -1,10 +1,23 @@
 import { type FC } from "react";
-import { cn } from "@/lib/utils";
+import { cn, formatCurrency } from "@/lib/utils";
 import { Progress } from "../ui/progress";
+import { getPersonalIncome } from "@/data/incomes/perceivedIncomeCalc";
 
 export const IncomeThumbnail: FC<{
   className?: string;
 }> = ({ className }) => {
+  const {
+    perceivedNetIncome,
+    indirectTaxes,
+    payrollDeduction,
+    employerContributions,
+  } = getPersonalIncome([], 93000);
+
+  const totalContributions =
+    indirectTaxes + payrollDeduction + employerContributions;
+
+  const perc = perceivedNetIncome / (perceivedNetIncome + totalContributions);
+
   return (
     <div
       className={cn(
@@ -12,12 +25,13 @@ export const IncomeThumbnail: FC<{
         className
       )}
     >
-      Příjmy
+      {formatCurrency(perceivedNetIncome)}
       <Progress
-        value={60}
+        value={perc * 100}
         className="mr-1 h-1 bg-rose-400"
         indicatorProps={{ className: "bg-lime-300" }}
       />
+      {formatCurrency(totalContributions)}
     </div>
   );
 };
