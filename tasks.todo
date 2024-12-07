@@ -8,7 +8,7 @@ Expenses:
     ✔ Improve dimension switcher cooke shift behaviour (back and forth should result in the same state) @done (11/6/2024, 10:13:36 PM)
     ✔ Update look of dimension switcher @done (11/6/2024, 8:11:34 PM)
     ✔ Do not show children when hitting last level of hierarchy @done (11/8/2024, 4:43:15 PM)
-    ☐ Přidat data za zdravotní pojištění @high 
+    ✔ Přidat data za zdravotní pojištění @high @done (12/8/2024, 12:11:47 AM)
     ☐ Disable unavailable dimensions (if there are no more granularity)
     ☐ Redirect one level up when we are over dimensions levels
     ☐ Add shortcuts to expense when expense has just one child
@@ -30,7 +30,7 @@ Income:
     ✔ Make it possible to switch between income and expenses views @done (12/5/2024, 11:30:03 AM)
     ☐ Design aggregation bar
     ☐ Add real data to aggreagtion bar
-    ☐ Přidat data za zdravotní pojištění @high 
+    ✔ Přidat data za zdravotní pojištění @high @done (12/8/2024, 12:11:46 AM)
 
 About project page:
     ☐ Namyslet sekce. Jaké informace chci předat a jak
