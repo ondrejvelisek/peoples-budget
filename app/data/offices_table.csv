@@ -46,6 +46,7 @@ id,name
 396,Státní dluh
 397,Operace státních finančních aktiv
 398,Všeobecná pokladní správa
+900,Zdravotní pojišťovny
 3010001,Kancelář prezidenta republiky
 3020001,Poslanecká sněmovna Parlamentu
 3030001,Senát Parlamentu
@@ -328,3 +329,10 @@ id,name
 3960001,Státní dluh
 3970001,Operace státních finančních aktiv
 3980001,Všeobecná pokladní správa
+9000205,Česká průmyslová zdravotní pojišťovna
+9000207,Oborová zdravotní pojišťovna
+9000213,"RBP, zdravotní pojišťovna"
+9000201,Vojenská zdravotní pojišťovna ČR
+9000111,Všeobecná zdravotní pojišťovna
+9000209,Zaměstnanecká pojišťovna Škoda
+9000211,Zdravotní pojišťovna ministerstva vnitra ČR
