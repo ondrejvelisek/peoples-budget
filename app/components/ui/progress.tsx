@@ -11,22 +11,37 @@ const ProgressIndicator = React.forwardRef<
     tooltipValue?: number;
   }
 >(({ className, tooltipTitle, tooltipValue, ...restProps }, ref) => {
+  if (tooltipValue === undefined || tooltipTitle === undefined) {
+    return (
+      <div
+        ref={ref}
+        className={cn("absolute size-full group", className)}
+        {...restProps}
+      >
+        <div className={cn("w-full absolute -inset-y-2")}>
+          <ProgressPrimitive.Indicator className={cn("size-full py-2")}>
+            <div
+              className={cn(
+                "size-full bg-current group-first:rounded-l-full group-last:rounded-r-full"
+              )}
+            />
+          </ProgressPrimitive.Indicator>
+        </div>
+      </div>
+    );
+  }
   return (
     <div
       ref={ref}
       className={cn("absolute size-full group", className)}
       {...restProps}
     >
-      <Tooltip>
-        <TooltipTrigger
-          className={cn(
-            "w-full absolute -inset-y-2 hover:scale-y-[2] transition-transform"
-          )}
-        >
+      <Tooltip delayDuration={400}>
+        <TooltipTrigger className={cn("w-full absolute -inset-y-2")}>
           <ProgressPrimitive.Indicator className={cn("size-full py-2")}>
             <div
               className={cn(
-                "size-full bg-current group-first:rounded-l-full group-last:rounded-r-full"
+                "size-full bg-current group-first:rounded-l-full group-last:rounded-r-full group-hover:shadow-[0_0_3px_0px_currentColor]"
               )}
             />
           </ProgressPrimitive.Indicator>
@@ -68,11 +83,12 @@ const Progress = React.forwardRef<
           return (
             <ProgressIndicator
               key={index}
-              className={cn("origin-left", className)}
+              className={cn(className)}
               tooltipTitle={description}
               tooltipValue={value}
               style={{
-                transform: `translateX(${((prevTotalValue - value) / totalValue) * 100}%) scaleX(${(value / totalValue) * 100}%)`,
+                left: `${((prevTotalValue - value) / totalValue) * 100}%`,
+                width: `${(value / totalValue) * 100}%`,
               }}
               {...restProps}
             />
