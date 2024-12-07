@@ -2,6 +2,7 @@ import { type FC } from "react";
 import { cn, formatCurrency } from "@/lib/utils";
 import { Progress } from "../ui/progress";
 import { getPersonalIncome } from "@/data/incomes/perceivedIncomeCalc";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export const IncomeThumbnail: FC<{
   className?: string;
@@ -23,7 +24,10 @@ export const IncomeThumbnail: FC<{
         className
       )}
     >
-      {formatCurrency(perceivedNetIncome)}
+      <Tooltip>
+        <TooltipTrigger>{formatCurrency(perceivedNetIncome)}</TooltipTrigger>
+        <TooltipContent>Vnímaný čistý příjem</TooltipContent>
+      </Tooltip>
       <Progress
         className="mr-1 h-1"
         indicatorsProps={[
@@ -49,7 +53,10 @@ export const IncomeThumbnail: FC<{
           },
         ]}
       />
-      {formatCurrency(totalContributions)}
+      <Tooltip>
+        <TooltipTrigger>{formatCurrency(totalContributions)}</TooltipTrigger>
+        <TooltipContent>Celkové odvody státu</TooltipContent>
+      </Tooltip>
     </div>
   );
 };
