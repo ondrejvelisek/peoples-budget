@@ -771,6 +771,10 @@ id,id_level,id_1,id_2,id_3,id_4,name_short,name,name_long
 690,3,6,69,690,,Ost.kapitálové V,Ostatní kapitálové výdaje,Ostatní kapitálové výdaje
 6901,4,6,69,690,6901,Rezervy kap. V,Rezervy kapitálových výdajů,Rezervy kapitálových výdajů
 6909,4,6,69,690,6909,Ost. kapV,Ostatní kapitálové výdaje jinde nezařazené,Ostatní kapitálové výdaje jinde nezařazené
+7,1,7,,,,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven
+70,1,7,70,,,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven
+700,1,7,70,700,,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven
+7000,1,7,70,700,7000,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven
 8,1,8,,,,Financování,Financování,Financování
 81,2,8,81,,,Financ.tuzemsko,Financování z tuzemska,Financování z tuzemska
 811,3,8,81,811,,Krdb.financování,Krátkodobé financování,Krátkodobé financování
