@@ -15,7 +15,8 @@ Expenses:
     ☐ Improve breadcrumb navigationc
     ☐ Simplify some expenses names.
     ☐ Restructuralize some expenses
-    ☐ Add examples
+    ☐ Add examples of specific low level expenses close to a person
+    ☐ Add personal contributoin to each expense row (maybe possible to switch between example and example? Or just show somehow both)
     ☐ Add possibility to full search expenses based on name 
     ☐ 2024 Expenses
         ☐ Get data
@@ -28,9 +29,10 @@ Income:
     ✔ Income explorer @done (12/4/2024, 8:24:35 PM)
     ✔ Show income in the same way as expenses @done (12/4/2024, 9:49:18 PM)
     ✔ Make it possible to switch between income and expenses views @done (12/5/2024, 11:30:03 AM)
-    ☐ Design aggregation bar
-    ☐ Add real data to aggreagtion bar
+    ✔ Design aggregation bar @done (1/5/2025, 2:59:47 PM)
+    ✔ Add real data to aggreagtion bar @done (1/5/2025, 2:59:49 PM)
     ✔ Přidat data za zdravotní pojištění @high @done (12/8/2024, 12:11:46 AM)
+    ☐ Add personal contributoin to each income row
 
 About project page:
     ☐ Namyslet sekce. Jaké informace chci předat a jak
