@@ -13,11 +13,25 @@ export type SectorsTableRecord = {
   name_long: string;
 };
 
+export type TypeOfIncomeType =
+  | "zamestnavatel"
+  | "dph"
+  | "podniky"
+  | "os.prijem"
+  | "spotrebni"
+  | "fix"
+  | "pausal"
+  | "majetkova";
+
 export type TypesTableRecord = {
   id: number;
   name_short: string;
   name: string;
   name_long: string;
+  amount?: number;
+  unit?: string;
+  income_type?: TypeOfIncomeType;
+  percentage?: number;
 };
 
 export type OfficesTableRecord = {

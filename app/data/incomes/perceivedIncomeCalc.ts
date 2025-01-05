@@ -1,38 +1,175 @@
-import type { IncomeItem } from "./incomes";
+import { type TypesTableRecord } from "../recordTables";
+
+export type PersonalProfile = {
+  netIncome: number;
+  incomeTaxCoefficients: Record<string, number>;
+};
 
 export type PersonalIncome = {
   perceivedNetIncome: number;
   indirectTaxes: number;
   payrollDeduction: number;
   employerContributions: number;
+  generalContributions: number;
+  totalStateContributions: number;
 };
 
 export function getPersonalIncome(
-  incomeByTypes: Array<IncomeItem>,
-  netIncome: number
+  items: Record<string, number>,
+  typesTable: Record<string, TypesTableRecord>,
+  profile: PersonalProfile
 ): PersonalIncome {
   const defaultPersonalIncome: PersonalIncome = {
-    perceivedNetIncome: netIncome,
+    perceivedNetIncome: profile.netIncome,
     indirectTaxes: 0,
     payrollDeduction: 0,
     employerContributions: 0,
+    generalContributions: 0,
+    totalStateContributions: 0,
   };
 
+  // dan z prijmu pravnickych osob
+  const applyCorporateIncomeTaxes = applyIndirectTaxes(
+    Object.entries(items)
+      .filter(([typeId]) => typesTable[typeId]?.income_type === "podniky")
+      .map(([typeId, taxStateIncome]) => {
+        const coefficient = profile.incomeTaxCoefficients[typeId];
+        if (coefficient === undefined) {
+          throw new Error(
+            `Missing personal profile income coefficient for income type ${typeId}`
+          );
+        }
+        return {
+          origTax: 0.21 * coefficient,
+          newTax: 0.21 * coefficient,
+          volume: 1,
+          taxStateIncome,
+          standardVolume: 1,
+        };
+      })
+  );
+
+  // spotrebni dane
+  const applyExciseTaxes = applyIndirectTaxes(
+    Object.entries(items)
+      .filter(([typeId]) => typesTable[typeId]?.income_type === "spotrebni")
+      .map(([typeId, taxStateIncome]) => {
+        const coefficient = profile.incomeTaxCoefficients[typeId];
+        if (coefficient === undefined) {
+          throw new Error(
+            `Missing personal profile income coefficient for income type ${typeId}`
+          );
+        }
+        const percentage = typesTable[typeId]?.percentage;
+        if (percentage === undefined) {
+          throw new Error(`Missing tax percentage for income type ${typeId}`);
+        }
+        return {
+          origTax: percentage,
+          newTax: percentage,
+          volume: coefficient,
+          taxStateIncome: taxStateIncome,
+          standardVolume: coefficient, // TBD
+        };
+      })
+  );
+
+  // DPH
+  const applyVat = applyIndirectTaxes(
+    Object.entries(items)
+      .filter(([typeId]) => typesTable[typeId]?.income_type === "dph")
+      .flatMap(([typeId, taxStateIncome]) => {
+        const coefficient = profile.incomeTaxCoefficients[typeId];
+        if (coefficient === undefined) {
+          throw new Error(
+            `Missing personal profile income coefficient for income type ${typeId}`
+          );
+        }
+        const percentage = typesTable[typeId]?.percentage;
+        if (percentage === undefined) {
+          throw new Error(`Missing tax percentage for income type ${typeId}`);
+        }
+        return [
+          {
+            origTax: percentage,
+            newTax: percentage,
+            volume: 0.95 * (1 - coefficient),
+            taxStateIncome: taxStateIncome * 0.95 * (1 - 0.5),
+            standardVolume: 0.5,
+          }, // DPH zakladni sazba
+          {
+            origTax: (percentage / 21) * 12,
+            newTax: (percentage / 21) * 12,
+            volume: 0.95 * coefficient,
+            taxStateIncome: taxStateIncome * 0.95 * 0.45,
+            standardVolume: 0.45,
+          }, // DPH snizena sazba
+        ];
+      })
+  );
+
+  // odvody zamestnance / OSVC
+  const applyPayrollDeductions = applyPayrollDeduction(
+    Object.entries(items)
+      .filter(([typeId]) => typesTable[typeId]?.income_type === "os.prijem")
+      .map(([typeId, taxStateIncome]) => {
+        const coefficient = profile.incomeTaxCoefficients[typeId];
+        if (coefficient === undefined) {
+          throw new Error(
+            `Missing personal profile income coefficient for income type ${typeId}`
+          );
+        }
+        const percentage = typesTable[typeId]?.percentage;
+        if (percentage === undefined) {
+          throw new Error(`Missing tax percentage for income type ${typeId}`);
+        }
+        return {
+          taxesPerc: percentage * coefficient,
+          taxStateIncome,
+        };
+      })
+  );
+
+  // odvody zamestnavatele
+  const applyEmployerContributions = applyEmployerContribution(
+    Object.entries(items)
+      .filter(([typeId]) => typesTable[typeId]?.income_type === "zamestnavatel")
+      .map(([typeId, taxStateIncome]) => {
+        const coefficient = profile.incomeTaxCoefficients[typeId];
+        if (coefficient === undefined) {
+          throw new Error(
+            `Missing personal profile income coefficient for income type ${typeId}`
+          );
+        }
+        const percentage = typesTable[typeId]?.percentage;
+        if (percentage === undefined) {
+          throw new Error(`Missing tax percentage for income type ${typeId}`);
+        }
+
+        return {
+          taxesPerc: percentage * coefficient,
+          taxStateIncome,
+        };
+      })
+  );
+
+  // ostatni odvody
+  const applyGeneralContributions = applyGeneralContribution(
+    Object.entries(items)
+      .filter(([typeId]) => typesTable[typeId]?.income_type === "pausal")
+      .map(([, taxStateContribution]) => {
+        return taxStateContribution;
+      })
+  );
+
   return compose(
-    applyIndirectTaxes([
-      { origTax: 0.32, newTax: 0.32, volume: 0.06 }, // pohonne hmoty
-      { origTax: 0.55, newTax: 0.55, volume: 0.01 }, // cigarety
-      { origTax: 0.28, newTax: 0.28, volume: 0.01 }, // lih
-      { origTax: 0.5, newTax: 0.5, volume: 0.01 }, // pivo
-      { origTax: 0.27, newTax: 0.27, volume: 0.01 }, // el. cigarety
-    ]),
-    applyIndirectTaxes([
-      { origTax: 0.21, newTax: 0.21, volume: 0.5 }, // DPH zakladni sazba
-      { origTax: 0.12, newTax: 0.12, volume: 0.45 }, // DPH snizena sazba
-    ]),
-    applyPayrollDeductions(0.065 + 0.006 + 0.045 + 0.15),
-    applyTaxCredit(2570),
-    applyEmployerContributions(0.215 + 0.021 + 0.012 + 0.09)
+    applyCorporateIncomeTaxes,
+    applyExciseTaxes,
+    applyVat,
+    applyPayrollDeductions,
+    applyTaxCredit(2570), // slevy na dani z prijmu
+    applyEmployerContributions,
+    applyGeneralContributions
   )(defaultPersonalIncome);
 }
 
@@ -56,6 +193,8 @@ type IndirectTaxesInput = {
   origTax: number;
   newTax: number;
   volume: number;
+  taxStateIncome: number;
+  standardVolume: number;
 };
 
 /**
@@ -67,12 +206,20 @@ export const applyIndirectTaxes =
     const netIncomeOrig = personalIncome.perceivedNetIncome;
 
     const totalVolume = inputs.reduce((acc, input) => acc + input.volume, 0);
+    const totalStandardVolume = inputs.reduce(
+      (acc, input) => acc + input.standardVolume,
+      0
+    );
     const weightedAvgTaxPercOrig = inputs.reduce(
       (acc, input) => acc + input.origTax * (input.volume / totalVolume),
       0
     );
     const weightedAvgTaxPercNew = inputs.reduce(
       (acc, input) => acc + input.newTax * (input.volume / totalVolume),
+      0
+    );
+    const taxesStateIncome = inputs.reduce(
+      (acc, input) => acc + input.taxStateIncome,
       0
     );
 
@@ -97,10 +244,15 @@ export const applyIndirectTaxes =
 
     const newIndirectTaxes = maximalPerceivedNetIncome - perceivedNetIncome;
 
+    const ratio = totalVolume / totalStandardVolume;
+    const newTotalStateContributions = taxesStateIncome * ratio;
+
     return {
       ...personalIncome,
       perceivedNetIncome,
       indirectTaxes: personalIncome.indirectTaxes + newIndirectTaxes,
+      totalStateContributions:
+        personalIncome.totalStateContributions + newTotalStateContributions,
     };
   };
 
@@ -123,21 +275,33 @@ const getPerceivedNetIncomeWithNewIndirectTax = (
   return perceivedNetIncomeWithNewTax;
 };
 
+type PayrollDeductionInput = {
+  taxesPerc: number;
+  taxStateIncome: number;
+};
+
 /**
  * Odvody placené zaměstnancem (Daně z příjmů a Pojištění placené zaměstnancem)
  */
-export const applyPayrollDeductions =
+export const applyPayrollDeduction =
   (
-    taxPerc: number // in decimal point number, e.g. 0.16 for 16 %
+    inputs: Array<PayrollDeductionInput> // in decimal point number, e.g. 0.16 for 16 %
   ): PersonalIncomeDecorator =>
   (personalIncome) => {
     const netIncomeOrig = personalIncome.perceivedNetIncome;
+    const taxPerc = inputs.reduce((acc, input) => acc + input.taxesPerc, 0);
+    const newTotalStateContributions = inputs.reduce(
+      (acc, input) => acc + input.taxStateIncome,
+      0
+    );
 
     const newPayrollDeduction = (netIncomeOrig / (1 - taxPerc)) * taxPerc;
 
     return {
       ...personalIncome,
       payrollDeduction: personalIncome.payrollDeduction + newPayrollDeduction,
+      totalStateContributions:
+        personalIncome.totalStateContributions + newTotalStateContributions,
     };
   };
 
@@ -155,16 +319,27 @@ export const applyTaxCredit =
     };
   };
 
+type EmployerContributionInput = {
+  taxesPerc: number;
+  taxStateIncome: number;
+};
+
 /**
  * Odvody placené zaměstnavatelem (Pojištění placené zaměstnavatelem)
  */
-export const applyEmployerContributions =
+export const applyEmployerContribution =
   (
-    taxPerc: number // in decimal point number, e.g. 0.16 for 16 %
+    inputs: Array<EmployerContributionInput> // in decimal point number, e.g. 0.16 for 16 %
   ): PersonalIncomeDecorator =>
   (personalIncome) => {
     const grossIncome =
       personalIncome.perceivedNetIncome + personalIncome.payrollDeduction;
+    const taxPerc = inputs.reduce((acc, input) => acc + input.taxesPerc, 0);
+
+    const newTotalStateContributions = inputs.reduce(
+      (acc, input) => acc + input.taxStateIncome,
+      0
+    );
 
     const employerContributions = grossIncome * taxPerc;
 
@@ -172,25 +347,35 @@ export const applyEmployerContributions =
       ...personalIncome,
       employerContributions:
         personalIncome.employerContributions + employerContributions,
+      totalStateContributions:
+        personalIncome.totalStateContributions + newTotalStateContributions,
     };
   };
 
 /**
- * všechny ostatní částky, které nezávisí na 
+ * všechny ostatní odvody
  */
 export const applyGeneralContribution =
-  (
-    taxPerc: number // in decimal point number, e.g. 0.16 for 16 %
-  ): PersonalIncomeDecorator =>
+  (taxStateIncomes: Array<number>): PersonalIncomeDecorator =>
   (personalIncome) => {
-    const grossIncome =
-      personalIncome.perceivedNetIncome + personalIncome.payrollDeduction;
+    const totalStateContributions = personalIncome.totalStateContributions;
+    const totalPersonalContributions =
+      12 * // months
+      (personalIncome.indirectTaxes +
+        personalIncome.payrollDeduction +
+        personalIncome.employerContributions);
 
-    const employerContributions = grossIncome * taxPerc;
+    const ratio = totalPersonalContributions / totalStateContributions;
+
+    const taxStateIncome = taxStateIncomes.reduce(
+      (acc, taxStateIncome) => acc + taxStateIncome,
+      0
+    );
+    const generalContributions = taxStateIncome * ratio;
 
     return {
       ...personalIncome,
-      employerContributions:
-        personalIncome.employerContributions + employerContributions,
+      generalContributions:
+        personalIncome.generalContributions + generalContributions,
     };
   };

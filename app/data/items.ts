@@ -24,7 +24,7 @@ export type Item<D extends Dimension> = {
   parent?: ItemKey<D>;
 };
 
-type DataRecord = {
+export type DataRecord = {
   sector_id?: number; // income items does not have sector_id, but lazy to make it conditioanlly generic
   type_id: number;
   office_id: number;
@@ -71,7 +71,10 @@ type ItemKeyWithAmount<D extends Dimension> = ItemKey<D> & {
   amount: number;
 };
 
-type ItemWithChildrenAmount<D extends Dimension> = Omit<Item<D>, "children"> & {
+export type ItemWithChildrenAmount<D extends Dimension> = Omit<
+  Item<D>,
+  "children"
+> & {
   children: Array<ItemKeyWithAmount<D>>;
 };
 
