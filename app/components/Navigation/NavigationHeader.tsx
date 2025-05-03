@@ -8,7 +8,7 @@ import {
 import { RiMenuLine, RiCloseLine } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { GiLion } from "react-icons/gi";
+import logoImg from "./logo-144x90.png";
 import {
   Tooltip,
   TooltipContent,
@@ -34,8 +34,10 @@ export const NavigationHeader: FC = () => {
         })}
       >
         <Link to="/" onClick={close}>
-          <GiLion className="mr-2 inline-block scale-150 text-rose-700" />
-          <strong>Lidový rozpočet</strong>
+          <img src={logoImg} className="h-full mr-1" />
+          <span className="font-serif text-sand-600 font-bold">
+            Lidový rozpočet
+          </span>
         </Link>
       </Button>
 

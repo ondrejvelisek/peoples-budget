@@ -16,7 +16,7 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
   const [isCondese] = useNavigationCondenseState();
 
   return (
-    <div className="relative flex size-full overflow-hidden [--sidebar-w:13rem]">
+    <div className="relative flex size-full overflow-hidden [--sidebar-w:14rem]">
       <div className="flex size-full flex-col md:w-[--sidebar-w]">
         <NavigationHeader />
         <NavigationSidebar />

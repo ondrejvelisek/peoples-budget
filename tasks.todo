@@ -46,7 +46,7 @@ Bugs:
     ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)
     ✔ Do not report analytics events during prerender @done (11/9/2024, 11:52:46 AM)
     ✔ Fix redirect when logging event @done (11/24/2024, 10:46:13 AM)
-    ☐ Fix animations performance, try https://www.npmjs.com/package/react-flip-toolkit
+    ☐ Fix animations performance, try native view transition
     ☐ Fix SSR response (initial animation renders nothing)
     
 Misc:
@@ -54,9 +54,12 @@ Misc:
     ✔ Add anonymous analytics to the app @done (11/8/2024, 10:24:07 PM)
     ✔ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution. unstorage? @done (11/23/2024, 10:12:08 AM)
     ✔ Add favicon @done (11/9/2024, 2:04:59 PM)
+    ✔ Update logo @done (5/3/2025, 4:01:47 PM)
+    ☐ Add main page visual
     ☐ Add nice Error boundaries
     ☐ Add nice 404 page
     ☐ Add README.md
     ☐ Improve eslint and prettier config. Possibly on save behaviour.
+    ☐ Update React and TanSart deps
     ☐ Update package dependencies (it should help to remove unmet peer dependenc warnings)
-    ☐ Update logo and visuals
+
