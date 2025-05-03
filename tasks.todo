@@ -55,7 +55,7 @@ Misc:
     ✔ Improve cache hitrate (Vercel kills memory cache) Ideally Vercel agnostic solution. unstorage? @done (11/23/2024, 10:12:08 AM)
     ✔ Add favicon @done (11/9/2024, 2:04:59 PM)
     ✔ Update logo @done (5/3/2025, 4:01:47 PM)
-    ☐ Add main page visual
+    ✔ Add main page visual @done (5/3/2025, 6:37:52 PM)
     ☐ Add nice Error boundaries
     ☐ Add nice 404 page
     ☐ Add README.md

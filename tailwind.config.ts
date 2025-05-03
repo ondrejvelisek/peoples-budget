@@ -9,6 +9,9 @@ export default {
   plugins: [tailwindAnimate, tailwindScrollbar, tailwindContainers],
   theme: {
     extend: {
+      backgroundImage: {
+        "hero-img": `url('/public/hero-img.jpg')`,
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
