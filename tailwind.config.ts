@@ -11,6 +11,7 @@ export default {
     extend: {
       backgroundImage: {
         "hero-img": `url('/public/hero-img.jpg')`,
+        "not-found-img": `url('/public/not-found-img.jpg')`,
       },
       borderRadius: {
         lg: "var(--radius)",

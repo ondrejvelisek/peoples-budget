@@ -13,6 +13,7 @@ import { StrictMode } from "react";
 import { seo } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { QueryClient } from "@tanstack/react-query";
+import { NotFound } from "./NotFound";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -43,6 +44,7 @@ export const Route = createRootRouteWithContext<{
       { rel: "stylesheet", href: mainCss },
     ],
   }),
+  notFoundComponent: NotFound,
 });
 
 function RootComponent() {
