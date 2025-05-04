@@ -56,8 +56,8 @@ Misc:
     ✔ Add favicon @done (11/9/2024, 2:04:59 PM)
     ✔ Update logo @done (5/3/2025, 4:01:47 PM)
     ✔ Add main page visual @done (5/3/2025, 6:37:52 PM)
+    ✔ Add nice 404 page @done (5/4/2025, 10:27:07 PM)
     ☐ Add nice Error boundaries
-    ☐ Add nice 404 page
     ☐ Add README.md
     ☐ Improve eslint and prettier config. Possibly on save behaviour.
     ☐ Update React and TanSart deps

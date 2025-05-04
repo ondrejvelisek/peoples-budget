@@ -44,11 +44,11 @@ export const IncomeThumbnail: FC<{
     netIncome: 37000,
     incomeTaxCoefficients: {
       1121: 0.5, // dane z prijmu pravnickych osob, daněný zisk řetězců podniků odhaduju jako 50 % spotřebitelských tržeb
-      1221: 0.06, // Spotrebni dan mineralnich oleju, kolik procent domacnost utrati za pohonne hmoty
-      1222: 0.01, // Spotrebni dan lihu, kolik procent domacnost utrati za tvrdy alkohol
-      1223: 0.01, // Spotrebni dan piva, kolik procent domacnost utrati za pivo
-      1224: 0.01, // Spotrebni dan vina, kolik procent domacnost utrati za vino
-      1225: 0.01, // Spotrebni dan tabaku, kolik procent domacnost utrati za tabakove vyrobky
+      1221: 0.06, // Spotrebni dan mineralnich oleju, kolik procent prijmu domacnost utrati za pohonne hmoty
+      1222: 0.01, // Spotrebni dan lihu, kolik procent prijmu domacnost utrati za tvrdy alkohol
+      1223: 0.01, // Spotrebni dan piva, kolik procent prijmu domacnost utrati za pivo
+      1224: 0.01, // Spotrebni dan vina, kolik procent prijmu domacnost utrati za vino
+      1225: 0.01, // Spotrebni dan tabaku, kolik procent prijmu domacnost utrati za tabakove vyrobky
       1229: 0.01, // SpD - zahřív.tab.výr.
       1231: 0.02, // Daň z zem.pl. a plyn
       1232: 0.005, // Daň z pevných paliv
