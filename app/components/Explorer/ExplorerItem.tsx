@@ -84,7 +84,7 @@ export const ExplorerItem: FC<ItemProps> = ({
               <Skeleton
                 width="8em"
                 style={{
-                    viewTransitionName: `title-${id}`,
+                  viewTransitionName: `title-${id}`,
                 }}
               />
             ) : (
@@ -125,27 +125,32 @@ export const ExplorerItem: FC<ItemProps> = ({
           </div>
         </Link>
 
-        <div
-          className={cn(
-            "max-h-12 max-w-[50%] shrink-0 overflow-hidden text-right opacity-100",
-            ANIMATION_DURATION_CLASS,
-            {
-              "max-w-0 max-h-0 opacity-0 grow-0": relation !== "subject",
-            }
-          )}
-        >
-          <DimensionSwitcher
-            dimensionLinks={dimensionLinks}
-            currentDimension={currentDimension}
-          />
-        </div>
+        {relation === "subject" && (
+          <div
+            style={{
+              viewTransitionName: `dimension-switcher`,
+            }}
+            className={cn(
+              "max-h-12 max-w-[50%] shrink-0 overflow-hidden text-right opacity-100"
+            )}
+          >
+            <DimensionSwitcher
+              dimensionLinks={dimensionLinks}
+              currentDimension={currentDimension}
+            />
+          </div>
+        )}
       </div>
 
       <ExplorerItemMeter
+        id={id}
         amount={amount}
         parentAmount={parentAmount}
         rootAmount={rootAmount}
-        className={cn("absolute inset-0")}
+        className={cn({
+          "rounded-t-full rounded-b-none overflow-hidden ml-0.5":
+            relation === "child",
+        })}
         isHidden={hideMeter || isLoading}
         showBg={relation === "subject"}
       />

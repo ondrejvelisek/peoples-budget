@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { ANIMATION_DURATION_CLASS } from "./Explorer";
 
 type ExplorerItemMeterProps = {
+  id: string;
   amount?: number;
   parentAmount?: number;
   rootAmount?: number;
@@ -12,6 +13,7 @@ type ExplorerItemMeterProps = {
 };
 
 export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
+  id,
   amount,
   parentAmount,
   rootAmount,
@@ -28,6 +30,9 @@ export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
 
   return (
     <div
+      style={{
+        viewTransitionName: `meter-${id}`,
+      }}
       className={cn(
         "absolute inset-0 z-10 h-1 rounded opacity-100",
         ANIMATION_DURATION_CLASS,
