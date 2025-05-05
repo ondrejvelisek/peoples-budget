@@ -52,7 +52,7 @@ export const IncomeThumbnail: FC<{
       1229: 0.01, // SpD - zahřív.tab.výr.
       1231: 0.02, // Daň z zem.pl. a plyn
       1232: 0.005, // Daň z pevných paliv
-      1233: 0.03, // Daň z ele169 600 000 000ktřiny
+      1233: 0.03, // Daň z elektřiny
       1333: 0.005, // P za ulož.odpadů
       1211: 0.5, // DPH, kolik % zboži, které nakoupím spadá do snížené sazby
       1111: 1, // Příjem z daně z příjmů fyzických osob placené plátci	134,200,000,000	1111

@@ -20,7 +20,7 @@ function Layout2024() {
   });
   return (
     <BudgetProvider budgetName="2024">
-      <div className={cn("flex flex-col h-full justify-between")}>
+      <div className={cn("flex h-full flex-col justify-between")}>
         <div
           className={cn("", {
             "grow-0 shrink-0": !isIncome,

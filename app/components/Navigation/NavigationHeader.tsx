@@ -34,8 +34,12 @@ export const NavigationHeader: FC = () => {
         })}
       >
         <Link to="/" onClick={close}>
-          <img src={logoImg} className="h-full mr-1" />
-          <span className="font-serif text-sand-600 font-bold">
+          <img
+            src={logoImg}
+            alt="Lidový rozpočet logo"
+            className="mr-1 h-full"
+          />
+          <span className="font-serif font-bold text-sand-600">
             Lidový rozpočet
           </span>
         </Link>

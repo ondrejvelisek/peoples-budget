@@ -29,7 +29,7 @@ export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
   return (
     <div
       className={cn(
-        "absolute inset-0 z-10 h-1 rounded transition-all opacity-1",
+        "absolute inset-0 z-10 h-1 rounded opacity-100 transition-all",
         ANIMATION_DURATION_CLASS,
         {
           "h-0 opacity-0": isHidden,

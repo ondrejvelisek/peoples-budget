@@ -88,7 +88,7 @@ export const Explorer = <K extends ItemKey<Dimension>>({
         <AnimatePresence>
           {(!isSubject || !isFetching) && !isLoading && childrenKeys && (
             <motion.ul
-              className={cn("flex flex-col row-start-1 col-start-1 bg-white")}
+              className={cn("col-start-1 row-start-1 flex flex-col bg-white")}
               initial={{ opacity: 0, scaleX: 0.95, y: 20 }}
               animate={{ opacity: 1, scaleX: 1, y: 0 }}
               exit={{ opacity: 0, scaleX: 0.95, y: 20 }}

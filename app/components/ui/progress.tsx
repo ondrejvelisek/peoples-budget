@@ -54,6 +54,7 @@ const ProgressIndicator = React.forwardRef<
     </div>
   );
 });
+ProgressIndicator.displayName = "ProgressIndicator";
 
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,

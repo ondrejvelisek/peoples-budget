@@ -7,13 +7,13 @@ export const Route = createFileRoute("/")({
 function Page() {
   return (
     <>
-      <h1 className="lg:hidden text-4xl font-serif px-8 pt-8 whitespace-nowrap">
+      <h1 className="whitespace-nowrap px-8 pt-8 font-serif text-4xl lg:hidden">
         Tak kam s&nbsp;tím?
       </h1>
-      <div className="bg-hero-img-square max-h-full lg:bg-hero-img bg-no-repeat bg-cover aspect-square lg:aspect-video mb-8 flex items-center">
-        <div className="hidden lg:block pl-12 w-5/12">
-          <h1 className="text-6xl font-serif pb-8">Tak&nbsp;kam s&nbsp;tím?</h1>
-          <p className="hidden md:block text-sm  md:text-base xl:text-lg">
+      <div className="mb-8 flex aspect-square max-h-full items-center bg-hero-img-square bg-cover bg-no-repeat lg:aspect-video lg:bg-hero-img">
+        <div className="hidden w-5/12 pl-12 lg:block">
+          <h1 className="pb-8 font-serif text-6xl">Tak&nbsp;kam s&nbsp;tím?</h1>
+          <p className="hidden text-sm md:block  md:text-base xl:text-lg">
             Rozpočet národa je interaktivní aplikace, která Vám umožní
             prozkoumat státní rozpočet České republiky a zjistit, kam putují
             naše peníze. Vyzkoušejte si, jak byste rozdělili peníze Vy! Sdílejte
@@ -23,7 +23,7 @@ function Page() {
       </div>
 
       <div className="p-8 lg:p-12">
-        <h1 className="text-4xl font-serif pb-8">O projektu</h1>
+        <h1 className="pb-8 font-serif text-4xl">O projektu</h1>
         <p>
           Rozpočet národa je interaktivní aplikace, která Vám umožní prozkoumat
           státní rozpočet České republiky a zjistit, kam putují naše peníze.

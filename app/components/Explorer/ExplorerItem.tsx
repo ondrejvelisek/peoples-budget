@@ -98,7 +98,7 @@ export const ExplorerItem: FC<ItemProps> = ({
 
         <div
           className={cn(
-            "max-w-[50%] max-h-12 overflow-hidden text-right opacity-100 transition-all shrink-0",
+            "max-h-12 max-w-[50%] shrink-0 overflow-hidden text-right opacity-100 transition-all",
             ANIMATION_DURATION_CLASS,
             {
               "max-w-0 max-h-0 opacity-0 grow-0": relation !== "subject",
