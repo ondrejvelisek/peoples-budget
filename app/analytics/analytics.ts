@@ -1,5 +1,5 @@
 import { accessCookie } from "@/data/cookie";
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 import { JWT } from "google-auth-library";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { getRequestURL, isPreflightRequest } from "vinxi/http?server";

@@ -1,5 +1,4 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { IncomeThumbnail } from "@/components/IncomesExplorer/IncomeThumbnail";
 import {
   accessChildrenIncomeDimension,
   isIncomeDimension,

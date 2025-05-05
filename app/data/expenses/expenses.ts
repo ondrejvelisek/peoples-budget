@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { type SimpleQueryResult } from "@/lib/utils";
 import expenses2025Csv from "./expenses_2025.csv?raw";
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 import {
   useChildrenExpenseDimension,
   useUrlExpenseSplat,

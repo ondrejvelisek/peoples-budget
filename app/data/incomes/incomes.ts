@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { type SimpleQueryResult } from "@/lib/utils";
 import incomes2025Csv from "./incomes_2025.csv?raw";
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 import { getItem, type Item } from "../items";
 import {
   useChildrenIncomeDimension,

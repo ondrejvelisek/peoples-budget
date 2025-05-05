@@ -4,7 +4,7 @@ import {
   createRootRouteWithContext,
 } from "@tanstack/react-router";
 import Navigation from "../components/Navigation/Navigation";
-import { Meta, Scripts } from "@tanstack/start";
+import { Meta, Scripts } from "@tanstack/react-start";
 
 import mainCss from "../main.css?url";
 import manifest from "../manifest.json?url";

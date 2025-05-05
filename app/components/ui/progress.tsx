@@ -69,8 +69,7 @@ const Progress = React.forwardRef<
     >;
   }
 >(({ className, indicatorsProps, ...props }, ref) => {
-  let totalValue = indicatorsProps.reduce((acc, { value }) => acc + value, 0);
-  let prevTotalValue = 0;
+  const totalValue = indicatorsProps.reduce((acc, { value }) => acc + value, 0);
   return (
     <ProgressPrimitive.Root
       ref={ref}
@@ -79,7 +78,9 @@ const Progress = React.forwardRef<
     >
       {indicatorsProps.map(
         ({ value, description, className, ...restProps }, index) => {
-          prevTotalValue += value;
+          const prevTotalValue = indicatorsProps
+            .slice(0, index)
+            .reduce((acc, { value }) => acc + value, 0);
           return (
             <ProgressIndicator
               key={index}
@@ -87,7 +88,7 @@ const Progress = React.forwardRef<
               tooltipTitle={description}
               tooltipValue={value}
               style={{
-                left: `${((prevTotalValue - value) / totalValue) * 100}%`,
+                left: `${(prevTotalValue / totalValue) * 100}%`,
                 width: `${(value / totalValue) * 100}%`,
               }}
               {...restProps}

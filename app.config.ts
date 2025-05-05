@@ -1,5 +1,5 @@
-import { defineConfig } from "@tanstack/start/config";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from "@tanstack/react-start/config";
+import tsConfigPaths from "vite-tsconfig-paths";
 import { isoImport } from "vite-plugin-iso-import";
 
 export default defineConfig({
@@ -26,6 +26,6 @@ export default defineConfig({
     quoteStyle: "single",
   },
   vite: {
-    plugins: [tsconfigPaths(), isoImport()],
+    plugins: [tsConfigPaths(), isoImport()],
   },
 });

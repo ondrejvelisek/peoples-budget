@@ -2,7 +2,7 @@ import { parseCsv } from "@/lib/utils";
 import sectorsCsv from "./sectors_table.csv?raw";
 import typesCsv from "./types_table.csv?raw";
 import officesCsv from "./offices_table.csv?raw";
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 import memoryDriver from "unstorage/drivers/memory";
 import { createStorage } from "unstorage";
 

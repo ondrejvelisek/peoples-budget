@@ -1,6 +1,5 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { ExpensesExplorer } from "@/components/ExpensesExplorer/ExpensesExplorer";
-import { IncomeThumbnail } from "@/components/IncomesExplorer/IncomeThumbnail";
 import { expenseQueryOptions } from "@/data/expenses/expenses";
 import {
   accessChildrenExpenseDimension,
@@ -96,7 +95,5 @@ export const Route = createFileRoute("/2024/vydaje/$")({
 });
 
 function ExpensePage() {
-  return (
-    <ExpensesExplorer className="p-1 pb-2 md:p-3" />
-  );
+  return <ExpensesExplorer className="p-1 pb-2 md:p-3" />;
 }
