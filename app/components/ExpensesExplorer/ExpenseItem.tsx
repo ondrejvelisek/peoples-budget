@@ -57,6 +57,7 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
 
   return (
     <ExplorerItem
+      id={expenseKey.map((key) => `${key.dimension}-${key.id}`).join("-")}
       title={expense?.title}
       amount={expense?.amount}
       parentAmount={parentExpense?.amount}

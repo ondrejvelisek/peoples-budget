@@ -9,6 +9,7 @@ import { DimensionSwitcher } from "./DimensionSwitcher";
 import type { Dimension } from "@/data/dimensions";
 
 type ItemProps = LinkProps & {
+  id: string;
   title?: string;
   amount?: number;
   parentAmount?: number;
@@ -22,6 +23,7 @@ type ItemProps = LinkProps & {
 };
 
 export const ExplorerItem: FC<ItemProps> = ({
+  id,
   title,
   amount,
   parentAmount,
@@ -37,7 +39,7 @@ export const ExplorerItem: FC<ItemProps> = ({
   return (
     <div
       className={cn(
-        "relative block h-auto w-full bg-white transition-all",
+        "relative block h-auto w-full bg-white",
         ANIMATION_DURATION_CLASS,
         {
           "px-2 pt-1": relation === "parent",
@@ -51,12 +53,13 @@ export const ExplorerItem: FC<ItemProps> = ({
       <div className="flex grow justify-between gap-4">
         <Link
           {...linkProps}
+          viewTransition
           disabled={relation === "subject" || isLoading}
           className={cn("grow overflow-hidden")}
         >
           <div
             className={cn(
-              "flex items-center truncate transition-all",
+              "flex items-center truncate",
               ANIMATION_DURATION_CLASS,
               {
                 "text-2xs font-normal text-neutral-400 leading-4":
@@ -68,7 +71,7 @@ export const ExplorerItem: FC<ItemProps> = ({
           >
             <span
               className={cn(
-                "max-w-[1em] overflow-hidden text-neutral-400 transition-all",
+                "max-w-[1em] overflow-hidden text-neutral-400",
                 ANIMATION_DURATION_CLASS,
                 {
                   "max-w-0 opacity-0": relation !== "parent",
@@ -77,11 +80,26 @@ export const ExplorerItem: FC<ItemProps> = ({
             >
               <RiArrowLeftLine className="pr-0.5" />
             </span>
-            {isLoading ? <Skeleton width="8em" /> : <span>{title}</span>}
+            {isLoading ? (
+              <Skeleton
+                width="8em"
+                style={{
+                    viewTransitionName: `title-${id}`,
+                }}
+              />
+            ) : (
+              <span
+                style={{
+                  viewTransitionName: `title-${id}`,
+                }}
+              >
+                {title}
+              </span>
+            )}
           </div>
           <div
             className={cn(
-              "max-h-[1.3em] truncate font-bold transition-all",
+              "max-h-[1.3em] truncate font-bold",
               ANIMATION_DURATION_CLASS,
               {
                 "max-h-0 opacity-0": relation === "parent",
@@ -89,16 +107,27 @@ export const ExplorerItem: FC<ItemProps> = ({
             )}
           >
             {isLoading ? (
-              <Skeleton width="4em" />
+              <Skeleton
+                style={{
+                  viewTransitionName: `amount-${id}`,
+                }}
+                width="4em"
+              />
             ) : amount !== undefined ? (
-              formatCurrency(amount)
+              <span
+                style={{
+                  viewTransitionName: `amount-${id}`,
+                }}
+              >
+                {formatCurrency(amount)}
+              </span>
             ) : null}
           </div>
         </Link>
 
         <div
           className={cn(
-            "max-h-12 max-w-[50%] shrink-0 overflow-hidden text-right opacity-100 transition-all",
+            "max-h-12 max-w-[50%] shrink-0 overflow-hidden text-right opacity-100",
             ANIMATION_DURATION_CLASS,
             {
               "max-w-0 max-h-0 opacity-0 grow-0": relation !== "subject",

@@ -48,6 +48,7 @@ export const IncomeItem: FC<IncomeItemProps> = ({
 
   return (
     <ExplorerItem
+      id={incomeKey.map((key) => `${key.dimension}-${key.id}`).join("-")}
       title={income?.title}
       amount={income?.amount}
       parentAmount={parentIncome?.amount}
