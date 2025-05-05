@@ -3,7 +3,7 @@ import pluginJs from "@eslint/js";
 import tseslint, { config } from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import tailwind from "eslint-plugin-tailwindcss";
-import reactCompiler from "eslint-plugin-react-compiler";
+import reactHooks from "eslint-plugin-react-hooks";
 
 export default config(
   {
@@ -26,14 +26,7 @@ export default config(
       },
     },
   },
-  {
-    plugins: {
-      "react-compiler": reactCompiler,
-    },
-    rules: {
-      "react-compiler/react-compiler": "error",
-    },
-  },
+  reactHooks.configs["recommended-latest"],
   ...tailwind.configs["flat/recommended"],
   {
     settings: {
