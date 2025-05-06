@@ -58,6 +58,10 @@ export const Explorer = <K extends ItemKey<Dimension>>({
 
   return (
     <div
+      style={{
+        viewTransitionName: `item-${itemKey.map((segment) => `${segment.dimension}-${segment.id}`).join("-")}`,
+        viewTransitionClass: `item`,
+      }}
       className={cn(
         "overflow-hidden rounded-lg border-x border-b-2 border-neutral-600/10 border-b-neutral-600/20 outline outline-2 outline-stone-600/5 @container",
         ANIMATION_DURATION_CLASS,
@@ -70,7 +74,10 @@ export const Explorer = <K extends ItemKey<Dimension>>({
       )}
     >
       {relation && (
-        <div key={JSON.stringify(["header", itemKey])}>
+        <div
+          className="relative z-20"
+          key={JSON.stringify(["header", itemKey])}
+        >
           <ExplorerItemComponent
             itemKey={itemKey}
             relation={relation}
@@ -78,7 +85,7 @@ export const Explorer = <K extends ItemKey<Dimension>>({
           />
         </div>
       )}
-      <div className="grid">
+      <div className="relative z-10 grid">
         {(!isSubject || !isFetching) && !isLoading && childrenKeys && (
           <ul
             className={cn("col-start-1 row-start-1 flex flex-col bg-white")}
@@ -92,7 +99,7 @@ export const Explorer = <K extends ItemKey<Dimension>>({
                     isEqual(segment, subjectKey?.[index])
                   )) && (
                   <li
-                    className="overflow-hidden"
+                    className="relative overflow-hidden"
                     key={JSON.stringify(["child", childKey])}
                   >
                     <ExplorerComponent

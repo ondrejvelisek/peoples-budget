@@ -97,32 +97,26 @@ export const ExplorerItem: FC<ItemProps> = ({
               </span>
             )}
           </div>
-          <div
-            className={cn(
-              "max-h-[1.3em] truncate font-bold",
-              ANIMATION_DURATION_CLASS,
-              {
-                "max-h-0 opacity-0": relation === "parent",
-              }
-            )}
-          >
-            {isLoading ? (
-              <Skeleton
-                style={{
-                  viewTransitionName: `amount-${id}`,
-                }}
-                width="4em"
-              />
-            ) : amount !== undefined ? (
-              <span
-                style={{
-                  viewTransitionName: `amount-${id}`,
-                }}
-              >
-                {formatCurrency(amount)}
-              </span>
-            ) : null}
-          </div>
+          {relation !== "parent" && (
+            <div className={cn("max-h-[1.3em] truncate font-bold")}>
+              {isLoading ? (
+                <Skeleton
+                  style={{
+                    viewTransitionName: `amount-${id}`,
+                  }}
+                  width="4em"
+                />
+              ) : amount !== undefined ? (
+                <span
+                  style={{
+                    viewTransitionName: `amount-${id}`,
+                  }}
+                >
+                  {formatCurrency(amount)}
+                </span>
+              ) : null}
+            </div>
+          )}
         </Link>
 
         {relation === "subject" && (

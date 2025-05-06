@@ -40,7 +40,11 @@ export const DimensionSwitcher: FC<DimensionSwitcherProps> = ({
             const dimension = getDimensionFromLinkParams(linkProps.params);
             return (
               <DropdownMenuItem key={dimension} asChild>
-                <Link {...linkProps} activeProps={{ className: "font-bold" }}>
+                <Link
+                  {...linkProps}
+                  activeProps={{ className: "font-bold" }}
+                  viewTransition
+                >
                   {DIMENSIONS[dimension]}
                 </Link>
               </DropdownMenuItem>
@@ -54,7 +58,11 @@ export const DimensionSwitcher: FC<DimensionSwitcherProps> = ({
             const dimension = getDimensionFromLinkParams(linkProps.params);
             return (
               <TabsTrigger key={dimension} value={dimension} asChild>
-                <Link {...linkProps} activeProps={{ className: "font-bold" }}>
+                <Link
+                  {...linkProps}
+                  activeProps={{ className: "font-bold" }}
+                  viewTransition
+                >
                   {DIMENSIONS[dimension]}
                 </Link>
               </TabsTrigger>
