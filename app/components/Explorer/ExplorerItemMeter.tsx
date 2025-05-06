@@ -29,9 +29,6 @@ export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
 
   return (
     <div
-      style={{
-        viewTransitionName: `meter-${id}`,
-      }}
       className={cn(
         "absolute inset-0 z-10 h-1 rounded opacity-100",
         {
