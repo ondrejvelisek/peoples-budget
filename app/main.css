@@ -24,7 +24,6 @@ body,
 }
 
 ::view-transition-group(*) {
-  animation-delay: 50ms;
   animation-duration: 500ms;
 }
 
