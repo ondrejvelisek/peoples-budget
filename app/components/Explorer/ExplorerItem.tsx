@@ -1,7 +1,6 @@
 import { type FC } from "react";
 import { cn, formatCurrency } from "@/lib/utils";
 import { ExplorerItemMeter } from "./ExplorerItemMeter";
-import { ANIMATION_DURATION_CLASS } from "./Explorer";
 import { Link, type LinkProps } from "@tanstack/react-router";
 import { RiArrowLeftLine } from "react-icons/ri";
 import Skeleton from "react-loading-skeleton";
@@ -40,7 +39,6 @@ export const ExplorerItem: FC<ItemProps> = ({
     <div
       className={cn(
         "relative block h-auto w-full bg-white",
-        ANIMATION_DURATION_CLASS,
         {
           "px-2 pt-1": relation === "parent",
           "pt-2 px-2 pb-5 active:bg-transparent hover:bg-transparent":
@@ -58,62 +56,43 @@ export const ExplorerItem: FC<ItemProps> = ({
           className={cn("grow overflow-hidden")}
         >
           <div
-            className={cn(
-              "flex items-center truncate",
-              ANIMATION_DURATION_CLASS,
-              {
-                "text-2xs font-normal text-neutral-400 leading-4":
-                  relation === "parent",
-                "text-xl font-light": relation === "subject",
-                "text-xs font-normal": relation === "child",
-              }
-            )}
+            className={cn("flex items-center truncate", {
+              "text-2xs font-normal text-neutral-400 leading-4":
+                relation === "parent",
+              "text-xl font-light": relation === "subject",
+              "text-xs font-normal": relation === "child",
+            })}
           >
-            <span
-              className={cn(
-                "max-w-[1em] overflow-hidden text-neutral-400",
-                ANIMATION_DURATION_CLASS,
-                {
-                  "max-w-0 opacity-0": relation !== "parent",
-                }
-              )}
-            >
-              <RiArrowLeftLine className="pr-0.5" />
-            </span>
-            {isLoading ? (
-              <Skeleton
-                width="8em"
-                style={{
-                  viewTransitionName: `title-${id}`,
-                }}
-              />
-            ) : (
+            {relation === "parent" && (
               <span
-                style={{
-                  viewTransitionName: `title-${id}`,
-                }}
+                className={cn("max-w-[1em] overflow-hidden text-neutral-400")}
               >
-                {title}
+                <RiArrowLeftLine className="pr-0.5" />
               </span>
             )}
+            <div
+              className={cn("w-fit")}
+              style={{
+                viewTransitionName: `title-${id}`,
+                viewTransitionClass: `title`,
+              }}
+            >
+              {isLoading ? <Skeleton width="8em" /> : <span>{title}</span>}
+            </div>
           </div>
           {relation !== "parent" && (
-            <div className={cn("max-h-[1.3em] truncate font-bold")}>
+            <div
+              className={cn("max-h-[1.3em] w-fit truncate font-bold")}
+              style={{
+                viewTransitionName: `amount-${id}`,
+                viewTransitionClass:
+                  relation === "subject" ? `subject-amount` : `amount`,
+              }}
+            >
               {isLoading ? (
-                <Skeleton
-                  style={{
-                    viewTransitionName: `amount-${id}`,
-                  }}
-                  width="4em"
-                />
+                <Skeleton width="4em" />
               ) : amount !== undefined ? (
-                <span
-                  style={{
-                    viewTransitionName: `amount-${id}`,
-                  }}
-                >
-                  {formatCurrency(amount)}
-                </span>
+                <span>{formatCurrency(amount)}</span>
               ) : null}
             </div>
           )}
@@ -124,9 +103,7 @@ export const ExplorerItem: FC<ItemProps> = ({
             style={{
               viewTransitionName: `dimension-switcher`,
             }}
-            className={cn(
-              "max-h-12 max-w-[50%] shrink-0 overflow-hidden text-right opacity-100"
-            )}
+            className="max-h-12 max-w-[50%] shrink-0 overflow-hidden text-right opacity-100"
           >
             <DimensionSwitcher
               dimensionLinks={dimensionLinks}

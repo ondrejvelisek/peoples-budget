@@ -1,15 +1,9 @@
-import {
-  type ComponentType,
-  type ReactNode,
-  unstable_ViewTransition as ViewTransition,
-} from "react";
+import { type ComponentType, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import lodash from "lodash";
 const { isEqual } = lodash;
 import type { Dimension, ItemKey } from "@/data/dimensions";
 
-export const ANIMATION_DURATION = 500;
-export const ANIMATION_DURATION_CLASS = "";
 
 export type ExplorerComponentProps<K extends ItemKey<Dimension>> = {
   itemKey: K;
@@ -64,7 +58,6 @@ export const Explorer = <K extends ItemKey<Dimension>>({
       }}
       className={cn(
         "overflow-hidden rounded-lg border-x border-b-2 border-neutral-600/10 border-b-neutral-600/20 outline outline-2 outline-stone-600/5 @container",
-        ANIMATION_DURATION_CLASS,
         {
           "border-transparent outline-transparent rounded-xs border-x-0 border-b-0":
             relation !== "child",
@@ -75,8 +68,8 @@ export const Explorer = <K extends ItemKey<Dimension>>({
     >
       {relation && (
         <div
-          className="relative z-20"
           key={JSON.stringify(["header", itemKey])}
+          className="relative z-20"
         >
           <ExplorerItemComponent
             itemKey={itemKey}
@@ -88,8 +81,8 @@ export const Explorer = <K extends ItemKey<Dimension>>({
       <div className="relative z-10 grid">
         {(!isSubject || !isFetching) && !isLoading && childrenKeys && (
           <ul
-            className={cn("col-start-1 row-start-1 flex flex-col bg-white")}
             key={JSON.stringify([childrenDimension, itemKey])}
+            className="col-start-1 row-start-1 flex flex-col bg-white"
           >
             {childrenKeys.map(
               (childKey) =>
@@ -105,7 +98,7 @@ export const Explorer = <K extends ItemKey<Dimension>>({
                     <ExplorerComponent
                       itemKey={childKey}
                       isParentFetching={isFetching}
-                      className={cn("mt-0", ANIMATION_DURATION_CLASS, {
+                      className={cn("mt-0", {
                         "mt-3": isSubject,
                       })}
                     />

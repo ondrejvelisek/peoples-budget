@@ -39,6 +39,18 @@ body,
     300ms ease 300ms both slide-from-right;
 }
 
+::view-transition-old(.subject-amount):only-child {
+  animation:
+    400ms ease 0ms both fade-out,
+    400ms ease 0ms both slide-to-top;
+}
+
+::view-transition-new(.subject-amount):only-child {
+  animation:
+    400ms ease 0ms both fade-in,
+    400ms ease 0ms both slide-from-top;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

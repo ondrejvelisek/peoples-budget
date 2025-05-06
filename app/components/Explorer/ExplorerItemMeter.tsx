@@ -1,6 +1,5 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
-import { ANIMATION_DURATION_CLASS } from "./Explorer";
 
 type ExplorerItemMeterProps = {
   id: string;
@@ -35,7 +34,6 @@ export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
       }}
       className={cn(
         "absolute inset-0 z-10 h-1 rounded opacity-100",
-        ANIMATION_DURATION_CLASS,
         {
           "h-0 opacity-0": isHidden,
           "bg-neutral-200/80 mx-2": showBg,
@@ -44,19 +42,13 @@ export const ExplorerItemMeter: FC<ExplorerItemMeterProps> = ({
       )}
     >
       <div
-        className={cn(
-          "absolute inset-0 z-20 h-full rounded bg-sky-200",
-          ANIMATION_DURATION_CLASS
-        )}
+        className={cn("absolute inset-0 z-20 h-full rounded bg-sky-200")}
         style={{
           width: `max(0.25rem, ${localPercentage * 100}%)`,
         }}
       />
       <div
-        className={cn(
-          "absolute inset-0 z-30 h-full rounded bg-sky-400",
-          ANIMATION_DURATION_CLASS
-        )}
+        className={cn("absolute inset-0 z-30 h-full rounded bg-sky-400")}
         style={{
           width: `max(0.25rem, ${globalPercentage * 100}%)`,
         }}

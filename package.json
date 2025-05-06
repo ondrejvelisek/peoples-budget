@@ -78,7 +78,6 @@
     "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
-    "framer-motion": "12.9.4",
     "google-auth-library": "^9.15.1",
     "google-spreadsheet": "^4.1.4",
     "lodash": "^4.17.21",
