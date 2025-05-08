@@ -6,30 +6,49 @@ import {
   type IncomeKey,
 } from "@/data/incomes/incomeDimensions";
 import { useIncome } from "@/data/incomes/incomes";
+import type { LinkProps } from "@tanstack/react-router";
 
 type IncomesExplorerProps = {
-  itemKey?: IncomeKey;
   className?: string;
 };
 
-export const IncomesExplorer: FC<IncomesExplorerProps> = ({
-  itemKey = [],
-  className,
-}) => {
-  const { data: income } = useIncome(itemKey);
+export const IncomesExplorer: FC<IncomesExplorerProps> = ({ className }) => {
+  const { incomeKey } = useUrlIncomeSplat();
+  const { data: income, isPending } = useIncome(incomeKey);
 
-  const { incomeKey: urlIncomeKey } = useUrlIncomeSplat();
+  // better to use parentKey from incomeKey for performance
+  const parentKey = incomeKey.length > 0 ? incomeKey.slice(0, -1) : undefined;
 
-  // better to use parentKey from urlIncomeKey for performance
-  const parentKey =
-    urlIncomeKey.length > 0 ? urlIncomeKey.slice(0, -1) : undefined;
+  const dimensionLinks: Array<LinkProps> = [
+    {
+      to: "/2024/prijmy/$",
+      params: {
+        _splat: {
+          incomeKey,
+          incomeDimension: "druh",
+        },
+      },
+    },
+    {
+      to: "/2024/prijmy/$",
+      params: {
+        _splat: {
+          incomeKey,
+          incomeDimension: "urad",
+        },
+      },
+    },
+  ];
 
   return (
     <Explorer<IncomeKey>
       ExplorerItemComponent={IncomeItem}
-      subjectKey={urlIncomeKey}
+      subjectKey={incomeKey}
       parentKey={parentKey}
       childrenKeys={income?.children}
+      dimensionLinks={dimensionLinks}
+      currentDimension={income?.childrenDimension}
+      isLoading={isPending}
       className={className}
     />
   );

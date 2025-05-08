@@ -6,25 +6,58 @@ import {
   useUrlExpenseSplat,
   type ExpenseKey,
 } from "@/data/expenses/expenseDimensions";
+import type { LinkProps } from "@tanstack/react-router";
 
 type ExpensesExplorerProps = {
   className?: string;
 };
 
 export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
-  const { expenseKey: urlExpenseKey } = useUrlExpenseSplat();
-  const { data: expense } = useExpense(urlExpenseKey);
+  const { expenseKey } = useUrlExpenseSplat();
+  const { data: expense, isPending } = useExpense(expenseKey);
 
   // better to use parentKey from urlExpenseKey for performance
-  const parentKey =
-    urlExpenseKey.length > 0 ? urlExpenseKey.slice(0, -1) : undefined;
+  const parentKey = expenseKey.length > 0 ? expenseKey.slice(0, -1) : undefined;
+
+  const dimensionLinks: Array<LinkProps> = [
+    {
+      to: "/2024/vydaje/$",
+      params: {
+        _splat: {
+          expenseKey,
+          expenseDimension: "odvetvi",
+        },
+      },
+    },
+    {
+      to: "/2024/vydaje/$",
+      params: {
+        _splat: {
+          expenseKey,
+          expenseDimension: "druh",
+        },
+      },
+    },
+    {
+      to: "/2024/vydaje/$",
+      params: {
+        _splat: {
+          expenseKey,
+          expenseDimension: "urad",
+        },
+      },
+    },
+  ];
 
   return (
     <Explorer<ExpenseKey>
       ExplorerItemComponent={ExpenseItem}
-      subjectKey={urlExpenseKey}
+      subjectKey={expenseKey}
       parentKey={parentKey}
       childrenKeys={expense?.children}
+      dimensionLinks={dimensionLinks}
+      currentDimension={expense?.childrenDimension}
+      isLoading={isPending}
       className={className}
     />
   );

@@ -1,6 +1,5 @@
 import { type FC } from "react";
 import { ExplorerItem } from "../Explorer/ExplorerItem";
-import type { LinkProps } from "@tanstack/react-router";
 import type { IncomeKey } from "@/data/incomes/incomeDimensions";
 import { useIncome } from "@/data/incomes/incomes";
 
@@ -23,27 +22,6 @@ export const IncomeItem: FC<IncomeItemProps> = ({
   const isAnyLoading = isPending || isParentPending || isRootPending;
   const isRoot = incomeKey?.length === 0;
 
-  const dimensionLinks: Array<LinkProps> = [
-    {
-      to: "/2024/prijmy/$",
-      params: {
-        _splat: {
-          incomeKey,
-          incomeDimension: "druh",
-        },
-      },
-    },
-    {
-      to: "/2024/prijmy/$",
-      params: {
-        _splat: {
-          incomeKey,
-          incomeDimension: "urad",
-        },
-      },
-    },
-  ];
-
   return (
     <ExplorerItem
       className={className}
@@ -56,8 +34,6 @@ export const IncomeItem: FC<IncomeItemProps> = ({
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}
-      dimensionLinks={dimensionLinks}
-      currentDimension={income?.childrenDimension}
       to="/2024/prijmy/$"
       params={{
         _splat: {

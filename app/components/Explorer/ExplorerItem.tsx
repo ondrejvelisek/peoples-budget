@@ -3,10 +3,8 @@ import { cn, formatCurrency, formatCurrencyStandard } from "@/lib/utils";
 import { Link, type LinkProps } from "@tanstack/react-router";
 import { RiArrowLeftLine } from "react-icons/ri";
 import Skeleton from "react-loading-skeleton";
-import { DimensionSwitcher } from "./DimensionSwitcher";
 import { LuWallet } from "react-icons/lu";
 
-import type { Dimension } from "@/data/dimensions";
 import { Button } from "../ui/button";
 
 type ItemProps = LinkProps & {
@@ -19,8 +17,6 @@ type ItemProps = LinkProps & {
   rootAmount?: number;
   contributionAmount?: number;
   hideMeter?: boolean;
-  dimensionLinks?: Array<LinkProps>;
-  currentDimension?: Dimension;
   className?: string;
 };
 
@@ -34,8 +30,6 @@ export const ExplorerItem: FC<ItemProps> = ({
   rootAmount,
   contributionAmount,
   hideMeter = false,
-  dimensionLinks,
-  currentDimension,
   className,
   ...linkProps
 }) => {
@@ -109,26 +103,6 @@ export const ExplorerItem: FC<ItemProps> = ({
           )}
         </div>
       </div>
-
-      {relation === "subject" && dimensionLinks && (
-        <div
-          className="mx-3 flex justify-end pb-3"
-          style={{
-            viewTransitionName: `dim-switcher-${id}`,
-            viewTransitionClass: `dim-switcher  ${relation}`,
-          }}
-        >
-          {isLoading ? (
-            <Skeleton width="6em" className="h-9 align-top" />
-          ) : (
-            <DimensionSwitcher
-              className="w-fit"
-              dimensionLinks={dimensionLinks}
-              currentDimension={currentDimension}
-            />
-          )}
-        </div>
-      )}
     </Link>
   );
 };
@@ -218,7 +192,8 @@ const Contribution: FC<ItemProps> = ({
           <Skeleton width="10em" />
         ) : contributionAmount !== undefined ? (
           <>
-            <LuWallet className="inline-block" /> Měsíčně za toto státu zaplatíte
+            <LuWallet className="inline-block" /> Měsíčně za toto státu
+            zaplatíte
           </>
         ) : null}
       </div>

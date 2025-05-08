@@ -2,7 +2,6 @@ import { type FC } from "react";
 import { useExpense } from "@/data/expenses/expenses";
 import type { ExpenseKey } from "@/data/expenses/expenseDimensions";
 import { ExplorerItem } from "../Explorer/ExplorerItem";
-import type { LinkProps } from "@tanstack/react-router";
 import { usePersonalIncome } from "@/data/personalIncome/personalIncomeHook";
 
 type ExpenseItemProps = {
@@ -31,36 +30,6 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
       ? (expense.amount / rootExpense.amount) * totalPersonalContributions
       : undefined;
 
-  const dimensionLinks: Array<LinkProps> = [
-    {
-      to: "/2024/vydaje/$",
-      params: {
-        _splat: {
-          expenseKey: expenseKey,
-          expenseDimension: "odvetvi",
-        },
-      },
-    },
-    {
-      to: "/2024/vydaje/$",
-      params: {
-        _splat: {
-          expenseKey: expenseKey,
-          expenseDimension: "druh",
-        },
-      },
-    },
-    {
-      to: "/2024/vydaje/$",
-      params: {
-        _splat: {
-          expenseKey: expenseKey,
-          expenseDimension: "urad",
-        },
-      },
-    },
-  ];
-
   return (
     <ExplorerItem
       className={className}
@@ -73,8 +42,6 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}
-      dimensionLinks={dimensionLinks}
-      currentDimension={expense?.childrenDimension}
       to="/2024/vydaje/$"
       params={{
         _splat: {
