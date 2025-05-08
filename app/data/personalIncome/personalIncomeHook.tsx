@@ -1,6 +1,6 @@
 import { parseCsv } from "@/lib/utils";
 import { getPersonalIncome } from "@/data/personalIncome/personalIncomeCalc";
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 import { getRecordTables, type TypesTableRecord } from "@/data/recordTables";
 import type { DataRecord } from "@/data/items";
 import { createServerFn } from "@tanstack/react-start";
@@ -33,13 +33,17 @@ const getIncomesByType = createServerFn().handler(
   }
 );
 
+export const personalIncomeQueryOptions = queryOptions({
+  queryKey: ["incomesByType"],
+  queryFn: getIncomesByType,
+  staleTime: 24 * 60 * 60 * 1000, // 24 hours
+  gcTime: 60 * 60 * 1000, // 1 hour
+});
+
 export const usePersonalIncome = () => {
-  const { data, isPending, isLoading, isFetching, error } = useQuery({
-    queryKey: ["incomesByType"],
-    queryFn: getIncomesByType,
-    staleTime: 24 * 60 * 60 * 1000, // 24 hours
-    gcTime: 60 * 60 * 1000, // 1 hour
-  });
+  const { data, isPending, isLoading, isFetching, error } = useQuery(
+    personalIncomeQueryOptions
+  );
 
   // We do not want to compute this on server because we do not want personal income data leave local machine
   const personalIncome = useMemo(

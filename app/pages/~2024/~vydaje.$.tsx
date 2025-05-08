@@ -7,6 +7,7 @@ import {
   type ExpenseKey,
   type ExpensesSplatParam,
 } from "@/data/expenses/expenseDimensions";
+import { personalIncomeQueryOptions } from "@/data/personalIncome/personalIncomeHook";
 
 export const Route = createFileRoute("/2024/vydaje/$")({
   component: ExpensePage,
@@ -71,26 +72,29 @@ export const Route = createFileRoute("/2024/vydaje/$")({
         },
       });
     }
-    const { children } = await context.queryClient.ensureQueryData(
-      expenseQueryOptions(expenseKey, expenseDimension)
-    );
+    await Promise.all([
+      context.queryClient
+        .ensureQueryData(expenseQueryOptions(expenseKey, expenseDimension))
+        .then(async ({ children }) => {
+          const ancestors =
+            expenseKey.length > 0
+              ? expenseKey.map((_, index) => expenseKey.slice(0, index))
+              : [];
 
-    const ancestors =
-      expenseKey.length > 0
-        ? expenseKey.map((_, index) => expenseKey.slice(0, index))
-        : [];
-
-    await Promise.all(
-      [...ancestors, ...children].map(async (relativesKey) => {
-        const childrenDimension = accessChildrenExpenseDimension(
-          splat,
-          relativesKey
-        );
-        return await context.queryClient.ensureQueryData(
-          expenseQueryOptions(relativesKey, childrenDimension)
-        );
-      })
-    );
+          await Promise.all(
+            [...ancestors, ...children].map(async (relativesKey) => {
+              const childrenDimension = accessChildrenExpenseDimension(
+                splat,
+                relativesKey
+              );
+              return await context.queryClient.ensureQueryData(
+                expenseQueryOptions(relativesKey, childrenDimension)
+              );
+            })
+          );
+        }),
+      context.queryClient.ensureQueryData(personalIncomeQueryOptions),
+    ]);
   },
 });
 
