@@ -10,20 +10,29 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { DIMENSIONS, type Dimension } from "@/data/dimensions";
+import { cn } from "@/lib/utils";
 
 export type DimensionSwitcherProps = {
   currentDimension?: Dimension;
   dimensionLinks: Array<LinkProps>;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 export const DimensionSwitcher: FC<DimensionSwitcherProps> = ({
   currentDimension,
   dimensionLinks,
+  className,
+  style,
 }) => {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger className="@lg:hidden" asChild>
+        <DropdownMenuTrigger
+          style={style}
+          className={cn("flex @lg:hidden", className)}
+          asChild
+        >
           <Tabs value={currentDimension}>
             <TabsList>
               <TabsTrigger value={currentDimension ?? ""}>
@@ -52,7 +61,11 @@ export const DimensionSwitcher: FC<DimensionSwitcherProps> = ({
           })}
         </DropdownMenuContent>
       </DropdownMenu>
-      <Tabs value={currentDimension} className="hidden @lg:block">
+      <Tabs
+        value={currentDimension}
+        style={style}
+        className={cn("hidden @lg:flex", className)}
+      >
         <TabsList>
           {dimensionLinks.map((linkProps) => {
             const dimension = getDimensionFromLinkParams(linkProps.params);

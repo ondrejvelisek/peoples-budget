@@ -1,0 +1,111 @@
+::view-transition-group(*) {
+  animation-duration: 500ms;
+}
+
+::view-transition-old(.subject):only-child {
+  animation: 400ms ease 0ms both fade-out;
+}
+
+::view-transition-new(.subject):only-child {
+  animation: 400ms ease 0ms both fade-in;
+}
+
+::view-transition-old(.dim-switcher):only-child,
+::view-transition-old(*):only-child {
+  animation:
+    300ms ease 0ms both fade-out,
+    300ms ease 0ms both slide-to-right;
+}
+
+::view-transition-new(.dim-switcher):only-child,
+::view-transition-new(*):only-child {
+  animation:
+    300ms ease 300ms both fade-in,
+    300ms ease 300ms both slide-from-right;
+}
+
+::view-transition-old(.title-arrow.parent):only-child,
+::view-transition-old(.title.parent):only-child {
+  animation:
+    300ms ease 0ms both fade-out,
+    300ms ease 0ms both slide-to-left;
+}
+
+::view-transition-new(.title-arrow.parent):only-child,
+::view-transition-new(.title.parent):only-child {
+  animation:
+    300ms ease 300ms both fade-in,
+    300ms ease 300ms both slide-from-left;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-from-right {
+  from {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes slide-to-left {
+  to {
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes slide-to-right {
+  to {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes slide-from-top {
+  from {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes slide-to-bottom {
+  to {
+    transform: translateY(30px);
+  }
+}
+
+@keyframes slide-to-top {
+  to {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes slide-from-bottom {
+  from {
+    transform: translateY(30px);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes zoom-out {
+  to {
+    transform: scale(0.5);
+  }
+}

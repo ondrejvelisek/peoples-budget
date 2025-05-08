@@ -8,33 +8,23 @@ import {
 } from "@/data/expenses/expenseDimensions";
 
 type ExpensesExplorerProps = {
-  itemKey?: ExpenseKey;
-  isParentFetching?: boolean;
-  isFetching?: boolean;
   className?: string;
 };
 
-export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({
-  itemKey = [],
-  isParentFetching = false,
-  className,
-}) => {
-  const { data: expense, isPending, isFetching } = useExpense(itemKey);
-
-  const isLoading = isPending;
-
+export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
   const { expenseKey: urlExpenseKey } = useUrlExpenseSplat();
+  const { data: expense } = useExpense(urlExpenseKey);
+
+  // better to use parentKey from urlExpenseKey for performance
+  const parentKey =
+    urlExpenseKey.length > 0 ? urlExpenseKey.slice(0, -1) : undefined;
 
   return (
     <Explorer<ExpenseKey>
-      itemKey={itemKey}
-      ExplorerComponent={ExpensesExplorer}
       ExplorerItemComponent={ExpenseItem}
       subjectKey={urlExpenseKey}
+      parentKey={parentKey}
       childrenKeys={expense?.children}
-      childrenDimension={expense?.childrenDimension}
-      isFetching={isFetching || isParentFetching}
-      isLoading={isLoading}
       className={className}
     />
   );

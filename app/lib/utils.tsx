@@ -61,6 +61,13 @@ export const formatCurrency = new Intl.NumberFormat("cs-CZ", {
   notation: "compact",
 }).format;
 
+export const formatCurrencyStandard = (value: number) =>
+  new Intl.NumberFormat("cs-CZ", {
+    style: "decimal",
+    currency: "CZK",
+    notation: "standard",
+  }).format(Math.round(value));
+
 export const formatPercent = new Intl.NumberFormat("cs-CZ", {
   style: "percent",
 }).format;

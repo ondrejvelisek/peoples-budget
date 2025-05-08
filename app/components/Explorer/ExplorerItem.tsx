@@ -1,130 +1,290 @@
 import { type FC } from "react";
-import { cn, formatCurrency } from "@/lib/utils";
-import { ExplorerItemMeter } from "./ExplorerItemMeter";
+import { cn, formatCurrency, formatCurrencyStandard } from "@/lib/utils";
 import { Link, type LinkProps } from "@tanstack/react-router";
 import { RiArrowLeftLine } from "react-icons/ri";
 import Skeleton from "react-loading-skeleton";
 import { DimensionSwitcher } from "./DimensionSwitcher";
+import { LuWallet } from "react-icons/lu";
+
 import type { Dimension } from "@/data/dimensions";
+import { Button } from "../ui/button";
 
 type ItemProps = LinkProps & {
   id: string;
+  relation: "parent" | "subject" | "child";
+  isLoading?: boolean;
   title?: string;
   amount?: number;
   parentAmount?: number;
   rootAmount?: number;
-  className?: string;
-  relation?: "parent" | "subject" | "child";
-  isLoading?: boolean;
+  contributionAmount?: number;
   hideMeter?: boolean;
-  dimensionLinks: Array<LinkProps>;
+  dimensionLinks?: Array<LinkProps>;
   currentDimension?: Dimension;
+  className?: string;
 };
 
 export const ExplorerItem: FC<ItemProps> = ({
   id,
+  relation = "parent",
+  isLoading = false,
   title,
   amount,
   parentAmount,
   rootAmount,
-  className,
-  relation = "parent",
-  isLoading = false,
+  contributionAmount,
   hideMeter = false,
   dimensionLinks,
   currentDimension,
+  className,
   ...linkProps
+}) => {
+  return (
+    <Link
+      viewTransition
+      {...linkProps}
+      className={cn(
+        "relative flex flex-col overflow-hidden @container",
+        {
+          "rounded-lg border border-b-2 border-neutral-600/10 border-b-neutral-600/20 border-t-neutral-600/5":
+            relation === "child",
+        },
+        className
+      )}
+      style={{
+        viewTransitionName: `item-${id}`,
+        viewTransitionClass: `item  ${relation}`,
+      }}
+    >
+      {!hideMeter && (
+        <Meter
+          id={id}
+          amount={amount}
+          parentAmount={parentAmount}
+          rootAmount={rootAmount}
+          relation={relation}
+          isLoading={isLoading}
+          className={cn({
+            "mx-3": relation === "subject",
+          })}
+        />
+      )}
+
+      <div className="flex gap-2 p-3 pt-2">
+        {/* Buttons */}
+        <Buttons id={id} relation={relation} />
+
+        <div className="flex grow flex-col gap-1 overflow-hidden">
+          <div className="flex items-baseline justify-between gap-1">
+            <Title
+              className="shrink grow"
+              id={id}
+              relation={relation}
+              isLoading={isLoading}
+              title={title}
+            />
+            {relation !== "parent" && (
+              <Amount
+                className="shrink-0"
+                id={id}
+                relation={relation}
+                isLoading={isLoading}
+                amount={amount}
+              />
+            )}
+          </div>
+          {relation !== "parent" && (
+            <div className="flex items-baseline justify-between gap-1">
+              <Contribution
+                id={id}
+                relation={relation}
+                isLoading={isLoading}
+                contributionAmount={contributionAmount}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {relation === "subject" && dimensionLinks && (
+        <div className="mx-3 flex justify-end pb-3">
+          <DimensionSwitcher
+            className="w-fit"
+            style={{
+              viewTransitionName: `dim-switcher-${id}`,
+              viewTransitionClass: `dim-switcher  ${relation}`,
+            }}
+            dimensionLinks={dimensionLinks}
+            currentDimension={currentDimension}
+          />
+        </div>
+      )}
+    </Link>
+  );
+};
+
+const Title: FC<ItemProps> = ({
+  id,
+  relation = "parent",
+  isLoading = false,
+  title,
+  className,
 }) => {
   return (
     <div
       className={cn(
-        "relative block h-auto w-full bg-white",
+        "truncate pb-0.5 text-xs",
         {
-          "px-2 pt-1": relation === "parent",
-          "pt-2 px-2 pb-5 active:bg-transparent hover:bg-transparent":
-            relation === "subject",
-          "px-2 pt-2 pb-2": relation === "child",
+          "text-2xs font-normal text-neutral-400": relation === "parent",
+          "text-xl font-light -mt-0.5": relation === "subject",
+          "text-sm font-normal": relation === "child",
+        },
+        "leading-none",
+        className
+      )}
+    >
+      {relation === "parent" && (
+        <RiArrowLeftLine
+          className="mb-0.5 mr-0.5  inline-block"
+          style={{
+            viewTransitionName: `title-arrow-${id}`,
+            viewTransitionClass: `title-arrow  ${relation}`,
+          }}
+        />
+      )}
+      <span
+        style={{
+          viewTransitionName: `title-${id}`,
+          viewTransitionClass: `title  ${relation}`,
+        }}
+      >
+        {isLoading ? <Skeleton width="10em" /> : title}
+      </span>
+    </div>
+  );
+};
+
+const Amount: FC<ItemProps> = ({
+  id,
+  relation = "parent",
+  isLoading = false,
+  amount,
+  className,
+}) => {
+  return (
+    <div
+      className={cn("w-fit truncate text-base font-bold", className)}
+      style={{
+        viewTransitionName: `amount-${id}`,
+        viewTransitionClass: `amount ${relation}`,
+      }}
+    >
+      {isLoading ? (
+        <Skeleton width="4em" />
+      ) : amount !== undefined ? (
+        formatCurrency(amount)
+      ) : null}
+    </div>
+  );
+};
+
+const Contribution: FC<ItemProps> = ({
+  id,
+  relation = "parent",
+  isLoading = false,
+  contributionAmount,
+  className,
+}) => {
+  return (
+    <>
+      <div
+        className="text-2xs text-stone-400"
+        style={{
+          viewTransitionName: `contribution-title-${id}`,
+          viewTransitionClass: `contribution-title  ${relation}`,
+        }}
+      >
+        {isLoading ? (
+          <Skeleton width="10em" />
+        ) : contributionAmount !== undefined ? (
+          <>
+            <LuWallet className="inline-block" /> Měsíčně zaplatíte za službu
+          </>
+        ) : null}
+      </div>
+      <div
+        className={cn("w-fit text-2xs font-bold", className)}
+        style={{
+          viewTransitionName: `contribution-${id}`,
+          viewTransitionClass: `contribution  ${relation}`,
+        }}
+      >
+        {isLoading ? (
+          <Skeleton width="4em" />
+        ) : contributionAmount !== undefined ? (
+          `${formatCurrencyStandard(contributionAmount)} Kč`
+        ) : null}
+      </div>
+    </>
+  );
+};
+
+const Buttons: FC<ItemProps> = () => {
+  // TODO: Design buttons
+  return null;
+  return (
+    <div className="flex flex-col">
+      <Button variant="outline" size="sm">
+        +
+      </Button>
+      <Button variant="outline" size="sm">
+        -
+      </Button>
+    </div>
+  );
+};
+
+const Meter: FC<ItemProps> = ({
+  amount,
+  parentAmount,
+  rootAmount,
+  className,
+  relation,
+  isLoading,
+}) => {
+  if (amount === undefined) {
+    return null;
+  }
+
+  const localPercentage = parentAmount ? amount / parentAmount : 0;
+  const globalPercentage = rootAmount ? amount / rootAmount : 0;
+
+  return (
+    <div
+      className={cn(
+        "relative h-1 rounded opacity-100",
+        {
+          "bg-neutral-200/80": relation === "subject",
         },
         className
       )}
     >
-      <div className="flex grow justify-between gap-4">
-        <Link
-          {...linkProps}
-          viewTransition
-          disabled={relation === "subject" || isLoading}
-          className={cn("grow overflow-hidden")}
-        >
+      {!isLoading && (
+        <>
           <div
-            className={cn("flex items-center truncate", {
-              "text-2xs font-normal text-neutral-400 leading-4":
-                relation === "parent",
-              "text-xl font-light": relation === "subject",
-              "text-xs font-normal": relation === "child",
-            })}
-          >
-            {relation === "parent" && (
-              <span
-                className={cn("max-w-[1em] overflow-hidden text-neutral-400")}
-              >
-                <RiArrowLeftLine className="pr-0.5" />
-              </span>
-            )}
-            <div
-              className={cn("w-fit")}
-              style={{
-                viewTransitionName: `title-${id}`,
-                viewTransitionClass: `title`,
-              }}
-            >
-              {isLoading ? <Skeleton width="8em" /> : <span>{title}</span>}
-            </div>
-          </div>
-          {relation !== "parent" && (
-            <div
-              className={cn("max-h-[1.3em] w-fit truncate font-bold")}
-              style={{
-                viewTransitionName: `amount-${id}`,
-                viewTransitionClass:
-                  relation === "subject" ? `subject-amount` : `amount`,
-              }}
-            >
-              {isLoading ? (
-                <Skeleton width="4em" />
-              ) : amount !== undefined ? (
-                <span>{formatCurrency(amount)}</span>
-              ) : null}
-            </div>
-          )}
-        </Link>
-
-        {relation === "subject" && (
-          <div
+            className={cn("absolute inset-0 z-20 h-full rounded bg-sky-200")}
             style={{
-              viewTransitionName: `dimension-switcher`,
+              width: `max(0.25rem, ${localPercentage * 100}%)`,
             }}
-            className="max-h-12 max-w-[50%] shrink-0 overflow-hidden text-right opacity-100"
-          >
-            <DimensionSwitcher
-              dimensionLinks={dimensionLinks}
-              currentDimension={currentDimension}
-            />
-          </div>
-        )}
-      </div>
-
-      <ExplorerItemMeter
-        id={id}
-        amount={amount}
-        parentAmount={parentAmount}
-        rootAmount={rootAmount}
-        className={cn({
-          "rounded-t-full rounded-b-none overflow-hidden ml-0.5":
-            relation === "child",
-        })}
-        isHidden={hideMeter || isLoading}
-        showBg={relation === "subject"}
-      />
+          />
+          <div
+            className={cn("absolute inset-0 z-30 h-full rounded bg-sky-400")}
+            style={{
+              width: `max(0.25rem, ${globalPercentage * 100}%)`,
+            }}
+          />
+        </>
+      )}
     </div>
   );
 };

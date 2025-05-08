@@ -9,32 +9,27 @@ import { useIncome } from "@/data/incomes/incomes";
 
 type IncomesExplorerProps = {
   itemKey?: IncomeKey;
-  isParentFetching?: boolean;
-  isFetching?: boolean;
   className?: string;
 };
 
 export const IncomesExplorer: FC<IncomesExplorerProps> = ({
   itemKey = [],
-  isParentFetching = false,
   className,
 }) => {
-  const { data: income, isPending, isFetching } = useIncome(itemKey);
-
-  const isLoading = isPending;
+  const { data: income } = useIncome(itemKey);
 
   const { incomeKey: urlIncomeKey } = useUrlIncomeSplat();
 
+  // better to use parentKey from urlIncomeKey for performance
+  const parentKey =
+    urlIncomeKey.length > 0 ? urlIncomeKey.slice(0, -1) : undefined;
+
   return (
     <Explorer<IncomeKey>
-      itemKey={itemKey}
-      ExplorerComponent={IncomesExplorer}
       ExplorerItemComponent={IncomeItem}
       subjectKey={urlIncomeKey}
+      parentKey={parentKey}
       childrenKeys={income?.children}
-      childrenDimension={income?.childrenDimension}
-      isFetching={isFetching || isParentFetching}
-      isLoading={isLoading}
       className={className}
     />
   );

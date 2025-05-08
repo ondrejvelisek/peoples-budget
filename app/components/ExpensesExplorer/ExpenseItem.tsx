@@ -8,21 +8,19 @@ type ExpenseItemProps = {
   itemKey: ExpenseKey;
   className?: string;
   relation?: "parent" | "subject" | "child";
-  isLoading?: boolean;
 };
 
 export const ExpenseItem: FC<ExpenseItemProps> = ({
   itemKey: expenseKey,
   relation = "parent",
-  isLoading = false,
+  className,
 }) => {
   const { data: expense, isPending } = useExpense(expenseKey);
   const { data: parentExpense, isPending: isParentPending } = useExpense(
     expense?.parent
   );
   const { data: rootExpense, isPending: isRootPending } = useExpense([]);
-  const isAnyLoading =
-    isPending || isParentPending || isRootPending || isLoading;
+  const isAnyLoading = isPending || isParentPending || isRootPending;
   const isRoot = expenseKey?.length === 0;
 
   const dimensionLinks: Array<LinkProps> = [
@@ -57,11 +55,13 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
 
   return (
     <ExplorerItem
+      className={className}
       id={expenseKey.map((key) => `${key.dimension}-${key.id}`).join("-")}
       title={expense?.title}
       amount={expense?.amount}
       parentAmount={parentExpense?.amount}
       rootAmount={rootExpense?.amount}
+      contributionAmount={(parentExpense?.amount ?? 0) / 1000000000} // TBD
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}

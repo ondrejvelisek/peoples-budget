@@ -8,21 +8,19 @@ type IncomeItemProps = {
   itemKey: IncomeKey;
   className?: string;
   relation?: "parent" | "subject" | "child";
-  isLoading?: boolean;
 };
 
 export const IncomeItem: FC<IncomeItemProps> = ({
   itemKey: incomeKey,
   relation = "parent",
-  isLoading = false,
+  className,
 }) => {
   const { data: income, isPending } = useIncome(incomeKey);
   const { data: parentIncome, isPending: isParentPending } = useIncome(
     income?.parent
   );
   const { data: rootIncome, isPending: isRootPending } = useIncome([]);
-  const isAnyLoading =
-    isPending || isParentPending || isRootPending || isLoading;
+  const isAnyLoading = isPending || isParentPending || isRootPending;
   const isRoot = incomeKey?.length === 0;
 
   const dimensionLinks: Array<LinkProps> = [
@@ -48,11 +46,13 @@ export const IncomeItem: FC<IncomeItemProps> = ({
 
   return (
     <ExplorerItem
+      className={className}
       id={incomeKey.map((key) => `${key.dimension}-${key.id}`).join("-")}
       title={income?.title}
       amount={income?.amount}
       parentAmount={parentIncome?.amount}
       rootAmount={rootIncome?.amount}
+      contributionAmount={(parentIncome?.amount ?? 0) / 1000000000} // TBD
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}
