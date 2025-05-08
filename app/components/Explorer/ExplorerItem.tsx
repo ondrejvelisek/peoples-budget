@@ -111,16 +111,22 @@ export const ExplorerItem: FC<ItemProps> = ({
       </div>
 
       {relation === "subject" && dimensionLinks && (
-        <div className="mx-3 flex justify-end pb-3">
-          <DimensionSwitcher
-            className="w-fit"
-            style={{
-              viewTransitionName: `dim-switcher-${id}`,
-              viewTransitionClass: `dim-switcher  ${relation}`,
-            }}
-            dimensionLinks={dimensionLinks}
-            currentDimension={currentDimension}
-          />
+        <div
+          className="mx-3 flex justify-end pb-3"
+          style={{
+            viewTransitionName: `dim-switcher-${id}`,
+            viewTransitionClass: `dim-switcher  ${relation}`,
+          }}
+        >
+          {isLoading ? (
+            <Skeleton width="6em" className="h-9 align-top" />
+          ) : (
+            <DimensionSwitcher
+              className="w-fit"
+              dimensionLinks={dimensionLinks}
+              currentDimension={currentDimension}
+            />
+          )}
         </div>
       )}
     </Link>
@@ -268,7 +274,7 @@ const Meter: FC<ItemProps> = ({
       className={cn(
         "relative h-1 rounded opacity-100",
         {
-          "bg-neutral-200/80": relation === "subject",
+          "bg-neutral-200/80": relation === "subject" || isLoading,
         },
         className
       )}
