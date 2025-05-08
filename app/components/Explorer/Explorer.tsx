@@ -34,7 +34,7 @@ export const Explorer = <K extends ItemKey<Dimension>>({
   ExplorerItemComponent,
 }: ExplorerProps<K>): ReactNode => {
   return (
-    <div className={cn("flex flex-col", className)}>
+    <div className={cn("flex max-w-3xl flex-col", className)}>
       {parentKey && (
         <ExplorerItemComponent itemKey={parentKey} relation="parent" />
       )}

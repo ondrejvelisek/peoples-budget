@@ -95,5 +95,5 @@ export const Route = createFileRoute("/2024/prijmy/$")({
 });
 
 function IncomePage() {
-  return <IncomesExplorer className="p-1 pb-2 md:p-3" />;
+  return <IncomesExplorer className="pb-4 pt-1" />;
 }

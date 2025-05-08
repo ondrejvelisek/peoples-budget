@@ -29,7 +29,7 @@ const PageTabsTrigger = React.forwardRef<
   <PageTabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "z-10 inline-flex grow max-w-40 items-center justify-center whitespace-nowrap rounded-t-2xl px-3 py-2 text-sm font-medium ring-offset-white transition-all after:transition-all before:transition-all",
+      "z-10 inline-flex grow max-w-sm items-center justify-center whitespace-nowrap rounded-t-2xl px-3 py-2 text-sm font-medium ring-offset-white transition-all after:transition-all before:transition-all",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-950 focus-visible:ring-offset-2",
       "disabled:pointer-events-none disabled:opacity-50",
       "data-[state=active]:bg-white data-[state=active]:text-sand-950 data-[state=active]:shadow-[-1px_0_0_#5C52410F,-3px_0_0_#5C524109,1px_0_0_#5C52410F,3px_0_0_#5C524109]",

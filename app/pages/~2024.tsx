@@ -48,23 +48,13 @@ function Layout2024() {
                 Příjmy
               </Link>
             </PageTabsTrigger>
-            <PageTabsTrigger value="/support" asChild>
-              <Link
-                to="/support"
-                params={{
-                  _splat: { expenseKey: [], expenseDimension: undefined },
-                }}
-              >
-                Dluh
-              </Link>
-            </PageTabsTrigger>
           </PageTabsList>
         </PageTabs>
-        <div className={cn("shrink grow overflow-y-auto")}>
+        <div className={cn("max-w-3xl shrink grow overflow-y-auto ")}>
           <Outlet />
         </div>
         <Link
-          className="shrink-0 rounded-2xl border-t-2 border-sand-600/15 bg-white outline outline-4 outline-sand-600/5"
+          className="max-w-3xl  shrink-0 rounded-2xl border-t-2 border-sand-600/15 bg-white outline outline-4 outline-sand-600/5"
           to="/2024/vydaje/$"
           style={{
             viewTransitionName: "income-thumbnail",
