@@ -38,6 +38,7 @@ export function accessCookie(name: string): [string | undefined, SetCookie] {
     };
     return [value || undefined, setValue] as const;
   } else if (isComponentRender()) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setClientValue] = useClientCookie(name);
     const setValue: SetCookie = (newValue, options) => {
       const deduplicate = options?.deduplicate ?? true;
@@ -64,6 +65,7 @@ export function accessCookie(name: string): [string | undefined, SetCookie] {
 
 export const isComponentRender = () => {
   try {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {}, []);
     return true;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

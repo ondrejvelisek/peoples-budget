@@ -1,3 +1,14 @@
+
+1. Milestone:
+    ☐ Add personal contribution to each expense row
+    ☐ Add tabs for income and expenses
+    ☐ Add personal settings of personal income and expenses
+    ☐ Refresh data and create docs how o update them
+    ☐ Create donation page and fake doors
+    ☐ Create Home page and data info
+    ☐ Debug, test and polish
+
+
 Build & Deploy:
     ✔ Fix Vercel build @done (11/6/2024, 4:08:47 PM)
 
@@ -17,8 +28,8 @@ Expenses:
     ☐ Restructuralize some expenses
     ☐ Add examples of specific low level expenses close to a person
     ☐ Add personal contributoin to each expense row (maybe possible to switch between example and example? Or just show somehow both)
-    ☐ Add possibility to full search expenses based on name 
-    ☐ 2024 Expenses
+    ☐ Add possibility to full search expenses based on name
+    ☐ Update data (Maybe build data pipeline or at least document how the data update is done)
         ☐ Get data
         ☐ Switch 24 and 25
         ☐ Add to app
@@ -46,8 +57,10 @@ Bugs:
     ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)
     ✔ Do not report analytics events during prerender @done (11/9/2024, 11:52:46 AM)
     ✔ Fix redirect when logging event @done (11/24/2024, 10:46:13 AM)
-    ☐ Fix animations performance, try native view transition
-    ☐ Fix SSR response (initial animation renders nothing)
+    ✔ Fix animations performance, try native view transition @done (5/6/2025, 2:42:33 PM)
+    ✔ Fix SSR response (initial animation renders nothing) @done (5/7/2025, 8:21:32 AM)
+    ☐ Fix errors when switching dimension
+    ☐ Make mobile menu works when JS is not loaded yet (add navOpen URL query param)
     
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)
