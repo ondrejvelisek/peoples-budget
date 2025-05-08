@@ -218,7 +218,7 @@ const Contribution: FC<ItemProps> = ({
           <Skeleton width="10em" />
         ) : contributionAmount !== undefined ? (
           <>
-            <LuWallet className="inline-block" /> Měsíčně za položku zaplatíte
+            <LuWallet className="inline-block" /> Měsíčně za toto státu zaplatíte
           </>
         ) : null}
       </div>

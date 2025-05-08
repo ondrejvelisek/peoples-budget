@@ -19,15 +19,15 @@ export const PersonalIncomeThumbnail: FC<{
   } = personalIncome ?? {};
 
   return (
-    <div className="flex flex-col p-3">
+    <div className="flex flex-col p-3 pb-4">
       <div
         className={cn(
           "flex items-center gap-2 text-2xs text-stone-400",
           className
         )}
       >
-        {perceivedNetIncome ? (
-          formatCurrency(perceivedNetIncome)
+        {totalPersonalContributions ? (
+          formatCurrency(totalPersonalContributions)
         ) : (
           <Skeleton width="4em" />
         )}
@@ -74,15 +74,15 @@ export const PersonalIncomeThumbnail: FC<{
                 ]
           }
         />
-        {totalPersonalContributions ? (
-          formatCurrency(totalPersonalContributions)
+        {perceivedNetIncome ? (
+          formatCurrency(perceivedNetIncome)
         ) : (
           <Skeleton width="4em" />
         )}
       </div>
       <div className="flex justify-between text-2xs text-stone-400 ">
         <div>
-          {personalIncome ? "odvedete státu" : <Skeleton width="8em" />}
+          {personalIncome ? "odvedete měsíčně státu" : <Skeleton width="8em" />}
         </div>
         <div>
           {personalIncome ? "čistého vám zbyde" : <Skeleton width="8em" />}
