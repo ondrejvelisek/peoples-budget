@@ -30,7 +30,6 @@ export const IncomeItem: FC<IncomeItemProps> = ({
       amount={income?.amount}
       parentAmount={parentIncome?.amount}
       rootAmount={rootIncome?.amount}
-      contributionAmount={(parentIncome?.amount ?? 0) / 1000000000} // TBD
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}

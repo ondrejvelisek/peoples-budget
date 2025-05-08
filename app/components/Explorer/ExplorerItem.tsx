@@ -91,7 +91,7 @@ export const ExplorerItem: FC<ItemProps> = ({
               />
             )}
           </div>
-          {relation !== "parent" && (
+          {relation !== "parent" && contributionAmount !== undefined && (
             <div className="flex items-baseline justify-between gap-1">
               <Contribution
                 id={id}
