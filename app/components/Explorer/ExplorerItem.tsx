@@ -70,7 +70,11 @@ export const ExplorerItem: FC<ItemProps> = ({
         />
       )}
 
-      <div className="flex gap-2 p-3 pt-2">
+      <div
+        className={cn("flex gap-2 p-3 pt-2", {
+          "pb-2": relation === "parent",
+        })}
+      >
         {/* Buttons */}
         <Buttons id={id} relation={relation} />
 
@@ -208,7 +212,7 @@ const Contribution: FC<ItemProps> = ({
           <Skeleton width="10em" />
         ) : contributionAmount !== undefined ? (
           <>
-            <LuWallet className="inline-block" /> Měsíčně zaplatíte za službu
+            <LuWallet className="inline-block" /> Měsíčně za položku zaplatíte
           </>
         ) : null}
       </div>

@@ -19,6 +19,7 @@ export type Item<D extends Dimension> = {
   key: ItemKey<D>;
   title: string;
   amount: number;
+  contributionAmount: number;
   children: Array<ItemKey<D>>;
   childrenDimension?: D;
   parent?: ItemKey<D>;

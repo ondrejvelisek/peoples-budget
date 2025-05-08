@@ -2,6 +2,7 @@ import { type TypesTableRecord } from "../recordTables";
 
 export type PersonalProfile = {
   netIncome: number;
+  taxCredit: number;
   incomeTaxCoefficients: Record<string, number>;
 };
 
@@ -167,7 +168,7 @@ export function getPersonalIncome(
     applyExciseTaxes,
     applyVat,
     applyPayrollDeductions,
-    applyTaxCredit(2570), // slevy na dani z prijmu
+    applyTaxCredit(profile.taxCredit), // slevy na dani z prijmu
     applyEmployerContributions,
     applyGeneralContributions
   )(defaultPersonalIncome);

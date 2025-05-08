@@ -95,5 +95,5 @@ export const Route = createFileRoute("/2024/vydaje/$")({
 });
 
 function ExpensePage() {
-  return <ExpensesExplorer className="pb-2" />;
+  return <ExpensesExplorer className="pb-4 pt-1" />;
 }

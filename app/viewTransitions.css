@@ -2,6 +2,10 @@
   animation-duration: 500ms;
 }
 
+::view-transition-group(income-thumbnail) {
+  z-index: 100;
+}
+
 ::view-transition-old(.subject):only-child {
   animation: 400ms ease 0ms both fade-out;
 }

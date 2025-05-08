@@ -3,6 +3,7 @@ import { useExpense } from "@/data/expenses/expenses";
 import type { ExpenseKey } from "@/data/expenses/expenseDimensions";
 import { ExplorerItem } from "../Explorer/ExplorerItem";
 import type { LinkProps } from "@tanstack/react-router";
+import { usePersonalIncome } from "@/data/personalIncome/personalIncomeHook";
 
 type ExpenseItemProps = {
   itemKey: ExpenseKey;
@@ -20,8 +21,15 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
     expense?.parent
   );
   const { data: rootExpense, isPending: isRootPending } = useExpense([]);
-  const isAnyLoading = isPending || isParentPending || isRootPending;
+  const { totalPersonalContributions, isPending: isPersonalIncomePending } =
+    usePersonalIncome();
+  const isAnyLoading =
+    isPending || isParentPending || isRootPending || isPersonalIncomePending;
   const isRoot = expenseKey?.length === 0;
+  const contributionAmount =
+    expense && rootExpense && totalPersonalContributions
+      ? (expense.amount / rootExpense.amount) * totalPersonalContributions
+      : undefined;
 
   const dimensionLinks: Array<LinkProps> = [
     {
@@ -61,7 +69,7 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
       amount={expense?.amount}
       parentAmount={parentExpense?.amount}
       rootAmount={rootExpense?.amount}
-      contributionAmount={(parentExpense?.amount ?? 0) / 1000000000} // TBD
+      contributionAmount={contributionAmount}
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}
