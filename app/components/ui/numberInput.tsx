@@ -5,39 +5,43 @@ import { cn } from "@/lib/utils";
 import { Input } from "./input";
 import { Button } from "./button";
 import { useState } from "react";
-import { useDisclosure, useToggle } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
+import { RxDragHandleDots1 } from "react-icons/rx";
 
 const NumberInput = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
 >(({ className, ...props }, ref) => {
-  const [raw, setRaw] = useState<string>(props.value?.[0]?.toString() ?? "");
+  const [raw, setRaw] = useState<number | undefined>(props.value?.[0]);
   const [focused, { open: focus, close: blur }] = useDisclosure(false);
-  const value = focused ? Number(raw) : (props.value?.[0] ?? 0);
+  const value = focused ? raw : props.value?.[0];
 
-  const setValue = (rawValue: string) => {
-    const value = Number(rawValue);
-    if (!isNaN(value) || rawValue === "") {
-      setRaw(rawValue);
+  const setValue = (rawValue: number | undefined) => {
+    if (rawValue === undefined || isNaN(rawValue)) {
+      setRaw(undefined);
+      return;
     }
+
+    setRaw(rawValue);
     if (
-      !isNaN(value) &&
+      !isNaN(rawValue) &&
       props.min &&
-      value >= props.min &&
+      rawValue >= props.min &&
       props.max &&
-      value <= props.max
+      rawValue <= props.max
     ) {
-      props.onValueChange?.([value]);
-      props.onValueCommit?.([value]);
+      props.onValueChange?.([rawValue]);
+      props.onValueCommit?.([rawValue]);
     }
   };
   return (
     <div className="flex items-center">
       <Button
         variant="outline"
-        className="aspect-square"
+        className="lg:rounded-r-none -mr-px"
         onClick={() => {
-          setValue(`${value - (props.step ?? 1)}`);
+          const fallback = props.value?.[0] ?? props.min ?? props.max ?? 0;
+          setValue(value === undefined ? fallback : value - (props.step ?? 1));
         }}
       >
         –
@@ -45,19 +49,19 @@ const NumberInput = React.forwardRef<
       <SliderPrimitive.Root
         ref={ref}
         className={cn(
-          "relative flex w-full touch-none select-none items-center",
+          "lg:hidden relative flex w-full touch-none select-none items-center",
           className
         )}
         {...props}
-        value={[value]}
+        value={[value ?? props.value?.[0] ?? props.min ?? props.max ?? 0]}
         onValueChange={(values) => {
           const value = values[0];
-          setRaw(value?.toString() ?? "");
+          setRaw(value);
           props.onValueChange?.(values);
         }}
         onFocus={focus}
         onBlur={() => {
-          setRaw(props.value?.[0]?.toString() ?? "");
+          setRaw(props.value?.[0]);
           blur();
         }}
       >
@@ -65,20 +69,42 @@ const NumberInput = React.forwardRef<
           <SliderPrimitive.Range className="absolute h-full bg-sand-200" />
         </SliderPrimitive.Track>
         <SliderPrimitive.Thumb asChild>
-          <Input
-            type="text"
-            pattern="\d*"
-            placeholder="Zadejte číslo"
-            className="w-24"
-            value={value.toString()}
-            onChange={(e) => setValue(e.target.value)}
-          />
+          <div className="bg-white border border-sand-200 pl-4 pr-1 p-2 rounded-md flex items-center justify-between text-sm h-10 w-28 text-sand-600 group cursor-move">
+            <span>{value}</span>
+            <RxDragHandleDots1 className="inline-block text-2xl ml-1 text-sand-350 group-hover:text-black " />
+          </div>
         </SliderPrimitive.Thumb>
       </SliderPrimitive.Root>
+
+      <Input
+        className="hidden lg:block grow rounded-none z-10"
+        type="text"
+        pattern="\d*"
+        value={value?.toString() ?? ""}
+        onChange={(e) => {
+          if (e.target.value === "") {
+            setRaw(undefined);
+            return;
+          }
+          const value = Number(e.target.value);
+          if (isNaN(value)) {
+            return;
+          }
+          setValue(value);
+        }}
+        onFocus={focus}
+        onBlur={() => {
+          setRaw(props.value?.[0]);
+          blur();
+        }}
+      />
+
       <Button
+        className="lg:rounded-l-none -ml-px"
         variant="outline"
         onClick={() => {
-          setValue(`${value + (props.step ?? 1)}`);
+          const fallback = props.value?.[0] ?? props.min ?? props.max ?? 0;
+          setValue(value === undefined ? fallback : value + (props.step ?? 1));
         }}
       >
         +

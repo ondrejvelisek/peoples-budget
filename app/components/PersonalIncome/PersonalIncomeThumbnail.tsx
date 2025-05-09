@@ -88,18 +88,22 @@ export const PersonalIncomeThumbnail: FC<{
         <div className="flex justify-between gap-3 text-xs text-stone-400">
           <div className="flex-1 truncate">
             {personalIncome ? (
-              "odvedete měsíčně měsíčně státu"
+              "odvedete měsíčně státu"
             ) : (
               <Skeleton width="8em" />
             )}
           </div>
-          <div className="flex-1 truncate">
-            {personalIncome ? "čistého vám zbyde" : <Skeleton width="8em" />}
+          <div className="flex-1 truncate text-right">
+            {personalIncome ? (
+              "čistého vám zbyde"
+            ) : (
+              <Skeleton width="8em" />
+            )}
           </div>
         </div>
       </div>
       <Button
-        className="shrink-0 grow-0"
+        className="shrink-0 grow-0 "
         variant="ghost"
         size="sm"
         onClick={onToggle}
