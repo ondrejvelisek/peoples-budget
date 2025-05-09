@@ -94,16 +94,12 @@ export const PersonalIncomeThumbnail: FC<{
             )}
           </div>
           <div className="flex-1 truncate text-right">
-            {personalIncome ? (
-              "čistého vám zbyde"
-            ) : (
-              <Skeleton width="8em" />
-            )}
+            {personalIncome ? "čistého vám zbyde" : <Skeleton width="8em" />}
           </div>
         </div>
       </div>
       <Button
-        className="shrink-0 grow-0 "
+        className="-mr-1 ml-2 shrink-0 grow-0 px-2 text-xl duration-500"
         variant="ghost"
         size="sm"
         onClick={onToggle}

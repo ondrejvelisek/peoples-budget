@@ -1,9 +1,44 @@
 import { type TypesTableRecord } from "../recordTables";
 
+export const defaultPersonalProfileTaxCoefficients = {
+  1211: 0.5, // DPH, kolik % zboži, které nakoupím spadá do snížené sazby
+  1221: 0.06, // Spotrebni dan mineralnich oleju, kolik procent prijmu domacnost utrati za pohonne hmoty
+  1222: 0.01, // Spotrebni dan lihu, kolik procent prijmu domacnost utrati za tvrdy alkohol
+  1223: 0.01, // Spotrebni dan piva, kolik procent prijmu domacnost utrati za pivo
+  1224: 0.01, // Spotrebni dan vina, kolik procent prijmu domacnost utrati za vino
+  1225: 0.01, // Spotrebni dan tabaku, kolik procent prijmu domacnost utrati za tabakove vyrobky
+  1229: 0.01, // SpD - zahřív.tab.výr.
+  1231: 0.02, // Daň z zem.pl. a plyn
+  1232: 0.005, // Daň z pevných paliv
+  1233: 0.03, // Daň z elektřiny
+  1333: 0.005, // P za ulož.odpadů
+  1111: 1, // Změstnanec - Příjem z daně z příjmů fyzických osob placené plátci	134,200,000,000	1111
+  1612: 1, // Změstnanec - Příjem z pojistného na důchodové pojištění od zaměstnanců	151,829,546,160	1612
+  1615: 1, // Změstnanec - Příjem z pojistného na nemocenské pojištění od zaměstnanců	13,934,565,703	1615
+  1632: 1, // Změstnanec - Pojistné na veřejné zdravotní pojištění od zaměstnanců	78,649,574,500	1632
+  1611: 1, // Zaměstnavatel - Poj.důchP zamv
+  1614: 1, // Zaměstnavatel - Poj.nemP-zamv
+  1617: 1, // Zaměstnavatel - Přísp. SPZ zamv
+  1631: 1, // Zaměstnavatel - Poj.zdravP zamv
+  1112: 0, // OSVC - Příjem z daně z příjmů fyzických osob placené poplatníky	12,000,000,000	1112
+  1613: 0, // OSVC - Příjem z pojistného na důchodové pojištění od osob samostatně výdělečně činných	41,416,716,943	1613
+  2361: 0, // OSVC - Příjem z pojistného na nemocenské pojištění od osob samostatně výdělečně činných	230,000,000	2361
+  1633: 0, // OSVC - Pojistné na veřejné zdravotní pojištění od OSVČ	21,454,369,371	1633
+  1618: 0, // OSVC - Příjem z příspěvků na státní politiku zaměstnanosti od osob samostatně výdělečně činných	1,774,251,716	1618
+  1113: 0, // Daně z investic a bankovních účtů - Příjem z daně z příjmů fyzických osob vybírané srážkou podle zvláštní sazby daně	23,400,000,000	1113
+  2362: 0, // Příjem z dobrovolného pojistného na důchodové pojištění	320,000,000	2362
+  1121: 0.5, // dane z prijmu pravnickych osob, daněný zisk řetězců podniků odhaduju jako 50 % spotřebitelských tržeb
+} as const;
+
+export type PersonalProfileTaxCoefficients = Record<
+  keyof typeof defaultPersonalProfileTaxCoefficients | string,
+  number
+>;
+
 export type PersonalProfile = {
   netIncome: number;
   taxCredit: number;
-  incomeTaxCoefficients: Record<string, number>;
+  incomeTaxCoefficients: PersonalProfileTaxCoefficients;
 };
 
 export type PersonalIncome = {
@@ -111,6 +146,7 @@ export function getPersonalIncome(
 
   // odvody zamestnance / OSVC
   const applyPayrollDeductions = applyPayrollDeduction(
+    profile.taxCredit,
     Object.entries(items)
       .filter(([typeId]) => typesTable[typeId]?.income_type === "os.prijem")
       .map(([typeId, taxStateIncome]) => {
@@ -168,7 +204,6 @@ export function getPersonalIncome(
     applyExciseTaxes,
     applyVat,
     applyPayrollDeductions,
-    applyTaxCredit(profile.taxCredit), // slevy na dani z prijmu
     applyEmployerContributions,
     applyGeneralContributions
   )(defaultPersonalIncome);
@@ -286,10 +321,14 @@ type PayrollDeductionInput = {
  */
 export const applyPayrollDeduction =
   (
+    taxCredit: number,
     inputs: Array<PayrollDeductionInput> // in decimal point number, e.g. 0.16 for 16 %
   ): PersonalIncomeDecorator =>
   (personalIncome) => {
-    const netIncomeOrig = personalIncome.perceivedNetIncome;
+    const netIncomeOrig = Math.max(
+      personalIncome.perceivedNetIncome - taxCredit,
+      0
+    );
     const taxPerc = inputs.reduce((acc, input) => acc + input.taxesPerc, 0);
     const newTotalStateContributions = inputs.reduce(
       (acc, input) => acc + input.taxStateIncome,
@@ -303,20 +342,6 @@ export const applyPayrollDeduction =
       payrollDeduction: personalIncome.payrollDeduction + newPayrollDeduction,
       totalStateContributions:
         personalIncome.totalStateContributions + newTotalStateContributions,
-    };
-  };
-
-/**
- * Sleva na dani (např na polatníka)
- */
-export const applyTaxCredit =
-  (
-    taxCredit: number // in absolute number
-  ): PersonalIncomeDecorator =>
-  (personalIncome) => {
-    return {
-      ...personalIncome,
-      payrollDeduction: personalIncome.payrollDeduction - taxCredit,
     };
   };
 

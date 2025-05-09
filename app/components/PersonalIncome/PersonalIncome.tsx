@@ -1,19 +1,21 @@
-import { useState, type FC } from "react";
+import { type FC } from "react";
 import { PersonalIncomeThumbnail } from "./PersonalIncomeThumbnail";
 import { cn } from "@/lib/utils";
 import { useDisclosure } from "@mantine/hooks";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { Label } from "../ui/label";
-import { NumberInput } from "../ui/numberInput";
 import { Field, FieldMessage } from "../ui/Field";
+import {
+  PersonalIncomeInput,
+  selectTaxCoefficient,
+  updateTaxCoefficient,
+} from "./PersonalIncomeInput";
 
 export const PersonalIncome: FC<{
   className?: string;
 }> = ({ className }) => {
-  const [opened, { toggle }] = useDisclosure(true);
-  const [netIncome, setNetIncome] = useState<number>(34000);
-  const [dph, setDph] = useState<number>(50);
-  const [gass, setGass] = useState<number>(4000);
+  const [opened, { toggle }] = useDisclosure(false);
+
   return (
     <div
       className={cn(
@@ -48,9 +50,12 @@ export const PersonalIncome: FC<{
 
           <Field>
             <Label>Čistý měsíční příjem</Label>
-            <NumberInput
-              value={[netIncome]}
-              onValueCommit={(value) => value[0] && setNetIncome(value[0])}
+            <PersonalIncomeInput
+              selectValue={(profile) => profile.netIncome}
+              updateValue={(profile, netIncome) => ({
+                ...profile,
+                netIncome,
+              })}
               min={10000}
               max={250000}
               step={1000}
@@ -64,12 +69,39 @@ export const PersonalIncome: FC<{
           </Field>
 
           <Field>
+            <Label>Slevy na daních</Label>
+            <PersonalIncomeInput
+              selectValue={(profile) => profile.taxCredit}
+              updateValue={(profile, taxCredit) => ({
+                ...profile,
+                taxCredit,
+              })}
+              min={0}
+              max={(profile) => profile.netIncome}
+              step={100}
+              unit="Kč"
+            />
+            <FieldMessage>
+              Kolik celkem uplatníte slev na dani. Sleva na daňového poplatníka,
+              důchodce, na invaliditu, dítě, manžela/manželku, penzijní a
+              životní připojištění, úroky z úvěru na bydlení, dary a darování
+              krve.
+            </FieldMessage>
+          </Field>
+
+          <Field>
             <Label>Výdaje se sníženou sazbou DPH</Label>
-            <NumberInput
-              value={[dph]}
-              onValueCommit={(value) =>
-                value[0] !== undefined && setDph(value[0])
+            <PersonalIncomeInput
+              selectValue={(profile) =>
+                profile.incomeTaxCoefficients[1211] * 100
               }
+              updateValue={(profile, dph) => ({
+                ...profile,
+                incomeTaxCoefficients: {
+                  ...profile.incomeTaxCoefficients,
+                  [1211]: dph / 100,
+                },
+              })}
               min={0}
               max={100}
               step={5}
@@ -85,18 +117,16 @@ export const PersonalIncome: FC<{
 
           <Field>
             <Label>Pohonné hmoty</Label>
-            <NumberInput
-              value={[gass]}
-              onValueCommit={(value) =>
-                value[0] !== undefined && setGass(value[0])
-              }
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1221)}
+              updateValue={updateTaxCoefficient(1221)}
               min={0}
-              max={netIncome * 0.3}
+              max={(profile) => profile.netIncome * 0.3}
               step={500}
               unit="Kč"
             />
             <FieldMessage>
-              Kolik měsíčně utratíte za pohonné hmoty.
+              Kolik měsíčně utratíte za benzín a naftu.
             </FieldMessage>
           </Field>
         </div>

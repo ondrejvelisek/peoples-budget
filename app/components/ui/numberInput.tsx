@@ -105,7 +105,7 @@ const NumberInput = React.forwardRef<
         }}
       />
       {unit && (
-        <div className="size-10 border-y border-sand-200 hidden lg:block">
+        <div className="size-10 border-y border-sand-200 hidden lg:flex items-center justify-center p-3">
           {unit}
         </div>
       )}
