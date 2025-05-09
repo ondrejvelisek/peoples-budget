@@ -55,11 +55,12 @@ export const withProviders =
       <WrappedComponent {...props} />
     );
 
-export const formatCurrency = new Intl.NumberFormat("cs-CZ", {
-  style: "decimal",
-  currency: "CZK",
-  notation: "compact",
-}).format;
+export const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("cs-CZ", {
+    style: "decimal",
+    currency: "CZK",
+    notation: "compact",
+  }).format(Math.round(value));
 
 export const formatCurrencyStandard = (value: number) =>
   new Intl.NumberFormat("cs-CZ", {

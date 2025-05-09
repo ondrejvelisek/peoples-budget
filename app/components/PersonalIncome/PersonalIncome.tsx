@@ -72,7 +72,7 @@ export const PersonalIncome: FC<{
               updateValue={(taxCredit) => ({ taxCredit })}
               min={0}
               max={(profile) => profile.netIncome}
-              step={100}
+              step={500}
               unit="Kč"
             />
             <FieldMessage>

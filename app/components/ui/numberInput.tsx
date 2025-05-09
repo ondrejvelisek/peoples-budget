@@ -42,8 +42,23 @@ const NumberInput = React.forwardRef<
         variant="outline"
         className="lg:rounded-r-none -mr-px lg:m-0"
         onClick={() => {
-          const fallback = props.value?.[0] ?? props.min ?? props.max ?? 0;
-          setValue(value === undefined ? fallback : value - (props.step ?? 1));
+          if (value === undefined) {
+            const fallback = props.value?.[0] ?? props.min ?? props.max ?? 0;
+            setValue(fallback);
+            return;
+          }
+
+          const step = props.step ?? 1;
+          const isInteger = Number.isInteger(value);
+          const isStepMultiple = step ? value % step === 0 : true;
+          if (!isInteger || !isStepMultiple) {
+            // round to nearest step below
+            const rounded = Math.floor(value / step) * step;
+            setValue(rounded);
+            return;
+          }
+
+          setValue(value - step);
         }}
       >
         –
@@ -61,7 +76,10 @@ const NumberInput = React.forwardRef<
           setRaw(value);
           props.onValueChange?.(values);
         }}
-        onFocus={focus}
+        onFocus={() => {
+          setRaw(props.value?.[0]);
+          focus();
+        }}
         onBlur={() => {
           setRaw(props.value?.[0]);
           blur();
@@ -86,7 +104,7 @@ const NumberInput = React.forwardRef<
         className="hidden lg:block grow rounded-none z-10 border-x-0"
         type="text"
         pattern="\d*"
-        value={value?.toString() ?? ""}
+        value={value === undefined ? "" : Math.round(value).toString()}
         onChange={(e) => {
           if (e.target.value === "") {
             setRaw(undefined);
@@ -98,7 +116,10 @@ const NumberInput = React.forwardRef<
           }
           setValue(value);
         }}
-        onFocus={focus}
+        onFocus={() => {
+          setRaw(props.value?.[0]);
+          focus();
+        }}
         onBlur={() => {
           setRaw(props.value?.[0]);
           blur();
@@ -114,8 +135,23 @@ const NumberInput = React.forwardRef<
         className="lg:rounded-l-none lg:m-0 -ml-px"
         variant="outline"
         onClick={() => {
-          const fallback = props.value?.[0] ?? props.min ?? props.max ?? 0;
-          setValue(value === undefined ? fallback : value + (props.step ?? 1));
+          if (value === undefined) {
+            const fallback = props.value?.[0] ?? props.min ?? props.max ?? 0;
+            setValue(fallback);
+            return;
+          }
+
+          const step = props.step ?? 1;
+          const isInteger = Number.isInteger(value);
+          const isStepMultiple = value % step === 0;
+          if (!isInteger || !isStepMultiple) {
+            // round to nearest step above
+            const rounded = Math.ceil(value / step) * step;
+            setValue(rounded);
+            return;
+          }
+
+          setValue(value + step);
         }}
       >
         +
