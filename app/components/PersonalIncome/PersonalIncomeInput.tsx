@@ -54,7 +54,7 @@ export const updateTaxCoefficient = (
     ...profile,
     incomeTaxCoefficients: {
       ...profile.incomeTaxCoefficients,
-      [taxCoefficient]: value,
+      [taxCoefficient]: value / profile.netIncome,
     },
   });
 };
