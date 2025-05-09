@@ -1,12 +1,18 @@
 import { type FC } from "react";
 import { cn } from "@/lib/utils";
 import { NumberInput } from "../ui/numberInput";
-import type { PersonalProfile } from "@/data/personalIncome/personalIncomeCalc";
+import type {
+  PartialPersonalProfile,
+  PersonalProfile,
+} from "@/data/personalIncome/personalIncomeCalc";
 import { usePersonalProfile } from "@/data/personalIncome/personalIncomeHook";
 
 export type PersonalIncomeInputProps = {
   selectValue: (profile: PersonalProfile) => number;
-  updateValue: (profile: PersonalProfile, value: number) => PersonalProfile;
+  updateValue: (
+    value: number,
+    profile: PersonalProfile
+  ) => PartialPersonalProfile;
   min: number | ((profile: PersonalProfile) => number);
   max: number | ((profile: PersonalProfile) => number);
   step: number | ((profile: PersonalProfile) => number);
@@ -29,7 +35,7 @@ export const PersonalIncomeInput: FC<PersonalIncomeInputProps> = ({
       value={[selectValue(personalProfile)]}
       onValueCommit={(value) =>
         value[0] !== undefined &&
-        setPersonalProfile(updateValue(personalProfile, value[0]))
+        setPersonalProfile(updateValue(value[0], personalProfile))
       }
       min={typeof min === "function" ? min(personalProfile) : min}
       max={typeof max === "function" ? max(personalProfile) : max}
@@ -50,10 +56,8 @@ export const selectTaxCoefficient = (
 export const updateTaxCoefficient = (
   taxCoefficient: keyof Omit<PersonalProfile["incomeTaxCoefficients"], string>
 ) => {
-  return (profile: PersonalProfile, value: number) => ({
-    ...profile,
+  return (value: number, profile: PersonalProfile) => ({
     incomeTaxCoefficients: {
-      ...profile.incomeTaxCoefficients,
       [taxCoefficient]: value / profile.netIncome,
     },
   });

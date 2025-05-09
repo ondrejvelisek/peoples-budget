@@ -30,6 +30,12 @@ export const defaultPersonalProfileTaxCoefficients = {
   1121: 0.5, // dane z prijmu pravnickych osob, daněný zisk řetězců podniků odhaduju jako 50 % spotřebitelských tržeb
 } as const;
 
+export const defaultPersonalProfile = {
+  netIncome: 37000,
+  taxCredit: 2570,
+  incomeTaxCoefficients: defaultPersonalProfileTaxCoefficients,
+} as const;
+
 export type PersonalProfileTaxCoefficients = Record<
   keyof typeof defaultPersonalProfileTaxCoefficients | string,
   number
@@ -39,6 +45,10 @@ export type PersonalProfile = {
   netIncome: number;
   taxCredit: number;
   incomeTaxCoefficients: PersonalProfileTaxCoefficients;
+};
+
+export type PartialPersonalProfile = Partial<Omit<PersonalProfile, "incomeTaxCoefficients">> & {
+  incomeTaxCoefficients?: Partial<PersonalProfileTaxCoefficients>;
 };
 
 export type PersonalIncome = {

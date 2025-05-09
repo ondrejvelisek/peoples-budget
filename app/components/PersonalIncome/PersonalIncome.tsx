@@ -52,10 +52,7 @@ export const PersonalIncome: FC<{
             <Label>Čistý měsíční příjem</Label>
             <PersonalIncomeInput
               selectValue={(profile) => profile.netIncome}
-              updateValue={(profile, netIncome) => ({
-                ...profile,
-                netIncome,
-              })}
+              updateValue={(netIncome) => ({ netIncome })}
               min={10000}
               max={250000}
               step={1000}
@@ -72,10 +69,7 @@ export const PersonalIncome: FC<{
             <Label>Slevy na daních</Label>
             <PersonalIncomeInput
               selectValue={(profile) => profile.taxCredit}
-              updateValue={(profile, taxCredit) => ({
-                ...profile,
-                taxCredit,
-              })}
+              updateValue={(taxCredit) => ({ taxCredit })}
               min={0}
               max={(profile) => profile.netIncome}
               step={100}
@@ -95,12 +89,8 @@ export const PersonalIncome: FC<{
               selectValue={(profile) =>
                 profile.incomeTaxCoefficients[1211] * 100
               }
-              updateValue={(profile, dph) => ({
-                ...profile,
-                incomeTaxCoefficients: {
-                  ...profile.incomeTaxCoefficients,
-                  [1211]: dph / 100,
-                },
+              updateValue={(dph) => ({
+                incomeTaxCoefficients: { [1211]: dph / 100 },
               })}
               min={0}
               max={100}
@@ -112,6 +102,21 @@ export const PersonalIncome: FC<{
               Včetně dárků, konzumace v restauracích a nákupech na dovolených.
               Voda, potraviny, léky a zdravo, ubytování, vstupenky na kulturní a
               sportovní akce, krmiva pro zvířata, rostliny, knihy a noviny.
+            </FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Pohonné hmoty</Label>
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1221)}
+              updateValue={updateTaxCoefficient(1221)}
+              min={0}
+              max={(profile) => profile.netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>
+              Kolik měsíčně utratíte za benzín a naftu.
             </FieldMessage>
           </Field>
 
