@@ -24,10 +24,10 @@ export const PersonalIncomeThumbnail: FC<{
 
   return (
     <div className={cn("flex items-center p-3 pb-4")}>
-      <div className="flex grow flex-col">
+      <div className="flex grow flex-col overflow-hidden">
         <div
           className={cn(
-            "flex items-center gap-2 text-2xs text-stone-400",
+            "flex items-center gap-2 text-xs text-stone-400",
             className
           )}
         >
@@ -85,15 +85,15 @@ export const PersonalIncomeThumbnail: FC<{
             <Skeleton width="4em" />
           )}
         </div>
-        <div className="flex justify-between text-2xs text-stone-400 ">
-          <div>
+        <div className="flex justify-between gap-3 text-xs text-stone-400">
+          <div className="flex-1 truncate">
             {personalIncome ? (
-              "odvedete měsíčně státu"
+              "odvedete měsíčně měsíčně státu"
             ) : (
               <Skeleton width="8em" />
             )}
           </div>
-          <div>
+          <div className="flex-1 truncate">
             {personalIncome ? "čistého vám zbyde" : <Skeleton width="8em" />}
           </div>
         </div>

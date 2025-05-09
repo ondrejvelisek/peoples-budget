@@ -119,7 +119,7 @@ const Title: FC<ItemProps> = ({
       className={cn(
         "truncate pb-0.5 text-xs",
         {
-          "text-2xs font-normal text-neutral-400": relation === "parent",
+          "text-xs font-normal text-neutral-400": relation === "parent",
           "text-xl font-light -mt-0.5": relation === "subject",
           "text-sm font-normal": relation === "child",
         },
@@ -186,7 +186,7 @@ const Contribution: FC<ItemProps> = ({
   return (
     <>
       <div
-        className="text-2xs text-stone-400"
+        className="truncate text-xs text-stone-400"
         style={{
           viewTransitionName: `contribution-title-${id}`,
           viewTransitionClass: `contribution-title  ${relation}`,
@@ -196,13 +196,13 @@ const Contribution: FC<ItemProps> = ({
           <Skeleton width="10em" />
         ) : contributionAmount !== undefined ? (
           <>
-            <LuWallet className="inline-block" /> Měsíčně za toto státu
+            <LuWallet className="inline-block" /> Měsíčně za toto
             zaplatíte
           </>
         ) : null}
       </div>
       <div
-        className={cn("w-fit text-2xs font-bold", className)}
+        className={cn("w-fit shrink-0 truncate text-xs font-bold", className)}
         style={{
           viewTransitionName: `contribution-${id}`,
           viewTransitionClass: `contribution  ${relation}`,
