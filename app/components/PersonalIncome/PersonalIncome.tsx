@@ -42,7 +42,7 @@ export const PersonalIncome: FC<{
           {personalIncome && totalPersonalContributions && (
             <div className="flex flex-col items-center">
               <div className="text-center text-sm">
-                Kdybyste státu&nbsp;nic&nbsp;neplatil,
+                Kdybyste státu&nbsp;nic&nbsp;neplatil/a,
                 vyděláte&nbsp;měsíčně&nbsp;celkem
               </div>
               <div>
@@ -57,7 +57,9 @@ export const PersonalIncome: FC<{
             </div>
           )}
 
-          <h2 className="text-lg font-bold leading-none">Nastavení osobního profilu</h2>
+          <h2 className="text-lg font-bold leading-none">
+            Nastavení osobního profilu
+          </h2>
 
           <Tabs value="employee">
             <TabsList className="flex">
