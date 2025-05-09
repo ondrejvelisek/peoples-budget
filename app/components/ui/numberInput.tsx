@@ -27,9 +27,9 @@ const NumberInput = React.forwardRef<
     setRaw(rawValue);
     if (
       !isNaN(rawValue) &&
-      props.min &&
+      props.min !== undefined &&
       rawValue >= props.min &&
-      props.max &&
+      props.max !== undefined &&
       rawValue <= props.max
     ) {
       props.onValueChange?.([rawValue]);

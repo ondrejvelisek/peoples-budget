@@ -12,8 +12,8 @@ export const PersonalIncome: FC<{
 }> = ({ className }) => {
   const [opened, { toggle }] = useDisclosure(true);
   const [netIncome, setNetIncome] = useState<number>(34000);
-  const [dph, setDph] = useState<number>(4000);
-  const [gass, setGass] = useState<number>(6);
+  const [dph, setDph] = useState<number>(50);
+  const [gass, setGass] = useState<number>(4000);
   return (
     <div
       className={cn(
@@ -67,10 +67,12 @@ export const PersonalIncome: FC<{
             <Label>Výdaje se sníženou sazbou DPH</Label>
             <NumberInput
               value={[dph]}
-              onValueCommit={(value) => value[0] && setDph(value[0])}
+              onValueCommit={(value) =>
+                value[0] !== undefined && setDph(value[0])
+              }
               min={0}
               max={100}
-              step={1}
+              step={5}
               unit="%"
             />
             <FieldMessage>
@@ -85,7 +87,9 @@ export const PersonalIncome: FC<{
             <Label>Pohonné hmoty</Label>
             <NumberInput
               value={[gass]}
-              onValueCommit={(value) => value[0] && setGass(value[0])}
+              onValueCommit={(value) =>
+                value[0] !== undefined && setGass(value[0])
+              }
               min={0}
               max={netIncome * 0.3}
               step={500}
