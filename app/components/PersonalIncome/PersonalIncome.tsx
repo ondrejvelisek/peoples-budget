@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { PersonalIncomeThumbnail } from "./PersonalIncomeThumbnail";
-import { cn } from "@/lib/utils";
+import { cn, formatCurrency, formatCurrencyStandard } from "@/lib/utils";
 import { useDisclosure } from "@mantine/hooks";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { Label } from "../ui/label";
@@ -10,11 +10,13 @@ import {
   selectTaxCoefficient,
   updateTaxCoefficient,
 } from "./PersonalIncomeInput";
+import { usePersonalIncome } from "@/data/personalIncome/personalIncomeHook";
 
 export const PersonalIncome: FC<{
   className?: string;
 }> = ({ className }) => {
   const [opened, { toggle }] = useDisclosure(false);
+  const { personalIncome, totalPersonalContributions } = usePersonalIncome();
 
   return (
     <div
@@ -36,7 +38,27 @@ export const PersonalIncome: FC<{
           }
         )}
       >
-        <div className="flex flex-col gap-7 p-3 pb-5">
+        <div className="flex flex-col gap-7 p-3 pb-5 pt-1">
+          {personalIncome && totalPersonalContributions && (
+            <div className="flex flex-col items-center">
+              <div className="text-center text-sm">
+                Kdybyste státu&nbsp;nic&nbsp;neplatil,
+                vyděláte&nbsp;měsíčně&nbsp;celkem
+              </div>
+              <div>
+                <span className="text-center text-2xl font-bold">
+                  {formatCurrencyStandard(
+                    personalIncome.perceivedNetIncome +
+                      totalPersonalContributions
+                  )}
+                </span>
+                &nbsp;Kč
+              </div>
+            </div>
+          )}
+
+          <h2 className="text-lg font-bold leading-none">Nastavení osobního profilu</h2>
+
           <Tabs value="employee">
             <TabsList className="flex">
               <TabsTrigger value="employee" className="grow">
@@ -121,17 +143,124 @@ export const PersonalIncome: FC<{
           </Field>
 
           <Field>
-            <Label>Pohonné hmoty</Label>
+            <Label>Pivo</Label>
             <PersonalIncomeInput
-              selectValue={selectTaxCoefficient(1221)}
-              updateValue={updateTaxCoefficient(1221)}
+              selectValue={selectTaxCoefficient(1223)}
+              updateValue={updateTaxCoefficient(1223)}
               min={0}
               max={(profile) => profile.netIncome * 0.3}
               step={500}
               unit="Kč"
             />
             <FieldMessage>
-              Kolik měsíčně utratíte za benzín a naftu.
+              Kolik celkem měsíčně utratíte za pivo. Včetně spotřeby doma, v
+              restauracích, na dovoléné a dárků pro druhé.
+            </FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Víno</Label>
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1224)}
+              updateValue={updateTaxCoefficient(1224)}
+              min={0}
+              max={(profile) => profile.netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>
+              Kolik celkem měsíčně utratíte za víno. Včetně spotřeby doma, v
+              restauracích, na dovoléné a dárků pro druhé.
+            </FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Tvrdý alkohol</Label>
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1222)}
+              updateValue={updateTaxCoefficient(1222)}
+              min={0}
+              max={(profile) => profile.netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>
+              Kolik celkem měsíčně utratíte za tvrdý alkohol. Včetně spotřeby
+              doma, v restauracích, na dovoléné a dárků pro druhé.
+            </FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Pálené tabákové výrobky</Label>
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1225)}
+              updateValue={updateTaxCoefficient(1225)}
+              min={0}
+              max={(profile) => profile.netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>
+              Kolik celkem měsíčně utratíte za cigarety, doutníky a tabák do
+              dýmek. Včetně spotřeby doma, v restauracích, na dovoléné a dárků
+              pro druhé.
+            </FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Zahřívané tabákové výrobky</Label>
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1229)}
+              updateValue={updateTaxCoefficient(1229)}
+              min={0}
+              max={(profile) => profile.netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>
+              Kolik celkem měsíčně utratíte za elektronické cigarety. Včetně
+              spotřeby doma, v restauracích, na dovoléné a dárků pro druhé.
+            </FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Elektřina</Label>
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1233)}
+              updateValue={updateTaxCoefficient(1233)}
+              min={0}
+              max={(profile) => profile.netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>Kolik měsíčně utratíte za elektřinu.</FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Zemní plyn</Label>
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1231)}
+              updateValue={updateTaxCoefficient(1231)}
+              min={0}
+              max={(profile) => profile.netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>Kolik měsíčně utratíte za plyn.</FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Tuhá paliva</Label>
+            <PersonalIncomeInput
+              selectValue={selectTaxCoefficient(1232)}
+              updateValue={updateTaxCoefficient(1232)}
+              min={0}
+              max={(profile) => profile.netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>
+              Kolik měsíčně utratíte za uhlí, brikety a dřevo na vytápění.
             </FieldMessage>
           </Field>
         </div>
