@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 
-import { cn } from "@/lib/utils";
+import { cn, formatCurrencyStandard } from "@/lib/utils";
 import { Input } from "./input";
 import { Button } from "./button";
 import { useState } from "react";
@@ -10,8 +10,10 @@ import { RxDragHandleDots1 } from "react-icons/rx";
 
 const NumberInput = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & {
+    unit?: string;
+  }
+>(({ className, unit, ...props }, ref) => {
   const [raw, setRaw] = useState<number | undefined>(props.value?.[0]);
   const [focused, { open: focus, close: blur }] = useDisclosure(false);
   const value = focused ? raw : props.value?.[0];
@@ -38,7 +40,7 @@ const NumberInput = React.forwardRef<
     <div className="flex items-center">
       <Button
         variant="outline"
-        className="lg:rounded-r-none -mr-px"
+        className="lg:rounded-r-none -mr-px lg:m-0"
         onClick={() => {
           const fallback = props.value?.[0] ?? props.min ?? props.max ?? 0;
           setValue(value === undefined ? fallback : value - (props.step ?? 1));
@@ -69,15 +71,19 @@ const NumberInput = React.forwardRef<
           <SliderPrimitive.Range className="absolute h-full bg-sand-200" />
         </SliderPrimitive.Track>
         <SliderPrimitive.Thumb asChild>
-          <div className="bg-white border border-sand-200 pl-4 pr-1 p-2 rounded-md flex items-center justify-between text-sm h-10 w-28 text-sand-600 group cursor-move">
-            <span>{value}</span>
+          <div className="bg-white border border-sand-200 pl-4 pr-1 p-2 rounded-md flex items-center justify-between text-sm h-10 w-32 text-sand-600 group cursor-move">
+            <span>
+              {value !== undefined
+                ? `${formatCurrencyStandard(value)} ${unit ?? ""}`
+                : ""}
+            </span>
             <RxDragHandleDots1 className="inline-block text-2xl ml-1 text-sand-350 group-hover:text-black " />
           </div>
         </SliderPrimitive.Thumb>
       </SliderPrimitive.Root>
 
       <Input
-        className="hidden lg:block grow rounded-none z-10"
+        className="hidden lg:block grow rounded-none z-10 border-x-0"
         type="text"
         pattern="\d*"
         value={value?.toString() ?? ""}
@@ -98,9 +104,14 @@ const NumberInput = React.forwardRef<
           blur();
         }}
       />
+      {unit && (
+        <div className="size-10 border-y border-sand-200 hidden lg:block">
+          {unit}
+        </div>
+      )}
 
       <Button
-        className="lg:rounded-l-none -ml-px"
+        className="lg:rounded-l-none lg:m-0 -ml-px"
         variant="outline"
         onClick={() => {
           const fallback = props.value?.[0] ?? props.min ?? props.max ?? 0;

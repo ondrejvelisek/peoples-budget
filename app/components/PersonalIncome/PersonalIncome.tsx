@@ -4,15 +4,16 @@ import { cn } from "@/lib/utils";
 import { useDisclosure } from "@mantine/hooks";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Slider } from "../ui/slider";
 import { NumberInput } from "../ui/numberInput";
+import { Field, FieldMessage } from "../ui/Field";
 
 export const PersonalIncome: FC<{
   className?: string;
 }> = ({ className }) => {
   const [opened, { toggle }] = useDisclosure(true);
-  const [num, setNum] = useState<number>(37000);
+  const [netIncome, setNetIncome] = useState<number>(34000);
+  const [dph, setDph] = useState<number>(4000);
+  const [gass, setGass] = useState<number>(6);
   return (
     <div
       className={cn(
@@ -26,11 +27,14 @@ export const PersonalIncome: FC<{
         onToggle={toggle}
       />
       <div
-        className={cn("max-h-0 flex-1 overflow-y-auto transition-all", {
-          "max-h-screen": opened,
-        })}
+        className={cn(
+          "max-h-0 flex-1 overflow-y-auto transition-all duration-500",
+          {
+            "max-h-screen": opened,
+          }
+        )}
       >
-        <div className="flex flex-col gap-6 p-3">
+        <div className="flex flex-col gap-7 p-3 pb-5">
           <Tabs value="employee">
             <TabsList className="flex">
               <TabsTrigger value="employee" className="grow">
@@ -42,26 +46,55 @@ export const PersonalIncome: FC<{
             </TabsList>
           </Tabs>
 
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="email">Email</Label>
-            <Input type="email" id="email" placeholder="Email" />
-          </div>
-
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="email">Email</Label>
+          <Field>
+            <Label>Čistý měsíční příjem</Label>
             <NumberInput
-              value={[num]}
-              onValueCommit={(value) => setNum(value[0] ?? 37000)}
+              value={[netIncome]}
+              onValueCommit={(value) => value[0] && setNetIncome(value[0])}
               min={10000}
-              max={300000}
+              max={250000}
               step={1000}
+              unit="Kč"
             />
-          </div>
+            <FieldMessage>
+              Kolik vám průměrně každý měsíc přijde na účet. Přijmy ze všech
+              zaměstnání, brigád, pronájmu nemovitostí, zisky z investic a
+              dividendy.
+            </FieldMessage>
+          </Field>
 
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="email">Email</Label>
-            <Slider defaultValue={[33]} max={100} step={1} />
-          </div>
+          <Field>
+            <Label>Výdaje se sníženou sazbou DPH</Label>
+            <NumberInput
+              value={[dph]}
+              onValueCommit={(value) => value[0] && setDph(value[0])}
+              min={0}
+              max={100}
+              step={1}
+              unit="%"
+            />
+            <FieldMessage>
+              Kolik procent utratíte za produkty a služby se sníženou sazbou.
+              Včetně dárků, konzumace v restauracích a nákupech na dovolených.
+              Voda, potraviny, léky a zdravo, ubytování, vstupenky na kulturní a
+              sportovní akce, krmiva pro zvířata, rostliny, knihy a noviny.
+            </FieldMessage>
+          </Field>
+
+          <Field>
+            <Label>Pohonné hmoty</Label>
+            <NumberInput
+              value={[gass]}
+              onValueCommit={(value) => value[0] && setGass(value[0])}
+              min={0}
+              max={netIncome * 0.3}
+              step={500}
+              unit="Kč"
+            />
+            <FieldMessage>
+              Kolik měsíčně utratíte za pohonné hmoty.
+            </FieldMessage>
+          </Field>
         </div>
       </div>
     </div>
