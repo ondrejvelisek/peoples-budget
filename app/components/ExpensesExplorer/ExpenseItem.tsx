@@ -38,7 +38,7 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
       amount={expense?.amount}
       parentAmount={parentExpense?.amount}
       rootAmount={rootExpense?.amount}
-      contributionAmount={contributionAmount}
+      contributionAmount={isAnyLoading ? 0 : contributionAmount}
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}

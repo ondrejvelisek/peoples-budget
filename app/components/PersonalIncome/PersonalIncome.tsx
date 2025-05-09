@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { PersonalIncomeThumbnail } from "./PersonalIncomeThumbnail";
-import { cn, formatCurrency, formatCurrencyStandard } from "@/lib/utils";
+import { cn, formatCurrencyStandard } from "@/lib/utils";
 import { useDisclosure } from "@mantine/hooks";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { Label } from "../ui/label";
@@ -10,13 +10,18 @@ import {
   selectTaxCoefficient,
   updateTaxCoefficient,
 } from "./PersonalIncomeInput";
-import { usePersonalIncome } from "@/data/personalIncome/personalIncomeHook";
+import {
+  usePersonalIncome,
+  usePersonalProfileNotSeenYet,
+} from "@/data/personalIncome/personalIncomeHook";
+import { Button } from "../ui/button";
 
 export const PersonalIncome: FC<{
   className?: string;
 }> = ({ className }) => {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { toggle, open }] = useDisclosure(false);
   const { personalIncome, totalPersonalContributions } = usePersonalIncome();
+  usePersonalProfileNotSeenYet(open);
 
   return (
     <div
@@ -265,6 +270,13 @@ export const PersonalIncome: FC<{
               Kolik měsíčně utratíte za uhlí, brikety a dřevo na vytápění.
             </FieldMessage>
           </Field>
+
+          <div className="flex flex-col items-center gap-1">
+            <Button onClick={toggle}>Pokračovat</Button>
+            <div className="text-xs text-sand-400">
+              Změny se ukládají automaticky
+            </div>
+          </div>
         </div>
       </div>
     </div>

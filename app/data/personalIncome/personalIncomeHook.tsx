@@ -13,7 +13,7 @@ import { createServerFn } from "@tanstack/react-start";
 
 import incomes2025Csv from "../../data/incomes/incomes_2025.csv?raw";
 import { useMemo } from "react";
-import { useLocalStorage } from "@mantine/hooks";
+import { useLocalStorage, useTimeout } from "@mantine/hooks";
 
 type IncomesByType = {
   incomes: Record<string, number>;
@@ -79,6 +79,25 @@ export const usePersonalProfile = (): [
   };
 
   return [profile, setProfile] as const;
+};
+
+export const usePersonalProfileNotSeenYet = (callback: () => void) => {
+  const [seenProfile, setSeenProfile] = useLocalStorage<boolean>({
+    key: "seen-personal-profile",
+    defaultValue: false,
+    getInitialValueInEffect: false,
+  });
+
+  useTimeout(
+    () => {
+      if (!seenProfile) {
+        setSeenProfile(true);
+        callback();
+      }
+    },
+    500,
+    { autoInvoke: true }
+  );
 };
 
 export const usePersonalIncome = () => {
