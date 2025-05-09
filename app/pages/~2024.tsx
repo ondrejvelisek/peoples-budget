@@ -1,5 +1,6 @@
 import { BudgetProvider } from "@/components/BudgetProvider/BudgetProvider";
-import { PersonalIncomeThumbnail } from "@/components/PersonalIncome/PersonalIncomeThumbnail";
+import { PersonalIncome } from "@/components/PersonalIncome/PersonalIncome";
+
 import {
   PageTabs,
   PageTabsList,
@@ -50,19 +51,10 @@ function Layout2024() {
             </PageTabsTrigger>
           </PageTabsList>
         </PageTabs>
-        <div className={cn("max-w-3xl shrink grow overflow-y-auto")}>
+        <div className={cn("max-w-3xl shrink grow overflow-y-auto pb-16")}>
           <Outlet />
         </div>
-        <Link
-          className="max-w-3xl  shrink-0 rounded-2xl border-t-2 border-sand-600/15 bg-white outline outline-4 outline-sand-600/5"
-          to="/2024/vydaje/$"
-          style={{
-            viewTransitionName: "income-thumbnail",
-          }}
-          params={{ _splat: { expenseKey: [], expenseDimension: undefined } }}
-        >
-          <PersonalIncomeThumbnail />
-        </Link>
+        <PersonalIncome className="absolute inset-x-0 bottom-0 z-10 max-h-full max-w-3xl" />
       </div>
     </BudgetProvider>
   );
