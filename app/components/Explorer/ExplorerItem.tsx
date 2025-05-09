@@ -157,7 +157,11 @@ const Amount: FC<ItemProps> = ({
 }) => {
   return (
     <div
-      className={cn("w-fit truncate text-base font-bold", className)}
+      className={cn(
+        "w-fit truncate text-base font-bold",
+        { "text-lg leading-tight": relation === "subject" },
+        className
+      )}
       style={{
         viewTransitionName: `amount-${id}`,
         viewTransitionClass: `amount ${relation}`,

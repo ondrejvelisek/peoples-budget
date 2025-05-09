@@ -50,7 +50,7 @@ function Layout2024() {
             </PageTabsTrigger>
           </PageTabsList>
         </PageTabs>
-        <div className={cn("max-w-3xl shrink grow overflow-y-auto ")}>
+        <div className={cn("max-w-3xl shrink grow overflow-y-auto")}>
           <Outlet />
         </div>
         <Link
