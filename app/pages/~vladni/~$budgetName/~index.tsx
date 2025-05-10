@@ -1,8 +1,8 @@
 import { accessChildrenExpenseDimension } from "@/data/expenses/expenseDimensions";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/2024/")({
-  beforeLoad() {
+export const Route = createFileRoute("/vladni/$budgetName/")({
+  beforeLoad({ params: { budgetName } }) {
     const childrenDimension = accessChildrenExpenseDimension(
       { expenseKey: [], expenseDimension: undefined },
       []
@@ -11,8 +11,9 @@ export const Route = createFileRoute("/2024/")({
       throw new Error(`No children dimension found for index route`);
     }
     throw redirect({
-      to: "/2024/vydaje/$",
+      to: "/vladni/$budgetName/vydaje/$",
       params: {
+        budgetName,
         _splat: { expenseKey: [], expenseDimension: childrenDimension },
       },
     });

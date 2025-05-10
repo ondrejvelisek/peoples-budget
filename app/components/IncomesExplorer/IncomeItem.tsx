@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { ExplorerItem } from "../Explorer/ExplorerItem";
 import type { IncomeKey } from "@/data/incomes/incomeDimensions";
 import { useIncome } from "@/data/incomes/incomes";
-
+import { useBudgetName } from "@/pages/~vladni/~$budgetName";
 type IncomeItemProps = {
   itemKey: IncomeKey;
   className?: string;
@@ -14,6 +14,7 @@ export const IncomeItem: FC<IncomeItemProps> = ({
   relation = "parent",
   className,
 }) => {
+  const budgetName = useBudgetName();
   const { data: income, isPending } = useIncome(incomeKey);
   const { data: parentIncome, isPending: isParentPending } = useIncome(
     income?.parent
@@ -33,8 +34,9 @@ export const IncomeItem: FC<IncomeItemProps> = ({
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}
-      to="/2024/prijmy/$"
+      to="/vladni/$budgetName/prijmy/$"
       params={{
+        budgetName,
         _splat: {
           incomeKey,
           incomeDimension: income?.childrenDimension,

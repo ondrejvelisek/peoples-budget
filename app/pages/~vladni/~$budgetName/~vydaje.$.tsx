@@ -9,7 +9,7 @@ import {
 } from "@/data/expenses/expenseDimensions";
 import { personalIncomeQueryOptions } from "@/data/personalIncome/personalIncomeHook";
 
-export const Route = createFileRoute("/2024/vydaje/$")({
+export const Route = createFileRoute("/vladni/$budgetName/vydaje/$")({
   component: ExpensePage,
   params: {
     parse: ({ _splat, ...rest }): { _splat: ExpensesSplatParam } => {
@@ -66,8 +66,9 @@ export const Route = createFileRoute("/2024/vydaje/$")({
         throw new Error(`No children dimension found for ${expenseKey}`);
       }
       throw redirect({
-        to: "/2024/vydaje/$",
+        to: "/vladni/$budgetName/vydaje/$",
         params: {
+          budgetName: params.budgetName,
           _splat: { expenseKey, expenseDimension: childrenDimension },
         },
       });

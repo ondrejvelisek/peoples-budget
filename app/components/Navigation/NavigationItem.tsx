@@ -1,8 +1,7 @@
-import { Link } from "@tanstack/react-router";
+import { Link, type LinkProps } from "@tanstack/react-router";
 import { type ComponentType, type FC, type PropsWithChildren } from "react";
 
 import { Button } from "@/components/ui/button";
-import type { FileRouteTypes } from "@/routeTree.gen";
 import {
   Tooltip,
   TooltipContent,
@@ -12,31 +11,43 @@ import { useNavigationCondenseState } from "./NavigationStateProvider";
 import { cn } from "@/lib/utils";
 
 export const NavigationItem: FC<
-  PropsWithChildren<{
-    to: FileRouteTypes["to"];
-    Icon?: ComponentType<{ className?: string }>;
-    onClick?: () => void;
-  }>
-> = ({ to, children, Icon, onClick }) => {
-  const [isCondese] = useNavigationCondenseState();
+  PropsWithChildren<
+    Pick<LinkProps, "to" | "params"> & {
+      Icon?: ComponentType<{ className?: string }>;
+      onClick?: () => void;
+      subitem?: boolean;
+      linkClassName?: string;
+    }
+  >
+> = ({ to, params, children, Icon, onClick, subitem, linkClassName }) => {
+  const [isCondeseState] = useNavigationCondenseState();
+  const isCondense = subitem ? false : isCondeseState;
 
   return (
     <Tooltip delayDuration={100} disableHoverableContent>
       <TooltipTrigger asChild>
-        <li>
+        <li className={cn({ "": subitem })}>
           <Button variant="ghost" asChild>
             <Link
               to={to}
+              params={params}
               onClick={onClick}
-              activeProps={{ className: "bg-white" }}
-              className={cn("flex gap-3 rounded-xl rounded-l-none", {
-                "md:rounded-none": isCondese,
-              })}
+              activeProps={{
+                className: subitem ? "bg-sand-200" : "bg-white",
+              }}
+              className={cn(
+                "flex gap-3 rounded-xl rounded-l-none",
+                {
+                  "md:rounded-none": isCondense,
+                  "rounded-lg": subitem,
+                },
+                linkClassName
+              )}
             >
               {Icon && <Icon className="scale-150" />}
               <div
                 className={cn({
-                  "md:hidden": isCondese,
+                  "md:hidden": isCondense,
                 })}
               >
                 {children}
@@ -45,7 +56,7 @@ export const NavigationItem: FC<
           </Button>
         </li>
       </TooltipTrigger>
-      {isCondese && (
+      {isCondense && (
         <TooltipContent
           side="right"
           sideOffset={-4}

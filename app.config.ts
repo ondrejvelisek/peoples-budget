@@ -6,9 +6,10 @@ export default defineConfig({
   server: {
     preset: "vercel",
     prerender: {
-      routes: ["/", "/2024/odvetvi", "/2024/druh", "/2024/urad"],
+      routes: ["/"],
       crawlLinks: true,
-      ignore: [/^\/(2024|2025)\/[^/\n]+\/[^\n]+$/],
+      // we do not want to prerender whole tree of budget explorer pages
+      ignore: [/^\/vladni\/[^/\n]+\/[^/\n]+\/[^\n]+$/],
     },
   },
   react: {

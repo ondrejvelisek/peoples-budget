@@ -3,6 +3,7 @@ import { useExpense } from "@/data/expenses/expenses";
 import type { ExpenseKey } from "@/data/expenses/expenseDimensions";
 import { ExplorerItem } from "../Explorer/ExplorerItem";
 import { usePersonalIncome } from "@/data/personalIncome/personalIncomeHook";
+import { useBudgetName } from "@/pages/~vladni/~$budgetName";
 
 type ExpenseItemProps = {
   itemKey: ExpenseKey;
@@ -15,6 +16,7 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
   relation = "parent",
   className,
 }) => {
+  const budgetName = useBudgetName();
   const { data: expense, isPending } = useExpense(expenseKey);
   const { data: parentExpense, isPending: isParentPending } = useExpense(
     expense?.parent
@@ -42,8 +44,9 @@ export const ExpenseItem: FC<ExpenseItemProps> = ({
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}
-      to="/2024/vydaje/$"
+      to="/vladni/$budgetName/vydaje/$"
       params={{
+        budgetName,
         _splat: {
           expenseKey,
           expenseDimension: expense?.childrenDimension,

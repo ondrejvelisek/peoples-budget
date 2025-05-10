@@ -7,13 +7,14 @@ import {
   type ExpenseKey,
 } from "@/data/expenses/expenseDimensions";
 import type { LinkProps } from "@tanstack/react-router";
-
+import { useBudgetName } from "@/pages/~vladni/~$budgetName";
 type ExpensesExplorerProps = {
   className?: string;
 };
 
 export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
   const { expenseKey } = useUrlExpenseSplat();
+  const budgetName = useBudgetName();
   const { data: expense, isPending } = useExpense(expenseKey);
 
   // better to use parentKey from urlExpenseKey for performance
@@ -21,8 +22,9 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
 
   const dimensionLinks: Array<LinkProps> = [
     {
-      to: "/2024/vydaje/$",
+      to: "/vladni/$budgetName/vydaje/$",
       params: {
+        budgetName,
         _splat: {
           expenseKey,
           expenseDimension: "odvetvi",
@@ -30,8 +32,9 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
       },
     },
     {
-      to: "/2024/vydaje/$",
+      to: "/vladni/$budgetName/vydaje/$",
       params: {
+        budgetName,
         _splat: {
           expenseKey,
           expenseDimension: "druh",
@@ -39,8 +42,9 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
       },
     },
     {
-      to: "/2024/vydaje/$",
+      to: "/vladni/$budgetName/vydaje/$",
       params: {
+        budgetName,
         _splat: {
           expenseKey,
           expenseDimension: "urad",
