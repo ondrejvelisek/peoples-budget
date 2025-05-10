@@ -7,7 +7,6 @@ import {
   type PersonalProfile,
 } from "@/data/personalIncome/personalIncomeCalc";
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { getRecordTables, type TypesTableRecord } from "@/data/recordTables";
 import type { DataRecord } from "@/data/items";
 import { createServerFn } from "@tanstack/react-start";
 
@@ -18,13 +17,49 @@ import { useBudgetName } from "@/pages/~vladni/~$budgetName";
 
 type IncomesByType = {
   incomes: Record<string, number>;
-  types: Record<string, TypesTableRecord>;
+  types: Record<string, IncomesTypeRecord>;
+};
+
+export type TypeOfIncomeType =
+  | "zamestnavatel"
+  | "dph"
+  | "podniky"
+  | "os.prijem"
+  | "spotrebni"
+  | "fix"
+  | "pausal"
+  | "majetkova";
+
+export type IncomesTypeRecord = {
+  id: number;
+  amount?: number;
+  unit?: string;
+  income_type?: TypeOfIncomeType;
+  percentage?: number;
+};
+
+const getIncomesType = async (
+  budgetName: string
+): Promise<Record<string, IncomesTypeRecord>> => {
+  const incomeTypesCsv = await getBudgetFile(budgetName, "income_types");
+  return parseCsv<IncomesTypeRecord, Record<string, IncomesTypeRecord>>(
+    incomeTypesCsv,
+    undefined,
+    (record, acc) => {
+      if (acc) {
+        acc[record.id] = record;
+        return acc;
+      } else {
+        return { [record.id]: record };
+      }
+    }
+  );
 };
 
 const getIncomesByType = createServerFn()
   .validator((data: { budgetName: string }) => data)
   .handler(async ({ data }): Promise<IncomesByType> => {
-    const types = (await getRecordTables()).types;
+    const types = await getIncomesType(data.budgetName);
     const incomesCsv = await getBudgetFile(data.budgetName, "incomes");
     const incomesAmountByType = await parseCsv<
       DataRecord,

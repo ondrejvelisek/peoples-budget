@@ -13,25 +13,11 @@ export type SectorsTableRecord = {
   name_long: string;
 };
 
-export type TypeOfIncomeType =
-  | "zamestnavatel"
-  | "dph"
-  | "podniky"
-  | "os.prijem"
-  | "spotrebni"
-  | "fix"
-  | "pausal"
-  | "majetkova";
-
 export type TypesTableRecord = {
   id: number;
   name_short: string;
   name: string;
   name_long: string;
-  amount?: number;
-  unit?: string;
-  income_type?: TypeOfIncomeType;
-  percentage?: number;
 };
 
 export type OfficesTableRecord = {
@@ -45,7 +31,7 @@ export type RecordTables = {
   offices: Record<string, OfficesTableRecord>;
 };
 
-export const getSectorsTable = createServerFn().handler(
+const getSectorsTable = createServerFn().handler(
   async (): Promise<Record<string, SectorsTableRecord>> => {
     return parseCsv<SectorsTableRecord, Record<string, SectorsTableRecord>>(
       sectorsCsv,
@@ -62,7 +48,7 @@ export const getSectorsTable = createServerFn().handler(
   }
 );
 
-export const getTypesTable = createServerFn().handler(
+const getTypesTable = createServerFn().handler(
   async (): Promise<Record<string, TypesTableRecord>> => {
     return parseCsv<TypesTableRecord, Record<string, TypesTableRecord>>(
       typesCsv,
@@ -79,7 +65,7 @@ export const getTypesTable = createServerFn().handler(
   }
 );
 
-export const getOfficesTable = createServerFn().handler(
+const getOfficesTable = createServerFn().handler(
   async (): Promise<Record<string, OfficesTableRecord>> => {
     return parseCsv<OfficesTableRecord, Record<string, OfficesTableRecord>>(
       officesCsv,
@@ -96,7 +82,7 @@ export const getOfficesTable = createServerFn().handler(
   }
 );
 
-export const kvMemoryStorage = createStorage<RecordTables>({
+const kvMemoryStorage = createStorage<RecordTables>({
   driver: memoryDriver(),
 });
 

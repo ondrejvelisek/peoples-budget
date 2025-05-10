@@ -9,7 +9,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { DIMENSIONS, type Dimension } from "@/data/dimensions";
+import {
+  DIMENSIONS,
+  type Dimension,
+} from "@/data/dimensions/personalDimensions";
 import { cn } from "@/lib/utils";
 
 export type DimensionSwitcherProps = {

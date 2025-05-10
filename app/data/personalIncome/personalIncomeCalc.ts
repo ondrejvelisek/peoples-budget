@@ -1,4 +1,4 @@
-import { type TypesTableRecord } from "../recordTables";
+import type { IncomesTypeRecord } from "./personalIncomeHook";
 
 export const defaultPersonalProfileTaxCoefficients = {
   1211: 0.5, // DPH, kolik % zboži, které nakoupím spadá do snížené sazby
@@ -47,7 +47,9 @@ export type PersonalProfile = {
   incomeTaxCoefficients: PersonalProfileTaxCoefficients;
 };
 
-export type PartialPersonalProfile = Partial<Omit<PersonalProfile, "incomeTaxCoefficients">> & {
+export type PartialPersonalProfile = Partial<
+  Omit<PersonalProfile, "incomeTaxCoefficients">
+> & {
   incomeTaxCoefficients?: Partial<PersonalProfileTaxCoefficients>;
 };
 
@@ -62,7 +64,7 @@ export type PersonalIncome = {
 
 export function getPersonalIncome(
   items: Record<string, number>,
-  typesTable: Record<string, TypesTableRecord>,
+  typesTable: Record<string, IncomesTypeRecord>,
   profile: PersonalProfile
 ): PersonalIncome {
   const defaultPersonalIncome: PersonalIncome = {

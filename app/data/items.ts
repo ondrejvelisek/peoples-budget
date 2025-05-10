@@ -1,10 +1,10 @@
 import lodash from "lodash";
 import { parseCsv } from "@/lib/utils";
-import { getRecordTables, type RecordTables } from "./recordTables";
+import { getRecordTables, type RecordTables } from "./dimensions/recordTables";
 import { kvStorage } from "./kvStorage";
 import { createStorage, prefixStorage } from "unstorage";
 import memoryDriver from "unstorage/drivers/memory";
-import type { Dimension, ItemKey } from "./dimensions";
+import type { Dimension, ItemKey } from "./dimensions/personalDimensions";
 import { getBudgetFile } from "./files/files";
 const { isEqual } = lodash;
 

@@ -1,4 +1,4 @@
-import { accessCookie } from "./cookie";
+import { accessCookie } from "../cookie";
 
 export const DIMENSIONS = {
   odvetvi: "Odvětví",

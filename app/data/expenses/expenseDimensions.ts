@@ -1,5 +1,9 @@
 import { useParams } from "@tanstack/react-router";
-import { accessChildrenDimension, DIMENSIONS, type ItemKey } from "../dimensions";
+import {
+  accessChildrenDimension,
+  DIMENSIONS,
+  type ItemKey,
+} from "../dimensions/personalDimensions";
 
 export const EXPENSE_DIMENSIONS = DIMENSIONS;
 

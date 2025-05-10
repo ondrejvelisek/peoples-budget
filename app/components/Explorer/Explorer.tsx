@@ -1,6 +1,6 @@
 import { type ComponentType, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import type { Dimension, ItemKey } from "@/data/dimensions";
+import type { Dimension, ItemKey } from "@/data/dimensions/personalDimensions";
 import type { LinkProps } from "@tanstack/react-router";
 import { DimensionSwitcher } from "./DimensionSwitcher";
 import Skeleton from "react-loading-skeleton";
