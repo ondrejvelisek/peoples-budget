@@ -1,11 +1,12 @@
 import lodash from "lodash";
-const { isEqual } = lodash;
 import { parseCsv } from "@/lib/utils";
 import { getRecordTables, type RecordTables } from "./recordTables";
 import { kvStorage } from "./kvStorage";
 import { createStorage, prefixStorage } from "unstorage";
 import memoryDriver from "unstorage/drivers/memory";
 import type { Dimension, ItemKey } from "./dimensions";
+import { getBudgetFile } from "./files/files";
+const { isEqual } = lodash;
 
 const itemsMemoryStorage = createStorage<Item<Dimension>>({
   driver: memoryDriver(),
@@ -19,7 +20,6 @@ export type Item<D extends Dimension> = {
   key: ItemKey<D>;
   title: string;
   amount: number;
-  contributionAmount: number;
   children: Array<ItemKey<D>>;
   childrenDimension?: D;
   parent?: ItemKey<D>;
@@ -139,13 +139,18 @@ function reduceChildren<D extends Dimension>(
 }
 
 export const getItem = async <D extends Dimension>(
-  type: "expense" | "income",
-  csv: string,
+  budgetName: string,
+  type: "expenses" | "incomes",
   rootTitle: string,
   itemKey: ItemKey<D>,
   childrenDimension?: D
 ): Promise<Item<D>> => {
-  const cacheKeyStr = JSON.stringify([type, itemKey, childrenDimension]);
+  const cacheKeyStr = JSON.stringify([
+    budgetName,
+    type,
+    itemKey,
+    childrenDimension,
+  ]);
 
   const memoryCached = await itemsMemoryStorage.getItem<Item<D>>(cacheKeyStr);
   if (memoryCached) {
@@ -159,6 +164,7 @@ export const getItem = async <D extends Dimension>(
   }
   console.log("CACHE(getItem): MISS", cacheKeyStr);
 
+  const csv = await getBudgetFile(budgetName, type);
   const tables = await getRecordTables();
 
   function filter(record: DataRecord) {

@@ -11,20 +11,26 @@ import { getRecordTables, type TypesTableRecord } from "@/data/recordTables";
 import type { DataRecord } from "@/data/items";
 import { createServerFn } from "@tanstack/react-start";
 
-import incomes2025Csv from "../../data/incomes/incomes_2025.csv?raw";
 import { useMemo } from "react";
 import { useLocalStorage, useTimeout } from "@mantine/hooks";
+import { getBudgetFile } from "../files/files";
+import { useBudgetName } from "@/pages/~vladni/~$budgetName";
 
 type IncomesByType = {
   incomes: Record<string, number>;
   types: Record<string, TypesTableRecord>;
 };
 
-const getIncomesByType = createServerFn().handler(
-  async (): Promise<IncomesByType> => {
+const getIncomesByType = createServerFn()
+  .validator((data: { budgetName: string }) => data)
+  .handler(async ({ data }): Promise<IncomesByType> => {
     const types = (await getRecordTables()).types;
-    const incomes = await parseCsv<DataRecord, Record<string, number>>(
-      incomes2025Csv,
+    const incomesCsv = await getBudgetFile(data.budgetName, "incomes");
+    const incomesAmountByType = await parseCsv<
+      DataRecord,
+      Record<string, number>
+    >(
+      incomesCsv,
       ({ type_id }) => type_id < 5000, // prijmy
       ({ type_id, amount }, acc) => {
         const accTmp = acc ?? {};
@@ -34,18 +40,18 @@ const getIncomesByType = createServerFn().handler(
     );
 
     return {
-      incomes,
+      incomes: incomesAmountByType,
       types,
     };
-  }
-);
+  });
 
-export const personalIncomeQueryOptions = queryOptions({
-  queryKey: ["incomesByType"],
-  queryFn: getIncomesByType,
-  staleTime: 24 * 60 * 60 * 1000, // 24 hours
-  gcTime: 60 * 60 * 1000, // 1 hour
-});
+export const personalIncomeQueryOptions = (budgetName: string) =>
+  queryOptions({
+    queryKey: ["incomesByType", budgetName],
+    queryFn: () => getIncomesByType({ data: { budgetName } }),
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    gcTime: 60 * 60 * 1000, // 1 hour
+  });
 
 export const usePersonalProfile = (): [
   PersonalProfile,
@@ -101,8 +107,9 @@ export const usePersonalProfileNotSeenYet = (callback: () => void) => {
 };
 
 export const usePersonalIncome = () => {
+  const budgetName = useBudgetName();
   const { data, isPending, isLoading, isFetching, error } = useQuery(
-    personalIncomeQueryOptions
+    personalIncomeQueryOptions(budgetName)
   );
 
   const [personalProfile] = usePersonalProfile();

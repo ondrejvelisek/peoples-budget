@@ -73,7 +73,7 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
       });
     }
     const { children } = await context.queryClient.ensureQueryData(
-      incomeQueryOptions(incomeKey, incomeDimension)
+      incomeQueryOptions(params.budgetName, incomeKey, incomeDimension)
     );
 
     const ancestors =
@@ -88,7 +88,7 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
           relativesKey
         );
         return await context.queryClient.ensureQueryData(
-          incomeQueryOptions(relativesKey, childrenDimension)
+          incomeQueryOptions(params.budgetName, relativesKey, childrenDimension)
         );
       })
     );

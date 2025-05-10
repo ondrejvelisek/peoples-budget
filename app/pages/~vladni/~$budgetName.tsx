@@ -5,6 +5,7 @@ import {
   PageTabsList,
   PageTabsTrigger,
 } from "@/components/ui/pageTabs";
+import { personalIncomeQueryOptions } from "@/data/personalIncome/personalIncomeHook";
 import { cn } from "@/lib/utils";
 import {
   createFileRoute,
@@ -15,6 +16,11 @@ import {
 
 export const Route = createFileRoute("/vladni/$budgetName")({
   component: Layout,
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(
+      personalIncomeQueryOptions(params.budgetName)
+    );
+  },
 });
 
 export const useBudgetName = () => {
