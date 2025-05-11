@@ -539,6 +539,8 @@ id,name_short,name,name_long
 5424,Náhrady mezd,Náhrady mezd v době nemoci,Náhrady mezd v době nemoci
 5425,Příspěvek dárci,Příspěvek na pohřeb dárce org.a náhrada posk.žijícímu dárci,Příspěvek na náklady pohřbu dárce orgánu a náhrada poskytovaná žijícímu dárci
 5429,Ost.náhr. obyv.,Ostatní náhrady placené obyvatelstvu,Ostatní náhrady placené obyvatelstvu
+547,Zdravotní péče,Zdravotní péče,Zdravotní péče
+5471,Zdravotní péče,Zdravotní péče,Zdravotní péče
 549,OstatníT obyv.,Ostatní neinvestiční transfery obyvatelstvu,Ostatní neinvestiční transfery obyvatelstvu
 5491,"Stipendia ž,st,dokt.","Stipendia žákům, studentům a doktorandům","Stipendia žákům, studentům a doktorandům"
 5492,Dary obyv.,Dary obyvatelstvu,Dary obyvatelstvu
@@ -774,10 +776,6 @@ id,name_short,name,name_long
 690,Ost.kapitálové V,Ostatní kapitálové výdaje,Ostatní kapitálové výdaje
 6901,Rezervy kap. V,Rezervy kapitálových výdajů,Rezervy kapitálových výdajů
 6909,Ost. kapV,Ostatní kapitálové výdaje jinde nezařazené,Ostatní kapitálové výdaje jinde nezařazené
-7,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven
-70,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven
-700,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven
-7000,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven,Výdaje zdravotních pojišťoven
 8,Financování,Financování,Financování
 81,Financ.tuzemsko,Financování z tuzemska,Financování z tuzemska
 811,Krdb.financování,Krátkodobé financování,Krátkodobé financování
