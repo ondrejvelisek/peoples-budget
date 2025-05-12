@@ -40,7 +40,11 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
       >
         {children}
         {isOpen && (
-          <div className="absolute inset-0" {...handlers} onClick={close} />
+          <div
+            className="absolute inset-0 z-50"
+            {...handlers}
+            onClick={close}
+          />
         )}
       </div>
     </div>
