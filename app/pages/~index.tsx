@@ -12,7 +12,7 @@ function Page() {
           Tak kam s&nbsp;tím?
         </h1>
         <img
-          src="./public/hero-img-square.jpg"
+          src="/public/hero-img-square.jpg"
           alt="Ilustrace českého lva s kolečky plných peněz"
           className="pb-6"
         />
