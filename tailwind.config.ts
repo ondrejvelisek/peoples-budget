@@ -13,6 +13,8 @@ export default {
         "hero-img": `url('/public/hero-img.jpg')`,
         "hero-img-square": `url('/public/hero-img-square.jpg')`,
         "not-found-img": `url('/public/not-found-img.jpg')`,
+        "diagonal-stripes":
+          "repeating-linear-gradient(-45deg, #463E30 0 8px, transparent 8px 16px)",
       },
       borderRadius: {
         lg: "var(--radius)",

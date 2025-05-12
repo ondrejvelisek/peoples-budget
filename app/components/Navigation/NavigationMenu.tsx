@@ -21,6 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useDisclosure } from "@mantine/hooks";
+import { InProgress } from "../InProgress/InProgress";
 
 export const NavigationMenu: FC<{
   className?: string;
@@ -40,6 +41,7 @@ export const NavigationMenu: FC<{
           <DropdownMenuTrigger>
             <NavigationItem
               to="/vladni"
+              disabled
               Icon={RiGovernmentLine}
               linkClassName={cn({ "bg-white": isVladniOpen })}
             >
@@ -47,18 +49,17 @@ export const NavigationMenu: FC<{
             </NavigationItem>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="ml-2 mt-1 list-none rounded-xl">
-            <NavigationItem
-              to="/vladni/$budgetName"
-              params={{ budgetName: "2026" }}
-              onClick={() => {
-                onItemClick?.();
-                close();
-              }}
-              Icon={PiClockClockwiseBold}
-              subitem
-            >
-              Přípravy 2026
-            </NavigationItem>
+            <InProgress>
+              <NavigationItem
+                to="/vladni/$budgetName"
+                params={{ budgetName: "2026" }}
+                disabled
+                Icon={PiClockClockwiseBold}
+                subitem
+              >
+                Přípravy 2026
+              </NavigationItem>
+            </InProgress>
             <NavigationItem
               to="/vladni/$budgetName"
               params={{ budgetName: "2025" }}
@@ -85,26 +86,34 @@ export const NavigationMenu: FC<{
             </NavigationItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <NavigationItem to="/my" onClick={onItemClick} Icon={RiUser3Line}>
-          Můj rozpočet
-        </NavigationItem>
-        <NavigationItem to="/published" onClick={onItemClick} Icon={GrGroup}>
-          Rozpočty lidí
-        </NavigationItem>
-        <NavigationItem
-          to="/agregated"
-          onClick={onItemClick}
-          Icon={TbArrowsMinimize}
-        >
-          Agregovaný rozpočet
-        </NavigationItem>
-        <NavigationItem
-          to="/compare"
-          onClick={onItemClick}
-          Icon={RiScales3Line}
-        >
-          Porovnat rozpočty
-        </NavigationItem>
+        <InProgress>
+          <NavigationItem to="/my" Icon={RiUser3Line} disabled>
+            Můj Rozpočet
+          </NavigationItem>
+        </InProgress>
+        <InProgress>
+          <NavigationItem to="/published" onClick={onItemClick} Icon={GrGroup}>
+            Rozpočty lidí
+          </NavigationItem>
+        </InProgress>
+        <InProgress>
+          <NavigationItem
+            to="/agregated"
+            onClick={onItemClick}
+            Icon={TbArrowsMinimize}
+          >
+            Agregovaný rozpočet
+          </NavigationItem>
+        </InProgress>
+        <InProgress>
+          <NavigationItem
+            to="/compare"
+            onClick={onItemClick}
+            Icon={RiScales3Line}
+          >
+            Porovnat rozpočty
+          </NavigationItem>
+        </InProgress>
         <NavigationItem
           to="/support"
           onClick={onItemClick}

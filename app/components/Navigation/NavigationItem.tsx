@@ -12,14 +12,23 @@ import { cn } from "@/lib/utils";
 
 export const NavigationItem: FC<
   PropsWithChildren<
-    Pick<LinkProps, "to" | "params"> & {
+    Pick<LinkProps, "to" | "params" | "disabled"> & {
       Icon?: ComponentType<{ className?: string }>;
       onClick?: () => void;
       subitem?: boolean;
       linkClassName?: string;
     }
   >
-> = ({ to, params, children, Icon, onClick, subitem, linkClassName }) => {
+> = ({
+  to,
+  params,
+  disabled,
+  children,
+  Icon,
+  onClick,
+  subitem,
+  linkClassName,
+}) => {
   const [isCondeseState] = useNavigationCondenseState();
   const isCondense = subitem ? false : isCondeseState;
 
@@ -30,6 +39,7 @@ export const NavigationItem: FC<
           <Button variant="ghost" asChild>
             <Link
               to={to}
+              disabled={disabled}
               params={params}
               onClick={onClick}
               activeProps={{

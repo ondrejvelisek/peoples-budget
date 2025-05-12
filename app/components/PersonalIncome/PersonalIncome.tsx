@@ -15,6 +15,7 @@ import {
   usePersonalProfileNotSeenYet,
 } from "@/data/personalIncome/personalIncomeHook";
 import { Button } from "../ui/button";
+import { InProgress } from "../InProgress/InProgress";
 
 export const PersonalIncome: FC<{
   className?: string;
@@ -71,9 +72,12 @@ export const PersonalIncome: FC<{
               <TabsTrigger value="employee" className="grow">
                 Zaměstnanec
               </TabsTrigger>
-              <TabsTrigger value="self-employed" className="grow">
-                Podnikatel
-              </TabsTrigger>
+
+              <InProgress className="grow">
+                <TabsTrigger value="self-employed" className="grow">
+                  Podnikatel
+                </TabsTrigger>
+              </InProgress>
             </TabsList>
           </Tabs>
 
