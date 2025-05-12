@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { forwardRef } from "react";
 import { cn, formatCurrency } from "@/lib/utils";
 import { Progress } from "../ui/progress";
 
@@ -7,11 +7,15 @@ import Skeleton from "react-loading-skeleton";
 import { Button } from "../ui/button";
 import { RiArrowUpSLine } from "react-icons/ri";
 
-export const PersonalIncomeThumbnail: FC<{
-  className?: string;
-  opened?: boolean;
-  onToggle?: () => void;
-}> = ({ className, opened, onToggle }) => {
+export const PersonalIncomeThumbnail = forwardRef<
+  HTMLDivElement,
+  {
+    className?: string;
+    opened?: boolean;
+    onToggle?: () => void;
+    onMouseDown?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  }
+>(({ className, opened, onToggle, onMouseDown }, ref) => {
   const { personalIncome, totalPersonalContributions } = usePersonalIncome();
 
   const {
@@ -23,7 +27,11 @@ export const PersonalIncomeThumbnail: FC<{
   } = personalIncome ?? {};
 
   return (
-    <div className={cn("flex items-center p-3 pb-4")}>
+    <div
+      ref={ref}
+      className={cn("flex items-center p-3 pb-4", className)}
+      onMouseDown={onMouseDown}
+    >
       <div className="flex grow flex-col overflow-hidden">
         <div
           className={cn(
@@ -110,4 +118,6 @@ export const PersonalIncomeThumbnail: FC<{
       </Button>
     </div>
   );
-};
+});
+
+PersonalIncomeThumbnail.displayName = "PersonalIncomeThumbnail";

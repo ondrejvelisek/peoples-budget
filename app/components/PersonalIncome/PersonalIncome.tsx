@@ -16,13 +16,19 @@ import {
 } from "@/data/personalIncome/personalIncomeHook";
 import { Button } from "../ui/button";
 import { InProgress } from "../InProgress/InProgress";
+import { useSwipeable } from "react-swipeable";
 
 export const PersonalIncome: FC<{
   className?: string;
 }> = ({ className }) => {
-  const [opened, { toggle, open }] = useDisclosure(false);
+  const [opened, { toggle, open, close }] = useDisclosure(false);
   const { personalIncome, totalPersonalContributions } = usePersonalIncome();
   usePersonalProfileNotSeenYet(open);
+
+  const handlers = useSwipeable({
+    onSwipedUp: open,
+    onSwipedDown: close,
+  });
 
   return (
     <div
@@ -32,6 +38,7 @@ export const PersonalIncome: FC<{
       )}
     >
       <PersonalIncomeThumbnail
+        {...handlers}
         className="flex-none"
         opened={opened}
         onToggle={toggle}
