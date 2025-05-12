@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import heroImgSquare from "./hero-img-square.jpg";
 
 export const Route = createFileRoute("/")({
   component: Page,
@@ -12,7 +13,7 @@ function Page() {
           Tak kam s&nbsp;tím?
         </h1>
         <img
-          src="/public/hero-img-square.jpg"
+          src={heroImgSquare}
           alt="Ilustrace českého lva s kolečky plných peněz"
           className="pb-6"
         />
