@@ -92,25 +92,17 @@ export const NavigationMenu: FC<{
           </NavigationItem>
         </InProgress>
         <InProgress>
-          <NavigationItem to="/published" onClick={onItemClick} Icon={GrGroup}>
+          <NavigationItem to="/published" disabled Icon={GrGroup}>
             Rozpočty lidí
           </NavigationItem>
         </InProgress>
         <InProgress>
-          <NavigationItem
-            to="/agregated"
-            onClick={onItemClick}
-            Icon={TbArrowsMinimize}
-          >
+          <NavigationItem to="/agregated" disabled Icon={TbArrowsMinimize}>
             Agregovaný rozpočet
           </NavigationItem>
         </InProgress>
         <InProgress>
-          <NavigationItem
-            to="/compare"
-            onClick={onItemClick}
-            Icon={RiScales3Line}
-          >
+          <NavigationItem to="/compare" disabled Icon={RiScales3Line}>
             Porovnat rozpočty
           </NavigationItem>
         </InProgress>
