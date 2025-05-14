@@ -69,7 +69,7 @@ Toto je potřeba zopakovat pro všech 7 pojišťoven:
    - RBP: https://www.rbp213.cz/cs/o-nas/rbp-informuje/zdravotne-pojistny-plan/a-384/
    - VoZP: https://www.vozp.cz/zdravotne-pojistny-plan (aktuálně chybí 2025)
    - ZPMV: https://www.zpmvcr.cz/o-nas/dokumenty/zdravotne-pojistne-plany
-   - ZPS: Nedohedal jsem, čekám na odpověď
+   - ZPS: https://www.zpskoda.cz/o-nas#zpp
 2. V dokumentu najděte dvě tabulky
    - Základní fond zdravotního pojištění (ZFZP)
    - Náklady na zdravotní služby dle jednotlivých segmentů
