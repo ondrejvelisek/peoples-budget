@@ -86,6 +86,16 @@ export const NavigationMenu: FC<{
             </NavigationItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        <NavigationItem
+          to="/compare"
+          onClick={() => {
+            onItemClick?.();
+            close();
+          }}
+          Icon={RiScales3Line}
+        >
+          Porovnat rozpočty
+        </NavigationItem>
         <InProgress>
           <NavigationItem to="/my" Icon={RiUser3Line} disabled>
             Můj Rozpočet
@@ -99,11 +109,6 @@ export const NavigationMenu: FC<{
         <InProgress>
           <NavigationItem to="/agregated" disabled Icon={TbArrowsMinimize}>
             Agregovaný rozpočet
-          </NavigationItem>
-        </InProgress>
-        <InProgress>
-          <NavigationItem to="/compare" disabled Icon={RiScales3Line}>
-            Porovnat rozpočty
           </NavigationItem>
         </InProgress>
         <NavigationItem

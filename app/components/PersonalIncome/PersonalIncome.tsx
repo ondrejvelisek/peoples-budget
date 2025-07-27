@@ -81,7 +81,7 @@ export const PersonalIncome: FC<{
               </TabsTrigger>
 
               <InProgress className="grow">
-                <TabsTrigger value="self-employed" className="grow">
+                <TabsTrigger value="self-employed" className="w-full grow">
                   Podnikatel
                 </TabsTrigger>
               </InProgress>
