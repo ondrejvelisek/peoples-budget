@@ -1,12 +1,18 @@
 import { type FC } from "react";
-import { type LinkProps } from "@tanstack/react-router";
-import { cn } from "@/lib/utils";
+import { cn, formatCurrency } from "@/lib/utils";
+import type { CompareItem as CompareItemType } from "@/data/compare/compare";
 
-type ItemProps = LinkProps & {
+type ItemProps = {
+  compareItem: CompareItemType;
   className?: string;
 };
 
-export const CompareItem: FC<ItemProps> = ({ className }) => {
+export const CompareItem: FC<ItemProps> = ({ compareItem, className }) => {
+  const { sectorTitle, typeTitle, officeTitle, firstAmount, secondAmount } =
+    compareItem;
+
+  const isPositive = firstAmount - secondAmount > 0;
+
   return (
     <div
       className={cn(
@@ -14,21 +20,40 @@ export const CompareItem: FC<ItemProps> = ({ className }) => {
         className
       )}
     >
-      <div>Služby pro obyvatelstvo</div>
+      <div>
+        {officeTitle && (
+          <div className="truncate text-sm text-neutral-500">{officeTitle}</div>
+        )}
+        {sectorTitle && <div className="truncate">{sectorTitle}</div>}
+        {typeTitle && (
+          <div className="truncate  text-sm text-neutral-500">{typeTitle}</div>
+        )}
+      </div>
       <div className="flex gap-2">
-        <div className="grow font-bold">
-          <div className="">267 mld.</div>
-          <div className="text-sm">16 141 Kč</div>
+        <div className="grow">
+          <div className="font-bold">{formatCurrency(secondAmount)}</div>
+          <div className="text-sm leading-none  text-neutral-500">2024</div>
         </div>
         <div className="border-l border-neutral-600/10" />
-        <div className="grow font-bold text-rose-600">
-          <div>-18 mld.</div>
-          <div className="text-sm">-3,21 %</div>
+        <div
+          className={cn(
+            "grow font-bold",
+            isPositive ? "text-green-600" : "text-rose-600"
+          )}
+        >
+          <div>
+            {isPositive ? "+" : ""}
+            {formatCurrency(firstAmount - secondAmount)}
+          </div>
+          <div className="text-sm">
+            {isPositive ? "+" : ""}
+            {(((firstAmount - secondAmount) / firstAmount) * 100).toFixed(2)} %
+          </div>
         </div>
         <div className="border-l border-neutral-600/10" />
-        <div className="grow font-bold">
-          <div className="">249 mld.</div>
-          <div className="text-sm">14 912 Kč</div>
+        <div className="grow">
+          <div className="font-bold">{formatCurrency(firstAmount)}</div>
+          <div className="text-sm leading-none  text-neutral-500">2025</div>
         </div>
       </div>
     </div>
