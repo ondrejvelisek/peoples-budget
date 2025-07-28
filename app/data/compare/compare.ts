@@ -86,21 +86,35 @@ const calculateBudgetMap = async (
   );
 };
 
+export function calculateRelativeChange(
+  firstAmount: number,
+  secondAmount: number
+): number {
+  if (secondAmount === 0) {
+    return firstAmount === 0 ? 0 : Infinity;
+  }
+  return (firstAmount - secondAmount) / secondAmount;
+}
+
 const calculateCompareScore = (
   firstAmount: number,
   secondAmount: number
 ): number => {
-  const relativeToAbsoluteConversion = 20_000_000;
-
   const absoluteChange = firstAmount - secondAmount;
-  const relativeChange = secondAmount
-    ? (absoluteChange / secondAmount) * relativeToAbsoluteConversion
-    : relativeToAbsoluteConversion;
+  const relativeChange =
+    firstAmount < secondAmount
+      ? calculateRelativeChange(firstAmount, secondAmount)
+      : calculateRelativeChange(secondAmount, firstAmount);
+
+  const relativeToAbsoluteConversion = 20_000_000;
+  const relativeChangeNormalized =
+    relativeChange * relativeToAbsoluteConversion;
 
   const relativeWeight = 0.5; // number from 0 to 1. 0 means to ignore relative difference, 1 means to ignore absolute difference
 
   const score =
-    relativeWeight * relativeChange + (1 - relativeWeight) * absoluteChange;
+    relativeWeight * relativeChangeNormalized +
+    (1 - relativeWeight) * absoluteChange;
 
   return score;
 };
@@ -151,7 +165,7 @@ const calculateCompare = async (
         sectorParent.firstAmount - sectorParent.secondAmount;
       const relativeChangeOfChange =
         (absoluteChange - parentAbsoluteChange) / absoluteChange;
-      if (relativeChangeOfChange < 0.05) {
+      if (relativeChangeOfChange < 0.03) {
         dedupMap.delete(sectorParentKey);
       }
     }
@@ -168,7 +182,7 @@ const calculateCompare = async (
         typeParent.firstAmount - typeParent.secondAmount;
       const relativeChangeOfChange =
         (absoluteChange - parentAbsoluteChange) / absoluteChange;
-      if (relativeChangeOfChange < 0.05) {
+      if (relativeChangeOfChange < 0.03) {
         dedupMap.delete(typeParentKey);
       }
     }
@@ -185,7 +199,7 @@ const calculateCompare = async (
         officeParent.firstAmount - officeParent.secondAmount;
       const relativeChangeOfChange =
         (absoluteChange - parentAbsoluteChange) / absoluteChange;
-      if (relativeChangeOfChange < 0.05) {
+      if (relativeChangeOfChange < 0.03) {
         dedupMap.delete(officeParentKey);
       }
     }

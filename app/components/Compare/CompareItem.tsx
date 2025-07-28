@@ -1,6 +1,9 @@
 import { type FC } from "react";
 import { cn, formatCurrency } from "@/lib/utils";
-import type { CompareItem as CompareItemType } from "@/data/compare/compare";
+import {
+  calculateRelativeChange,
+  type CompareItem as CompareItemType,
+} from "@/data/compare/compare";
 
 type ItemProps = {
   compareItem: CompareItemType;
@@ -12,6 +15,8 @@ export const CompareItem: FC<ItemProps> = ({ compareItem, className }) => {
     compareItem;
 
   const isPositive = firstAmount - secondAmount > 0;
+  const relativeChange =
+    calculateRelativeChange(firstAmount, secondAmount) * 100;
 
   return (
     <div
@@ -47,7 +52,7 @@ export const CompareItem: FC<ItemProps> = ({ compareItem, className }) => {
           </div>
           <div className="text-sm">
             {isPositive ? "+" : ""}
-            {(((firstAmount - secondAmount) / firstAmount) * 100).toFixed(2)} %
+            {relativeChange === Infinity ? "ထ" : relativeChange.toFixed(2)} %
           </div>
         </div>
         <div className="border-l border-neutral-600/10" />
