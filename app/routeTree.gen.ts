@@ -8,286 +8,264 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './pages/~__root'
+import { Route as IndexRouteImport } from './pages/~index'
+import { Route as VladniBudgetNameRouteImport } from './pages/~vladni/~$budgetName'
+import { Route as VladniIndexRouteImport } from './pages/~vladni/~index'
+import { Route as SupportIndexRouteImport } from './pages/~support/~index'
+import { Route as PublishedIndexRouteImport } from './pages/~published/~index'
+import { Route as MyIndexRouteImport } from './pages/~my/~index'
+import { Route as CompareIndexRouteImport } from './pages/~compare/~index'
+import { Route as AgregatedIndexRouteImport } from './pages/~agregated/~index'
+import { Route as VladniBudgetNameIndexRouteImport } from './pages/~vladni/~$budgetName/~index'
+import { Route as VladniBudgetNameVydajeSplatRouteImport } from './pages/~vladni/~$budgetName/~vydaje.$'
+import { Route as VladniBudgetNamePrijmySplatRouteImport } from './pages/~vladni/~$budgetName/~prijmy.$'
 
-import { Route as rootRoute } from "./pages/~__root";
-import { Route as IndexImport } from "./pages/~index";
-import { Route as VladniBudgetNameImport } from "./pages/~vladni/~$budgetName";
-import { Route as VladniIndexImport } from "./pages/~vladni/~index";
-import { Route as SupportIndexImport } from "./pages/~support/~index";
-import { Route as PublishedIndexImport } from "./pages/~published/~index";
-import { Route as MyIndexImport } from "./pages/~my/~index";
-import { Route as CompareIndexImport } from "./pages/~compare/~index";
-import { Route as AgregatedIndexImport } from "./pages/~agregated/~index";
-import { Route as VladniBudgetNameIndexImport } from "./pages/~vladni/~$budgetName/~index";
-import { Route as VladniBudgetNameVydajeSplatImport } from "./pages/~vladni/~$budgetName/~vydaje.$";
-import { Route as VladniBudgetNamePrijmySplatImport } from "./pages/~vladni/~$budgetName/~prijmy.$";
-
-// Create/Update Routes
-
-const IndexRoute = IndexImport.update({
-  id: "/",
-  path: "/",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const VladniBudgetNameRoute = VladniBudgetNameImport.update({
-  id: "/vladni/$budgetName",
-  path: "/vladni/$budgetName",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const VladniIndexRoute = VladniIndexImport.update({
-  id: "/vladni/",
-  path: "/vladni/",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const SupportIndexRoute = SupportIndexImport.update({
-  id: "/support/",
-  path: "/support/",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const PublishedIndexRoute = PublishedIndexImport.update({
-  id: "/published/",
-  path: "/published/",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const MyIndexRoute = MyIndexImport.update({
-  id: "/my/",
-  path: "/my/",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const CompareIndexRoute = CompareIndexImport.update({
-  id: "/compare/",
-  path: "/compare/",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const AgregatedIndexRoute = AgregatedIndexImport.update({
-  id: "/agregated/",
-  path: "/agregated/",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const VladniBudgetNameIndexRoute = VladniBudgetNameIndexImport.update({
-  id: "/",
-  path: "/",
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VladniBudgetNameRoute = VladniBudgetNameRouteImport.update({
+  id: '/vladni/$budgetName',
+  path: '/vladni/$budgetName',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VladniIndexRoute = VladniIndexRouteImport.update({
+  id: '/vladni/',
+  path: '/vladni/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportIndexRoute = SupportIndexRouteImport.update({
+  id: '/support/',
+  path: '/support/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublishedIndexRoute = PublishedIndexRouteImport.update({
+  id: '/published/',
+  path: '/published/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyIndexRoute = MyIndexRouteImport.update({
+  id: '/my/',
+  path: '/my/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareIndexRoute = CompareIndexRouteImport.update({
+  id: '/compare/',
+  path: '/compare/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgregatedIndexRoute = AgregatedIndexRouteImport.update({
+  id: '/agregated/',
+  path: '/agregated/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VladniBudgetNameIndexRoute = VladniBudgetNameIndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => VladniBudgetNameRoute,
-} as any);
-
+} as any)
 const VladniBudgetNameVydajeSplatRoute =
-  VladniBudgetNameVydajeSplatImport.update({
-    id: "/vydaje/$",
-    path: "/vydaje/$",
+  VladniBudgetNameVydajeSplatRouteImport.update({
+    id: '/vydaje/$',
+    path: '/vydaje/$',
     getParentRoute: () => VladniBudgetNameRoute,
-  } as any);
-
+  } as any)
 const VladniBudgetNamePrijmySplatRoute =
-  VladniBudgetNamePrijmySplatImport.update({
-    id: "/prijmy/$",
-    path: "/prijmy/$",
+  VladniBudgetNamePrijmySplatRouteImport.update({
+    id: '/prijmy/$',
+    path: '/prijmy/$',
     getParentRoute: () => VladniBudgetNameRoute,
-  } as any);
+  } as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/agregated': typeof AgregatedIndexRoute
+  '/compare': typeof CompareIndexRoute
+  '/my': typeof MyIndexRoute
+  '/published': typeof PublishedIndexRoute
+  '/support': typeof SupportIndexRoute
+  '/vladni': typeof VladniIndexRoute
+  '/vladni/$budgetName': typeof VladniBudgetNameRouteWithChildren
+  '/vladni/$budgetName/': typeof VladniBudgetNameIndexRoute
+  '/vladni/$budgetName/prijmy/$': typeof VladniBudgetNamePrijmySplatRoute
+  '/vladni/$budgetName/vydaje/$': typeof VladniBudgetNameVydajeSplatRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/agregated': typeof AgregatedIndexRoute
+  '/compare': typeof CompareIndexRoute
+  '/my': typeof MyIndexRoute
+  '/published': typeof PublishedIndexRoute
+  '/support': typeof SupportIndexRoute
+  '/vladni': typeof VladniIndexRoute
+  '/vladni/$budgetName': typeof VladniBudgetNameIndexRoute
+  '/vladni/$budgetName/prijmy/$': typeof VladniBudgetNamePrijmySplatRoute
+  '/vladni/$budgetName/vydaje/$': typeof VladniBudgetNameVydajeSplatRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/agregated/': typeof AgregatedIndexRoute
+  '/compare/': typeof CompareIndexRoute
+  '/my/': typeof MyIndexRoute
+  '/published/': typeof PublishedIndexRoute
+  '/support/': typeof SupportIndexRoute
+  '/vladni/': typeof VladniIndexRoute
+  '/vladni/$budgetName': typeof VladniBudgetNameRouteWithChildren
+  '/vladni/$budgetName/': typeof VladniBudgetNameIndexRoute
+  '/vladni/$budgetName/prijmy/$': typeof VladniBudgetNamePrijmySplatRoute
+  '/vladni/$budgetName/vydaje/$': typeof VladniBudgetNameVydajeSplatRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/agregated'
+    | '/compare'
+    | '/my'
+    | '/published'
+    | '/support'
+    | '/vladni'
+    | '/vladni/$budgetName'
+    | '/vladni/$budgetName/'
+    | '/vladni/$budgetName/prijmy/$'
+    | '/vladni/$budgetName/vydaje/$'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/agregated'
+    | '/compare'
+    | '/my'
+    | '/published'
+    | '/support'
+    | '/vladni'
+    | '/vladni/$budgetName'
+    | '/vladni/$budgetName/prijmy/$'
+    | '/vladni/$budgetName/vydaje/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/agregated/'
+    | '/compare/'
+    | '/my/'
+    | '/published/'
+    | '/support/'
+    | '/vladni/'
+    | '/vladni/$budgetName'
+    | '/vladni/$budgetName/'
+    | '/vladni/$budgetName/prijmy/$'
+    | '/vladni/$budgetName/vydaje/$'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  AgregatedIndexRoute: typeof AgregatedIndexRoute
+  CompareIndexRoute: typeof CompareIndexRoute
+  MyIndexRoute: typeof MyIndexRoute
+  PublishedIndexRoute: typeof PublishedIndexRoute
+  SupportIndexRoute: typeof SupportIndexRoute
+  VladniIndexRoute: typeof VladniIndexRoute
+  VladniBudgetNameRoute: typeof VladniBudgetNameRouteWithChildren
+}
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/agregated/": {
-      id: "/agregated/";
-      path: "/agregated";
-      fullPath: "/agregated";
-      preLoaderRoute: typeof AgregatedIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/compare/": {
-      id: "/compare/";
-      path: "/compare";
-      fullPath: "/compare";
-      preLoaderRoute: typeof CompareIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/my/": {
-      id: "/my/";
-      path: "/my";
-      fullPath: "/my";
-      preLoaderRoute: typeof MyIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/published/": {
-      id: "/published/";
-      path: "/published";
-      fullPath: "/published";
-      preLoaderRoute: typeof PublishedIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/support/": {
-      id: "/support/";
-      path: "/support";
-      fullPath: "/support";
-      preLoaderRoute: typeof SupportIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/vladni/": {
-      id: "/vladni/";
-      path: "/vladni";
-      fullPath: "/vladni";
-      preLoaderRoute: typeof VladniIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/vladni/$budgetName": {
-      id: "/vladni/$budgetName";
-      path: "/vladni/$budgetName";
-      fullPath: "/vladni/$budgetName";
-      preLoaderRoute: typeof VladniBudgetNameImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/vladni/$budgetName/": {
-      id: "/vladni/$budgetName/";
-      path: "/";
-      fullPath: "/vladni/$budgetName/";
-      preLoaderRoute: typeof VladniBudgetNameIndexImport;
-      parentRoute: typeof VladniBudgetNameImport;
-    };
-    "/vladni/$budgetName/prijmy/$": {
-      id: "/vladni/$budgetName/prijmy/$";
-      path: "/prijmy/$";
-      fullPath: "/vladni/$budgetName/prijmy/$";
-      preLoaderRoute: typeof VladniBudgetNamePrijmySplatImport;
-      parentRoute: typeof VladniBudgetNameImport;
-    };
-    "/vladni/$budgetName/vydaje/$": {
-      id: "/vladni/$budgetName/vydaje/$";
-      path: "/vydaje/$";
-      fullPath: "/vladni/$budgetName/vydaje/$";
-      preLoaderRoute: typeof VladniBudgetNameVydajeSplatImport;
-      parentRoute: typeof VladniBudgetNameImport;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vladni/$budgetName': {
+      id: '/vladni/$budgetName'
+      path: '/vladni/$budgetName'
+      fullPath: '/vladni/$budgetName'
+      preLoaderRoute: typeof VladniBudgetNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vladni/': {
+      id: '/vladni/'
+      path: '/vladni'
+      fullPath: '/vladni'
+      preLoaderRoute: typeof VladniIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support/': {
+      id: '/support/'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/published/': {
+      id: '/published/'
+      path: '/published'
+      fullPath: '/published'
+      preLoaderRoute: typeof PublishedIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my/': {
+      id: '/my/'
+      path: '/my'
+      fullPath: '/my'
+      preLoaderRoute: typeof MyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare/': {
+      id: '/compare/'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agregated/': {
+      id: '/agregated/'
+      path: '/agregated'
+      fullPath: '/agregated'
+      preLoaderRoute: typeof AgregatedIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vladni/$budgetName/': {
+      id: '/vladni/$budgetName/'
+      path: '/'
+      fullPath: '/vladni/$budgetName/'
+      preLoaderRoute: typeof VladniBudgetNameIndexRouteImport
+      parentRoute: typeof VladniBudgetNameRoute
+    }
+    '/vladni/$budgetName/vydaje/$': {
+      id: '/vladni/$budgetName/vydaje/$'
+      path: '/vydaje/$'
+      fullPath: '/vladni/$budgetName/vydaje/$'
+      preLoaderRoute: typeof VladniBudgetNameVydajeSplatRouteImport
+      parentRoute: typeof VladniBudgetNameRoute
+    }
+    '/vladni/$budgetName/prijmy/$': {
+      id: '/vladni/$budgetName/prijmy/$'
+      path: '/prijmy/$'
+      fullPath: '/vladni/$budgetName/prijmy/$'
+      preLoaderRoute: typeof VladniBudgetNamePrijmySplatRouteImport
+      parentRoute: typeof VladniBudgetNameRoute
+    }
   }
 }
 
-// Create and export the route tree
-
 interface VladniBudgetNameRouteChildren {
-  VladniBudgetNameIndexRoute: typeof VladniBudgetNameIndexRoute;
-  VladniBudgetNamePrijmySplatRoute: typeof VladniBudgetNamePrijmySplatRoute;
-  VladniBudgetNameVydajeSplatRoute: typeof VladniBudgetNameVydajeSplatRoute;
+  VladniBudgetNameIndexRoute: typeof VladniBudgetNameIndexRoute
+  VladniBudgetNamePrijmySplatRoute: typeof VladniBudgetNamePrijmySplatRoute
+  VladniBudgetNameVydajeSplatRoute: typeof VladniBudgetNameVydajeSplatRoute
 }
 
 const VladniBudgetNameRouteChildren: VladniBudgetNameRouteChildren = {
   VladniBudgetNameIndexRoute: VladniBudgetNameIndexRoute,
   VladniBudgetNamePrijmySplatRoute: VladniBudgetNamePrijmySplatRoute,
   VladniBudgetNameVydajeSplatRoute: VladniBudgetNameVydajeSplatRoute,
-};
+}
 
 const VladniBudgetNameRouteWithChildren =
-  VladniBudgetNameRoute._addFileChildren(VladniBudgetNameRouteChildren);
-
-export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/agregated": typeof AgregatedIndexRoute;
-  "/compare": typeof CompareIndexRoute;
-  "/my": typeof MyIndexRoute;
-  "/published": typeof PublishedIndexRoute;
-  "/support": typeof SupportIndexRoute;
-  "/vladni": typeof VladniIndexRoute;
-  "/vladni/$budgetName": typeof VladniBudgetNameRouteWithChildren;
-  "/vladni/$budgetName/": typeof VladniBudgetNameIndexRoute;
-  "/vladni/$budgetName/prijmy/$": typeof VladniBudgetNamePrijmySplatRoute;
-  "/vladni/$budgetName/vydaje/$": typeof VladniBudgetNameVydajeSplatRoute;
-}
-
-export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/agregated": typeof AgregatedIndexRoute;
-  "/compare": typeof CompareIndexRoute;
-  "/my": typeof MyIndexRoute;
-  "/published": typeof PublishedIndexRoute;
-  "/support": typeof SupportIndexRoute;
-  "/vladni": typeof VladniIndexRoute;
-  "/vladni/$budgetName": typeof VladniBudgetNameIndexRoute;
-  "/vladni/$budgetName/prijmy/$": typeof VladniBudgetNamePrijmySplatRoute;
-  "/vladni/$budgetName/vydaje/$": typeof VladniBudgetNameVydajeSplatRoute;
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
-  "/agregated/": typeof AgregatedIndexRoute;
-  "/compare/": typeof CompareIndexRoute;
-  "/my/": typeof MyIndexRoute;
-  "/published/": typeof PublishedIndexRoute;
-  "/support/": typeof SupportIndexRoute;
-  "/vladni/": typeof VladniIndexRoute;
-  "/vladni/$budgetName": typeof VladniBudgetNameRouteWithChildren;
-  "/vladni/$budgetName/": typeof VladniBudgetNameIndexRoute;
-  "/vladni/$budgetName/prijmy/$": typeof VladniBudgetNamePrijmySplatRoute;
-  "/vladni/$budgetName/vydaje/$": typeof VladniBudgetNameVydajeSplatRoute;
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths:
-    | "/"
-    | "/agregated"
-    | "/compare"
-    | "/my"
-    | "/published"
-    | "/support"
-    | "/vladni"
-    | "/vladni/$budgetName"
-    | "/vladni/$budgetName/"
-    | "/vladni/$budgetName/prijmy/$"
-    | "/vladni/$budgetName/vydaje/$";
-  fileRoutesByTo: FileRoutesByTo;
-  to:
-    | "/"
-    | "/agregated"
-    | "/compare"
-    | "/my"
-    | "/published"
-    | "/support"
-    | "/vladni"
-    | "/vladni/$budgetName"
-    | "/vladni/$budgetName/prijmy/$"
-    | "/vladni/$budgetName/vydaje/$";
-  id:
-    | "__root__"
-    | "/"
-    | "/agregated/"
-    | "/compare/"
-    | "/my/"
-    | "/published/"
-    | "/support/"
-    | "/vladni/"
-    | "/vladni/$budgetName"
-    | "/vladni/$budgetName/"
-    | "/vladni/$budgetName/prijmy/$"
-    | "/vladni/$budgetName/vydaje/$";
-  fileRoutesById: FileRoutesById;
-}
-
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AgregatedIndexRoute: typeof AgregatedIndexRoute;
-  CompareIndexRoute: typeof CompareIndexRoute;
-  MyIndexRoute: typeof MyIndexRoute;
-  PublishedIndexRoute: typeof PublishedIndexRoute;
-  SupportIndexRoute: typeof SupportIndexRoute;
-  VladniIndexRoute: typeof VladniIndexRoute;
-  VladniBudgetNameRoute: typeof VladniBudgetNameRouteWithChildren;
-}
+  VladniBudgetNameRoute._addFileChildren(VladniBudgetNameRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -298,69 +276,7 @@ const rootRouteChildren: RootRouteChildren = {
   SupportIndexRoute: SupportIndexRoute,
   VladniIndexRoute: VladniIndexRoute,
   VladniBudgetNameRoute: VladniBudgetNameRouteWithChildren,
-};
-
-export const routeTree = rootRoute
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "~__root.tsx",
-      "children": [
-        "/",
-        "/agregated/",
-        "/compare/",
-        "/my/",
-        "/published/",
-        "/support/",
-        "/vladni/",
-        "/vladni/$budgetName"
-      ]
-    },
-    "/": {
-      "filePath": "~index.tsx"
-    },
-    "/agregated/": {
-      "filePath": "~agregated/~index.tsx"
-    },
-    "/compare/": {
-      "filePath": "~compare/~index.tsx"
-    },
-    "/my/": {
-      "filePath": "~my/~index.tsx"
-    },
-    "/published/": {
-      "filePath": "~published/~index.tsx"
-    },
-    "/support/": {
-      "filePath": "~support/~index.tsx"
-    },
-    "/vladni/": {
-      "filePath": "~vladni/~index.tsx"
-    },
-    "/vladni/$budgetName": {
-      "filePath": "~vladni/~$budgetName.tsx",
-      "children": [
-        "/vladni/$budgetName/",
-        "/vladni/$budgetName/prijmy/$",
-        "/vladni/$budgetName/vydaje/$"
-      ]
-    },
-    "/vladni/$budgetName/": {
-      "filePath": "~vladni/~$budgetName/~index.tsx",
-      "parent": "/vladni/$budgetName"
-    },
-    "/vladni/$budgetName/prijmy/$": {
-      "filePath": "~vladni/~$budgetName/~prijmy.$.tsx",
-      "parent": "/vladni/$budgetName"
-    },
-    "/vladni/$budgetName/vydaje/$": {
-      "filePath": "~vladni/~$budgetName/~vydaje.$.tsx",
-      "parent": "/vladni/$budgetName"
-    }
-  }
 }
-ROUTE_MANIFEST_END */
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()

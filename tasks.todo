@@ -62,6 +62,7 @@ Bugs:
     ✔ Fix SSR response (initial animation renders nothing) @done (5/7/2025, 8:21:32 AM)
     ☐ Fix errors when switching dimension
     ☐ Make mobile menu works when JS is not loaded yet (add navOpen URL query param)
+    ☐ Fix analytics events
     
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)

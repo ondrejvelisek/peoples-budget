@@ -2,7 +2,6 @@ import { QueryClient } from "@tanstack/react-query";
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { routerWithQueryClient } from "@tanstack/react-router-with-query";
 import { routeTree } from "./routeTree.gen";
-import { logEvent } from "./analytics/analytics";
 
 export function createRouter() {
   const queryClient = new QueryClient();
@@ -11,12 +10,6 @@ export function createRouter() {
     routeTree,
     context: { queryClient },
     defaultPreload: "intent",
-  });
-
-  router.subscribe("onLoad", async ({ toLocation }) => {
-    await logEvent({
-      data: { type: "page-view", page: toLocation.pathname },
-    });
   });
 
   return routerWithQueryClient(router, queryClient);

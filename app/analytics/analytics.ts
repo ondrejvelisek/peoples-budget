@@ -2,7 +2,10 @@ import { accessCookie } from "@/data/cookie";
 import { createServerFn } from "@tanstack/react-start";
 import { JWT } from "google-auth-library";
 import { GoogleSpreadsheet } from "google-spreadsheet";
-import { getRequestURL, isPreflightRequest } from "vinxi/http?server";
+import {
+  getRequestURL,
+  isPreflightRequest,
+} from "@tanstack/react-start/server";
 
 const DOC_ID = process.env["SHEET_DOC_ID"];
 
@@ -94,7 +97,7 @@ function randomString(length = 32) {
 
 // when JS is loaded in the browser
 // set the cookie and send initial page-view event
-if (!import.meta.env.SSR) {
+if (!import.meta.env["SSR"]) {
   const [sessionCookie, setSessionCookie] = accessCookie("session");
   if (!sessionCookie) {
     setSessionCookie(randomString(), {

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     // Enable latest features
-    "lib": ["ESNext", "DOM"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",
@@ -37,6 +37,6 @@
     "paths": {
       "@/*": ["./app/*"]
     },
-    "plugins": [{ "name": "vite-plugin-iso-import" }]
+    "plugins": [{ "name": "vite-plugin-iso-import" }],
   }
 }

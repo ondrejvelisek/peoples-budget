@@ -1,10 +1,11 @@
+/// <reference types="vite/client" />
 import {
+  HeadContent,
+  Scripts,
   Outlet,
-  ScrollRestoration,
   createRootRouteWithContext,
 } from "@tanstack/react-router";
 import Navigation from "../components/Navigation/Navigation";
-import { Meta, Scripts } from "@tanstack/react-start";
 
 import mainCss from "../main.css?url";
 import manifest from "../manifest.json?url";
@@ -14,6 +15,8 @@ import { seo } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { QueryClient } from "@tanstack/react-query";
 import { NotFound } from "./NotFound";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -64,11 +67,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <StrictMode>
       <html>
         <head>
-          <Meta />
+          <HeadContent />
         </head>
         <body>
           {children}
-          <ScrollRestoration />
+          <TanStackRouterDevtools position="bottom-right" />
+          <ReactQueryDevtools buttonPosition="bottom-left" />
           <Scripts />
         </body>
       </html>

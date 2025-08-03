@@ -2,7 +2,7 @@ import {
   getCookie as getServerCookie,
   getResponseHeader,
   setCookie as setServerCookie,
-} from "vinxi/http?server";
+} from "@tanstack/react-start/server";
 
 import useClientCookie, {
   setCookie as setClientCookie,
@@ -18,7 +18,7 @@ type CookieOptions = {
 type SetCookie = (value: string, options?: CookieOptions) => void;
 
 export function accessCookie(name: string): [string | undefined, SetCookie] {
-  if (import.meta.env.SSR) {
+  if (import.meta.env["SSR"]) {
     const value = getServerCookie(name);
 
     const setValue: SetCookie = (newValue, options) => {
