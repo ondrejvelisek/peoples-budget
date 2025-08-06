@@ -2,7 +2,7 @@ import {
   getCookie as getServerCookie,
   getResponseHeader,
   setCookie as setServerCookie,
-} from "@tanstack/react-start/server";
+} from "@tanstack/react-start/server?server";
 
 import useClientCookie, {
   setCookie as setClientCookie,
