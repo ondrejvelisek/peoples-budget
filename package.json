@@ -5,8 +5,8 @@
   "types": "./types/index.d.ts",
   "scripts": {
     "dev": "bunx --bun vite dev",
-    "build": "bunx --bun vite build --preset bun",
-    "start": "bunx --bun vite start --preset bun",
+    "build": "bunx --bun vite build",
+    "start": "bunx --bun vite start",
     "serve": "bunx --bun vite serve",
     "tscheck": "bunx --bun tsc --noEmit",
     "lint": "bunx --bun eslint",
