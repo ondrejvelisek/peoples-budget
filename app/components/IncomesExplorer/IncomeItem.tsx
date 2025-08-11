@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { ExplorerItem } from "../Explorer/ExplorerItem";
 import type { IncomeKey } from "@/data/incomes/incomeDimensions";
 import { useIncome } from "@/data/incomes/incomes";
-import { useBudgetName } from "@/pages/~vladni/~$budgetName";
+import { useBudgetName } from "@/lib/budget";
 type IncomeItemProps = {
   itemKey: IncomeKey;
   className?: string;

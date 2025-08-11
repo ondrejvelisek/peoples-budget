@@ -6,6 +6,7 @@ import {
   PageTabsTrigger,
 } from "@/components/ui/pageTabs";
 import { personalIncomeQueryOptions } from "@/data/personalIncome/personalIncomeHook";
+import { useBudgetName } from "@/lib/budget";
 import { cn } from "@/lib/utils";
 import {
   createFileRoute,
@@ -22,11 +23,6 @@ export const Route = createFileRoute("/vladni/$budgetName")({
     );
   },
 });
-
-export const useBudgetName = () => {
-  const { budgetName } = Route.useParams();
-  return budgetName;
-};
 
 function Layout() {
   const budgetName = useBudgetName();

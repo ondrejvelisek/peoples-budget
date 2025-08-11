@@ -3,7 +3,7 @@ import { cn, formatCurrency } from "@/lib/utils";
 import {
   calculateRelativeChange,
   type CompareItem as CompareItemType,
-} from "@/data/compare/compare";
+} from "@/data/compare/compareFlat";
 
 type ItemProps = {
   compareItem: CompareItemType;

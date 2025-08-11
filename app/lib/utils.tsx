@@ -55,11 +55,12 @@ export const withProviders =
       <WrappedComponent {...props} />
     );
 
-export const formatCurrency = (value: number) =>
+export const formatCurrency = (value: number, compareMode: boolean = false) =>
   new Intl.NumberFormat("cs-CZ", {
     style: "decimal",
     currency: "CZK",
     notation: "compact",
+    signDisplay: compareMode ? "always" : undefined,
   }).format(Math.round(value));
 
 export const formatCurrencyStandard = (value: number) =>
@@ -106,9 +107,6 @@ export async function parseCsv<
         }
       },
       complete() {
-        if (!acc) {
-          throw new Error("No csv records found");
-        }
         resolve(acc);
       },
     });

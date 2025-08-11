@@ -1,4 +1,4 @@
-import lodash from "lodash";
+import { isEqual } from "lodash";
 import { parseCsv } from "@/lib/utils";
 import { getRecordTables, type RecordTables } from "./dimensions/recordTables";
 import { kvStorage } from "./kvStorage";
@@ -6,15 +6,14 @@ import { createStorage, prefixStorage } from "unstorage";
 import memoryDriver from "unstorage/drivers/memory";
 import type { Dimension, ItemKey } from "./dimensions/personalDimensions";
 import { getBudgetFile } from "./files/files";
-const { isEqual } = lodash;
 
-const itemsMemoryStorage = createStorage<Item<Dimension>>({
+const itemsMemoryStorage = createStorage<Item<Dimension> | "null">({
   driver: memoryDriver(),
 });
 
 const itemsStorage = import.meta.env.DEV
   ? itemsMemoryStorage
-  : prefixStorage<Item<Dimension>>(kvStorage, "items:");
+  : prefixStorage<Item<Dimension> | "null">(kvStorage, "items:");
 
 export type Item<D extends Dimension> = {
   key: ItemKey<D>;
@@ -144,7 +143,7 @@ export const getItem = async <D extends Dimension>(
   rootTitle: string,
   itemKey: ItemKey<D>,
   childrenDimension?: D
-): Promise<Item<D>> => {
+): Promise<ItemWithChildrenAmount<D> | undefined> => {
   const cacheKeyStr = JSON.stringify([
     budgetName,
     type,
@@ -152,15 +151,19 @@ export const getItem = async <D extends Dimension>(
     childrenDimension,
   ]);
 
-  const memoryCached = await itemsMemoryStorage.getItem<Item<D>>(cacheKeyStr);
+  const memoryCached = await itemsMemoryStorage.getItem<
+    ItemWithChildrenAmount<D> | "null"
+  >(cacheKeyStr);
   if (memoryCached) {
     console.log("CACHE(getItem): memory HIT", cacheKeyStr);
-    return memoryCached;
+    return memoryCached === "null" ? undefined : memoryCached;
   }
-  const cached = await itemsStorage.getItem<Item<D>>(cacheKeyStr);
+  const cached = await itemsStorage.getItem<ItemWithChildrenAmount<D> | "null">(
+    cacheKeyStr
+  );
   if (cached) {
     console.log("CACHE(getItem): HIT", cacheKeyStr);
-    return cached;
+    return cached === "null" ? undefined : cached;
   }
   console.log("CACHE(getItem): MISS", cacheKeyStr);
 
@@ -202,15 +205,100 @@ export const getItem = async <D extends Dimension>(
     return acc;
   }
 
-  const item = await parseCsv<DataRecord, ItemWithChildrenAmount<D>>(
-    csv,
-    filter,
-    reduce
+  const item = await parseCsv<
+    DataRecord,
+    ItemWithChildrenAmount<D> | undefined
+  >(csv, filter, reduce);
+
+  item?.children.sort((a, b) => b.amount - a.amount);
+
+  await itemsMemoryStorage.setItem(cacheKeyStr, item ?? "null");
+  await itemsStorage.setItem(cacheKeyStr, item ?? "null");
+  return item;
+};
+
+export type CompareItem<D extends Dimension> = Item<D> & {
+  primaryAmount: number;
+  secondaryAmount: number;
+  maxChildrenAmount: number;
+};
+
+const areKeysEqual = <D extends Dimension>(
+  a: ItemKey<D>,
+  b: ItemKey<D>
+): boolean => {
+  return a.every((part, i) => {
+    return isEqual(part, b[i]);
+  });
+};
+
+export const getCompareItem = async <D extends Dimension>(
+  budgetName: string,
+  secondBudgetName: string,
+  type: "expenses" | "incomes",
+  rootTitle: string,
+  itemKey: ItemKey<D>,
+  childrenDimension?: D
+): Promise<CompareItem<D>> => {
+  const itemPromise = getItem(
+    budgetName,
+    type,
+    rootTitle,
+    itemKey,
+    childrenDimension
+  );
+  const secondItemPromise = getItem(
+    secondBudgetName,
+    type,
+    rootTitle,
+    itemKey,
+    childrenDimension
   );
 
-  item.children.sort((a, b) => b.amount - a.amount);
+  const [item, secondItem] = await Promise.all([
+    itemPromise,
+    secondItemPromise,
+  ] as const);
 
-  await itemsMemoryStorage.setItem(cacheKeyStr, item);
-  await itemsStorage.setItem(cacheKeyStr, item);
-  return item;
+  const allChildren = (item?.children ?? []).concat(
+    (secondItem?.children ?? []).filter((secCh) => {
+      return !(item?.children ?? []).find((primCh) => {
+        return areKeysEqual(primCh, secCh);
+      });
+    })
+  );
+
+  const allChildrenWithDiffAmount = allChildren.map((ch) => {
+    const a =
+      (item?.children ?? []).find((pCh) => areKeysEqual(pCh, ch))?.amount ?? 0;
+    const b =
+      (secondItem?.children ?? []).find((sCh) => areKeysEqual(sCh, ch))
+        ?.amount ?? 0;
+    return Object.assign(ch, { amount: a - b });
+  });
+
+  const children = allChildrenWithDiffAmount.toSorted((a, b) => {
+    return Math.abs(b.amount) - Math.abs(a.amount);
+  });
+
+  const maxChildrenAmount = children[0]?.amount ?? 0;
+
+  const someItem = item ?? secondItem;
+  if (!someItem) {
+    console.log("prm item", item);
+    console.log("sec item", secondItem);
+    console.log("key", itemKey);
+    throw new Error(
+      `No compare item found. Key: ${JSON.stringify(itemKey)}, Primary budget: ${budgetName}, Secondary budget ${secondBudgetName}`
+    );
+  }
+
+  return {
+    ...someItem,
+    amount: (item?.amount ?? 0) - (secondItem?.amount ?? 0),
+    primaryAmount: item?.amount ?? 0,
+    secondaryAmount: secondItem?.amount ?? 0,
+    children,
+    maxChildrenAmount,
+  };
 };

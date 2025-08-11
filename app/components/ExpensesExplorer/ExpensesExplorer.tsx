@@ -7,7 +7,7 @@ import {
   type ExpenseKey,
 } from "@/data/expenses/expenseDimensions";
 import type { LinkProps } from "@tanstack/react-router";
-import { useBudgetName } from "@/pages/~vladni/~$budgetName";
+import { useBudgetName } from "@/lib/budget";
 type ExpensesExplorerProps = {
   className?: string;
 };

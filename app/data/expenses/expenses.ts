@@ -12,7 +12,7 @@ import {
   type ExpenseKey,
 } from "./expenseDimensions";
 import { getItem, type Item } from "../items";
-import { useBudgetName } from "@/pages/~vladni/~$budgetName";
+import { useBudgetName } from "@/lib/budget";
 
 export type ExpenseItem = Item<ExpenseDimension>;
 
@@ -25,13 +25,17 @@ export const getExpense = createServerFn()
     }) => data
   )
   .handler(async ({ data }): Promise<ExpenseItem> => {
-    return await getItem(
+    const item = await getItem(
       data.budgetName,
       "expenses",
       "Všechny výdaje",
       data.expenseKey,
       data.childrenDimension
     );
+    if (!item) {
+      throw new Error("Expense item not found by key");
+    }
+    return item;
   });
 
 export const expenseQueryOptions = (

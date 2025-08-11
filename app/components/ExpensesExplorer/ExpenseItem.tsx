@@ -3,7 +3,7 @@ import { useExpense } from "@/data/expenses/expenses";
 import type { ExpenseKey } from "@/data/expenses/expenseDimensions";
 import { ExplorerItem } from "../Explorer/ExplorerItem";
 import { usePersonalIncome } from "@/data/personalIncome/personalIncomeHook";
-import { useBudgetName } from "@/pages/~vladni/~$budgetName";
+import { useBudgetName } from "@/lib/budget";
 
 type ExpenseItemProps = {
   itemKey: ExpenseKey;

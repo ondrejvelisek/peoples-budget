@@ -7,7 +7,7 @@ import {
 } from "@/data/incomes/incomeDimensions";
 import { useIncome } from "@/data/incomes/incomes";
 import type { LinkProps } from "@tanstack/react-router";
-import { useBudgetName } from "@/pages/~vladni/~$budgetName";
+import { useBudgetName } from "@/lib/budget";
 type IncomesExplorerProps = {
   className?: string;
 };

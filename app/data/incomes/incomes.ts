@@ -12,7 +12,7 @@ import {
   type IncomeDimension,
   type IncomeKey,
 } from "./incomeDimensions";
-import { useBudgetName } from "@/pages/~vladni/~$budgetName";
+import { useBudgetName } from "@/lib/budget";
 
 export type IncomeItem = Item<IncomeDimension>;
 

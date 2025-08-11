@@ -13,7 +13,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { useMemo } from "react";
 import { useLocalStorage, useTimeout } from "@mantine/hooks";
 import { getBudgetFile } from "../files/files";
-import { useBudgetName } from "@/pages/~vladni/~$budgetName";
+import { useBudgetName } from "@/lib/budget";
 
 type IncomesByType = {
   incomes: Record<string, number>;

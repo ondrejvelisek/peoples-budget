@@ -17,6 +17,7 @@ type ItemProps = LinkProps & {
   rootAmount?: number;
   contributionAmount?: number;
   hideMeter?: boolean;
+  compareMode?: boolean;
   className?: string;
 };
 
@@ -30,6 +31,7 @@ export const ExplorerItem: FC<ItemProps> = ({
   rootAmount,
   contributionAmount,
   hideMeter = false,
+  compareMode = false,
   className,
   ...linkProps
 }) => {
@@ -58,6 +60,7 @@ export const ExplorerItem: FC<ItemProps> = ({
           rootAmount={rootAmount}
           relation={relation}
           isLoading={isLoading}
+          compareMode={compareMode}
           className={cn({
             "mx-3": relation === "subject",
           })}
@@ -88,6 +91,7 @@ export const ExplorerItem: FC<ItemProps> = ({
                 relation={relation}
                 isLoading={isLoading}
                 amount={amount}
+                compareMode={compareMode}
               />
             )}
           </div>
@@ -153,13 +157,18 @@ const Amount: FC<ItemProps> = ({
   relation = "parent",
   isLoading = false,
   amount,
+  compareMode = false,
   className,
 }) => {
   return (
     <div
       className={cn(
         "w-fit truncate text-base font-bold",
-        { "text-lg leading-tight": relation === "subject" },
+        {
+          "text-lg leading-tight": relation === "subject",
+          "text-lime-700": compareMode && amount && amount > 0,
+          "text-rose-700": compareMode && amount && amount < 0,
+        },
         className
       )}
       style={{
@@ -170,7 +179,7 @@ const Amount: FC<ItemProps> = ({
       {isLoading ? (
         <Skeleton width="4em" />
       ) : amount !== undefined ? (
-        formatCurrency(amount)
+        formatCurrency(amount, compareMode)
       ) : null}
     </div>
   );
@@ -196,8 +205,7 @@ const Contribution: FC<ItemProps> = ({
           <Skeleton width="10em" />
         ) : contributionAmount !== undefined ? (
           <>
-            <LuWallet className="inline-block" /> Měsíčně za toto
-            zaplatíte
+            <LuWallet className="inline-block" /> Měsíčně za toto zaplatíte
           </>
         ) : null}
       </div>
@@ -240,12 +248,13 @@ const Meter: FC<ItemProps> = ({
   className,
   relation,
   isLoading,
+  compareMode,
 }) => {
   if (amount === undefined) {
     return null;
   }
 
-  const localPercentage = parentAmount ? amount / parentAmount : 0;
+  const localPercentage = parentAmount ? Math.abs(amount) / parentAmount : 0;
   const globalPercentage = rootAmount ? amount / rootAmount : 0;
 
   return (
@@ -261,17 +270,22 @@ const Meter: FC<ItemProps> = ({
       {!isLoading && (
         <>
           <div
-            className={cn("absolute inset-0 z-20 h-full rounded bg-sky-200")}
+            className={cn("absolute inset-0 z-20 h-full rounded bg-sky-200", {
+              "bg-lime-400": compareMode && amount && amount > 0,
+              "bg-rose-400": compareMode && amount && amount < 0,
+            })}
             style={{
               width: `max(0.25rem, ${localPercentage * 100}%)`,
             }}
           />
-          <div
-            className={cn("absolute inset-0 z-30 h-full rounded bg-sky-400")}
-            style={{
-              width: `max(0.25rem, ${globalPercentage * 100}%)`,
-            }}
-          />
+          {!compareMode && (
+            <div
+              className={cn("absolute inset-0 z-30 h-full rounded bg-sky-400")}
+              style={{
+                width: `max(0.25rem, ${globalPercentage * 100}%)`,
+              }}
+            />
+          )}
         </>
       )}
     </div>
