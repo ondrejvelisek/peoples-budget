@@ -59,20 +59,15 @@ export const CompareExplorer: FC<CompareExplorerProps> = ({ className }) => {
   ];
 
   return (
-    <>
-      <h2 className="px-3 py-2 text-sm">
-        Porovnání {budgetName} proti {secondBudgetName}
-      </h2>
-      <Explorer<ExpenseKey>
-        ExplorerItemComponent={CompareItem}
-        subjectKey={expenseKey}
-        parentKey={parentKey}
-        childrenKeys={expense?.children}
-        dimensionLinks={dimensionLinks}
-        currentDimension={expense?.childrenDimension}
-        isLoading={isPending}
-        className={className}
-      />
-    </>
+    <Explorer<ExpenseKey>
+      ExplorerItemComponent={CompareItem}
+      subjectKey={expenseKey}
+      parentKey={parentKey}
+      childrenKeys={expense?.children}
+      dimensionLinks={dimensionLinks}
+      currentDimension={expense?.childrenDimension}
+      isLoading={isPending}
+      className={className}
+    />
   );
 };

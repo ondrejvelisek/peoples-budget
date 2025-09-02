@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './pages/~__root'
+import { Route as CompareRouteImport } from './pages/~compare'
 import { Route as IndexRouteImport } from './pages/~index'
 import { Route as VladniBudgetNameRouteImport } from './pages/~vladni/~$budgetName'
 import { Route as VladniIndexRouteImport } from './pages/~vladni/~index'
@@ -17,6 +18,7 @@ import { Route as PublishedIndexRouteImport } from './pages/~published/~index'
 import { Route as MyIndexRouteImport } from './pages/~my/~index'
 import { Route as CompareIndexRouteImport } from './pages/~compare/~index'
 import { Route as AgregatedIndexRouteImport } from './pages/~agregated/~index'
+import { Route as CompareBudgetNameSecondBudgetNameRouteImport } from './pages/~compare/~$budgetName/~$secondBudgetName'
 import { Route as VladniBudgetNameIndexRouteImport } from './pages/~vladni/~$budgetName/~index'
 import { Route as CompareBudgetNameIndexRouteImport } from './pages/~compare/~$budgetName/~index'
 import { Route as VladniBudgetNameVydajeSplatRouteImport } from './pages/~vladni/~$budgetName/~vydaje.$'
@@ -25,6 +27,11 @@ import { Route as CompareBudgetNameSecondBudgetNameIndexRouteImport } from './pa
 import { Route as CompareBudgetNameSecondBudgetNameVydajeSplatRouteImport } from './pages/~compare/~$budgetName/~$secondBudgetName/~vydaje.$'
 import { Route as CompareBudgetNameSecondBudgetNamePrijmySplatRouteImport } from './pages/~compare/~$budgetName/~$secondBudgetName/~prijmy.$'
 
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -56,24 +63,30 @@ const MyIndexRoute = MyIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompareIndexRoute = CompareIndexRouteImport.update({
-  id: '/compare/',
-  path: '/compare/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => CompareRoute,
 } as any)
 const AgregatedIndexRoute = AgregatedIndexRouteImport.update({
   id: '/agregated/',
   path: '/agregated/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareBudgetNameSecondBudgetNameRoute =
+  CompareBudgetNameSecondBudgetNameRouteImport.update({
+    id: '/$budgetName/$secondBudgetName',
+    path: '/$budgetName/$secondBudgetName',
+    getParentRoute: () => CompareRoute,
+  } as any)
 const VladniBudgetNameIndexRoute = VladniBudgetNameIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => VladniBudgetNameRoute,
 } as any)
 const CompareBudgetNameIndexRoute = CompareBudgetNameIndexRouteImport.update({
-  id: '/compare/$budgetName/',
-  path: '/compare/$budgetName/',
-  getParentRoute: () => rootRouteImport,
+  id: '/$budgetName/',
+  path: '/$budgetName/',
+  getParentRoute: () => CompareRoute,
 } as any)
 const VladniBudgetNameVydajeSplatRoute =
   VladniBudgetNameVydajeSplatRouteImport.update({
@@ -89,27 +102,28 @@ const VladniBudgetNamePrijmySplatRoute =
   } as any)
 const CompareBudgetNameSecondBudgetNameIndexRoute =
   CompareBudgetNameSecondBudgetNameIndexRouteImport.update({
-    id: '/compare/$budgetName/$secondBudgetName/',
-    path: '/compare/$budgetName/$secondBudgetName/',
-    getParentRoute: () => rootRouteImport,
+    id: '/',
+    path: '/',
+    getParentRoute: () => CompareBudgetNameSecondBudgetNameRoute,
   } as any)
 const CompareBudgetNameSecondBudgetNameVydajeSplatRoute =
   CompareBudgetNameSecondBudgetNameVydajeSplatRouteImport.update({
-    id: '/compare/$budgetName/$secondBudgetName/vydaje/$',
-    path: '/compare/$budgetName/$secondBudgetName/vydaje/$',
-    getParentRoute: () => rootRouteImport,
+    id: '/vydaje/$',
+    path: '/vydaje/$',
+    getParentRoute: () => CompareBudgetNameSecondBudgetNameRoute,
   } as any)
 const CompareBudgetNameSecondBudgetNamePrijmySplatRoute =
   CompareBudgetNameSecondBudgetNamePrijmySplatRouteImport.update({
-    id: '/compare/$budgetName/$secondBudgetName/prijmy/$',
-    path: '/compare/$budgetName/$secondBudgetName/prijmy/$',
-    getParentRoute: () => rootRouteImport,
+    id: '/prijmy/$',
+    path: '/prijmy/$',
+    getParentRoute: () => CompareBudgetNameSecondBudgetNameRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRouteWithChildren
   '/agregated': typeof AgregatedIndexRoute
-  '/compare': typeof CompareIndexRoute
+  '/compare/': typeof CompareIndexRoute
   '/my': typeof MyIndexRoute
   '/published': typeof PublishedIndexRoute
   '/support': typeof SupportIndexRoute
@@ -117,7 +131,8 @@ export interface FileRoutesByFullPath {
   '/vladni/$budgetName': typeof VladniBudgetNameRouteWithChildren
   '/compare/$budgetName': typeof CompareBudgetNameIndexRoute
   '/vladni/$budgetName/': typeof VladniBudgetNameIndexRoute
-  '/compare/$budgetName/$secondBudgetName': typeof CompareBudgetNameSecondBudgetNameIndexRoute
+  '/compare/$budgetName/$secondBudgetName': typeof CompareBudgetNameSecondBudgetNameRouteWithChildren
+  '/compare/$budgetName/$secondBudgetName/': typeof CompareBudgetNameSecondBudgetNameIndexRoute
   '/vladni/$budgetName/prijmy/$': typeof VladniBudgetNamePrijmySplatRoute
   '/vladni/$budgetName/vydaje/$': typeof VladniBudgetNameVydajeSplatRoute
   '/compare/$budgetName/$secondBudgetName/prijmy/$': typeof CompareBudgetNameSecondBudgetNamePrijmySplatRoute
@@ -142,6 +157,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRouteWithChildren
   '/agregated/': typeof AgregatedIndexRoute
   '/compare/': typeof CompareIndexRoute
   '/my/': typeof MyIndexRoute
@@ -151,6 +167,7 @@ export interface FileRoutesById {
   '/vladni/$budgetName': typeof VladniBudgetNameRouteWithChildren
   '/compare/$budgetName/': typeof CompareBudgetNameIndexRoute
   '/vladni/$budgetName/': typeof VladniBudgetNameIndexRoute
+  '/compare/$budgetName/$secondBudgetName': typeof CompareBudgetNameSecondBudgetNameRouteWithChildren
   '/compare/$budgetName/$secondBudgetName/': typeof CompareBudgetNameSecondBudgetNameIndexRoute
   '/vladni/$budgetName/prijmy/$': typeof VladniBudgetNamePrijmySplatRoute
   '/vladni/$budgetName/vydaje/$': typeof VladniBudgetNameVydajeSplatRoute
@@ -161,8 +178,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/agregated'
     | '/compare'
+    | '/agregated'
+    | '/compare/'
     | '/my'
     | '/published'
     | '/support'
@@ -171,6 +189,7 @@ export interface FileRouteTypes {
     | '/compare/$budgetName'
     | '/vladni/$budgetName/'
     | '/compare/$budgetName/$secondBudgetName'
+    | '/compare/$budgetName/$secondBudgetName/'
     | '/vladni/$budgetName/prijmy/$'
     | '/vladni/$budgetName/vydaje/$'
     | '/compare/$budgetName/$secondBudgetName/prijmy/$'
@@ -194,6 +213,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/compare'
     | '/agregated/'
     | '/compare/'
     | '/my/'
@@ -203,6 +223,7 @@ export interface FileRouteTypes {
     | '/vladni/$budgetName'
     | '/compare/$budgetName/'
     | '/vladni/$budgetName/'
+    | '/compare/$budgetName/$secondBudgetName'
     | '/compare/$budgetName/$secondBudgetName/'
     | '/vladni/$budgetName/prijmy/$'
     | '/vladni/$budgetName/vydaje/$'
@@ -212,21 +233,24 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRouteWithChildren
   AgregatedIndexRoute: typeof AgregatedIndexRoute
-  CompareIndexRoute: typeof CompareIndexRoute
   MyIndexRoute: typeof MyIndexRoute
   PublishedIndexRoute: typeof PublishedIndexRoute
   SupportIndexRoute: typeof SupportIndexRoute
   VladniIndexRoute: typeof VladniIndexRoute
   VladniBudgetNameRoute: typeof VladniBudgetNameRouteWithChildren
-  CompareBudgetNameIndexRoute: typeof CompareBudgetNameIndexRoute
-  CompareBudgetNameSecondBudgetNameIndexRoute: typeof CompareBudgetNameSecondBudgetNameIndexRoute
-  CompareBudgetNameSecondBudgetNamePrijmySplatRoute: typeof CompareBudgetNameSecondBudgetNamePrijmySplatRoute
-  CompareBudgetNameSecondBudgetNameVydajeSplatRoute: typeof CompareBudgetNameSecondBudgetNameVydajeSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -271,10 +295,10 @@ declare module '@tanstack/react-router' {
     }
     '/compare/': {
       id: '/compare/'
-      path: '/compare'
-      fullPath: '/compare'
+      path: '/'
+      fullPath: '/compare/'
       preLoaderRoute: typeof CompareIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof CompareRoute
     }
     '/agregated/': {
       id: '/agregated/'
@@ -282,6 +306,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/agregated'
       preLoaderRoute: typeof AgregatedIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/compare/$budgetName/$secondBudgetName': {
+      id: '/compare/$budgetName/$secondBudgetName'
+      path: '/$budgetName/$secondBudgetName'
+      fullPath: '/compare/$budgetName/$secondBudgetName'
+      preLoaderRoute: typeof CompareBudgetNameSecondBudgetNameRouteImport
+      parentRoute: typeof CompareRoute
     }
     '/vladni/$budgetName/': {
       id: '/vladni/$budgetName/'
@@ -292,10 +323,10 @@ declare module '@tanstack/react-router' {
     }
     '/compare/$budgetName/': {
       id: '/compare/$budgetName/'
-      path: '/compare/$budgetName'
+      path: '/$budgetName'
       fullPath: '/compare/$budgetName'
       preLoaderRoute: typeof CompareBudgetNameIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof CompareRoute
     }
     '/vladni/$budgetName/vydaje/$': {
       id: '/vladni/$budgetName/vydaje/$'
@@ -313,27 +344,64 @@ declare module '@tanstack/react-router' {
     }
     '/compare/$budgetName/$secondBudgetName/': {
       id: '/compare/$budgetName/$secondBudgetName/'
-      path: '/compare/$budgetName/$secondBudgetName'
-      fullPath: '/compare/$budgetName/$secondBudgetName'
+      path: '/'
+      fullPath: '/compare/$budgetName/$secondBudgetName/'
       preLoaderRoute: typeof CompareBudgetNameSecondBudgetNameIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof CompareBudgetNameSecondBudgetNameRoute
     }
     '/compare/$budgetName/$secondBudgetName/vydaje/$': {
       id: '/compare/$budgetName/$secondBudgetName/vydaje/$'
-      path: '/compare/$budgetName/$secondBudgetName/vydaje/$'
+      path: '/vydaje/$'
       fullPath: '/compare/$budgetName/$secondBudgetName/vydaje/$'
       preLoaderRoute: typeof CompareBudgetNameSecondBudgetNameVydajeSplatRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof CompareBudgetNameSecondBudgetNameRoute
     }
     '/compare/$budgetName/$secondBudgetName/prijmy/$': {
       id: '/compare/$budgetName/$secondBudgetName/prijmy/$'
-      path: '/compare/$budgetName/$secondBudgetName/prijmy/$'
+      path: '/prijmy/$'
       fullPath: '/compare/$budgetName/$secondBudgetName/prijmy/$'
       preLoaderRoute: typeof CompareBudgetNameSecondBudgetNamePrijmySplatRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof CompareBudgetNameSecondBudgetNameRoute
     }
   }
 }
+
+interface CompareBudgetNameSecondBudgetNameRouteChildren {
+  CompareBudgetNameSecondBudgetNameIndexRoute: typeof CompareBudgetNameSecondBudgetNameIndexRoute
+  CompareBudgetNameSecondBudgetNamePrijmySplatRoute: typeof CompareBudgetNameSecondBudgetNamePrijmySplatRoute
+  CompareBudgetNameSecondBudgetNameVydajeSplatRoute: typeof CompareBudgetNameSecondBudgetNameVydajeSplatRoute
+}
+
+const CompareBudgetNameSecondBudgetNameRouteChildren: CompareBudgetNameSecondBudgetNameRouteChildren =
+  {
+    CompareBudgetNameSecondBudgetNameIndexRoute:
+      CompareBudgetNameSecondBudgetNameIndexRoute,
+    CompareBudgetNameSecondBudgetNamePrijmySplatRoute:
+      CompareBudgetNameSecondBudgetNamePrijmySplatRoute,
+    CompareBudgetNameSecondBudgetNameVydajeSplatRoute:
+      CompareBudgetNameSecondBudgetNameVydajeSplatRoute,
+  }
+
+const CompareBudgetNameSecondBudgetNameRouteWithChildren =
+  CompareBudgetNameSecondBudgetNameRoute._addFileChildren(
+    CompareBudgetNameSecondBudgetNameRouteChildren,
+  )
+
+interface CompareRouteChildren {
+  CompareIndexRoute: typeof CompareIndexRoute
+  CompareBudgetNameIndexRoute: typeof CompareBudgetNameIndexRoute
+  CompareBudgetNameSecondBudgetNameRoute: typeof CompareBudgetNameSecondBudgetNameRouteWithChildren
+}
+
+const CompareRouteChildren: CompareRouteChildren = {
+  CompareIndexRoute: CompareIndexRoute,
+  CompareBudgetNameIndexRoute: CompareBudgetNameIndexRoute,
+  CompareBudgetNameSecondBudgetNameRoute:
+    CompareBudgetNameSecondBudgetNameRouteWithChildren,
+}
+
+const CompareRouteWithChildren =
+  CompareRoute._addFileChildren(CompareRouteChildren)
 
 interface VladniBudgetNameRouteChildren {
   VladniBudgetNameIndexRoute: typeof VladniBudgetNameIndexRoute
@@ -352,20 +420,13 @@ const VladniBudgetNameRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRouteWithChildren,
   AgregatedIndexRoute: AgregatedIndexRoute,
-  CompareIndexRoute: CompareIndexRoute,
   MyIndexRoute: MyIndexRoute,
   PublishedIndexRoute: PublishedIndexRoute,
   SupportIndexRoute: SupportIndexRoute,
   VladniIndexRoute: VladniIndexRoute,
   VladniBudgetNameRoute: VladniBudgetNameRouteWithChildren,
-  CompareBudgetNameIndexRoute: CompareBudgetNameIndexRoute,
-  CompareBudgetNameSecondBudgetNameIndexRoute:
-    CompareBudgetNameSecondBudgetNameIndexRoute,
-  CompareBudgetNameSecondBudgetNamePrijmySplatRoute:
-    CompareBudgetNameSecondBudgetNamePrijmySplatRoute,
-  CompareBudgetNameSecondBudgetNameVydajeSplatRoute:
-    CompareBudgetNameSecondBudgetNameVydajeSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
