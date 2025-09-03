@@ -1,4 +1,4 @@
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import { parseCsv } from "@/lib/utils";
 import { getRecordTables, type RecordTables } from "./dimensions/recordTables";
 import { kvStorage } from "./kvStorage";
