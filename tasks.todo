@@ -13,7 +13,7 @@ Help: Alt+d to mark task as completed
     ☐ Debug, test and polish
 
 Finish compare view: 
-    ☐ Fixnout řazení a bary v Porovnání
+    ✔ Fixnout řazení a bary v Porovnání @done (9/3/2025, 8:18:47 PM)
     ☐ Instantní loading screen = Use Suspense with Streaming
     ☐ Porovnání příjmů
     ☐ Zobrazit relativní hodnoty v porovnání

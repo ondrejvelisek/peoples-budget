@@ -25,13 +25,17 @@ export const getIncome = createServerFn()
     }) => data
   )
   .handler(async ({ data }): Promise<IncomeItem> => {
-    return await getItem(
+    const item = await getItem(
       data.budgetName,
       "incomes",
       "Všechny příjmy",
       data.incomeKey,
       data.childrenDimension
     );
+    if (!item) {
+      throw new Error("Income item not found by key");
+    }
+    return item;
   });
 
 export const incomeQueryOptions = (

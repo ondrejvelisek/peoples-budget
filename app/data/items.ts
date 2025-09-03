@@ -7,13 +7,18 @@ import memoryDriver from "unstorage/drivers/memory";
 import type { Dimension, ItemKey } from "./dimensions/personalDimensions";
 import { getBudgetFile } from "./files/files";
 
-const itemsMemoryStorage = createStorage<Item<Dimension> | "null">({
+const itemsMemoryStorage = createStorage<
+  ItemWithChildrenAmount<Dimension> | "null"
+>({
   driver: memoryDriver(),
 });
 
 const itemsStorage = import.meta.env.DEV
   ? itemsMemoryStorage
-  : prefixStorage<Item<Dimension> | "null">(kvStorage, "items:");
+  : prefixStorage<ItemWithChildrenAmount<Dimension> | "null">(
+      kvStorage,
+      "items:"
+    );
 
 export type Item<D extends Dimension> = {
   key: ItemKey<D>;
@@ -31,7 +36,10 @@ export type DataRecord = {
   amount: number;
 };
 
-function reduceAmount<D extends Dimension>(record: DataRecord, acc?: Item<D>) {
+function reduceAmount<D extends Dimension>(
+  record: DataRecord,
+  acc?: ItemWithChildrenAmount<D>
+) {
   return acc ? acc.amount + record.amount : record.amount;
 }
 
@@ -67,7 +75,8 @@ function reduceParent<D extends Dimension>(itemKey: ItemKey<D>, acc?: Item<D>) {
     : undefined;
 }
 
-type ItemKeyWithAmount<D extends Dimension> = ItemKey<D> & {
+type ItemKeyWithAmount<D extends Dimension> = {
+  itemKey: ItemKey<D>;
   amount: number;
 };
 
@@ -115,15 +124,15 @@ function reduceChildren<D extends Dimension>(
     return acc?.children ?? [];
   }
 
-  const child: ItemKeyWithAmount<D> = Object.assign(
-    [...itemKey, { dimension, id }],
-    { amount: record.amount }
-  );
+  const child: ItemKeyWithAmount<D> = {
+    itemKey: [...itemKey, { dimension, id }],
+    amount: record.amount,
+  };
 
   const existingChild =
     acc &&
     acc.children.find((ch) =>
-      ch.every((item, idx) => isEqual(item, child[idx]))
+      ch.itemKey.every((item, idx) => isEqual(item, child.itemKey[idx]))
     );
   if (existingChild) {
     existingChild.amount += record.amount;
@@ -136,8 +145,24 @@ function reduceChildren<D extends Dimension>(
 
   return children;
 }
-
 export const getItem = async <D extends Dimension>(
+  budgetName: string,
+  type: "expenses" | "incomes",
+  rootTitle: string,
+  itemKey: ItemKey<D>,
+  childrenDimension?: D
+): Promise<Item<D> | undefined> => {
+  const itemWithChildrenAmount = await getItemWithChildrenAmount(
+    budgetName,
+    type,
+    rootTitle,
+    itemKey,
+    childrenDimension
+  );
+  return convertItemWithChildrenAmountToItem(itemWithChildrenAmount);
+};
+
+export const getItemWithChildrenAmount = async <D extends Dimension>(
   budgetName: string,
   type: "expenses" | "incomes",
   rootTitle: string,
@@ -224,11 +249,11 @@ export type CompareItem<D extends Dimension> = Item<D> & {
 };
 
 const areKeysEqual = <D extends Dimension>(
-  a: ItemKey<D>,
-  b: ItemKey<D>
+  a: ItemKeyWithAmount<D>,
+  b: ItemKeyWithAmount<D>
 ): boolean => {
-  return a.every((part, i) => {
-    return isEqual(part, b[i]);
+  return a.itemKey.every((part, i) => {
+    return isEqual(part, b.itemKey[i]);
   });
 };
 
@@ -240,14 +265,14 @@ export const getCompareItem = async <D extends Dimension>(
   itemKey: ItemKey<D>,
   childrenDimension?: D
 ): Promise<CompareItem<D>> => {
-  const itemPromise = getItem(
+  const itemPromise = getItemWithChildrenAmount(
     budgetName,
     type,
     rootTitle,
     itemKey,
     childrenDimension
   );
-  const secondItemPromise = getItem(
+  const secondItemPromise = getItemWithChildrenAmount(
     secondBudgetName,
     type,
     rootTitle,
@@ -298,7 +323,19 @@ export const getCompareItem = async <D extends Dimension>(
     amount: (item?.amount ?? 0) - (secondItem?.amount ?? 0),
     primaryAmount: item?.amount ?? 0,
     secondaryAmount: secondItem?.amount ?? 0,
-    children,
+    children: children.map((child) => child.itemKey),
     maxChildrenAmount,
+  };
+};
+
+export const convertItemWithChildrenAmountToItem = <D extends Dimension>(
+  item?: ItemWithChildrenAmount<D>
+): Item<D> | undefined => {
+  if (!item) {
+    return undefined;
+  }
+  return {
+    ...item,
+    children: item.children.map((child) => child.itemKey),
   };
 };
