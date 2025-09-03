@@ -13,7 +13,7 @@ const PageTabsList = React.forwardRef<
     <PageTabsPrimitive.List
       ref={ref}
       className={cn(
-        "inline-flex items-center rounded-t-2xl bg-sand-50 text-sand-500 dark:bg-sand-800 dark:text-sand-400 w-full shadow-[inset_0_-2px_0_#F8F2EAFF]",
+        "inline-flex pt-0.5 items-center rounded-t-2xl bg-sand-50 text-sand-500 dark:bg-sand-800 dark:text-sand-400 w-full shadow-[inset_0_-2px_0_#F8F2EAFF]",
         className
       )}
       {...props}

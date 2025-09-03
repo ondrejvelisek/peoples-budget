@@ -40,7 +40,7 @@ function Layout() {
   return (
     <div className={cn("flex h-full flex-col justify-between")}>
       <PageTabs value={activeTab} className={cn("")}>
-        <PageTabsList>
+        <PageTabsList className="pt-0">
           <PageTabsTrigger value="/vladni/$budgetName/vydaje/$" asChild>
             <Link
               to="/vladni/$budgetName/vydaje/$"
