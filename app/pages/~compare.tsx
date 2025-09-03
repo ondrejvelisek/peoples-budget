@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuItemLink,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
 import { cn } from "@/lib/utils";
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 export const Route = createFileRoute("/compare")({
@@ -36,42 +36,33 @@ function Layout() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem asChild>
-              <Link
-                to="/compare/$budgetName/$secondBudgetName"
-                params={{
-                  budgetName: "2024",
-                  secondBudgetName,
-                }}
-                activeProps={{ className: "font-bold" }}
-              >
-                2024
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                to="/compare/$budgetName/$secondBudgetName"
-                params={{
-                  budgetName: "2025",
-                  secondBudgetName,
-                }}
-                activeProps={{ className: "font-bold" }}
-              >
-                2025
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                to="/compare/$budgetName/$secondBudgetName"
-                params={{
-                  budgetName: "2026",
-                  secondBudgetName,
-                }}
-                activeProps={{ className: "font-bold" }}
-              >
-                2026
-              </Link>
-            </DropdownMenuItem>
+            <DropdownMenuItemLink
+              to="/compare/$budgetName/$secondBudgetName"
+              params={{
+                budgetName: "2024",
+                secondBudgetName,
+              }}
+            >
+              2024
+            </DropdownMenuItemLink>
+            <DropdownMenuItemLink
+              to="/compare/$budgetName/$secondBudgetName"
+              params={{
+                budgetName: "2025",
+                secondBudgetName,
+              }}
+            >
+              2025
+            </DropdownMenuItemLink>
+            <DropdownMenuItemLink
+              to="/compare/$budgetName/$secondBudgetName"
+              params={{
+                budgetName: "2026",
+                secondBudgetName,
+              }}
+            >
+              2026
+            </DropdownMenuItemLink>
           </DropdownMenuContent>
         </DropdownMenu>{" "}
         proti{" "}
@@ -87,42 +78,33 @@ function Layout() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem asChild>
-              <Link
-                to="/compare/$budgetName/$secondBudgetName"
-                params={{
-                  budgetName,
-                  secondBudgetName: "2024",
-                }}
-                activeProps={{ className: "font-bold" }}
-              >
-                2024
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                to="/compare/$budgetName/$secondBudgetName"
-                params={{
-                  budgetName,
-                  secondBudgetName: "2025",
-                }}
-                activeProps={{ className: "font-bold" }}
-              >
-                2025
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link
-                to="/compare/$budgetName/$secondBudgetName"
-                params={{
-                  budgetName,
-                  secondBudgetName: "2026",
-                }}
-                activeProps={{ className: "font-bold" }}
-              >
-                2026
-              </Link>
-            </DropdownMenuItem>
+            <DropdownMenuItemLink
+              to="/compare/$budgetName/$secondBudgetName"
+              params={{
+                budgetName,
+                secondBudgetName: "2024",
+              }}
+            >
+              2024
+            </DropdownMenuItemLink>
+            <DropdownMenuItemLink
+              to="/compare/$budgetName/$secondBudgetName"
+              params={{
+                budgetName,
+                secondBudgetName: "2025",
+              }}
+            >
+              2025
+            </DropdownMenuItemLink>
+            <DropdownMenuItemLink
+              to="/compare/$budgetName/$secondBudgetName"
+              params={{
+                budgetName,
+                secondBudgetName: "2026",
+              }}
+            >
+              2026
+            </DropdownMenuItemLink>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

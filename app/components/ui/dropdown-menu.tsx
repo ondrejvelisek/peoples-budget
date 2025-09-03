@@ -3,6 +3,7 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { Check, ChevronRight, Circle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { Link, type LinkProps } from "@tanstack/react-router";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -89,6 +90,21 @@ const DropdownMenuItem = React.forwardRef<
   />
 ));
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
+
+const DropdownMenuItemLink = React.forwardRef<
+  HTMLAnchorElement,
+  LinkProps & { className?: string }
+>(({ className, activeProps, ...props }, ref) => (
+  <DropdownMenuItem asChild>
+    <Link
+      ref={ref}
+      activeProps={{ className: "font-bold", ...activeProps }}
+      className={cn("w-full", className)}
+      {...props}
+    />
+  </DropdownMenuItem>
+));
+DropdownMenuItemLink.displayName = "DropdownMenuItemLink";
 
 const DropdownMenuCheckboxItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
@@ -184,6 +200,7 @@ export {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuItemLink,
   DropdownMenuCheckboxItem,
   DropdownMenuRadioItem,
   DropdownMenuLabel,
