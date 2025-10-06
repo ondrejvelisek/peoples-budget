@@ -1,4 +1,4 @@
-import { Link, type LinkProps } from "@tanstack/react-router";
+import { Link, type LinkOptions } from "@tanstack/react-router";
 import { type ComponentType, type FC, type PropsWithChildren } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 export const NavigationItem: FC<
   PropsWithChildren<
-    Pick<LinkProps, "to" | "params" | "disabled"> & {
+    Pick<LinkOptions, "to" | "params" | "disabled"> & {
       Icon?: ComponentType<{ className?: string }>;
       onClick?: () => void;
       subitem?: boolean;

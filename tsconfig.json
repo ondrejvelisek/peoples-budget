@@ -2,14 +2,14 @@
   "compilerOptions": {
     // Enable latest features
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "target": "ESNext",
+    "target": "ES2022",
     "module": "ESNext",
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,
 
     // Bundler mode
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
@@ -37,6 +37,6 @@
     "paths": {
       "@/*": ["./app/*"]
     },
-    "plugins": [{ "name": "vite-plugin-iso-import" }],
+    "plugins": [{ "name": "vite-plugin-iso-import" }]
   }
 }

@@ -17,7 +17,7 @@ import { useBudgetName } from "@/lib/budget";
 export type ExpenseItem = Item<ExpenseDimension>;
 
 export const getExpense = createServerFn()
-  .validator(
+  .inputValidator(
     (data: {
       budgetName: string;
       expenseKey: ExpenseKey;

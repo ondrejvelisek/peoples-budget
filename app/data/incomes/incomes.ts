@@ -17,7 +17,7 @@ import { useBudgetName } from "@/lib/budget";
 export type IncomeItem = Item<IncomeDimension>;
 
 export const getIncome = createServerFn()
-  .validator(
+  .inputValidator(
     (data: {
       budgetName: string;
       incomeKey: IncomeKey;

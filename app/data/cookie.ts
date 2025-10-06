@@ -28,9 +28,7 @@ export function accessCookie(name: string): [string | undefined, SetCookie] {
       if (
         !deduplicate ||
         (newValue !== value &&
-          (!setCookieHeader ||
-            (typeof setCookieHeader === "object" &&
-              setCookieHeader.length === 0)))
+          (!setCookieHeader || setCookieHeader.length === 0))
       ) {
         const maxAge = options?.maxAge ?? 60 * 60 * 24 * 30;
         setServerCookie(name, newValue, { maxAge });

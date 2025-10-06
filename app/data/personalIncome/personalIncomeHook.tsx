@@ -57,7 +57,7 @@ const getIncomesType = async (
 };
 
 const getIncomesByType = createServerFn()
-  .validator((data: { budgetName: string }) => data)
+  .inputValidator((data: { budgetName: string }) => data)
   .handler(async ({ data }): Promise<IncomesByType> => {
     const types = await getIncomesType(data.budgetName);
     const incomesCsv = await getBudgetFile(data.budgetName, "incomes");

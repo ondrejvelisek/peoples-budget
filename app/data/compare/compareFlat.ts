@@ -224,7 +224,7 @@ const calculateCompare = async (
 };
 
 export const compareBudgets = createServerFn()
-  .validator(
+  .inputValidator(
     (data: { firstBudgetName: string; secondBudgetName: string }) => data
   )
   .handler(async ({ data }): Promise<Array<CompareItem>> => {

@@ -1,11 +1,8 @@
 import { accessCookie } from "@/data/cookie";
 import { createServerFn } from "@tanstack/react-start";
+import { getRequest } from "@tanstack/react-start/server?server";
 import { JWT } from "google-auth-library";
 import { GoogleSpreadsheet } from "google-spreadsheet";
-import {
-  getRequestURL,
-  isPreflightRequest,
-} from "@tanstack/react-start/server";
 
 const DOC_ID = process.env["SHEET_DOC_ID"];
 
@@ -32,7 +29,7 @@ export type Event = {
 };
 
 export const logEvent = createServerFn({ method: "POST" })
-  .validator((data: { type: EventType; page: string }) => data)
+  .inputValidator((data: { type: EventType; page: string }) => data)
   .handler(({ data }) => {
     const { type, page } = data;
     if (!doc) {
@@ -44,7 +41,7 @@ export const logEvent = createServerFn({ method: "POST" })
     if (["/favicon.ico"].includes(page)) {
       return;
     }
-    const isPreflight = isPreflightRequest();
+    const isPreflight = getRequest().method === "OPTIONS";
     if (isPreflight) {
       return;
     }
@@ -59,7 +56,7 @@ export const logEvent = createServerFn({ method: "POST" })
       maxAge: 60 * 30, // 30 minutes
       deduplicate: false,
     });
-    const url = getRequestURL();
+    const url = new URL(getRequest().url);
 
     // Which datetime I want to sent to my analytics?
     const now = new Date(

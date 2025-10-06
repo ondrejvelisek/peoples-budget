@@ -1,11 +1,12 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import tseslint, { config } from "typescript-eslint";
+import tseslint from "typescript-eslint";
+import { defineConfig } from "eslint/config";
 import pluginReact from "eslint-plugin-react";
 import tailwind from "eslint-plugin-tailwindcss";
 import reactHooks from "eslint-plugin-react-hooks";
 
-export default config(
+export default defineConfig(
   {
     ignores: ["**/dist/", "**/.vinxi/", "**/.output/", "**/.vercel/"],
   },
@@ -27,8 +28,9 @@ export default config(
       },
     },
   },
-  reactHooks.configs["recommended-latest"],
-  ...tailwind.configs["flat/recommended"],
+  ...reactHooks.configs["flat/recommended"],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ...(tailwind.configs["flat/recommended"] as any),
   {
     settings: {
       tailwindcss: {

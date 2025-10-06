@@ -15,16 +15,12 @@ export const Route = createFileRoute(
   params: {
     parse: ({
       _splat,
-      ...rest
     }): {
       _splat: ExpensesSplatParam;
-      budgetName: string;
-      secondBudgetName: string;
     } => {
       if (!_splat) {
         return {
           _splat: { expenseDimension: undefined, expenseKey: [] },
-          ...rest,
         };
       }
       const splatSegments = _splat.split("/");
@@ -54,11 +50,10 @@ export const Route = createFileRoute(
             return acc;
           }, [] as ExpenseKey) ?? [];
 
-      return { _splat: { expenseDimension, expenseKey }, ...rest };
+      return { _splat: { expenseDimension, expenseKey } };
     },
-    stringify: ({ _splat: { expenseDimension, expenseKey }, ...rest }) => ({
+    stringify: ({ _splat: { expenseDimension, expenseKey } }) => ({
       _splat: `${expenseKey.map(({ dimension, id }) => `${dimension}/${id}`).join("/")}${expenseDimension ? `/${expenseDimension}` : ""}`,
-      ...rest,
     }),
   },
   loader: async ({ context, params }) => {

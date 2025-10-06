@@ -17,7 +17,7 @@ import {
 export type CompareExpenseItem = CompareItem<ExpenseDimension>;
 
 export const getCompareExpense = createServerFn()
-  .validator(
+  .inputValidator(
     (data: {
       budgetName: string;
       secondBudgetName: string;
