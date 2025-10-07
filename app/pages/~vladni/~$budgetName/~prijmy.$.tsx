@@ -7,6 +7,7 @@ import {
 } from "@/data/incomes/incomeDimensions";
 import { incomeQueryOptions } from "@/data/incomes/incomes";
 import { IncomesExplorer } from "@/components/IncomesExplorer/IncomesExplorer";
+import { MySuspense } from "@/lib/utils";
 
 export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
   component: IncomePage,
@@ -81,20 +82,22 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
         ? incomeKey.map((_, index) => incomeKey.slice(0, index))
         : [];
 
-    await Promise.all(
-      [...ancestors, ...children].map(async (relativesKey) => {
-        const childrenDimension = accessChildrenIncomeDimension(
-          splat,
-          relativesKey
-        );
-        return await context.queryClient.ensureQueryData(
-          incomeQueryOptions(params.budgetName, relativesKey, childrenDimension)
-        );
-      })
-    );
+    [...ancestors, ...children].map(async (relativesKey) => {
+      const childrenDimension = accessChildrenIncomeDimension(
+        splat,
+        relativesKey
+      );
+      context.queryClient.prefetchQuery(
+        incomeQueryOptions(params.budgetName, relativesKey, childrenDimension)
+      );
+    });
   },
 });
 
 function IncomePage() {
-  return <IncomesExplorer className="pb-4" />;
+  return (
+    <MySuspense>
+      <IncomesExplorer className="pb-4" />
+    </MySuspense>
+  );
 }

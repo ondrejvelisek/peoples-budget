@@ -7,6 +7,7 @@ import {
 } from "@/data/expenses/expenseDimensions";
 import { CompareExplorer } from "@/components/CompareExplorer/CompareExplorer";
 import { compareExpenseQueryOptions } from "@/data/compare/compareExpense";
+import { MySuspense } from "@/lib/utils";
 
 export const Route = createFileRoute(
   "/compare/$budgetName/$secondBudgetName/vydaje/$"
@@ -92,26 +93,28 @@ export const Route = createFileRoute(
             ? expenseKey.map((_, index) => expenseKey.slice(0, index))
             : [];
 
-        await Promise.all(
-          [...ancestors, ...children].map(async (relativesKey) => {
-            const childrenDimension = accessChildrenExpenseDimension(
-              splat,
-              relativesKey
-            );
-            return await context.queryClient.ensureQueryData(
-              compareExpenseQueryOptions(
-                params.budgetName,
-                params.secondBudgetName,
-                relativesKey,
-                childrenDimension
-              )
-            );
-          })
-        );
+        [...ancestors, ...children].map(async (relativesKey) => {
+          const childrenDimension = accessChildrenExpenseDimension(
+            splat,
+            relativesKey
+          );
+          context.queryClient.prefetchQuery(
+            compareExpenseQueryOptions(
+              params.budgetName,
+              params.secondBudgetName,
+              relativesKey,
+              childrenDimension
+            )
+          );
+        });
       });
   },
 });
 
 function ComparePage() {
-  return <CompareExplorer className="pb-4" />;
+  return (
+    <MySuspense>
+      <CompareExplorer className="pb-4" />
+    </MySuspense>
+  );
 }

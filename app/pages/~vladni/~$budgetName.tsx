@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/pageTabs";
 import { personalIncomeQueryOptions } from "@/data/personalIncome/personalIncomeHook";
 import { useBudgetName } from "@/lib/budget";
-import { cn } from "@/lib/utils";
+import { cn, MySuspense } from "@/lib/utils";
 import {
   createFileRoute,
   Link,
@@ -18,7 +18,7 @@ import {
 export const Route = createFileRoute("/vladni/$budgetName")({
   component: Layout,
   loader: async ({ context, params }) => {
-    await context.queryClient.ensureQueryData(
+    context.queryClient.prefetchQuery(
       personalIncomeQueryOptions(params.budgetName)
     );
   },
@@ -68,7 +68,9 @@ function Layout() {
       <div className={cn("max-w-3xl shrink grow overflow-y-auto pb-16")}>
         <Outlet />
       </div>
-      <PersonalIncome className="absolute inset-x-0 bottom-0 z-10 max-h-full max-w-3xl" />
+      <MySuspense>
+        <PersonalIncome className="absolute inset-x-0 bottom-0 z-10 max-h-full max-w-3xl" />
+      </MySuspense>
     </div>
   );
 }

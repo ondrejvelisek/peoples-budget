@@ -1,9 +1,5 @@
-import {
-  keepPreviousData,
-  queryOptions,
-  useQuery,
-} from "@tanstack/react-query";
-import { type SimpleQueryResult } from "@/lib/utils";
+import { keepPreviousData, queryOptions } from "@tanstack/react-query";
+import { useMyQuery, type SimpleQueryResult } from "@/lib/utils";
 import { createServerFn } from "@tanstack/react-start";
 import { getItem, type Item } from "../items";
 import {
@@ -58,7 +54,7 @@ export const useIncome = (
   const budgetName = useBudgetName();
   const splat = useUrlIncomeSplat();
   const childrenDimension = useChildrenIncomeDimension(splat, incomeKey);
-  const { data, isPending, isFetching, error } = useQuery(
+  const { data, isPending, isFetching, error } = useMyQuery(
     incomeQueryOptions(budgetName, incomeKey, childrenDimension)
   );
   return { data, isPending, isFetching, error };

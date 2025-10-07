@@ -1,6 +1,21 @@
-import type { DefaultError, UseQueryResult } from "@tanstack/react-query";
+import {
+  useSuspenseQuery,
+  type DefaultError,
+  type QueryClient,
+  type QueryFunctionContext,
+  type QueryKey,
+  type UseQueryResult,
+  type UseSuspenseQueryOptions,
+} from "@tanstack/react-query";
 import { clsx, type ClassValue } from "clsx";
-import { type FC, type PropsWithChildren } from "react";
+import {
+  createContext,
+  Suspense,
+  useContext,
+  type FC,
+  type PropsWithChildren,
+  type SuspenseProps,
+} from "react";
 import { twMerge } from "tailwind-merge";
 import Papa from "papaparse";
 import lodash from "lodash";
@@ -75,7 +90,7 @@ export const formatPercent = new Intl.NumberFormat("cs-CZ", {
 }).format;
 
 export type SimpleQueryResult<TData = unknown, TError = DefaultError> = Pick<
-  UseQueryResult<TData, TError>,
+  UseQueryResult<TData | null, TError>,
   "data" | "error" | "isPending" | "isFetching"
 >;
 
@@ -116,3 +131,68 @@ export async function parseCsv<
 export type Optional<T> = {
   [K in keyof T]?: T[K];
 };
+
+const SuspenseContext = createContext<boolean>(false);
+
+export const useSuspenseContext = () => {
+  return useContext(SuspenseContext);
+};
+
+export const MySuspense: FC<SuspenseProps> = ({ children, ...props }) => {
+  return (
+    <Suspense
+      {...props}
+      fallback={
+        <SuspenseContext.Provider value={true}>
+          {children}
+        </SuspenseContext.Provider>
+      }
+    >
+      <SuspenseContext.Provider value={false}>
+        {children}
+      </SuspenseContext.Provider>
+    </Suspense>
+  );
+};
+
+export function useMyQuery<
+  TQueryFnData = unknown,
+  TError = DefaultError,
+  TData = TQueryFnData,
+  TQueryKey extends QueryKey = QueryKey,
+>(
+  options: UseSuspenseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
+  queryClient?: QueryClient
+): SimpleQueryResult<TData, TError> {
+  const queryFn = options.queryFn;
+  const suspended = useSuspenseContext();
+
+  try {
+    const result = useSuspenseQuery(
+      {
+        ...options,
+        queryKey: [...options.queryKey, suspended as unknown],
+        queryFn: (
+          ctx: QueryFunctionContext<TQueryKey>
+        ): TQueryFnData | Promise<TQueryFnData> | null => {
+          if (suspended) {
+            return null;
+          }
+          return queryFn?.(ctx) ?? null;
+        },
+      },
+      queryClient
+    );
+    return { ...result, isPending: suspended };
+  } catch (error) {
+    if (error instanceof Promise && suspended) {
+      return {
+        data: null,
+        isPending: true,
+        isFetching: true,
+        error: null,
+      };
+    }
+    throw error;
+  }
+}

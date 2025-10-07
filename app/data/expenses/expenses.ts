@@ -1,9 +1,7 @@
 import {
   keepPreviousData,
   queryOptions,
-  useQuery,
 } from "@tanstack/react-query";
-import { type SimpleQueryResult } from "@/lib/utils";
 import { createServerFn } from "@tanstack/react-start";
 import {
   useChildrenExpenseDimension,
@@ -13,6 +11,7 @@ import {
 } from "./expenseDimensions";
 import { getItem, type Item } from "../items";
 import { useBudgetName } from "@/lib/budget";
+import { useMyQuery } from "@/lib/utils";
 
 export type ExpenseItem = Item<ExpenseDimension>;
 
@@ -54,13 +53,11 @@ export const expenseQueryOptions = (
     placeholderData: keepPreviousData,
   });
 
-export const useExpense = (
-  expenseKey: ExpenseKey = []
-): SimpleQueryResult<ExpenseItem> => {
+export const useExpense = (expenseKey: ExpenseKey = []) => {
   const budgetName = useBudgetName();
   const splat = useUrlExpenseSplat();
   const childrenDimension = useChildrenExpenseDimension(splat, expenseKey);
-  const { data, isPending, isFetching, error } = useQuery(
+  const { data, isPending, isFetching, error } = useMyQuery(
     expenseQueryOptions(budgetName, expenseKey, childrenDimension)
   );
   return { data, isPending, isFetching, error };

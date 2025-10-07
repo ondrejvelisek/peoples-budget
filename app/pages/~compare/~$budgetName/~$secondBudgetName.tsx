@@ -16,7 +16,7 @@ import {
 export const Route = createFileRoute("/compare/$budgetName/$secondBudgetName")({
   component: Layout,
   loader: async ({ context, params }) => {
-    await context.queryClient.ensureQueryData(
+    context.queryClient.prefetchQuery(
       personalIncomeQueryOptions(params.budgetName)
     );
   },

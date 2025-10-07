@@ -1,5 +1,5 @@
 import { type ComponentType, type ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn, MySuspense } from "@/lib/utils";
 import type { Dimension, ItemKey } from "@/data/dimensions/personalDimensions";
 import type { LinkProps } from "@tanstack/react-router";
 import { DimensionSwitcher } from "./DimensionSwitcher";
@@ -36,9 +36,13 @@ export const Explorer = <K extends ItemKey<Dimension>>({
   return (
     <div className={cn("flex max-w-3xl flex-col", className)}>
       {parentKey && (
-        <ExplorerItemComponent itemKey={parentKey} relation="parent" />
+        <MySuspense>
+          <ExplorerItemComponent itemKey={parentKey} relation="parent" />
+        </MySuspense>
       )}
-      <ExplorerItemComponent itemKey={subjectKey} relation="subject" />
+      <MySuspense>
+        <ExplorerItemComponent itemKey={subjectKey} relation="subject" />
+      </MySuspense>
 
       {dimensionLinks && (
         <div
@@ -63,7 +67,9 @@ export const Explorer = <K extends ItemKey<Dimension>>({
         {childrenKeys &&
           childrenKeys.map((childKey) => (
             <li key={JSON.stringify(["child", childKey])}>
-              <ExplorerItemComponent itemKey={childKey} relation="child" />
+              <MySuspense>
+                <ExplorerItemComponent itemKey={childKey} relation="child" />
+              </MySuspense>
             </li>
           ))}
       </ul>

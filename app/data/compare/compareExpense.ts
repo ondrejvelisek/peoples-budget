@@ -1,4 +1,4 @@
-import { type SimpleQueryResult } from "@/lib/utils";
+import { useMyQuery, type SimpleQueryResult } from "@/lib/utils";
 import {
   useChildrenExpenseDimension,
   useUrlExpenseSplat,
@@ -11,7 +11,6 @@ import { createServerFn } from "@tanstack/react-start";
 import {
   keepPreviousData,
   queryOptions,
-  useQuery,
 } from "@tanstack/react-query";
 
 export type CompareExpenseItem = CompareItem<ExpenseDimension>;
@@ -66,7 +65,7 @@ export const useCompareExpense = (
   const secondBudgetName = useSecondBudgetName();
   const splat = useUrlExpenseSplat();
   const childrenDimension = useChildrenExpenseDimension(splat, expenseKey);
-  const { data, isPending, isFetching, error } = useQuery(
+  const { data, isPending, isFetching, error } = useMyQuery(
     compareExpenseQueryOptions(
       budgetName,
       secondBudgetName,

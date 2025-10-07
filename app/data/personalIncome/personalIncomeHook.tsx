@@ -1,4 +1,4 @@
-import { parseCsv } from "@/lib/utils";
+import { parseCsv, useMyQuery } from "@/lib/utils";
 import {
   defaultPersonalProfile,
   defaultPersonalProfileTaxCoefficients,
@@ -6,7 +6,7 @@ import {
   type PartialPersonalProfile,
   type PersonalProfile,
 } from "@/data/personalIncome/personalIncomeCalc";
-import { queryOptions, useQuery } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
 import type { DataRecord } from "@/data/items";
 import { createServerFn } from "@tanstack/react-start";
 
@@ -143,7 +143,7 @@ export const usePersonalProfileNotSeenYet = (callback: () => void) => {
 
 export const usePersonalIncome = () => {
   const budgetName = useBudgetName();
-  const { data, isPending, isLoading, isFetching, error } = useQuery(
+  const { data, isPending, isFetching, error } = useMyQuery(
     personalIncomeQueryOptions(budgetName)
   );
 
@@ -156,7 +156,7 @@ export const usePersonalIncome = () => {
   );
 
   if (!personalIncome) {
-    return { isPending, isLoading, isFetching, error };
+    return { isPending, isFetching, error };
   }
 
   const totalPersonalContributions =
@@ -169,7 +169,6 @@ export const usePersonalIncome = () => {
     personalIncome,
     totalPersonalContributions,
     isPending,
-    isLoading,
     isFetching,
     error,
   };

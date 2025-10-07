@@ -1,5 +1,5 @@
-import { queryOptions, useQuery } from "@tanstack/react-query";
-import { parseCsv, type SimpleQueryResult } from "@/lib/utils";
+import { queryOptions } from "@tanstack/react-query";
+import { parseCsv, useMyQuery, type SimpleQueryResult } from "@/lib/utils";
 import { createServerFn } from "@tanstack/react-start";
 import { getBudgetFile } from "../files/files";
 import type { DataRecord } from "../items";
@@ -248,7 +248,7 @@ export const compareQueryOptions = (
 export const useCompare = (): SimpleQueryResult<Array<CompareItem>> => {
   const firstBudgetName = "2025";
   const secondBudgetName = "2024";
-  const { data, isPending, isFetching, error } = useQuery(
+  const { data, isPending, isFetching, error } = useMyQuery(
     compareQueryOptions(firstBudgetName, secondBudgetName)
   );
   return { data, isPending, isFetching, error };

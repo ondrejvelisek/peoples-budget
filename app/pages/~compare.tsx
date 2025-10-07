@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
-import { cn } from "@/lib/utils";
+import { cn, MySuspense } from "@/lib/utils";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { RiArrowDownSLine } from "react-icons/ri";
 
@@ -111,7 +111,9 @@ function Layout() {
       <div className={cn("max-w-3xl shrink grow overflow-y-auto pb-16")}>
         <Outlet />
       </div>
-      <PersonalIncome className="absolute inset-x-0 bottom-0 z-10 max-h-full max-w-3xl" />
+      <MySuspense>
+        <PersonalIncome className="absolute inset-x-0 bottom-0 z-10 max-h-full max-w-3xl" />
+      </MySuspense>
     </div>
   );
 }
