@@ -28,12 +28,16 @@ export default defineConfig({
         crawlLinks: true,
         // we do not want to prerender whole tree of budget explorer pages
         filter: ({ path }) =>
-          !path.match(/^\/vladni\/[^/\n]+\/[^/\n]+\/[^\n]+$/),
+          !path.match(/^\/vladni\/[^/\n]+\/[^/\n]+\/[^\n]+$/) &&
+          !path.match(/^\/compare.*$/),
       },
     }),
     nitro({
       config: {
         preset: "vercel",
+        replace: {
+          "typeof window": "`undefined`",
+        },
       },
     }),
     viteReact({
