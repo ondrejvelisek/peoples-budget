@@ -5,7 +5,7 @@ import {
   type ExpenseKey,
   type ExpensesSplatParam,
 } from "@/data/expenses/expenseDimensions";
-import { CompareExplorer } from "@/components/CompareExplorer/CompareExplorer";
+import { CompareExpensesExplorer } from "@/components/CompareExpensesExplorer/CompareExpensesExplorer";
 import { compareExpenseQueryOptions } from "@/data/compare/compareExpense";
 import { MySuspense } from "@/lib/utils";
 
@@ -114,7 +114,7 @@ export const Route = createFileRoute(
 function ComparePage() {
   return (
     <MySuspense>
-      <CompareExplorer className="pb-4" />
+      <CompareExpensesExplorer className="pb-4" />
     </MySuspense>
   );
 }

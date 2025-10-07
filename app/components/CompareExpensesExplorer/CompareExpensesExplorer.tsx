@@ -5,15 +5,17 @@ import {
   type ExpenseKey,
 } from "@/data/expenses/expenseDimensions";
 import type { LinkProps } from "@tanstack/react-router";
-import { CompareItem } from "./CompareItem";
+import { CompareExpenseItem } from "./CompareExpenseItem";
 import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
 import { useCompareExpense } from "@/data/compare/compareExpense";
 
-type CompareExplorerProps = {
+type CompareExpensesExplorerProps = {
   className?: string;
 };
 
-export const CompareExplorer: FC<CompareExplorerProps> = ({ className }) => {
+export const CompareExpensesExplorer: FC<CompareExpensesExplorerProps> = ({
+  className,
+}) => {
   const { expenseKey } = useUrlExpenseSplat();
   const budgetName = useBudgetName();
   const secondBudgetName = useSecondBudgetName();
@@ -60,7 +62,7 @@ export const CompareExplorer: FC<CompareExplorerProps> = ({ className }) => {
 
   return (
     <Explorer<ExpenseKey>
-      ExplorerItemComponent={CompareItem}
+      ExplorerItemComponent={CompareExpenseItem}
       subjectKey={expenseKey}
       parentKey={parentKey}
       childrenKeys={expense?.children}

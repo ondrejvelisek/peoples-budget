@@ -4,13 +4,13 @@ import { ExplorerItem } from "../Explorer/ExplorerItem";
 import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
 import { useCompareExpense } from "@/data/compare/compareExpense";
 
-type CompareItemProps = {
+type CompareExpenseItemProps = {
   itemKey: ExpenseKey;
   className?: string;
   relation?: "parent" | "subject" | "child";
 };
 
-export const CompareItem: FC<CompareItemProps> = ({
+export const CompareExpenseItem: FC<CompareExpenseItemProps> = ({
   itemKey: expenseKey,
   relation = "parent",
   className,
