@@ -20,7 +20,7 @@ Finish compare view:
     ☐ Zobrazit porovnání kolik mě to bude stát víc, relativně i absolutně
     ☐ Zobrazit 2024 a 2025
     ☐ Přejít na porovnání přímo z explore view
-    ☐ Instantní loading screen = Use Suspense with Streaming
+    ✔ Instantní loading screen = Use Suspense with Streaming @done (10/7/2025, 1:22:58 PM)
 
 Build & Deploy:
     ✔ Fix Vercel build @done (11/6/2024, 4:08:47 PM)

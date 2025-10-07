@@ -6,6 +6,7 @@ import {
   createRootRouteWithContext,
 } from "@tanstack/react-router";
 import Navigation from "../components/Navigation/Navigation";
+import { init } from "@plausible-analytics/tracker";
 
 import mainCss from "../main.css?url";
 import manifest from "../manifest.json?url";
@@ -17,6 +18,13 @@ import type { QueryClient } from "@tanstack/react-query";
 import { NotFound } from "./NotFound";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { createIsomorphicFn } from "@tanstack/react-start";
+
+createIsomorphicFn().server(() =>
+  init({
+    domain: "lidovyrozpocet.cz",
+  })
+)();
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
