@@ -20,7 +20,7 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createIsomorphicFn } from "@tanstack/react-start";
 
-createIsomorphicFn().server(() =>
+createIsomorphicFn().client(() =>
   init({
     domain: "lidovyrozpocet.cz",
   })
