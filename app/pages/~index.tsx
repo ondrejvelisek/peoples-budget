@@ -61,7 +61,7 @@ function Page() {
       <div className="p-6 lg:p-12">
         <h1 className="pb-6 font-serif text-4xl">O projektu</h1>
         <p>
-          Rozpočet národa je interaktivní aplikace, která Vám umožní prozkoumat
+          Lidový rozpočet je interaktivní aplikace, která Vám umožní prozkoumat
           státní rozpočet České republiky a zjistit, kam putují naše peníze.
           Kolik za to všechno vy osobně zaplatíte. Vyzkoušejte si, jak byste
           rozdělili peníze Vy a sdílejte své nápady a názory s ostatními.

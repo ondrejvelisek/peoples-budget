@@ -41,9 +41,9 @@ export const Route = createRootRouteWithContext<{
       },
       ...seo({
         title:
-          "Rozpočet národa | Státní rozpočet České republiky ve Vašich rukou",
+          "Lidový rozpočet | Státní rozpočet České republiky ve Vašich rukou",
         description: `Prozkoumejte státní rozpočet do poslední koruny.
-      Rozpočet národa je interaktivní aplikace,
+      Lidový rozpočet je interaktivní aplikace,
       která Vám umožní prozkoumat státní rozpočet České republiky a zjistit, kam putují.
       Vyzkoušejte si, jak byste rozdělili peníze Vy! Sdílejte své nápady a názory s ostatními.`,
         keywords:
