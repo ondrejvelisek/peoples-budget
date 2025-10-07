@@ -102,6 +102,7 @@ export const ExplorerItem: FC<ItemProps> = ({
                 relation={relation}
                 isLoading={isLoading}
                 contributionAmount={contributionAmount}
+                compareMode={compareMode}
               />
             </div>
           )}
@@ -190,6 +191,7 @@ const Contribution: FC<ItemProps> = ({
   relation = "parent",
   isLoading = false,
   contributionAmount,
+  compareMode = false,
   className,
 }) => {
   return (
@@ -210,7 +212,16 @@ const Contribution: FC<ItemProps> = ({
         ) : null}
       </div>
       <div
-        className={cn("w-fit shrink-0 truncate text-xs font-bold", className)}
+        className={cn(
+          "w-fit shrink-0 truncate text-xs font-bold",
+          {
+            "text-lime-700":
+              compareMode && contributionAmount && contributionAmount > 0,
+            "text-rose-700":
+              compareMode && contributionAmount && contributionAmount < 0,
+          },
+          className
+        )}
         style={{
           viewTransitionName: `contribution-${id}`,
           viewTransitionClass: `contribution  ${relation}`,
@@ -219,7 +230,7 @@ const Contribution: FC<ItemProps> = ({
         {isLoading ? (
           <Skeleton width="4em" />
         ) : contributionAmount !== undefined ? (
-          `${formatCurrencyStandard(contributionAmount)} Kč`
+          `${formatCurrencyStandard(contributionAmount, compareMode)} Kč`
         ) : null}
       </div>
     </>

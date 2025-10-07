@@ -3,6 +3,7 @@ import type { ExpenseKey } from "@/data/expenses/expenseDimensions";
 import { ExplorerItem } from "../Explorer/ExplorerItem";
 import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
 import { useCompareExpense } from "@/data/compare/compareExpense";
+import { usePersonalIncome } from "@/data/personalIncome/personalIncomeHook";
 
 type CompareExpenseItemProps = {
   itemKey: ExpenseKey;
@@ -18,10 +19,21 @@ export const CompareExpenseItem: FC<CompareExpenseItemProps> = ({
   const budgetName = useBudgetName();
   const secondBudgetName = useSecondBudgetName();
   const { data: compareExpense, isPending } = useCompareExpense(expenseKey);
+  const { data: rootCompareExpense, isPending: isRootPending } =
+    useCompareExpense([]);
   const { data: parentCompareExpense, isPending: isParentPending } =
     useCompareExpense(compareExpense?.parent);
-  const isAnyLoading = isPending || isParentPending;
+  const { totalPersonalContributions, isPending: isPersonalIncomePending } =
+    usePersonalIncome();
+  const isAnyLoading =
+    isPending || isParentPending || isRootPending || isPersonalIncomePending;
   const isRoot = expenseKey?.length === 0;
+
+  const contributionChangeAmount =
+    compareExpense && rootCompareExpense && totalPersonalContributions
+      ? (compareExpense.amount / rootCompareExpense.primaryAmount) *
+        totalPersonalContributions
+      : undefined;
 
   return (
     <ExplorerItem
@@ -31,6 +43,7 @@ export const CompareExpenseItem: FC<CompareExpenseItemProps> = ({
       title={compareExpense?.title}
       amount={compareExpense?.amount}
       parentAmount={parentCompareExpense?.maxChildrenAmount}
+      contributionAmount={isAnyLoading ? 0 : contributionChangeAmount}
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}

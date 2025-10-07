@@ -78,11 +78,12 @@ export const formatCurrency = (value: number, compareMode: boolean = false) =>
     signDisplay: compareMode ? "always" : undefined,
   }).format(Math.round(value));
 
-export const formatCurrencyStandard = (value: number) =>
+export const formatCurrencyStandard = (value: number, compareMode: boolean = false) =>
   new Intl.NumberFormat("cs-CZ", {
     style: "decimal",
     currency: "CZK",
     notation: "standard",
+    signDisplay: compareMode ? "always" : undefined,
   }).format(Math.round(value));
 
 export const formatPercent = new Intl.NumberFormat("cs-CZ", {
