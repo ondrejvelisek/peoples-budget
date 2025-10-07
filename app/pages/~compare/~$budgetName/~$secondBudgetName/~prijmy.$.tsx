@@ -5,9 +5,9 @@ import {
   type IncomeKey,
   type IncomeSplatParam,
 } from "@/data/incomes/incomeDimensions";
-import { incomeQueryOptions } from "@/data/incomes/incomes";
-import { IncomesExplorer } from "@/components/IncomesExplorer/IncomesExplorer";
 import { MySuspense } from "@/lib/utils";
+import { CompareIncomesExplorer } from "@/components/CompareIncomesExplorer/CompareIncomesExplorer";
+import { compareIncomeQueryOptions } from "@/data/compare/compareIncome";
 
 export const Route = createFileRoute(
   "/compare/$budgetName/$secondBudgetName/prijmy/$"
@@ -65,21 +65,25 @@ export const Route = createFileRoute(
         throw new Error(`No children dimension found for ${incomeKey}`);
       }
       throw redirect({
-        to: "/vladni/$budgetName/prijmy/$",
+        to: "/compare/$budgetName/$secondBudgetName/prijmy/$",
         params: {
           budgetName: params.budgetName,
-          _splat: {
-            incomeKey,
-            incomeDimension: childrenDimension,
-          },
+          secondBudgetName: params.secondBudgetName,
+          _splat: { incomeKey, incomeDimension: childrenDimension },
         },
       });
     }
+
     context.queryClient
       .ensureQueryData(
-        incomeQueryOptions(params.budgetName, incomeKey, incomeDimension)
+        compareIncomeQueryOptions(
+          params.budgetName,
+          params.secondBudgetName,
+          incomeKey,
+          incomeDimension
+        )
       )
-      .then(({ children }) => {
+      .then(async ({ children }) => {
         const ancestors =
           incomeKey.length > 0
             ? incomeKey.map((_, index) => incomeKey.slice(0, index))
@@ -91,8 +95,9 @@ export const Route = createFileRoute(
             relativesKey
           );
           context.queryClient.prefetchQuery(
-            incomeQueryOptions(
+            compareIncomeQueryOptions(
               params.budgetName,
+              params.secondBudgetName,
               relativesKey,
               childrenDimension
             )
@@ -105,7 +110,7 @@ export const Route = createFileRoute(
 function IncomePage() {
   return (
     <MySuspense>
-      <IncomesExplorer className="pb-4" />
+      <CompareIncomesExplorer className="pb-4" />
     </MySuspense>
   );
 }
