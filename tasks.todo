@@ -14,13 +14,14 @@ Help: Alt+d to mark task as completed
 
 Finish compare view: 
     ✔ Fixnout řazení a bary v Porovnání @done (9/3/2025, 8:18:47 PM)
-    ☐ Porovnání příjmů
+    ✔ Porovnání příjmů @done (10/7/2025, 4:10:05 PM)
+    ✔ Zobrazit 2024 a 2025 @done (10/7/2025, 4:11:33 PM)
+    ✔ Instantní loading screen = Use Suspense with Streaming @done (10/7/2025, 1:22:58 PM)
     ☐ Zobrazit relativní hodnoty v porovnání
     ☐ Umožnit měnit řazení aboslutní, relativní, něco mezi
     ☐ Zobrazit porovnání kolik mě to bude stát víc, relativně i absolutně
-    ☐ Zobrazit 2024 a 2025
     ☐ Přejít na porovnání přímo z explore view
-    ✔ Instantní loading screen = Use Suspense with Streaming @done (10/7/2025, 1:22:58 PM)
+    ☐ Umožnit porovnat s inflací i bez inflace
 
 Build & Deploy:
     ✔ Fix Vercel build @done (11/6/2024, 4:08:47 PM)
@@ -74,7 +75,7 @@ Bugs:
     ✔ Fix SSR response (initial animation renders nothing) @done (5/7/2025, 8:21:32 AM)
     ☐ Fix errors when switching dimension
     ☐ Make mobile menu works when JS is not loaded yet (add navOpen URL query param)
-    ☐ Fix analytics events
+    ✔ Fix analytics events @done (10/7/2025, 4:12:35 PM)
     
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)
