@@ -17,9 +17,9 @@ Finish compare view:
     ✔ Porovnání příjmů @done (10/7/2025, 4:10:05 PM)
     ✔ Zobrazit 2024 a 2025 @done (10/7/2025, 4:11:33 PM)
     ✔ Instantní loading screen = Use Suspense with Streaming @done (10/7/2025, 1:22:58 PM)
-    ☐ Zobrazit relativní hodnoty v porovnání
+    ✔ Zobrazit porovnání kolik mě to bude stát víc @done (10/7/2025, 5:03:39 PM)
+    ☐ Zobrazit relativní hodnoty v porovnání, i pro personal contribution
     ☐ Umožnit měnit řazení aboslutní, relativní, něco mezi
-    ☐ Zobrazit porovnání kolik mě to bude stát víc, relativně i absolutně
     ☐ Přejít na porovnání přímo z explore view
     ☐ Umožnit porovnat s inflací i bez inflace
 
