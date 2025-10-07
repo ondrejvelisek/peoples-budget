@@ -212,16 +212,7 @@ const Contribution: FC<ItemProps> = ({
         ) : null}
       </div>
       <div
-        className={cn(
-          "w-fit shrink-0 truncate text-xs font-bold",
-          {
-            "text-lime-700":
-              compareMode && contributionAmount && contributionAmount > 0,
-            "text-rose-700":
-              compareMode && contributionAmount && contributionAmount < 0,
-          },
-          className
-        )}
+        className={cn("w-fit shrink-0 truncate text-xs font-bold", className)}
         style={{
           viewTransitionName: `contribution-${id}`,
           viewTransitionClass: `contribution  ${relation}`,
