@@ -73,24 +73,30 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
         },
       });
     }
-    const { children } = await context.queryClient.ensureQueryData(
-      incomeQueryOptions(params.budgetName, incomeKey, incomeDimension)
-    );
+    context.queryClient
+      .ensureQueryData(
+        incomeQueryOptions(params.budgetName, incomeKey, incomeDimension)
+      )
+      .then(({ children }) => {
+        const ancestors =
+          incomeKey.length > 0
+            ? incomeKey.map((_, index) => incomeKey.slice(0, index))
+            : [];
 
-    const ancestors =
-      incomeKey.length > 0
-        ? incomeKey.map((_, index) => incomeKey.slice(0, index))
-        : [];
-
-    [...ancestors, ...children].map(async (relativesKey) => {
-      const childrenDimension = accessChildrenIncomeDimension(
-        splat,
-        relativesKey
-      );
-      context.queryClient.prefetchQuery(
-        incomeQueryOptions(params.budgetName, relativesKey, childrenDimension)
-      );
-    });
+        [...ancestors, ...children].map(async (relativesKey) => {
+          const childrenDimension = accessChildrenIncomeDimension(
+            splat,
+            relativesKey
+          );
+          context.queryClient.prefetchQuery(
+            incomeQueryOptions(
+              params.budgetName,
+              relativesKey,
+              childrenDimension
+            )
+          );
+        });
+      });
   },
 });
 

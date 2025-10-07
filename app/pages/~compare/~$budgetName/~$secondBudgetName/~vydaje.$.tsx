@@ -78,7 +78,7 @@ export const Route = createFileRoute(
         },
       });
     }
-    await context.queryClient
+    context.queryClient
       .ensureQueryData(
         compareExpenseQueryOptions(
           params.budgetName,
