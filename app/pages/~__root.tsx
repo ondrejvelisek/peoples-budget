@@ -23,6 +23,7 @@ import { createIsomorphicFn } from "@tanstack/react-start";
 createIsomorphicFn().client(() =>
   init({
     domain: "lidovyrozpocet.cz",
+    endpoint: "/vercel-rewrite/api/event",
   })
 )();
 

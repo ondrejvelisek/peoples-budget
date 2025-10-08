@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/vercel-rewrite/api/event",
+      "destination": "https://plausible.io/api/event"
+    }
+  ]
+}
