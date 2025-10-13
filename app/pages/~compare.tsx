@@ -39,11 +39,11 @@ function Layout() {
             <DropdownMenuItemLink
               to="/compare/$budgetName/$secondBudgetName"
               params={{
-                budgetName: "2024",
+                budgetName: "2026",
                 secondBudgetName,
               }}
             >
-              2024
+              2026
             </DropdownMenuItemLink>
             <DropdownMenuItemLink
               to="/compare/$budgetName/$secondBudgetName"
@@ -57,11 +57,11 @@ function Layout() {
             <DropdownMenuItemLink
               to="/compare/$budgetName/$secondBudgetName"
               params={{
-                budgetName: "2026",
+                budgetName: "2024",
                 secondBudgetName,
               }}
             >
-              2026
+              2024
             </DropdownMenuItemLink>
           </DropdownMenuContent>
         </DropdownMenu>{" "}
@@ -82,10 +82,10 @@ function Layout() {
               to="/compare/$budgetName/$secondBudgetName"
               params={{
                 budgetName,
-                secondBudgetName: "2024",
+                secondBudgetName: "2026",
               }}
             >
-              2024
+              2026
             </DropdownMenuItemLink>
             <DropdownMenuItemLink
               to="/compare/$budgetName/$secondBudgetName"
@@ -100,10 +100,10 @@ function Layout() {
               to="/compare/$budgetName/$secondBudgetName"
               params={{
                 budgetName,
-                secondBudgetName: "2026",
+                secondBudgetName: "2024",
               }}
             >
-              2026
+              2024
             </DropdownMenuItemLink>
           </DropdownMenuContent>
         </DropdownMenu>
