@@ -49,17 +49,14 @@ export const NavigationMenu: FC<{
             </NavigationItem>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="ml-2 mt-1 list-none rounded-xl">
-            <InProgress>
-              <NavigationItem
-                to="/vladni/$budgetName"
-                params={{ budgetName: "2026" }}
-                disabled
-                Icon={PiClockClockwiseBold}
-                subitem
-              >
-                Přípravy 2026
-              </NavigationItem>
-            </InProgress>
+            <NavigationItem
+              to="/vladni/$budgetName"
+              params={{ budgetName: "2026" }}
+              Icon={PiClockClockwiseBold}
+              subitem
+            >
+              Přípravy 2026
+            </NavigationItem>
             <NavigationItem
               to="/vladni/$budgetName"
               params={{ budgetName: "2025" }}

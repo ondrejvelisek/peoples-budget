@@ -6,6 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import { LuWallet } from "react-icons/lu";
 
 import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 type ItemProps = LinkProps & {
   id: string;
@@ -162,27 +163,36 @@ const Amount: FC<ItemProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={cn(
-        "w-fit truncate text-base font-bold",
-        {
-          "text-lg leading-tight": relation === "subject",
-          "text-lime-700": compareMode && amount && amount > 0,
-          "text-rose-700": compareMode && amount && amount < 0,
-        },
-        className
+    <Tooltip delayDuration={400}>
+      <TooltipTrigger asChild>
+        <div
+          className={cn(
+            "w-fit truncate text-base font-bold",
+            {
+              "text-lg leading-tight": relation === "subject",
+              "text-lime-700": compareMode && amount && amount > 0,
+              "text-rose-700": compareMode && amount && amount < 0,
+            },
+            className
+          )}
+          style={{
+            viewTransitionName: `amount-${id}`,
+            viewTransitionClass: `amount ${relation}`,
+          }}
+        >
+          {isLoading ? (
+            <Skeleton width="4em" />
+          ) : amount !== undefined ? (
+            formatCurrency(amount, compareMode)
+          ) : null}
+        </div>
+      </TooltipTrigger>
+      {!isLoading && amount !== undefined && (
+        <TooltipContent>
+          {formatCurrencyStandard(amount, compareMode)} Kč
+        </TooltipContent>
       )}
-      style={{
-        viewTransitionName: `amount-${id}`,
-        viewTransitionClass: `amount ${relation}`,
-      }}
-    >
-      {isLoading ? (
-        <Skeleton width="4em" />
-      ) : amount !== undefined ? (
-        formatCurrency(amount, compareMode)
-      ) : null}
-    </div>
+    </Tooltip>
   );
 };
 

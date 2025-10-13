@@ -67,7 +67,7 @@ Toto je potřeba zopakovat pro všech 7 pojišťoven:
    - CPZP: https://www.cpzp.cz/clanek/50-0-Ekonomicke-informace.html
    - OZP: https://www.ozp.cz/tiskove-centrum/pojistne-plany
    - RBP: https://www.rbp213.cz/cs/o-nas/rbp-informuje/zdravotne-pojistny-plan/a-384/
-   - VoZP: https://www.vozp.cz/zdravotne-pojistny-plan (aktuálně chybí 2025)
+   - VoZP: https://www.vozp.cz/zdravotne-pojistny-plan
    - ZPMV: https://www.zpmvcr.cz/o-nas/dokumenty/zdravotne-pojistne-plany
    - ZPS: https://www.zpskoda.cz/o-nas#zpp
 2. V dokumentu najděte dvě tabulky

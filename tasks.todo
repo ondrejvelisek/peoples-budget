@@ -6,8 +6,8 @@ Help: Alt+d to mark task as completed
     ✔ Add tabs for income and expenses @done (5/8/2025, 8:26:47 PM)
     ✔ Add personal settings of personal income and expenses @done (5/9/2025, 10:34:44 PM)
     ✔ Deploy on real domain @done (9/3/2025, 3:06:35 PM)
-    ☐ Refresh data and create docs how to update them
-    ☐ Add 2026 data
+    ✔ Refresh data and create docs how to update them @done (10/13/2025, 10:21:02 PM)
+    ✔ Add 2026 data @done (10/13/2025, 10:21:03 PM)
     ☐ Create donation page and fake doors
     ☐ Create Home page and data info
     ☐ Debug, test and polish
@@ -41,12 +41,12 @@ Expenses:
     ☐ Simplify some expenses names.
     ☐ Restructuralize some expenses
     ☐ Add examples of specific low level expenses close to a person
-    ☐ Add personal contributoin to each expense row (maybe possible to switch between example and example? Or just show somehow both)
+    ✔ Add personal contributoin to each expense row (maybe possible to switch between example and example? Or just show somehow both) @done (10/13/2025, 10:23:51 PM)
     ☐ Add possibility to full search expenses based on name
-    ☐ Update data (Maybe build data pipeline or at least document how the data update is done)
-        ☐ Get data
-        ☐ Switch 24 and 25
-        ☐ Add to app
+    ✔ Update data (Maybe build data pipeline or at least document how the data update is done) @done (10/13/2025, 10:23:37 PM)
+        ✔ Get data @done (10/13/2025, 10:23:38 PM)
+        ✔ Switch 24 and 25 @done (10/13/2025, 10:23:38 PM)
+        ✔ Add to app @done (10/13/2025, 10:23:39 PM)
 
 Income:
     ✔ Get data of Incomes from Monitor @done (11/24/2024, 9:49:30 AM)
@@ -66,6 +66,10 @@ Support me page:
     ☐ Research "Send money" service
     ☐ Design site
     ☐ Add fake door to other pages
+
+Other ideas:
+    ☐ Add all budgets page with tiles with higlevel info (instead of dropdown)
+    ☐ AI search?
 
 Bugs:
     ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)
@@ -90,5 +94,5 @@ Misc:
     ✔ Update package dependencies (it should help to remove unmet peer dependenc warnings) @done (5/5/2025, 12:10:15 PM)
     ☐ Add nice Error boundaries
     ☐ Add README.md
-    ☐ Add desktop icon, installation
+    ☐ Add desktop icon, installation, Vite PWA plugin?
 
