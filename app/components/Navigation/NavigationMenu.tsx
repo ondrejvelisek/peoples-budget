@@ -52,6 +52,10 @@ export const NavigationMenu: FC<{
             <NavigationItem
               to="/vladni/$budgetName"
               params={{ budgetName: "2026" }}
+              onClick={() => {
+                onItemClick?.();
+                close();
+              }}
               Icon={PiClockClockwiseBold}
               subitem
             >
