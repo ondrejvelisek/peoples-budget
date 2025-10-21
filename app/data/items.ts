@@ -183,12 +183,16 @@ export const getItemWithChildrenAmount = async <D extends Dimension>(
     console.log("CACHE(getItem): memory HIT", cacheKeyStr);
     return memoryCached === "null" ? undefined : memoryCached;
   }
-  const cached = await itemsStorage.getItem<ItemWithChildrenAmount<D> | "null">(
-    cacheKeyStr
-  );
-  if (cached) {
-    console.log("CACHE(getItem): HIT", cacheKeyStr);
-    return cached === "null" ? undefined : cached;
+  try {
+    const cached = await itemsStorage.getItem<
+      ItemWithChildrenAmount<D> | "null"
+    >(cacheKeyStr);
+    if (cached) {
+      console.log("CACHE(getItem): HIT", cacheKeyStr);
+      return cached === "null" ? undefined : cached;
+    }
+  } catch (error) {
+    console.error("CACHE(getItem): ERROR", cacheKeyStr, error);
   }
   console.log("CACHE(getItem): MISS", cacheKeyStr);
 
@@ -238,7 +242,11 @@ export const getItemWithChildrenAmount = async <D extends Dimension>(
   item?.children.sort((a, b) => b.amount - a.amount);
 
   await itemsMemoryStorage.setItem(cacheKeyStr, item ?? "null");
-  await itemsStorage.setItem(cacheKeyStr, item ?? "null");
+  try {
+    await itemsStorage.setItem(cacheKeyStr, item ?? "null");
+  } catch (error) {
+    console.error("CACHE(setItem): ERROR", cacheKeyStr, error);
+  }
   return item;
 };
 
