@@ -51,10 +51,7 @@ export default {
         snap: "linear(0, 0.031 2.2%, 0.13 4.8%, 0.89 18.6%, 1.027 22.8%, 1.105 27.4%, 1.119 34.4%, 0.988 58.6%, 1)",
       },
       dropShadow: {
-        "white-top-right": [
-          "-0.01em -0.01em 0 white",
-          "-0.02em -0.02em 0 white",
-        ],
+        "white-top-right": ["-1px -1px 0 white"],
       },
     },
   },
