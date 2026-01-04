@@ -1,7 +1,4 @@
-import {
-  createFileRoute,
-  notFound,
-} from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import * as z from "zod/mini";
 
 export const Route = createFileRoute("/vladni/")({
@@ -10,6 +7,6 @@ export const Route = createFileRoute("/vladni/")({
     throw notFound();
   },
   validateSearch: z.object({
-    health: z.boolean(),
-  })
+    health: z._default(z.boolean(), true),
+  }),
 });

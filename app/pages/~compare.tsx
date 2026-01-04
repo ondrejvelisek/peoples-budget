@@ -16,7 +16,7 @@ import * as z from "zod/mini";
 export const Route = createFileRoute("/compare")({
   component: Layout,
   validateSearch: z.object({
-    health: z.boolean(),
+    health: z._default(z.boolean(), true),
   }),
 });
 

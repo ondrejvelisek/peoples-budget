@@ -10,7 +10,7 @@ export const useHealthInsurance = (): [boolean, () => void] => {
     strict: false,
   });
   const navigate = useNavigate();
-  const isTurnedOn = health ?? false;
+  const isTurnedOn = health ?? true;
   return [
     isTurnedOn,
     () => {
