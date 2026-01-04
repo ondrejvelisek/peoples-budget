@@ -9,6 +9,7 @@ import {
   type IncomeKey,
 } from "./incomeDimensions";
 import { useBudgetName } from "@/lib/budget";
+import { useHealthInsurance } from "@/components/Explorer/HealthInsuranceSwitcher";
 
 export type IncomeItem = Item<IncomeDimension>;
 
@@ -17,6 +18,7 @@ export const getIncome = createServerFn()
     (data: {
       budgetName: string;
       incomeKey: IncomeKey;
+      healthInsurance: boolean;
       childrenDimension?: IncomeDimension;
     }) => data
   )
@@ -26,6 +28,7 @@ export const getIncome = createServerFn()
       "incomes",
       "Všechny příjmy",
       data.incomeKey,
+      data.healthInsurance,
       data.childrenDimension
     );
     if (!item) {
@@ -37,12 +40,15 @@ export const getIncome = createServerFn()
 export const incomeQueryOptions = (
   budgetName: string,
   incomeKey: IncomeKey,
+  healthInsurance: boolean,
   childrenDimension?: IncomeDimension
 ) =>
   queryOptions({
-    queryKey: ["income", incomeKey, childrenDimension],
+    queryKey: ["income", incomeKey, healthInsurance, childrenDimension],
     queryFn: async () =>
-      getIncome({ data: { budgetName, incomeKey, childrenDimension } }),
+      getIncome({
+        data: { budgetName, incomeKey, healthInsurance, childrenDimension },
+      }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
     gcTime: 5 * 60 * 1000, // 5 minutes
     placeholderData: keepPreviousData,
@@ -53,9 +59,15 @@ export const useIncome = (
 ): SimpleQueryResult<IncomeItem> => {
   const budgetName = useBudgetName();
   const splat = useUrlIncomeSplat();
+  const [healthInsurance] = useHealthInsurance();
   const childrenDimension = useChildrenIncomeDimension(splat, incomeKey);
   const { data, isPending, isFetching, error } = useMyQuery(
-    incomeQueryOptions(budgetName, incomeKey, childrenDimension)
+    incomeQueryOptions(
+      budgetName,
+      incomeKey,
+      healthInsurance,
+      childrenDimension
+    )
   );
   return { data, isPending, isFetching, error };
 };

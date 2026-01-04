@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-sand-950 dark:focus-visible:ring-sand-300",
+  "group inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm duration-300 font-medium ring-offset-white transition-[box-shadow,transform,background-color,color,border-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-sand-950 dark:focus-visible:ring-sand-300",
   {
     variants: {
       variant: {
@@ -20,6 +20,7 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-sand-100 hover:text-sand-900 dark:hover:bg-sand-800 dark:hover:text-sand-50",
         link: "text-sand-900 underline-offset-4 hover:underline dark:text-sand-50",
+        tab: "bg-sand-100 shadow-inner hover:bg-sand-100 hover:text-sand-900 hover:shadow-sand-300",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -27,6 +28,7 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "size-10",
+        tab: "h-9 rounded-md p-1",
       },
     },
     defaultVariants: {
@@ -56,4 +58,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+const ButtonTab = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  return (
+    <div
+      className={cn(
+        "bg-white h-full flex items-center justify-center rounded-sm shadow-sm p-1 transition-[box-shadow,transform] duration-150 group-hover:shadow-sand-400 group-hover:shadow-md group-active:scale-105",
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+ButtonTab.displayName = "ButtonTab";
+
+export { Button, buttonVariants, ButtonTab };

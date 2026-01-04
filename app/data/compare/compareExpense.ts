@@ -12,6 +12,7 @@ import {
   keepPreviousData,
   queryOptions,
 } from "@tanstack/react-query";
+import { useHealthInsurance } from "@/components/Explorer/HealthInsuranceSwitcher";
 
 export type CompareExpenseItem = CompareItem<ExpenseDimension>;
 
@@ -21,6 +22,7 @@ export const getCompareExpense = createServerFn()
       budgetName: string;
       secondBudgetName: string;
       expenseKey: ExpenseKey;
+      healthInsurance: boolean;
       childrenDimension?: ExpenseDimension;
     }) => data
   )
@@ -31,6 +33,7 @@ export const getCompareExpense = createServerFn()
       "expenses",
       "Všechny výdaje",
       data.expenseKey,
+      data.healthInsurance,
       data.childrenDimension
     );
   });
@@ -39,6 +42,7 @@ export const compareExpenseQueryOptions = (
   budgetName: string,
   secondBudgetName: string,
   expenseKey: ExpenseKey,
+  healthInsurance: boolean,
   childrenDimension?: ExpenseDimension
 ) =>
   queryOptions({
@@ -47,11 +51,12 @@ export const compareExpenseQueryOptions = (
       budgetName,
       secondBudgetName,
       expenseKey,
+      healthInsurance,
       childrenDimension,
     ],
     queryFn: async () =>
       getCompareExpense({
-        data: { budgetName, secondBudgetName, expenseKey, childrenDimension },
+        data: { budgetName, secondBudgetName, expenseKey, healthInsurance, childrenDimension },
       }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
     gcTime: 5 * 60 * 1000, // 5 minutes
@@ -64,12 +69,14 @@ export const useCompareExpense = (
   const budgetName = useBudgetName();
   const secondBudgetName = useSecondBudgetName();
   const splat = useUrlExpenseSplat();
+  const [healthInsurance] = useHealthInsurance();
   const childrenDimension = useChildrenExpenseDimension(splat, expenseKey);
   const { data, isPending, isFetching, error } = useMyQuery(
     compareExpenseQueryOptions(
       budgetName,
       secondBudgetName,
       expenseKey,
+      healthInsurance,
       childrenDimension
     )
   );

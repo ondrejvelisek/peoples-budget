@@ -25,6 +25,7 @@ export default {
         sand: {
           50: "#FCF9F6",
           100: "#F8F2EA",
+          150: "#F3ECE2",
           200: "#EDE5DA",
           300: "#DED5C7",
           350: "#C8BCAA",
@@ -45,6 +46,15 @@ export default {
       transitionDuration: {
         "5000": "5000ms",
         "15000": "15000ms",
+      },
+      transitionTimingFunction: {
+        snap: "linear(0, 0.031 2.2%, 0.13 4.8%, 0.89 18.6%, 1.027 22.8%, 1.105 27.4%, 1.119 34.4%, 0.988 58.6%, 1)",
+      },
+      dropShadow: {
+        "white-top-right": [
+          "-0.01em -0.01em 0 white",
+          "-0.02em -0.02em 0 white",
+        ],
       },
     },
   },

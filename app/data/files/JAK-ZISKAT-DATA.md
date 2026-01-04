@@ -16,6 +16,9 @@ Každý rozpočet se skládá z třech souborů.
 
 K tomu jsou potřeba ještě soubory společné pro všechny rozpočty. Ale někdy je potřeba je taky updatovat, pokud se změní.
 
+- inflation.csv
+  - ČSU pro realnou inflaci za uběhlá období: https://csu.gov.cz/mira_inflace
+  - ČNB pro budouci odhady: https://www.cnb.cz/cs/menova-politika/prognoza/
 - offices_table.csv
 - sectors_table.csv
 - types_table.csv

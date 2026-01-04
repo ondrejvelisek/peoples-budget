@@ -9,6 +9,7 @@ import {
   type IncomeDimension,
   type IncomeKey,
 } from "../incomes/incomeDimensions";
+import { useHealthInsurance } from "@/components/Explorer/HealthInsuranceSwitcher";
 
 export type CompareIncomeItem = CompareItem<IncomeDimension>;
 
@@ -18,6 +19,7 @@ export const getCompareIncome = createServerFn()
       budgetName: string;
       secondBudgetName: string;
       incomeKey: IncomeKey;
+      healthInsurance: boolean;
       childrenDimension?: IncomeDimension;
     }) => data
   )
@@ -28,6 +30,7 @@ export const getCompareIncome = createServerFn()
       "incomes",
       "Všechny příjmy",
       data.incomeKey,
+      data.healthInsurance,
       data.childrenDimension
     );
   });
@@ -36,6 +39,7 @@ export const compareIncomeQueryOptions = (
   budgetName: string,
   secondBudgetName: string,
   incomeKey: IncomeKey,
+  healthInsurance: boolean,
   childrenDimension?: IncomeDimension
 ) =>
   queryOptions({
@@ -44,11 +48,18 @@ export const compareIncomeQueryOptions = (
       budgetName,
       secondBudgetName,
       incomeKey,
+      healthInsurance,
       childrenDimension,
     ],
     queryFn: async () =>
       getCompareIncome({
-        data: { budgetName, secondBudgetName, incomeKey, childrenDimension },
+        data: {
+          budgetName,
+          secondBudgetName,
+          incomeKey,
+          healthInsurance,
+          childrenDimension,
+        },
       }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
     gcTime: 5 * 60 * 1000, // 5 minutes
@@ -61,12 +72,14 @@ export const useCompareIncome = (
   const budgetName = useBudgetName();
   const secondBudgetName = useSecondBudgetName();
   const splat = useUrlIncomeSplat();
+  const [healthInsurance] = useHealthInsurance();
   const childrenDimension = useChildrenIncomeDimension(splat, incomeKey);
   const { data, isPending, isFetching, error } = useMyQuery(
     compareIncomeQueryOptions(
       budgetName,
       secondBudgetName,
       incomeKey,
+      healthInsurance,
       childrenDimension
     )
   );

@@ -11,6 +11,7 @@ Help: Alt+d to mark task as completed
     ☐ Create donation page and fake doors
     ☐ Create Home page and data info
     ☐ Debug, test and polish
+    ✔ Umožnit přepínat zdravotní pojištění on/off @done (1/4/2026, 4:47:58 PM)
 
 Finish compare view: 
     ✔ Fixnout řazení a bary v Porovnání @done (9/3/2025, 8:18:47 PM)
@@ -36,7 +37,8 @@ Expenses:
     ✔ Přidat data za zdravotní pojištění @high @done (12/8/2024, 12:11:47 AM)
     ☐ Disable unavailable dimensions (if there are no more granularity)
     ☐ Redirect one level up when we are over dimensions levels
-    ☐ Add shortcuts to expense when expense has just one child
+    ☐ Add shortcuts to expense when expense has just one children
+    ☐ Pamatovat si poslední vybranou dimenzi (ukládat jen tři)
     ☐ Improve breadcrumb navigationc
     ☐ Simplify some expenses names.
     ☐ Restructuralize some expenses
@@ -65,11 +67,12 @@ About project page:
 Support me page:
     ☐ Research "Send money" service
     ☐ Design site
-    ☐ Add fake door to other pages
+    ✔ Add fake door to other pages @done (1/4/2026, 7:11:00 AM)
 
 Other ideas:
     ☐ Add all budgets page with tiles with higlevel info (instead of dropdown)
     ☐ AI search?
+    ☐ Make numbers more precise (add one more decimal place, always three digits)
 
 Bugs:
     ✔ Resolve hydration missmatch @done (11/6/2024, 4:16:25 PM)

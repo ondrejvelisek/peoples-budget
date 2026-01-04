@@ -4,6 +4,7 @@ import {
   Scripts,
   Outlet,
   createRootRouteWithContext,
+  retainSearchParams,
 } from "@tanstack/react-router";
 import Navigation from "../components/Navigation/Navigation";
 import { init } from "@plausible-analytics/tracker";
@@ -57,6 +58,9 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   notFoundComponent: NotFound,
+  search: {
+    middlewares: [retainSearchParams(["health"])],
+  },
 });
 
 function RootComponent() {

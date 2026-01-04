@@ -150,6 +150,7 @@ export const getItem = async <D extends Dimension>(
   type: "expenses" | "incomes",
   rootTitle: string,
   itemKey: ItemKey<D>,
+  healthInsurance: boolean,
   childrenDimension?: D
 ): Promise<Item<D> | undefined> => {
   const itemWithChildrenAmount = await getItemWithChildrenAmount(
@@ -157,6 +158,7 @@ export const getItem = async <D extends Dimension>(
     type,
     rootTitle,
     itemKey,
+    healthInsurance,
     childrenDimension
   );
   return convertItemWithChildrenAmountToItem(itemWithChildrenAmount);
@@ -167,12 +169,14 @@ export const getItemWithChildrenAmount = async <D extends Dimension>(
   type: "expenses" | "incomes",
   rootTitle: string,
   itemKey: ItemKey<D>,
+  healthInsurance: boolean,
   childrenDimension?: D
 ): Promise<ItemWithChildrenAmount<D> | undefined> => {
   const cacheKeyStr = JSON.stringify([
     budgetName,
     type,
     itemKey,
+    healthInsurance,
     childrenDimension,
   ]);
 
@@ -200,6 +204,10 @@ export const getItemWithChildrenAmount = async <D extends Dimension>(
   const tables = await getRecordTables();
 
   function filter(record: DataRecord) {
+    const isHealthInsurance = String(record.office_id).startsWith("9");
+    if (!healthInsurance && isHealthInsurance) {
+      return false;
+    }
     return itemKey.every(({ dimension, id }) => {
       if (dimension === "odvetvi") {
         return String(record.sector_id).startsWith(id);
@@ -271,6 +279,7 @@ export const getCompareItem = async <D extends Dimension>(
   type: "expenses" | "incomes",
   rootTitle: string,
   itemKey: ItemKey<D>,
+  healthInsurance: boolean,
   childrenDimension?: D
 ): Promise<CompareItem<D>> => {
   const itemPromise = getItemWithChildrenAmount(
@@ -278,6 +287,7 @@ export const getCompareItem = async <D extends Dimension>(
     type,
     rootTitle,
     itemKey,
+    healthInsurance,
     childrenDimension
   );
   const secondItemPromise = getItemWithChildrenAmount(
@@ -285,6 +295,7 @@ export const getCompareItem = async <D extends Dimension>(
     type,
     rootTitle,
     itemKey,
+    healthInsurance,
     childrenDimension
   );
 

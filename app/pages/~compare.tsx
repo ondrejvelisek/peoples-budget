@@ -11,9 +11,13 @@ import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
 import { cn, MySuspense } from "@/lib/utils";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { RiArrowDownSLine } from "react-icons/ri";
+import * as z from "zod/mini";
 
 export const Route = createFileRoute("/compare")({
   component: Layout,
+  validateSearch: z.object({
+    health: z.boolean(),
+  }),
 });
 
 function Layout() {

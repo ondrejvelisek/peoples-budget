@@ -4,6 +4,7 @@ import type { Dimension, ItemKey } from "@/data/dimensions/personalDimensions";
 import type { LinkProps } from "@tanstack/react-router";
 import { DimensionSwitcher } from "./DimensionSwitcher";
 import Skeleton from "react-loading-skeleton";
+import { HealthInsuranceSwitcher } from "./HealthInsuranceSwitcher";
 
 export type ExplorerComponentProps = {
   className?: string;
@@ -46,12 +47,13 @@ export const Explorer = <K extends ItemKey<Dimension>>({
 
       {dimensionLinks && (
         <div
-          className="mx-3 flex justify-end pb-3"
+          className="mx-3 flex justify-end gap-2 pb-3"
           style={{
             viewTransitionName: `dim-switcher-${subjectKey.map((key) => `${key.dimension}-${key.id}`).join("-")}`,
             viewTransitionClass: `dim-switcher  subject`,
           }}
         >
+          <HealthInsuranceSwitcher className="w-fit" />
           {isLoading ? (
             <Skeleton width="6em" className="h-9 align-top" />
           ) : (

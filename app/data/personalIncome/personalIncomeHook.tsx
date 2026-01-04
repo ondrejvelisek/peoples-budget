@@ -14,6 +14,7 @@ import { useMemo } from "react";
 import { useLocalStorage, useTimeout } from "@mantine/hooks";
 import { getBudgetFile } from "../files/files";
 import { useBudgetName } from "@/lib/budget";
+import { useHealthInsurance } from "@/components/Explorer/HealthInsuranceSwitcher";
 
 type IncomesByType = {
   incomes: Record<string, number>;
@@ -57,7 +58,9 @@ const getIncomesType = async (
 };
 
 const getIncomesByType = createServerFn()
-  .inputValidator((data: { budgetName: string }) => data)
+  .inputValidator(
+    (data: { budgetName: string; healthInsurance: boolean }) => data
+  )
   .handler(async ({ data }): Promise<IncomesByType> => {
     const types = await getIncomesType(data.budgetName);
     const incomesCsv = await getBudgetFile(data.budgetName, "incomes");
@@ -66,7 +69,11 @@ const getIncomesByType = createServerFn()
       Record<string, number>
     >(
       incomesCsv,
-      ({ type_id }) => type_id < 5000, // prijmy
+      ({ type_id, office_id }) => {
+        const isIncome = type_id < 5000;
+        const isHealthInsurance = String(office_id).startsWith("9");
+        return isIncome && (data.healthInsurance ? true : !isHealthInsurance);
+      },
       ({ type_id, amount }, acc) => {
         const accTmp = acc ?? {};
         accTmp[String(type_id)] = (accTmp[String(type_id)] ?? 0) + amount;
@@ -80,10 +87,13 @@ const getIncomesByType = createServerFn()
     };
   });
 
-export const personalIncomeQueryOptions = (budgetName: string) =>
+export const personalIncomeQueryOptions = (
+  budgetName: string,
+  healthInsurance: boolean
+) =>
   queryOptions({
-    queryKey: ["incomesByType", budgetName],
-    queryFn: () => getIncomesByType({ data: { budgetName } }),
+    queryKey: ["incomesByType", budgetName, healthInsurance],
+    queryFn: () => getIncomesByType({ data: { budgetName, healthInsurance } }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
     gcTime: 60 * 60 * 1000, // 1 hour
   });
@@ -143,8 +153,9 @@ export const usePersonalProfileNotSeenYet = (callback: () => void) => {
 
 export const usePersonalIncome = () => {
   const budgetName = useBudgetName();
+  const [healthInsurance] = useHealthInsurance();
   const { data, isPending, isFetching, error } = useMyQuery(
-    personalIncomeQueryOptions(budgetName)
+    personalIncomeQueryOptions(budgetName, healthInsurance)
   );
 
   const [personalProfile] = usePersonalProfile();
