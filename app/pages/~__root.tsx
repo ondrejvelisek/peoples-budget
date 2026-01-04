@@ -41,6 +41,14 @@ export const Route = createRootRouteWithContext<{
         name: "viewport",
         content: "width=device-width, initial-scale=1",
       },
+      {
+        name: "apple-mobile-web-app-status-bar-style",
+        content: "black-translucent",
+      },
+      {
+        name: "apple-mobile-web-app-capable",
+        content: "yes",
+      },
       ...seo({
         title:
           "Lidový rozpočet | Státní rozpočet České republiky ve Vašich rukou",
@@ -55,6 +63,10 @@ export const Route = createRootRouteWithContext<{
     links: [
       { rel: "manifest", href: manifest },
       { rel: "stylesheet", href: mainCss },
+      {
+        rel: "apple-touch-icon",
+        href: "/apple-touch-icon.png",
+      },
     ],
   }),
   notFoundComponent: NotFound,
