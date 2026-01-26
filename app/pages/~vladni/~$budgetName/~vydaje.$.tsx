@@ -53,14 +53,18 @@ export const Route = createFileRoute("/vladni/$budgetName/vydaje/$")({
       ...rest,
     }),
   },
-  loader: async ({ context, params }) => {
+  loaderDeps: ({ search }) => ({
+    health: !!search.health,
+  }),
+  loader: async ({ context, params, deps }) => {
     const splat = params._splat;
     const expenseKey = splat.expenseKey;
     const expenseDimension = splat.expenseDimension;
+    const health = deps.health;
     if (!expenseDimension) {
       const childrenDimension = accessChildrenExpenseDimension(
         splat,
-        expenseKey
+        expenseKey,
       );
       if (!childrenDimension) {
         throw new Error(`No children dimension found for ${expenseKey}`);
@@ -75,7 +79,12 @@ export const Route = createFileRoute("/vladni/$budgetName/vydaje/$")({
     }
     context.queryClient
       .ensureQueryData(
-        expenseQueryOptions(params.budgetName, expenseKey, expenseDimension)
+        expenseQueryOptions(
+          params.budgetName,
+          expenseKey,
+          health,
+          expenseDimension,
+        ),
       )
       .then(({ children }) => {
         const ancestors =
@@ -86,14 +95,15 @@ export const Route = createFileRoute("/vladni/$budgetName/vydaje/$")({
         [...ancestors, ...children].map((relativesKey) => {
           const childrenDimension = accessChildrenExpenseDimension(
             splat,
-            relativesKey
+            relativesKey,
           );
           context.queryClient.prefetchQuery(
             expenseQueryOptions(
               params.budgetName,
               relativesKey,
-              childrenDimension
-            )
+              health,
+              childrenDimension,
+            ),
           );
         });
       });

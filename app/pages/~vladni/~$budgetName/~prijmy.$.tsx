@@ -53,7 +53,10 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
       ...rest,
     }),
   },
-  loader: async ({ context, params }) => {
+  loaderDeps: ({ search }) => ({
+    health: search.health,
+  }),
+  loader: async ({ context, params, deps }) => {
     const splat = params._splat;
     const incomeKey = splat.incomeKey;
     const incomeDimension = splat.incomeDimension;
@@ -75,7 +78,7 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
     }
     context.queryClient
       .ensureQueryData(
-        incomeQueryOptions(params.budgetName, incomeKey, incomeDimension)
+        incomeQueryOptions(params.budgetName, incomeKey, deps.health, incomeDimension)
       )
       .then(({ children }) => {
         const ancestors =
@@ -92,7 +95,8 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
             incomeQueryOptions(
               params.budgetName,
               relativesKey,
-              childrenDimension
+              deps.health,
+              childrenDimension,
             )
           );
         });

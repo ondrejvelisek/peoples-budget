@@ -14,14 +14,21 @@ import {
   Outlet,
   useMatch,
 } from "@tanstack/react-router";
+import * as z from "zod/mini";
 
 export const Route = createFileRoute("/vladni/$budgetName")({
   component: Layout,
-  loader: async ({ context, params }) => {
+  loaderDeps: ({ search }) => ({
+    health: search.health,
+  }),
+  loader: async ({ context, params, deps }) => {
     context.queryClient.prefetchQuery(
-      personalIncomeQueryOptions(params.budgetName)
+      personalIncomeQueryOptions(params.budgetName, deps.health),
     );
   },
+  validateSearch: z.object({
+    health: z._default(z.boolean(), true),
+  }),
 });
 
 function Layout() {

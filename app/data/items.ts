@@ -134,6 +134,7 @@ function reduceChildren<D extends Dimension>(
     acc.children.find((ch) =>
       ch.itemKey.every((item, idx) => isEqual(item, child.itemKey[idx]))
     );
+
   if (existingChild) {
     existingChild.amount += record.amount;
     return acc.children;
@@ -145,6 +146,7 @@ function reduceChildren<D extends Dimension>(
 
   return children;
 }
+
 export const getItem = async <D extends Dimension>(
   budgetName: string,
   type: "expenses" | "incomes",

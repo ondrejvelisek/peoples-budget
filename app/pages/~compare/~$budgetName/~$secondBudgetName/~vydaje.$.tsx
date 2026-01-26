@@ -57,7 +57,10 @@ export const Route = createFileRoute(
       _splat: `${expenseKey.map(({ dimension, id }) => `${dimension}/${id}`).join("/")}${expenseDimension ? `/${expenseDimension}` : ""}`,
     }),
   },
-  loader: async ({ context, params }) => {
+  loaderDeps: ({ search }) => ({
+    health: search.health,
+  }),
+  loader: async ({ context, params, deps }) => {
     const splat = params._splat;
     const expenseKey = splat.expenseKey;
     const expenseDimension = splat.expenseDimension;
@@ -84,6 +87,7 @@ export const Route = createFileRoute(
           params.budgetName,
           params.secondBudgetName,
           expenseKey,
+          deps.health,
           expenseDimension
         )
       )
@@ -103,6 +107,7 @@ export const Route = createFileRoute(
               params.budgetName,
               params.secondBudgetName,
               relativesKey,
+              deps.health,
               childrenDimension
             )
           );

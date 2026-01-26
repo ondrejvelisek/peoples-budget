@@ -8,7 +8,13 @@ import reactHooks from "eslint-plugin-react-hooks";
 
 export default defineConfig(
   {
-    ignores: ["**/dist/", "**/.vinxi/", "**/.output/", "**/.vercel/"],
+    ignores: [
+      "**/dist/",
+      "**/.vinxi/",
+      "**/.output/",
+      "**/.nitro/",
+      "**/.vercel/",
+    ],
   },
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
@@ -49,5 +55,5 @@ export default defineConfig(
       "tailwindcss/no-contradicting-classname": "off",
       "tailwindcss/no-unnecessary-arbitrary-value": "off",
     },
-  }
+  },
 );

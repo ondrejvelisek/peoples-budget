@@ -55,7 +55,10 @@ export const Route = createFileRoute(
       ...rest,
     }),
   },
-  loader: async ({ context, params }) => {
+  loaderDeps: ({ search }) => ({
+    health: search.health,
+  }),
+  loader: async ({ context, params, deps }) => {
     const splat = params._splat;
     const incomeKey = splat.incomeKey;
     const incomeDimension = splat.incomeDimension;
@@ -80,6 +83,7 @@ export const Route = createFileRoute(
           params.budgetName,
           params.secondBudgetName,
           incomeKey,
+          deps.health,
           incomeDimension
         )
       )
@@ -99,6 +103,7 @@ export const Route = createFileRoute(
               params.budgetName,
               params.secondBudgetName,
               relativesKey,
+              deps.health,
               childrenDimension
             )
           );
