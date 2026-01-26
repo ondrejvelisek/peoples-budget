@@ -4,6 +4,7 @@ import { MdOutlineHealthAndSafety } from "react-icons/md";
 import { LiaSlashSolid } from "react-icons/lia";
 import { Button, ButtonTab } from "../ui/button";
 import { useNavigate, useSearch } from "@tanstack/react-router";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export const useHealthInsurance = (): [boolean, () => void] => {
   const { health } = useSearch({
@@ -36,17 +37,26 @@ export const HealthInsuranceSwitcher: FC<HealthInsuranceSwitcherProps> = ({
   const [healthInsurance, toggleHealthInsurance] = useHealthInsurance();
 
   return (
-    <Button
-      variant="tab"
-      size="tab"
-      className={cn("relative", className)}
-      style={style}
-      onClick={toggleHealthInsurance}
-    >
-      <ButtonTab>
-        <HealthInsuranceIcon isTurnedOn={healthInsurance} />
-      </ButtonTab>
-    </Button>
+    <Tooltip delayDuration={500}>
+      <TooltipTrigger asChild>
+        <Button
+          variant="tab"
+          size="tab"
+          className={cn("relative", className)}
+          style={style}
+          onClick={toggleHealthInsurance}
+        >
+          <ButtonTab>
+            <HealthInsuranceIcon isTurnedOn={healthInsurance} />
+          </ButtonTab>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        {healthInsurance
+          ? "Vyjmout zdravotní pojištění z výpočtů"
+          : "Zahrnout zdravotní pojištění do výpočtů"}
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
@@ -59,7 +69,7 @@ const HealthInsuranceIcon: FC<{ isTurnedOn: boolean }> = ({ isTurnedOn }) => {
           "absolute left-0 top-0 transition-[transform,opacity] duration-500 ease-snap",
           {
             "-translate-x-3 -translate-y-3 opacity-0": isTurnedOn,
-          }
+          },
         )}
       >
         <LiaSlashSolid className="absolute -left-px top-0 rotate-90 drop-shadow-white-top-right" />
