@@ -35,10 +35,10 @@ Expenses:
     ✔ Update look of dimension switcher @done (11/6/2024, 8:11:34 PM)
     ✔ Do not show children when hitting last level of hierarchy @done (11/8/2024, 4:43:15 PM)
     ✔ Přidat data za zdravotní pojištění @high @done (12/8/2024, 12:11:47 AM)
-    ☐ Disable unavailable dimensions (if there are no more granularity)
+    ✔ Disable unavailable dimensions (if there are no more granularity) @done (1/27/2026, 8:55:51 AM)
     ☐ Redirect one level up when we are over dimensions levels
     ☐ Add shortcuts to expense when expense has just one children
-    ☐ Pamatovat si poslední vybranou dimenzi (ukládat jen tři)
+    ✔ Pamatovat si poslední vybranou dimenzi (ukládat jen tři) @done (1/27/2026, 8:56:10 AM)
     ☐ Improve breadcrumb navigationc
     ☐ Simplify some expenses names.
     ☐ Restructuralize some expenses
@@ -80,7 +80,7 @@ Bugs:
     ✔ Fix redirect when logging event @done (11/24/2024, 10:46:13 AM)
     ✔ Fix animations performance, try native view transition @done (5/6/2025, 2:42:33 PM)
     ✔ Fix SSR response (initial animation renders nothing) @done (5/7/2025, 8:21:32 AM)
-    ☐ Fix errors when switching dimension
+    ✔ Fix errors when switching dimension @done (1/27/2026, 8:56:57 AM)
     ☐ Make mobile menu works when JS is not loaded yet (add navOpen URL query param)
     ✔ Fix analytics events @done (10/7/2025, 4:12:35 PM)
     
@@ -97,5 +97,6 @@ Misc:
     ✔ Update package dependencies (it should help to remove unmet peer dependenc warnings) @done (5/5/2025, 12:10:15 PM)
     ☐ Add nice Error boundaries
     ☐ Add README.md
-    ☐ Add desktop icon, installation, Vite PWA plugin?
+    ✔ Add desktop icon @done (1/27/2026, 8:57:34 AM)
+    ☐ Add installation button, Vite PWA plugin?
 
