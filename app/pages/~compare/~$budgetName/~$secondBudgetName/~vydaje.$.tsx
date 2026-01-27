@@ -10,7 +10,7 @@ import { compareExpenseQueryOptions } from "@/data/compare/compareExpense";
 import { MySuspense } from "@/lib/utils";
 
 export const Route = createFileRoute(
-  "/compare/$budgetName/$secondBudgetName/vydaje/$"
+  "/compare/$budgetName/$secondBudgetName/vydaje/$",
 )({
   component: ComparePage,
   params: {
@@ -67,19 +67,18 @@ export const Route = createFileRoute(
     if (!expenseDimension) {
       const childrenDimension = accessChildrenExpenseDimension(
         splat,
-        expenseKey
+        expenseKey,
       );
-      if (!childrenDimension) {
-        throw new Error(`No children dimension found for ${expenseKey}`);
+      if (childrenDimension) {
+        throw redirect({
+          to: "/compare/$budgetName/$secondBudgetName/vydaje/$",
+          params: {
+            budgetName: params.budgetName,
+            secondBudgetName: params.secondBudgetName,
+            _splat: { expenseKey, expenseDimension: childrenDimension },
+          },
+        });
       }
-      throw redirect({
-        to: "/compare/$budgetName/$secondBudgetName/vydaje/$",
-        params: {
-          budgetName: params.budgetName,
-          secondBudgetName: params.secondBudgetName,
-          _splat: { expenseKey, expenseDimension: childrenDimension },
-        },
-      });
     }
     context.queryClient
       .ensureQueryData(
@@ -88,8 +87,8 @@ export const Route = createFileRoute(
           params.secondBudgetName,
           expenseKey,
           deps.health,
-          expenseDimension
-        )
+          expenseDimension,
+        ),
       )
       .then(async ({ children }) => {
         const ancestors =
@@ -100,7 +99,7 @@ export const Route = createFileRoute(
         [...ancestors, ...children].map(async (relativesKey) => {
           const childrenDimension = accessChildrenExpenseDimension(
             splat,
-            relativesKey
+            relativesKey,
           );
           context.queryClient.prefetchQuery(
             compareExpenseQueryOptions(
@@ -108,8 +107,8 @@ export const Route = createFileRoute(
               params.secondBudgetName,
               relativesKey,
               deps.health,
-              childrenDimension
-            )
+              childrenDimension,
+            ),
           );
         });
       });

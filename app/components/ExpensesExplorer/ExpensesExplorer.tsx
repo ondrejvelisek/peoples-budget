@@ -8,6 +8,7 @@ import {
 } from "@/data/expenses/expenseDimensions";
 import type { LinkProps } from "@tanstack/react-router";
 import { useBudgetName } from "@/lib/budget";
+import { isDimensionExhausted } from "@/data/dimensions/personalDimensions";
 type ExpensesExplorerProps = {
   className?: string;
 };
@@ -23,6 +24,7 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
   const dimensionLinks: Array<LinkProps> = [
     {
       to: "/vladni/$budgetName/vydaje/$",
+      disabled: isDimensionExhausted("odvetvi", expenseKey),
       params: {
         budgetName,
         _splat: {
@@ -33,6 +35,7 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
     },
     {
       to: "/vladni/$budgetName/vydaje/$",
+      disabled: isDimensionExhausted("druh", expenseKey),
       params: {
         budgetName,
         _splat: {
@@ -43,6 +46,7 @@ export const ExpensesExplorer: FC<ExpensesExplorerProps> = ({ className }) => {
     },
     {
       to: "/vladni/$budgetName/vydaje/$",
+      disabled: isDimensionExhausted("urad", expenseKey),
       params: {
         budgetName,
         _splat: {

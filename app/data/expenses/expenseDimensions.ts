@@ -9,29 +9,13 @@ export const EXPENSE_DIMENSIONS = DIMENSIONS;
 
 export type ExpenseDimension = keyof typeof EXPENSE_DIMENSIONS;
 
-export type ExpenseDimensions = [
-  ExpenseDimension,
-  ExpenseDimension,
-  ExpenseDimension,
-  ExpenseDimension,
-  ExpenseDimension,
-  ExpenseDimension,
-  ExpenseDimension,
-  ExpenseDimension,
-];
-
 export type ExpenseKey = ItemKey<ExpenseDimension>;
 
 export const EXPENSE_DIMENSIONS_COOKIE_NAME = "children_expense_dimension";
 
-export const defaultExpenseDimensions: ExpenseDimensions = [
-  "odvetvi",
-  "odvetvi",
+export const defaultExpenseDimensions: Array<ExpenseDimension> = [
   "odvetvi",
   "druh",
-  "druh",
-  "druh",
-  "urad",
   "urad",
 ];
 
@@ -49,30 +33,26 @@ export const useUrlExpenseSplat = (): ExpensesSplatParam => {
 };
 
 export const isExpenseDimension = (
-  value?: string
+  value?: string,
 ): value is ExpenseDimension | undefined =>
   value === undefined || ["odvetvi", "druh", "urad"].includes(value);
 
 export function accessChildrenExpenseDimension(
   splat: ExpensesSplatParam,
-  expenseKey: ExpenseKey
+  expenseKey: ExpenseKey,
 ) {
-  return accessChildrenDimension<
-    ExpenseDimension,
-    ExpenseDimensions,
-    ExpenseKey
-  >(
+  return accessChildrenDimension<ExpenseDimension>(
     splat.expenseKey,
     splat.expenseDimension,
     expenseKey,
     EXPENSE_DIMENSIONS_COOKIE_NAME,
-    defaultExpenseDimensions
+    defaultExpenseDimensions,
   );
 }
 
 export function useChildrenExpenseDimension(
   splat: ExpensesSplatParam,
-  expenseKey: ExpenseKey
+  expenseKey: ExpenseKey,
 ) {
   return accessChildrenExpenseDimension(splat, expenseKey);
 }

@@ -15,17 +15,17 @@ export type ItemKey<D extends Dimension> = Array<{
   id: string;
 }>;
 
-function accessChildrenDimensions<A extends Array<Dimension>>(
+function accessChildrenDimensions<D extends Dimension>(
   cookieName: string,
-  defaultDimensions: A
+  defaultDimensions: Array<D>,
 ) {
   const [cookie, setCookie] = accessCookie(cookieName);
 
-  const cookieChildrenDimension = cookie?.split(",") as A | undefined;
+  const cookieChildrenDimension = cookie?.split(",") as Array<D> | undefined;
 
   const currentChildrenDimension = cookieChildrenDimension ?? defaultDimensions;
 
-  function setChildrenDimension(newChildrenDimension: A) {
+  function setChildrenDimension(newChildrenDimension: Array<D>) {
     const newChildrenDimensionStr = newChildrenDimension.join(",");
     setCookie(newChildrenDimensionStr);
   }
@@ -33,44 +33,76 @@ function accessChildrenDimensions<A extends Array<Dimension>>(
   return [currentChildrenDimension, setChildrenDimension] as const;
 }
 
-function shiftDimension<T extends Dimension, A extends Array<T>>(
-  array: A,
-  newItem: T,
-  index: number
-): A {
-  let skip = false;
-  return array.map((el, i) => {
-    if (i < index) {
-      return el;
-    }
-    if (i === index) {
-      return newItem;
-    }
-    const prev = array[i - 1];
-    if (prev === newItem || skip) {
-      skip = true;
-      return el;
-    }
-    if (i > index && prev) {
-      return prev;
-    }
-    return el;
-  }) as A;
+export function isDimensionExhausted<D extends Dimension>(
+  dimension: D,
+  itemKey: ItemKey<D>,
+): boolean {
+  const maxDimensionCount: Record<Dimension, number> = {
+    odvetvi: 4,
+    druh: 3,
+    urad: 2,
+  };
+  const count = itemKey.filter(
+    (itemPart) => itemPart.dimension === dimension,
+  ).length;
+  return count >= maxDimensionCount[dimension];
 }
 
-export function accessChildrenDimension<
-  D extends Dimension,
-  A extends Array<D>,
-  K extends ItemKey<D>,
->(
-  urlItemKey: K,
+function deriveDimension<D extends Dimension>(
+  dimensions: Array<D>,
+  itemKey: ItemKey<D>,
+): D | undefined {
+  return dimensions.find(
+    (dimension) => !isDimensionExhausted(dimension, itemKey),
+  );
+}
+
+function deriveDimensions<D extends Dimension>(
+  currentDimensions: Array<D>,
+  urlItemKey: ItemKey<D>,
   urlDimension: D | undefined,
-  itemKey: K,
+): Array<D> {
+  if (!urlDimension) {
+    return currentDimensions;
+  }
+
+  const urlDimensionIndex = currentDimensions.findIndex(
+    (dimension) => dimension === urlDimension,
+  );
+  if (urlDimensionIndex === -1) {
+    throw new Error(
+      `URL dimension ${urlDimension} not found in current dimensions ${currentDimensions}`,
+    );
+  }
+
+  const dimensionsWithMorePriority = currentDimensions.slice(
+    0,
+    urlDimensionIndex,
+  );
+
+  const isExhausted = dimensionsWithMorePriority.every((dimension) =>
+    isDimensionExhausted(dimension, urlItemKey),
+  );
+
+  if (isExhausted) {
+    return currentDimensions;
+  }
+
+  return [
+    urlDimension,
+    ...currentDimensions.filter((dimension) => dimension !== urlDimension),
+  ];
+}
+
+export function accessChildrenDimension<D extends Dimension>(
+  urlItemKey: ItemKey<D>,
+  urlDimension: D | undefined,
+  itemKey: ItemKey<D>,
   cookieName: string,
-  defaultDimensions: A
+  defaultDimensions: Array<D>,
 ): D | undefined {
   const [childrenDimensions, persistChildrenDimension] =
-    accessChildrenDimensions<A>(cookieName, defaultDimensions);
+    accessChildrenDimensions<D>(cookieName, defaultDimensions);
 
   if (itemKey.length === urlItemKey.length && urlDimension) {
     return urlDimension;
@@ -81,13 +113,18 @@ export function accessChildrenDimension<
     return ancestorDimension;
   }
 
-  const dimensions = itemKey
-    .map(({ dimension }) => dimension)
-    .reduce<A>(shiftDimension, childrenDimensions);
+  const newDimensions = deriveDimensions<D>(
+    childrenDimensions,
+    urlItemKey,
+    urlDimension,
+  );
+  persistChildrenDimension(newDimensions);
 
-  const childrenDimension = dimensions.at(itemKey.length);
+  const childrenDimension = deriveDimension<D>(newDimensions, itemKey);
 
-  persistChildrenDimension(dimensions);
+  console.log("oldDimensions", childrenDimensions);
+  console.log("newDimensions", newDimensions);
+  console.log("childrenDimension", childrenDimension);
 
   return childrenDimension;
 }

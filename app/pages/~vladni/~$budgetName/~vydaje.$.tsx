@@ -66,16 +66,15 @@ export const Route = createFileRoute("/vladni/$budgetName/vydaje/$")({
         splat,
         expenseKey,
       );
-      if (!childrenDimension) {
-        throw new Error(`No children dimension found for ${expenseKey}`);
+      if (childrenDimension) {
+        throw redirect({
+          to: "/vladni/$budgetName/vydaje/$",
+          params: {
+            budgetName: params.budgetName,
+            _splat: { expenseKey, expenseDimension: childrenDimension },
+          },
+        });
       }
-      throw redirect({
-        to: "/vladni/$budgetName/vydaje/$",
-        params: {
-          budgetName: params.budgetName,
-          _splat: { expenseKey, expenseDimension: childrenDimension },
-        },
-      });
     }
     context.queryClient
       .ensureQueryData(

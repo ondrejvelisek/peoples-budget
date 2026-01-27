@@ -28,6 +28,12 @@ export const DimensionSwitcher: FC<DimensionSwitcherProps> = ({
   className,
   style,
 }) => {
+  const allDimensionsExhausted = dimensionLinks.every(
+    (linkProps) => linkProps.disabled,
+  );
+  if (allDimensionsExhausted) {
+    return null;
+  }
   return (
     <>
       <DropdownMenu>
@@ -38,11 +44,16 @@ export const DimensionSwitcher: FC<DimensionSwitcherProps> = ({
         >
           <Tabs value={currentDimension}>
             <TabsList>
-              <TabsTrigger value={currentDimension ?? ""}>
+              <TabsTrigger
+                value={currentDimension ?? ""}
+                disabled={allDimensionsExhausted}
+              >
                 {currentDimension
                   ? DIMENSIONS[currentDimension]
-                  : "Vyber rozdělení"}
-                <RiArrowDownSLine className="ml-1" />
+                  : "Vyber členení"}
+                {allDimensionsExhausted ? null : (
+                  <RiArrowDownSLine className="ml-1" />
+                )}
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -51,7 +62,11 @@ export const DimensionSwitcher: FC<DimensionSwitcherProps> = ({
           {dimensionLinks.map((linkProps) => {
             const dimension = getDimensionFromLinkParams(linkProps.params);
             return (
-              <DropdownMenuItem key={dimension} asChild>
+              <DropdownMenuItem
+                key={dimension}
+                disabled={linkProps.disabled}
+                asChild
+              >
                 <Link
                   {...linkProps}
                   activeProps={{ className: "font-bold" }}

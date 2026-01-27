@@ -66,14 +66,17 @@ export const Explorer = <K extends ItemKey<Dimension>>({
         </div>
       )}
       <ul className="mx-3 flex flex-col gap-3">
-        {childrenKeys &&
+        {childrenKeys?.length ? (
           childrenKeys.map((childKey) => (
             <li key={JSON.stringify(["child", childKey])}>
               <MySuspense>
                 <ExplorerItemComponent itemKey={childKey} relation="child" />
               </MySuspense>
             </li>
-          ))}
+          ))
+        ) : (
+          <div className="my-12 flex justify-center text-sm text-stone-400" >Další členění není k dispozici</div>
+        )}
       </ul>
     </div>
   );

@@ -8,6 +8,7 @@ import {
 import { useIncome } from "@/data/incomes/incomes";
 import type { LinkProps } from "@tanstack/react-router";
 import { useBudgetName } from "@/lib/budget";
+import { isDimensionExhausted } from "@/data/dimensions/personalDimensions";
 type IncomesExplorerProps = {
   className?: string;
 };
@@ -23,6 +24,7 @@ export const IncomesExplorer: FC<IncomesExplorerProps> = ({ className }) => {
   const dimensionLinks: Array<LinkProps> = [
     {
       to: "/vladni/$budgetName/prijmy/$",
+      disabled: isDimensionExhausted("druh", incomeKey),
       params: {
         budgetName,
         _splat: {
@@ -33,6 +35,7 @@ export const IncomesExplorer: FC<IncomesExplorerProps> = ({ className }) => {
     },
     {
       to: "/vladni/$budgetName/prijmy/$",
+      disabled: isDimensionExhausted("urad", incomeKey),
       params: {
         budgetName,
         _splat: {

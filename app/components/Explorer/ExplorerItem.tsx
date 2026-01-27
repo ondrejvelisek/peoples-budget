@@ -46,7 +46,7 @@ export const ExplorerItem: FC<ItemProps> = ({
           "rounded-lg border border-b-2 border-neutral-600/10 border-b-neutral-600/20 border-t-neutral-600/5":
             relation === "child",
         },
-        className
+        className,
       )}
       style={{
         viewTransitionName: `item-${id}`,
@@ -130,7 +130,7 @@ const Title: FC<ItemProps> = ({
           "text-sm font-normal": relation === "child",
         },
         "leading-none",
-        className
+        className,
       )}
     >
       {relation === "parent" && (
@@ -173,7 +173,7 @@ const Amount: FC<ItemProps> = ({
               "text-lime-700": compareMode && amount && amount > 0,
               "text-rose-700": compareMode && amount && amount < 0,
             },
-            className
+            className,
           )}
           style={{
             viewTransitionName: `amount-${id}`,
@@ -276,7 +276,7 @@ const Meter: FC<ItemProps> = ({
         {
           "bg-neutral-200/80": relation === "subject" || isLoading,
         },
-        className
+        className,
       )}
     >
       {!isLoading && (

@@ -62,23 +62,27 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
     const incomeDimension = splat.incomeDimension;
     if (!incomeDimension) {
       const childrenDimension = accessChildrenIncomeDimension(splat, incomeKey);
-      if (!childrenDimension) {
-        throw new Error(`No children dimension found for ${incomeKey}`);
-      }
-      throw redirect({
-        to: "/vladni/$budgetName/prijmy/$",
-        params: {
-          budgetName: params.budgetName,
-          _splat: {
-            incomeKey,
-            incomeDimension: childrenDimension,
+      if (childrenDimension) {
+        throw redirect({
+          to: "/vladni/$budgetName/prijmy/$",
+          params: {
+            budgetName: params.budgetName,
+            _splat: {
+              incomeKey,
+              incomeDimension: childrenDimension,
+            },
           },
-        },
-      });
+        });
+      }
     }
     context.queryClient
       .ensureQueryData(
-        incomeQueryOptions(params.budgetName, incomeKey, deps.health, incomeDimension)
+        incomeQueryOptions(
+          params.budgetName,
+          incomeKey,
+          deps.health,
+          incomeDimension,
+        ),
       )
       .then(({ children }) => {
         const ancestors =
@@ -89,7 +93,7 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
         [...ancestors, ...children].map(async (relativesKey) => {
           const childrenDimension = accessChildrenIncomeDimension(
             splat,
-            relativesKey
+            relativesKey,
           );
           context.queryClient.prefetchQuery(
             incomeQueryOptions(
@@ -97,7 +101,7 @@ export const Route = createFileRoute("/vladni/$budgetName/prijmy/$")({
               relativesKey,
               deps.health,
               childrenDimension,
-            )
+            ),
           );
         });
       });
