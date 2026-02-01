@@ -7,57 +7,67 @@ import {
   RiHandHeartLine,
 } from "react-icons/ri";
 
-import { PiClockCounterClockwiseBold } from "react-icons/pi";
-import { PiClockBold } from "react-icons/pi";
-import { PiClockClockwiseBold } from "react-icons/pi";
-
 import { GrGroup } from "react-icons/gr";
 import { TbArrowsMinimize } from "react-icons/tb";
 import { cn } from "@/lib/utils";
 import { NavigationItem } from "./NavigationItem";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { useDisclosure } from "@mantine/hooks";
+import { useLocalStorage } from "@mantine/hooks";
 import { InProgress } from "../InProgress/InProgress";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
+import { useNavigationCondenseState } from "./NavigationStateProvider";
 
 export const NavigationMenu: FC<{
   className?: string;
   onItemClick?: () => void;
 }> = ({ className, onItemClick }) => {
-  const [isVladniOpen, { open, close }] = useDisclosure(false);
+  const [isVladniOpen, setIsVladniOpen] = useLocalStorage<boolean>({
+    key: "vladni-rozpocet-expanded",
+    defaultValue: false,
+  });
+  const [isCondese, setIsCondese] = useNavigationCondenseState();
   return (
     <nav>
       <ul className={cn("flex flex-col items-start gap-4", className)}>
         <NavigationItem to="/" onClick={onItemClick} Icon={RiHome3Line}>
           O projektu
         </NavigationItem>
-        <DropdownMenu
+        <Collapsible
           open={isVladniOpen}
-          onOpenChange={(opened) => (opened ? open() : close())}
+          onOpenChange={(open) => setIsVladniOpen(open || isCondese)}
         >
-          <DropdownMenuTrigger>
+          <CollapsibleTrigger className="rounded-lg">
             <NavigationItem
-              to="/vladni"
-              disabled
               Icon={RiGovernmentLine}
-              linkClassName={cn({ "bg-white": isVladniOpen })}
+              to="."
+              disabled
+              group
+              open={isVladniOpen}
+              onClick={() => {
+                if (isCondese) {
+                  setIsCondese(false);
+                }
+              }}
             >
               Vládní rozpočet
             </NavigationItem>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="ml-2 mt-1 list-none rounded-xl">
+          </CollapsibleTrigger>
+          <CollapsibleContent
+            className="relative ml-5 before:absolute before:inset-y-1.5 before:left-0.5 before:w-0.5 before:bg-sand-350"
+            innerClassName="flex flex-col gap-1"
+            disableOnDesktop={isCondese}
+          >
             <NavigationItem
               to="/vladni/$budgetName"
               params={{ budgetName: "2026" }}
               onClick={() => {
                 onItemClick?.();
-                close();
               }}
-              Icon={PiClockClockwiseBold}
               subitem
+              className="pt-1"
             >
               Přípravy 2026
             </NavigationItem>
@@ -66,9 +76,7 @@ export const NavigationMenu: FC<{
               params={{ budgetName: "2025" }}
               onClick={() => {
                 onItemClick?.();
-                close();
               }}
-              Icon={PiClockBold}
               subitem
             >
               Aktuální 2025
@@ -78,15 +86,13 @@ export const NavigationMenu: FC<{
               params={{ budgetName: "2024" }}
               onClick={() => {
                 onItemClick?.();
-                close();
               }}
-              Icon={PiClockCounterClockwiseBold}
               subitem
             >
               Archiv 2024
             </NavigationItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </CollapsibleContent>
+        </Collapsible>
         <NavigationItem
           to="/compare"
           onClick={() => {

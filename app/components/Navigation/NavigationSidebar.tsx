@@ -26,8 +26,10 @@ export const NavigationSidebar: FC = () => {
         }
       )}
     >
-      <div />
-      <NavigationMenu className="py-2 pr-2" onItemClick={close} />
+      <NavigationMenu
+        className="mt-[calc(20vh-4rem)] py-2 pr-2"
+        onItemClick={close}
+      />
 
       <Tooltip delayDuration={100} disableHoverableContent>
         <TooltipTrigger asChild>

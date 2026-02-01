@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useNavigationCondenseState } from "./NavigationStateProvider";
 import { cn } from "@/lib/utils";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 export const NavigationItem: FC<
   PropsWithChildren<
@@ -16,7 +17,10 @@ export const NavigationItem: FC<
       Icon?: ComponentType<{ className?: string }>;
       onClick?: () => void;
       subitem?: boolean;
+      group?: boolean;
+      open?: boolean;
       linkClassName?: string;
+      className?: string;
     }
   >
 > = ({
@@ -28,6 +32,9 @@ export const NavigationItem: FC<
   onClick,
   subitem,
   linkClassName,
+  group,
+  open,
+  className,
 }) => {
   const [isCondeseState] = useNavigationCondenseState();
   const isCondense = subitem ? false : isCondeseState;
@@ -35,7 +42,16 @@ export const NavigationItem: FC<
   return (
     <Tooltip delayDuration={100} disableHoverableContent>
       <TooltipTrigger asChild>
-        <li className={cn({ "": subitem })}>
+        <li
+          className={cn(
+            { "w-[calc(var(--sidebar-w)-0.75rem)]": group },
+            { "md:w-auto": group && isCondense },
+            {
+              "ml-2": subitem,
+            },
+            className
+          )}
+        >
           <Button variant="ghost" asChild>
             <Link
               to={to}
@@ -43,25 +59,38 @@ export const NavigationItem: FC<
               params={params}
               onClick={onClick}
               activeProps={{
-                className: subitem ? "bg-sand-200" : "bg-white",
+                className: group ? "bg-sand-200" : "bg-white",
               }}
               className={cn(
-                "flex gap-3 rounded-xl rounded-l-none",
+                "flex w-full justify-between gap-3 rounded-xl rounded-l-none",
                 {
                   "md:rounded-none": isCondense,
-                  "rounded-lg": subitem,
+                  "rounded-xl w-auto": subitem,
                 },
                 linkClassName
               )}
             >
-              {Icon && <Icon className="scale-150" />}
-              <div
-                className={cn({
-                  "md:hidden": isCondense,
-                })}
-              >
-                {children}
+              <div className="flex items-center justify-between gap-2">
+                {Icon && <Icon className="scale-150" />}
+                <div
+                  className={cn({
+                    "md:hidden": isCondense,
+                  })}
+                >
+                  {children}
+                </div>
               </div>
+              {group && (
+                <RiArrowRightSLine
+                  className={cn(
+                    "translate-x-2 scale-150 transition-transform duration-300",
+                    {
+                      "rotate-90": open,
+                      "md:hidden": isCondense,
+                    }
+                  )}
+                />
+              )}
             </Link>
           </Button>
         </li>
