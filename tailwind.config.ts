@@ -17,9 +17,11 @@ export default {
           "repeating-linear-gradient(-45deg, #463E30 0 8px, transparent 8px 16px)",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        "2xl": "calc(var(--radius) + 6px)",
+        xl: "calc(var(--radius) + 4px)",
+        lg: "calc(var(--radius) + 2px)",
+        md: "calc(var(--radius) + 0px)",
+        sm: "calc(var(--radius) - 2px)",
       },
       colors: {
         sand: {

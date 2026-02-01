@@ -30,6 +30,14 @@
 
 :root {
   @apply text-[110%];
+  --radius: 0.5rem;
+}
+
+@supports (corner-shape: squircle) {
+  :root {
+    /* Value when corner-style IS supported */
+    --radius: 1.25rem;
+  }
 }
 
 html,
@@ -43,5 +51,5 @@ body {
 }
 
 * {
-  @apply scrollbar-thin scrollbar-thumb-sand-500/20 hover:scrollbar-thumb-sand-500/30 active:scrollbar-thumb-sand-500/25 scrollbar-track-transparent;
+  @apply scrollbar-thin scrollbar-thumb-sand-500/20 hover:scrollbar-thumb-sand-500/30 active:scrollbar-thumb-sand-500/25 scrollbar-track-transparent [corner-shape:squircle];
 }
