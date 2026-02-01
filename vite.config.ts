@@ -24,7 +24,7 @@ export default defineConfig({
         quoteStyle: "single",
       },
       prerender: {
-        enabled: true,
+        enabled: false,
         crawlLinks: true,
         // we do not want to prerender whole tree of budget explorer pages
         filter: ({ path }) =>
