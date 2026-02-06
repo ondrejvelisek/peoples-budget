@@ -122,7 +122,10 @@ export function SupportDialog({
         className={cn("sm:max-w-sm", className)}
         overlayClassName="bg-stone-200/80"
       >
-        {!isPending && !!confirmPaymentError ? (
+        {!isPending &&
+        !!confirmPaymentError &&
+        "type" in confirmPaymentError &&
+        confirmPaymentError?.type !== "validation_error" ? (
           <SupportFailedForm
             error={confirmPaymentError}
             onClose={() => reset()}
