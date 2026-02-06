@@ -119,7 +119,7 @@ export const NavigationMenu: FC<{
           </NavigationItem>
         </InProgress>
         <NavigationItem
-          to="/support"
+          to="/podporit"
           onClick={onItemClick}
           Icon={RiHandHeartLine}
         >

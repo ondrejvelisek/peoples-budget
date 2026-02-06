@@ -41,10 +41,10 @@ const CollapsibleContent = React.forwardRef<
         "grid",
         animate &&
           "transition-[grid-template-rows,opacity,transform] duration-300 ease-out",
-        "grid-rows-[0fr] opacity-0 -translate-x-1 -translate-y-2 scale-95",
+        "grid-rows-[0fr] opacity-0 -translate-x-2 -translate-y-2 scale-90",
         "group-data-[state=open]:grid-rows-[1fr] group-data-[state=open]:opacity-100 group-data-[state=open]:translate-x-0 group-data-[state=open]:translate-y-0 group-data-[state=open]:scale-100",
         {
-          "md:group-data-[state=open]:grid-rows-[0fr] md:group-data-[state=open]:opacity-0 md:group-data-[state=open]:-translate-x-1 md:group-data-[state=open]:-translate-y-2 md:group-data-[state=open]:scale-95":
+          "md:group-data-[state=open]:grid-rows-[0fr] md:group-data-[state=open]:opacity-0 md:group-data-[state=open]:-translate-x-2 md:group-data-[state=open]:-translate-y-2 md:group-data-[state=open]:scale-90":
             disableOnDesktop,
         },
         className

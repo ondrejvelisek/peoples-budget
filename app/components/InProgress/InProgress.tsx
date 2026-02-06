@@ -69,7 +69,7 @@ export const InProgress: FC<IncomeItemProps> = ({ children, className }) => {
           Přispějte prosím na vývoj, udržbu a provoz.
         </p>
         <Button asChild>
-          <Link to="/support" onClick={close}>
+          <Link to="/podporit" onClick={close}>
             Podpořit
           </Link>
         </Button>

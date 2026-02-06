@@ -55,6 +55,8 @@ export default {
         "2xs": "0.625rem",
       },
       transitionDuration: {
+        "600": "600ms",
+        "800": "800ms",
         "5000": "5000ms",
         "15000": "15000ms",
       },

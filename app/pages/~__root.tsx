@@ -17,8 +17,6 @@ import { seo } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { QueryClient } from "@tanstack/react-query";
 import { NotFound } from "./NotFound";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createIsomorphicFn } from "@tanstack/react-start";
 
 createIsomorphicFn().client(() =>
@@ -96,8 +94,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         </head>
         <body>
           {children}
-          <TanStackRouterDevtools position="bottom-right" />
-          <ReactQueryDevtools buttonPosition="bottom-left" />
           <Scripts />
         </body>
       </html>

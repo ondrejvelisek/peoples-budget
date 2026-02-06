@@ -13,8 +13,8 @@ import { Route as CompareRouteImport } from './pages/~compare'
 import { Route as IndexRouteImport } from './pages/~index'
 import { Route as VladniBudgetNameRouteImport } from './pages/~vladni/~$budgetName'
 import { Route as VladniIndexRouteImport } from './pages/~vladni/~index'
-import { Route as SupportIndexRouteImport } from './pages/~support/~index'
 import { Route as PublishedIndexRouteImport } from './pages/~published/~index'
+import { Route as PodporitIndexRouteImport } from './pages/~podporit/~index'
 import { Route as MyIndexRouteImport } from './pages/~my/~index'
 import { Route as CompareIndexRouteImport } from './pages/~compare/~index'
 import { Route as AgregatedIndexRouteImport } from './pages/~agregated/~index'
@@ -47,14 +47,14 @@ const VladniIndexRoute = VladniIndexRouteImport.update({
   path: '/vladni/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SupportIndexRoute = SupportIndexRouteImport.update({
-  id: '/support/',
-  path: '/support/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PublishedIndexRoute = PublishedIndexRouteImport.update({
   id: '/published/',
   path: '/published/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodporitIndexRoute = PodporitIndexRouteImport.update({
+  id: '/podporit/',
+  path: '/podporit/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MyIndexRoute = MyIndexRouteImport.update({
@@ -125,8 +125,8 @@ export interface FileRoutesByFullPath {
   '/agregated': typeof AgregatedIndexRoute
   '/compare/': typeof CompareIndexRoute
   '/my': typeof MyIndexRoute
+  '/podporit': typeof PodporitIndexRoute
   '/published': typeof PublishedIndexRoute
-  '/support': typeof SupportIndexRoute
   '/vladni': typeof VladniIndexRoute
   '/vladni/$budgetName': typeof VladniBudgetNameRouteWithChildren
   '/compare/$budgetName': typeof CompareBudgetNameIndexRoute
@@ -143,8 +143,8 @@ export interface FileRoutesByTo {
   '/agregated': typeof AgregatedIndexRoute
   '/compare': typeof CompareIndexRoute
   '/my': typeof MyIndexRoute
+  '/podporit': typeof PodporitIndexRoute
   '/published': typeof PublishedIndexRoute
-  '/support': typeof SupportIndexRoute
   '/vladni': typeof VladniIndexRoute
   '/compare/$budgetName': typeof CompareBudgetNameIndexRoute
   '/vladni/$budgetName': typeof VladniBudgetNameIndexRoute
@@ -161,8 +161,8 @@ export interface FileRoutesById {
   '/agregated/': typeof AgregatedIndexRoute
   '/compare/': typeof CompareIndexRoute
   '/my/': typeof MyIndexRoute
+  '/podporit/': typeof PodporitIndexRoute
   '/published/': typeof PublishedIndexRoute
-  '/support/': typeof SupportIndexRoute
   '/vladni/': typeof VladniIndexRoute
   '/vladni/$budgetName': typeof VladniBudgetNameRouteWithChildren
   '/compare/$budgetName/': typeof CompareBudgetNameIndexRoute
@@ -182,8 +182,8 @@ export interface FileRouteTypes {
     | '/agregated'
     | '/compare/'
     | '/my'
+    | '/podporit'
     | '/published'
-    | '/support'
     | '/vladni'
     | '/vladni/$budgetName'
     | '/compare/$budgetName'
@@ -200,8 +200,8 @@ export interface FileRouteTypes {
     | '/agregated'
     | '/compare'
     | '/my'
+    | '/podporit'
     | '/published'
-    | '/support'
     | '/vladni'
     | '/compare/$budgetName'
     | '/vladni/$budgetName'
@@ -217,8 +217,8 @@ export interface FileRouteTypes {
     | '/agregated/'
     | '/compare/'
     | '/my/'
+    | '/podporit/'
     | '/published/'
-    | '/support/'
     | '/vladni/'
     | '/vladni/$budgetName'
     | '/compare/$budgetName/'
@@ -236,8 +236,8 @@ export interface RootRouteChildren {
   CompareRoute: typeof CompareRouteWithChildren
   AgregatedIndexRoute: typeof AgregatedIndexRoute
   MyIndexRoute: typeof MyIndexRoute
+  PodporitIndexRoute: typeof PodporitIndexRoute
   PublishedIndexRoute: typeof PublishedIndexRoute
-  SupportIndexRoute: typeof SupportIndexRoute
   VladniIndexRoute: typeof VladniIndexRoute
   VladniBudgetNameRoute: typeof VladniBudgetNameRouteWithChildren
 }
@@ -272,18 +272,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VladniIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/support/': {
-      id: '/support/'
-      path: '/support'
-      fullPath: '/support'
-      preLoaderRoute: typeof SupportIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/published/': {
       id: '/published/'
       path: '/published'
       fullPath: '/published'
       preLoaderRoute: typeof PublishedIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podporit/': {
+      id: '/podporit/'
+      path: '/podporit'
+      fullPath: '/podporit'
+      preLoaderRoute: typeof PodporitIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/my/': {
@@ -423,8 +423,8 @@ const rootRouteChildren: RootRouteChildren = {
   CompareRoute: CompareRouteWithChildren,
   AgregatedIndexRoute: AgregatedIndexRoute,
   MyIndexRoute: MyIndexRoute,
+  PodporitIndexRoute: PodporitIndexRoute,
   PublishedIndexRoute: PublishedIndexRoute,
-  SupportIndexRoute: SupportIndexRoute,
   VladniIndexRoute: VladniIndexRoute,
   VladniBudgetNameRoute: VladniBudgetNameRouteWithChildren,
 }
