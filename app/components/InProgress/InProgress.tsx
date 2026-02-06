@@ -62,7 +62,7 @@ export const InProgress: FC<IncomeItemProps> = ({ children, className }) => {
       <DialogContent>
         <div className="absolute inset-x-0 top-0 -m-px h-3 bg-amber-400 bg-diagonal-stripes sm:rounded-t-lg" />
         <h2 className="font-serif text-2xl font-medium">
-          Makáme&nbsp;na&nbsp;tom, ale&nbsp;ještě&nbsp;to&nbsp;není
+          Dělám&nbsp;na&nbsp;tom, ale&nbsp;ještě&nbsp;to&nbsp;není
         </h2>
         <p>
           Líbí se vám myšlenka Lidového rozpočtu a chcete ji vidět růst?
@@ -70,7 +70,7 @@ export const InProgress: FC<IncomeItemProps> = ({ children, className }) => {
         </p>
         <Button asChild>
           <Link to="/podporit" onClick={close}>
-            Podpořit
+            Podpořit projekt
           </Link>
         </Button>
       </DialogContent>

@@ -6,7 +6,7 @@ import { z } from "zod";
 import { SupportWidget } from "./SupportWidget";
 import { formatCurrencyStandard } from "@/lib/utils";
 
-export const ANNUAL_COSTS = 41000;
+export const ANNUAL_COSTS = 40000;
 
 export const Route = createFileRoute("/podporit/")({
   validateSearch: z.object({
