@@ -102,7 +102,7 @@ export function SupportDialog({
 
     if (!isOpen) {
       reset();
-      navigate({ to: "." }); // remove search query params from payment redirect flow
+      navigate({ to: ".", search: { succeeded: isClosingWithSuccess } }); // remove search query params from payment redirect flow
     }
     onOpenChange?.(isOpen);
   };

@@ -1,19 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DonationProgressWidget } from "./DonationProgressWidget";
-import supportProgressImg from "./support-project-illustration.png";
+import supportProjectImg from "./support-project-illustration.png";
+import supportSuccessImg from "./support-project-success-illustration.png";
 import { z } from "zod";
 import { SupportWidget } from "./SupportWidget";
 
 export const Route = createFileRoute("/podporit/")({
   validateSearch: z.object({
+    succeeded: z.boolean().optional(),
     payment_intent: z.string().optional(),
     payment_intent_client_secret: z.string().optional(),
-    redirect_status: z.enum(["succeeded", "pending", "processing", "failed"]).optional(),
+    redirect_status: z
+      .enum(["succeeded", "pending", "processing", "failed"])
+      .optional(),
   }),
   component: Page,
 });
 
 function Page() {
+  const { succeeded } = Route.useSearch();
   return (
     <div className="p-4 @container md:p-6 lg:p-10">
       <h1 className="whitespace-nowrap pb-3 text-4xl font-semibold md:text-5xl md:font-medium lg:text-6xl">
@@ -24,7 +29,7 @@ function Page() {
       </p>
       <div className="grid max-w-4xl grid-cols-1 items-center gap-8 @lg:grid-cols-2">
         <img
-          src={supportProgressImg}
+          src={succeeded ? supportSuccessImg : supportProjectImg}
           alt="Lev, maskot projektu Lidový rozpočet, smutně nahlížející do prázdné peněženky"
           className="mx-auto -mb-8 w-full max-w-sm"
         />

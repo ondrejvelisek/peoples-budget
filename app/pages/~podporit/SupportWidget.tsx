@@ -5,8 +5,13 @@ import { createPaymentIntent, stripeClient } from "./stripe";
 import { SupportDialog } from "./SupportDialog";
 import { Elements } from "@stripe/react-stripe-js";
 import { SupportFailedForm } from "./SupportFailedForm";
+import { Route } from "./~index";
+import { SupportSuccessForm } from "./SupportSuccessForm";
+import { useNavigate } from "@tanstack/react-router";
 
 export function SupportWidget({ className }: { className?: string }) {
+  const { succeeded } = Route.useSearch();
+  const navigate = useNavigate();
   const {
     mutate: createPaymentIntentMutation,
     isPending,
@@ -24,7 +29,11 @@ export function SupportWidget({ className }: { className?: string }) {
 
   return (
     <div className={cn("", className)}>
-      {!isPending && !!paymentIntentError ? (
+      {!isPending && succeeded ? (
+        <SupportSuccessForm closeButtonText="Přispět znovu" onClose={() => {
+          navigate({ to: ".", search: { succeeded: undefined } });
+        }} />
+      ) : !isPending && !!paymentIntentError ? (
         <SupportFailedForm
           error={paymentIntentError}
           onClose={resetPaymentIntent}
