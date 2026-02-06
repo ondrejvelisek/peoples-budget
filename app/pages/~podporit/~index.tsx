@@ -4,6 +4,9 @@ import supportProjectImg from "./support-project-illustration.png";
 import supportSuccessImg from "./support-project-success-illustration.png";
 import { z } from "zod";
 import { SupportWidget } from "./SupportWidget";
+import { formatCurrencyStandard } from "@/lib/utils";
+
+export const ANNUAL_COSTS = 41000;
 
 export const Route = createFileRoute("/podporit/")({
   validateSearch: z.object({
@@ -22,7 +25,7 @@ function Page() {
   return (
     <div className="p-4 @container md:p-6 lg:p-10">
       <h1 className="whitespace-nowrap pb-3 text-4xl font-semibold md:text-5xl md:font-medium lg:text-6xl">
-        122 000 Kč ročně
+        {formatCurrencyStandard(ANNUAL_COSTS)} Kč ročně
       </h1>
       <p className="mb-4">
         tolik zhruba stojí provoz, údržba a rozvoj projektu Lidový rozpočet.

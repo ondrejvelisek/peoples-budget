@@ -5,8 +5,7 @@ import { cn, formatCurrencyStandard } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { getDonationStats } from "./stripe";
 import Skeleton from "react-loading-skeleton";
-
-export const ANNUAL_COSTS = 122000;
+import { ANNUAL_COSTS } from "./~index";
 
 export function DonationProgressWidget({ className }: { className?: string }) {
   const { data, isPending, isFetching } = useQuery({
