@@ -20,6 +20,13 @@ export const Route = createFileRoute("/compare")({
   }),
 });
 
+const budgetNameToTitle: Record<string, string> = {
+  "2026-Babis": "2026 Babiš",
+  "2026-Fiala": "2026 Fiala",
+  "2025": "2025",
+  "2024": "2024",
+};
+
 function Layout() {
   const budgetName = useBudgetName();
   const secondBudgetName = useSecondBudgetName();
@@ -35,7 +42,7 @@ function Layout() {
               variant="outline"
               className="border-2 border-sand-100"
             >
-              {budgetName}
+              {budgetNameToTitle[budgetName]}
               <RiArrowDownSLine className="-mr-1 inline" />
             </Button>
           </DropdownMenuTrigger>
@@ -43,11 +50,20 @@ function Layout() {
             <DropdownMenuItemLink
               to="/compare/$budgetName/$secondBudgetName"
               params={{
-                budgetName: "2026",
+                budgetName: "2026-Babis",
                 secondBudgetName,
               }}
             >
-              2026
+              2026 Babiš
+            </DropdownMenuItemLink>
+            <DropdownMenuItemLink
+              to="/compare/$budgetName/$secondBudgetName"
+              params={{
+                budgetName: "2026-Fiala",
+                secondBudgetName,
+              }}
+            >
+              2026 Fiala
             </DropdownMenuItemLink>
             <DropdownMenuItemLink
               to="/compare/$budgetName/$secondBudgetName"
@@ -77,7 +93,7 @@ function Layout() {
               variant="outline"
               className="border-2 border-sand-100"
             >
-              {secondBudgetName}
+              {budgetNameToTitle[secondBudgetName]}
               <RiArrowDownSLine className="-mr-1 inline" />
             </Button>
           </DropdownMenuTrigger>
@@ -86,10 +102,19 @@ function Layout() {
               to="/compare/$budgetName/$secondBudgetName"
               params={{
                 budgetName,
-                secondBudgetName: "2026",
+                secondBudgetName: "2026-Babis",
               }}
             >
-              2026
+              2026 Babiš
+            </DropdownMenuItemLink>
+            <DropdownMenuItemLink
+              to="/compare/$budgetName/$secondBudgetName"
+              params={{
+                budgetName,
+                secondBudgetName: "2026-Fiala",
+              }}
+            >
+              2026 Fiala
             </DropdownMenuItemLink>
             <DropdownMenuItemLink
               to="/compare/$budgetName/$secondBudgetName"

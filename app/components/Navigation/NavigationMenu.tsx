@@ -60,16 +60,27 @@ export const NavigationMenu: FC<{
             innerClassName="flex flex-col gap-1"
             disableOnDesktop={isCondese}
           >
+            {" "}
             <NavigationItem
               to="/vladni/$budgetName"
-              params={{ budgetName: "2026" }}
+              params={{ budgetName: "2026-Babis" }}
               onClick={() => {
                 onItemClick?.();
               }}
               subitem
               className="pt-1"
             >
-              Přípravy 2026
+              2026 Babiš
+            </NavigationItem>
+            <NavigationItem
+              to="/vladni/$budgetName"
+              params={{ budgetName: "2026-Fiala" }}
+              onClick={() => {
+                onItemClick?.();
+              }}
+              subitem
+            >
+              2026 Fiala
             </NavigationItem>
             <NavigationItem
               to="/vladni/$budgetName"
@@ -79,7 +90,7 @@ export const NavigationMenu: FC<{
               }}
               subitem
             >
-              Aktuální 2025
+              2025
             </NavigationItem>
             <NavigationItem
               to="/vladni/$budgetName"
@@ -89,7 +100,7 @@ export const NavigationMenu: FC<{
               }}
               subitem
             >
-              Archiv 2024
+              2024
             </NavigationItem>
           </CollapsibleContent>
         </Collapsible>

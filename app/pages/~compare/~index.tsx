@@ -6,7 +6,7 @@ export const Route = createFileRoute("/compare/")({
     throw redirect({
       to: "/compare/$budgetName",
       params: {
-        budgetName: "2026",
+        budgetName: "2026-Babis",
       },
     });
   },

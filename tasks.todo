@@ -8,7 +8,7 @@ Help: Alt+d to mark task as completed
     ✔ Deploy on real domain @done (9/3/2025, 3:06:35 PM)
     ✔ Refresh data and create docs how to update them @done (10/13/2025, 10:21:02 PM)
     ✔ Add 2026 data @done (10/13/2025, 10:21:03 PM)
-    ☐ Create donation page and fake doors
+    ✔ Create donation page and fake doors @done (2/6/2026, 8:53:48 PM)
     ☐ Create Home page and data info
     ☐ Debug, test and polish
     ✔ Umožnit přepínat zdravotní pojištění on/off @done (1/4/2026, 4:47:58 PM)
@@ -65,13 +65,13 @@ About project page:
     ☐ Namyslet sekce. Jaké informace chci předat a jak
 
 Support me page:
-    ☐ Research "Send money" service
-    ☐ Design site
+    ✔ Research "Send money" service @done (2/6/2026, 8:54:06 PM)
+    ✔ Design site @done (2/6/2026, 8:54:08 PM)
     ✔ Add fake door to other pages @done (1/4/2026, 7:11:00 AM)
 
 Other ideas:
-    ☐ Add all budgets page with tiles with higlevel info (instead of dropdown)
-    ☐ AI search?
+    ☐ Add all budgets page with tiles with higlevel info (instead of submenu)
+    ☐ AI search? AI suggest? AI explain? AI ask?
     ☐ Make numbers more precise (add one more decimal place, always three digits)
 
 Bugs:
@@ -83,6 +83,7 @@ Bugs:
     ✔ Fix errors when switching dimension @done (1/27/2026, 8:56:57 AM)
     ☐ Make mobile menu works when JS is not loaded yet (add navOpen URL query param)
     ✔ Fix analytics events @done (10/7/2025, 4:12:35 PM)
+    ☐ Přerušená animace, pokud se během animace donačtou data
     
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)

@@ -49,7 +49,7 @@ K tomu jsou potřeba ještě soubory společné pro všechny rozpočty. Ale něk
 
 1. Postupne je úplně stejný jako u výdajů kromě následujícího
    - vyberte datovou sadu: Příprava rozpočtu - příjmy
-   - Do řádků vyberte pozuze položku a Finanční místo (nevybírejte Segment)
+   - Do řádků vyberte pozuze Položku a Finanční místo (nevybírejte Paragraf)
    - Sloupečky v CSV tedy budou pouze type_id,office_id,amount
 1. CSV Soubor vložte do složky /data/files/název-rozpočtu/incomes.csv
 
