@@ -24,12 +24,18 @@ export default defineConfig({
         quoteStyle: "single",
       },
       prerender: {
-        enabled: false,
+        enabled: true,
         crawlLinks: true,
+        retryCount: 1,
+        retryDelay: 500,
         // we do not want to prerender whole tree of budget explorer pages
         filter: ({ path }) =>
           !path.match(/^\/vladni\/[^/\n]+\/[^/\n]+\/[^\n]+$/) &&
-          !path.match(/^\/compare.*$/),
+          !path.match(/^\/compare\/[^/\n]+\/[^/\n]+\/[^\n]+$/),
+      },
+      sitemap: {
+        enabled: true,
+        host: "https://lidovyrozpocet.cz",
       },
     }),
     nitro({

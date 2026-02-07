@@ -18,6 +18,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import type { QueryClient } from "@tanstack/react-query";
 import { NotFound } from "./NotFound";
 import { createIsomorphicFn } from "@tanstack/react-start";
+import ogImage from "./hero-img-square.jpg";
 
 createIsomorphicFn().client(() =>
   init({
@@ -47,6 +48,7 @@ export const Route = createRootRouteWithContext<{
         name: "apple-mobile-web-app-capable",
         content: "yes",
       },
+      { name: "mobile-web-app-capable", content: "yes" },
       ...seo({
         title:
           "Lidový rozpočet | Státní rozpočet České republiky ve Vašich rukou",
@@ -56,6 +58,7 @@ export const Route = createRootRouteWithContext<{
       Vyzkoušejte si, jak byste rozdělili peníze Vy! Sdílejte své nápady a názory s ostatními.`,
         keywords:
           "Lidový rozpočet, Rozpočet lidu, Rozpočet národa, rozpočet, státní rozpočet, finance, peníze, česká republika, interaktivní, výdaje, příjmy",
+        image: ogImage,
       }),
     ],
     links: [
@@ -64,6 +67,10 @@ export const Route = createRootRouteWithContext<{
       {
         rel: "apple-touch-icon",
         href: "/apple-touch-icon.png",
+      },
+      {
+        rel: "canonical",
+        href: "https://lidovyrozpocet.cz",
       },
     ],
   }),

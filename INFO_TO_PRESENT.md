@@ -33,7 +33,7 @@ Odkaz na opensource repository
 
 Na co jdou vybrané peníze. Co jsou to ty náklady?
 
-CO když jich bude víc?
+CO když se vybere víc?
 
 Jak jinak podpořit projekt? Sdílením? Vývojem? Nápady?
 

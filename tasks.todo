@@ -84,6 +84,14 @@ Bugs:
     ☐ Make mobile menu works when JS is not loaded yet (add navOpen URL query param)
     ✔ Fix analytics events @done (10/7/2025, 4:12:35 PM)
     ☐ Přerušená animace, pokud se během animace donačtou data
+
+Feedback from users:
+    ☐ Potáhnutí NumberInputu doprava otevře menu
+    ☐ Clovek si stíní NumberInput prstem
+    ☐ Barevně oddělit odvody státu
+    ☐ Přidat na mobilu tooltip na odbody státu a zvýraznit, že na něj jde najet.
+    ☐ Změnit popisek Vydělám víc => Kupní síla vzroste + Čistého vám zbyde
+    ☐ Schovat méně důležité parametry v profilu (collapsible sections)
     
 Misc:
     ✔ Go trough TODOs and FIXME comments @done (11/6/2024, 4:24:34 PM)
