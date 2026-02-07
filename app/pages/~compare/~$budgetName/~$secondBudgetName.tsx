@@ -3,6 +3,7 @@ import {
   PageTabsList,
   PageTabsTrigger,
 } from "@/components/ui/pageTabs";
+import { budgetMetadataQueryOptions } from "@/data/metadata/metadataHooks";
 import { personalIncomeQueryOptions } from "@/data/personalIncome/personalIncomeHook";
 import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,14 @@ export const Route = createFileRoute("/compare/$budgetName/$secondBudgetName")({
     context.queryClient.prefetchQuery(
       personalIncomeQueryOptions(params.budgetName, deps.health)
     );
+    await Promise.all([
+      context.queryClient.ensureQueryData(
+        budgetMetadataQueryOptions(params.budgetName)
+      ),
+      context.queryClient.ensureQueryData(
+        budgetMetadataQueryOptions(params.secondBudgetName)
+      ),
+    ]);
   },
 });
 

@@ -4,6 +4,7 @@ import { ExplorerItem } from "../Explorer/ExplorerItem";
 import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
 import { useCompareExpense } from "@/data/compare/compareExpense";
 import { usePersonalIncome } from "@/data/personalIncome/personalIncomeHook";
+import { useBudgetMetadata } from "@/data/metadata/metadataHooks";
 
 type CompareExpenseItemProps = {
   itemKey: ExpenseKey;
@@ -17,7 +18,9 @@ export const CompareExpenseItem: FC<CompareExpenseItemProps> = ({
   className,
 }) => {
   const budgetName = useBudgetName();
+  const { data: budgetMetadata } = useBudgetMetadata(budgetName);
   const secondBudgetName = useSecondBudgetName();
+  const { data: secondBudgetMetadata } = useBudgetMetadata(secondBudgetName);
   const { data: compareExpense, isPending } = useCompareExpense(expenseKey);
   const { data: rootCompareExpense, isPending: isRootPending } =
     useCompareExpense([]);
@@ -35,6 +38,15 @@ export const CompareExpenseItem: FC<CompareExpenseItemProps> = ({
         totalPersonalContributions
       : undefined;
 
+  const relativeChange =
+    compareExpense?.primaryAmount && compareExpense?.secondaryAmount
+      ? (compareExpense.primaryAmount - compareExpense.secondaryAmount) /
+        compareExpense.primaryAmount
+      : undefined;
+  const relativeChangePercentage = relativeChange
+    ? relativeChange * 100
+    : undefined;
+
   return (
     <ExplorerItem
       compareMode
@@ -44,6 +56,15 @@ export const CompareExpenseItem: FC<CompareExpenseItemProps> = ({
       amount={compareExpense?.amount}
       parentAmount={parentCompareExpense?.maxChildrenAmount}
       contributionAmount={isAnyLoading ? 0 : contributionChangeAmount}
+      additionalAmounts={[
+        ["Změna v %", relativeChangePercentage, "%"],
+        [budgetMetadata?.title ?? "...", compareExpense?.primaryAmount, ""],
+        [
+          secondBudgetMetadata?.title ?? "...",
+          compareExpense?.secondaryAmount,
+          "",
+        ],
+      ]}
       relation={relation}
       isLoading={isAnyLoading}
       hideMeter={isRoot || relation === "parent"}

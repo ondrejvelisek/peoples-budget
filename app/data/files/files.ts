@@ -6,7 +6,7 @@ export const getBudgetFile = async (budgetName: string, fileName: string) => {
   const csvData = await csvModules[`./${budgetName}/${fileName}.csv`]?.();
   if (!csvData) {
     throw new Error(
-      `Budget expenses CSV data not found for ${budgetName}/${fileName}.csv`
+      `Budget CSV data not found for ${budgetName}/${fileName}.csv`
     );
   }
   return csvData;

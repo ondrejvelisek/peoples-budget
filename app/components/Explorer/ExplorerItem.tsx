@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { type FC, type PropsWithChildren } from "react";
 import { cn, formatCurrency, formatCurrencyStandard } from "@/lib/utils";
 import { Link, type LinkProps } from "@tanstack/react-router";
 import { RiArrowLeftLine } from "react-icons/ri";
@@ -17,6 +17,7 @@ type ItemProps = LinkProps & {
   parentAmount?: number;
   rootAmount?: number;
   contributionAmount?: number;
+  additionalAmounts?: Array<[string, number | undefined, string | undefined]>;
   hideMeter?: boolean;
   compareMode?: boolean;
   className?: string;
@@ -31,6 +32,7 @@ export const ExplorerItem: FC<ItemProps> = ({
   parentAmount,
   rootAmount,
   contributionAmount,
+  additionalAmounts,
   hideMeter = false,
   compareMode = false,
   className,
@@ -46,7 +48,7 @@ export const ExplorerItem: FC<ItemProps> = ({
           "rounded-lg border border-b-2 border-neutral-600/10 border-b-neutral-600/20 border-t-neutral-600/5":
             relation === "child",
         },
-        className,
+        className
       )}
       style={{
         viewTransitionName: `item-${id}`,
@@ -96,6 +98,27 @@ export const ExplorerItem: FC<ItemProps> = ({
               />
             )}
           </div>
+          {relation !== "parent" &&
+            additionalAmounts &&
+            additionalAmounts.length > 0 &&
+            additionalAmounts.map(([title, amount, unit]) => (
+              <div
+                key={title}
+                className="flex items-baseline justify-between gap-1"
+              >
+                <AdditionalAmount
+                  id={`${id}-${title?.toLowerCase?.().replace(/[^a-z0-9A-Z]/g, "-")}`}
+                  relation={relation}
+                  isLoading={isLoading}
+                  amount={amount}
+                  className={className}
+                  compact={true}
+                  unit={unit}
+                >
+                  {title}
+                </AdditionalAmount>
+              </div>
+            ))}
           {relation !== "parent" && contributionAmount !== undefined && (
             <div className="flex items-baseline justify-between gap-1">
               <Contribution
@@ -130,7 +153,7 @@ const Title: FC<ItemProps> = ({
           "text-sm font-normal": relation === "child",
         },
         "leading-none",
-        className,
+        className
       )}
     >
       {relation === "parent" && (
@@ -173,7 +196,7 @@ const Amount: FC<ItemProps> = ({
               "text-lime-700": compareMode && amount && amount > 0,
               "text-rose-700": compareMode && amount && amount < 0,
             },
-            className,
+            className
           )}
           style={{
             viewTransitionName: `amount-${id}`,
@@ -205,6 +228,33 @@ const Contribution: FC<ItemProps> = ({
   className,
 }) => {
   return (
+    <AdditionalAmount
+      id={id}
+      relation={relation}
+      isLoading={isLoading}
+      amount={contributionAmount}
+      compareMode={compareMode}
+      className={className}
+    >
+      <LuWallet className="inline-block" /> Měsíčně za toto zaplatíte
+    </AdditionalAmount>
+  );
+};
+
+const AdditionalAmount: FC<
+  PropsWithChildren<ItemProps & { compact?: boolean; unit?: string }>
+> = ({
+  id,
+  relation = "parent",
+  isLoading = false,
+  amount,
+  compareMode = false,
+  className,
+  children,
+  compact = false,
+  unit = "Kč",
+}) => {
+  return (
     <>
       <div
         className="truncate text-xs text-stone-400"
@@ -215,10 +265,8 @@ const Contribution: FC<ItemProps> = ({
       >
         {isLoading ? (
           <Skeleton width="10em" />
-        ) : contributionAmount !== undefined ? (
-          <>
-            <LuWallet className="inline-block" /> Měsíčně za toto zaplatíte
-          </>
+        ) : amount !== undefined ? (
+          children
         ) : null}
       </div>
       <div
@@ -230,8 +278,8 @@ const Contribution: FC<ItemProps> = ({
       >
         {isLoading ? (
           <Skeleton width="4em" />
-        ) : contributionAmount !== undefined ? (
-          `${formatCurrencyStandard(contributionAmount, compareMode)} Kč`
+        ) : amount !== undefined ? (
+          `${compact ? formatCurrency(amount, compareMode) : formatCurrencyStandard(amount, compareMode)} ${unit}`
         ) : null}
       </div>
     </>
@@ -276,7 +324,7 @@ const Meter: FC<ItemProps> = ({
         {
           "bg-neutral-200/80": relation === "subject" || isLoading,
         },
-        className,
+        className
       )}
     >
       {!isLoading && (
