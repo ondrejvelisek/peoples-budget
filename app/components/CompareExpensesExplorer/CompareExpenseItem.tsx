@@ -57,7 +57,7 @@ export const CompareExpenseItem: FC<CompareExpenseItemProps> = ({
       parentAmount={parentCompareExpense?.maxChildrenAmount}
       contributionAmount={isAnyLoading ? 0 : contributionChangeAmount}
       additionalAmounts={[
-        ["Změna v %", relativeChangePercentage, "%"],
+        ["Změna v %", relativeChangePercentage, "%", true],
         [budgetMetadata?.title ?? "...", compareExpense?.primaryAmount, ""],
         [
           secondBudgetMetadata?.title ?? "...",

@@ -17,7 +17,9 @@ type ItemProps = LinkProps & {
   parentAmount?: number;
   rootAmount?: number;
   contributionAmount?: number;
-  additionalAmounts?: Array<[string, number | undefined, string | undefined]>;
+  additionalAmounts?: Array<
+    [string, number | undefined, string | undefined, boolean?]
+  >;
   hideMeter?: boolean;
   compareMode?: boolean;
   className?: string;
@@ -101,7 +103,7 @@ export const ExplorerItem: FC<ItemProps> = ({
           {relation !== "parent" &&
             additionalAmounts &&
             additionalAmounts.length > 0 &&
-            additionalAmounts.map(([title, amount, unit]) => (
+            additionalAmounts.map(([title, amount, unit, compareMode]) => (
               <div
                 key={title}
                 className="flex items-baseline justify-between gap-1"
@@ -114,6 +116,7 @@ export const ExplorerItem: FC<ItemProps> = ({
                   className={className}
                   compact={true}
                   unit={unit}
+                  compareMode={compareMode}
                 >
                   {title}
                 </AdditionalAmount>
