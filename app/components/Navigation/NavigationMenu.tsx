@@ -8,7 +8,6 @@ import {
 } from "react-icons/ri";
 
 import { GrGroup } from "react-icons/gr";
-import { TbArrowsMinimize } from "react-icons/tb";
 import { cn } from "@/lib/utils";
 import { NavigationItem } from "./NavigationItem";
 import { useLocalStorage } from "@mantine/hooks";
@@ -52,7 +51,7 @@ export const NavigationMenu: FC<{
                 }
               }}
             >
-              Vládní rozpočet
+              Vládní rozpočty
             </NavigationItem>
           </CollapsibleTrigger>
           <CollapsibleContent
@@ -120,13 +119,8 @@ export const NavigationMenu: FC<{
           </NavigationItem>
         </InProgress>
         <InProgress>
-          <NavigationItem to="/published" disabled Icon={GrGroup}>
-            Rozpočty lidí
-          </NavigationItem>
-        </InProgress>
-        <InProgress>
-          <NavigationItem to="/agregated" disabled Icon={TbArrowsMinimize}>
-            Agregovaný rozpočet
+          <NavigationItem to="/agregated" disabled Icon={GrGroup}>
+            Lidový rozpočet
           </NavigationItem>
         </InProgress>
         <NavigationItem

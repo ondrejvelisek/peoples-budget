@@ -29,6 +29,7 @@ const Navigation: FC<PropsWithChildren> = ({ children }) => {
 
       <div
         {...(!isOpen ? handlers : {})}
+        id="scroll-container"
         className={cn(
           "absolute inset-x-0 -bottom-0.5 top-10 overflow-y-auto rounded-2xl border-x border-b-2 border-sand-300/40 bg-white outline outline-4 outline-sand-400/5 transition-all duration-300 md:left-[--sidebar-w] md:top-0 md:rounded-r-none md:border-x-0",
           {

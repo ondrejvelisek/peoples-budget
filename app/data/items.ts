@@ -341,6 +341,7 @@ export const getCompareItem = async <D extends Dimension>(
 
   return {
     ...someItem,
+    title: rootTitle,
     amount: (item?.amount ?? 0) - (secondItem?.amount ?? 0),
     primaryAmount: item?.amount ?? 0,
     secondaryAmount: secondItem?.amount ?? 0,

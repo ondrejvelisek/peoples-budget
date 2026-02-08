@@ -1,6 +1,18 @@
 
 ### Backlog myšlenek, ideí, informací, dat, ..., které chci někde na webu prezentovat
 
+Stránka: O projektu
+Proč projekt vznikl, jaký má smysl
+Testuju si na něm nové technologie. A baví mě vyvíjet a hrát si. Nejde jen o cíl, ale i cestu.
+Nesnáším, že většina lidí v česku si neuvědomuje, že jde o naše peníze.
+A navíc nevím kam putují. Systím monitor je tristní. Nejde na mobilu, je nepříjemný na používání a neustále padá.
+Co projekt nabízí.
+Co všechno projekt umí
+Jaké jsou další plány => Odkaz na podporu.
+Jaké další featury chcete? Napište mi! Odkaz na cesko digital.
+
+
+Stránka: Kdo za tím stojí
 Sekce o mě, fotka, kdo jsem co dělám. Vývojář. Co se zajímá o stát. Odkaz na blog.
 Velký zastánce svobody. Mám sklony k anarchokapitalismu. Protože nevěřím, že je většina lidí schopná se o sebe postarat sama.
 Možná někdy. Bylo by to krásné. Ale ne teď.
@@ -15,32 +27,23 @@ My jsme stát. Stát jsou hlavně lidé. A pak pár struktur a papírů, které 
 Ty jsi taky součást státu. Když chceš aby stát za něco platil, tak za to budeš platit i ty.
 Sociální sitě mám. Twitter a Linkedin.
 
-Proč projekt vznikl, jaký má smysl
-Testuju si na něm nové technologie. A baví mě vyvíjet a hrát si. Nejde jen o cíl, ale i cestu.
-Nesnáším, že většina lidí v česku si neuvědomuje, že jde o naše peníze.
-A navíc nevím kam putují. Systím monitor je tristní. Nejde na mobilu, je nepříjemný na používání a neustále padá.
 
 
+Stránka: Kde beru data a jak čísla počítám?
 Data, odkud, jak.
-Proč zahrnuju i státní rozpočet?
-Výpočty
+Proč zahrnuju i rozpočet zdravotních pojišťoven?
+Výpočty. Jak se počítají daně. Kupní síla. Atd.
+Nesouhlasíte? Napište mi!
 
-Co všechno projekt umí
 
-Jaké jsou další plány
 
-Odkaz na opensource repository
-
+Stránka: Podpora
+Support page.
 Na co jdou vybrané peníze. Co jsou to ty náklady?
-
+Odkaz na opensource repository
 CO když se vybere víc?
-
 Jak jinak podpořit projekt? Sdílením? Vývojem? Nápady?
-
-Odkaz na cesko digital
-Jaké další featury chcete? Napište mi!
+Jaké další featury chcete? Napište mi! Odkaz na cesko digital.
 Forum k diskuzi tady. Nebo twítujte.
-
-Videoprezentace?
 
 

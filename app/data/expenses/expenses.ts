@@ -10,6 +10,7 @@ import { getItem, type Item } from "../items";
 import { useBudgetName } from "@/lib/budget";
 import { useMyQuery } from "@/lib/utils";
 import { useHealthInsurance } from "@/components/Explorer/HealthInsuranceSwitcher";
+import { getBudgetMetadata } from "../metadata/metadataHooks";
 
 export type ExpenseItem = Item<ExpenseDimension>;
 
@@ -23,10 +24,11 @@ export const getExpense = createServerFn()
     }) => data
   )
   .handler(async ({ data }): Promise<ExpenseItem> => {
+    const budgetMetadata = await getBudgetMetadata(data.budgetName);
     const item = await getItem(
       data.budgetName,
       "expenses",
-      "Všechny výdaje",
+      "Výdaje rozpočtu " + budgetMetadata.title,
       data.expenseKey,
       data.healthInsurance,
       data.childrenDimension

@@ -8,10 +8,7 @@ import {
 import { useBudgetName, useSecondBudgetName } from "@/lib/budget";
 import { getCompareItem, type CompareItem } from "../items";
 import { createServerFn } from "@tanstack/react-start";
-import {
-  keepPreviousData,
-  queryOptions,
-} from "@tanstack/react-query";
+import { keepPreviousData, queryOptions } from "@tanstack/react-query";
 import { useHealthInsurance } from "@/components/Explorer/HealthInsuranceSwitcher";
 
 export type CompareExpenseItem = CompareItem<ExpenseDimension>;
@@ -31,7 +28,7 @@ export const getCompareExpense = createServerFn()
       data.budgetName,
       data.secondBudgetName,
       "expenses",
-      "Všechny výdaje",
+      "Výdaje rozpočtu",
       data.expenseKey,
       data.healthInsurance,
       data.childrenDimension
@@ -56,7 +53,13 @@ export const compareExpenseQueryOptions = (
     ],
     queryFn: async () =>
       getCompareExpense({
-        data: { budgetName, secondBudgetName, expenseKey, healthInsurance, childrenDimension },
+        data: {
+          budgetName,
+          secondBudgetName,
+          expenseKey,
+          healthInsurance,
+          childrenDimension,
+        },
       }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
     gcTime: 5 * 60 * 1000, // 5 minutes

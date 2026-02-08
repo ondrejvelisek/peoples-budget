@@ -7,24 +7,28 @@ type Metadata = {
   value: string;
 };
 
+export const getBudgetMetadata = async (
+  budgetName: string
+): Promise<Metadata> => {
+  const metadataCsv = await getBudgetFile(budgetName, "metadata");
+  const metadata = (await parseCsv<
+    { key: string; value: string },
+    Partial<Metadata>
+  >(metadataCsv, undefined, (record, acc) => {
+    if (acc) {
+      acc[record.key as keyof Partial<Metadata>] = record.value;
+      return acc;
+    } else {
+      return { [record.key]: record.value };
+    }
+  })) as Metadata;
+  return metadata;
+};
+
 export const budgetMetadataQueryOptions = (budgetName: string) =>
   queryOptions({
     queryKey: ["budgetMetadata", budgetName],
-    queryFn: async () => {
-      const metadataCsv = await getBudgetFile(budgetName, "metadata");
-      const metadata = (await parseCsv<
-        { key: string; value: string },
-        Partial<Metadata>
-      >(metadataCsv, undefined, (record, acc) => {
-        if (acc) {
-          acc[record.key as keyof Partial<Metadata>] = record.value;
-          return acc;
-        } else {
-          return { [record.key]: record.value };
-        }
-      })) as Metadata;
-      return metadata;
-    },
+    queryFn: () => getBudgetMetadata(budgetName),
   });
 
 export const useBudgetMetadata = (budgetName: string) => {
