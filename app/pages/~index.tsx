@@ -10,6 +10,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { InProgress } from "@/components/InProgress/InProgress";
 import myPhoto from "./ondrejvelisek-photo.png";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 export const Route = createFileRoute("/")({
   component: Page,
@@ -80,8 +85,8 @@ function Page() {
           </div>
           <Button
             size="sm"
-            variant="outline"
-            className="absolute bottom-4 left-1/2 size-12 -translate-x-1/2 animate-bounce text-stone-400 duration-1000"
+            variant="default"
+            className="absolute bottom-4 left-1/2 size-12 -translate-x-1/2 animate-bounce duration-1000"
             onClick={() => {
               document
                 .getElementById("scroll-container")
@@ -93,184 +98,6 @@ function Page() {
         </div>
       </section>
 
-      {/* About projct section */}
-      <section className="border-t px-6 pb-10 pt-12 text-justify [hyphens:auto] lg:px-12">
-        <div className="mx-auto max-w-3xl space-y-6">
-          <hgroup>
-            <h2 className="font-serif text-3xl md:text-4xl">
-              Stát nejsou „oni“, stát jsme my
-            </h2>
-            <h3 className="text-lg text-stone-500">
-              Proč vznikl Lidový rozpočet?
-            </h3>
-          </hgroup>
-          <p>
-            Jedna věc mě vytáčí. Takový ten klasický český sport: nadávat u piva
-            (nebo na Twitteru), jak nám „stát“ zase bere peníze a jak nám ten
-            stejný „stát“ dává málo. Je to takový národní folklór. Ale když se
-            nad tím zamyslíme víc, zjistíme, že v téhle rovnici nám chybí jedna
-            zásadní proměnná. My.
-          </p>
-
-          <p>
-            Pojďme si nalít čistého vína. Státní peníze nejsou nějaký magický
-            poklad, který politici našli na konci duhy. Jsou to naše peníze.
-            Moje, tvoje, sousedovi. My všichni jsme v roce 2025 složili na
-            hromadu 2,7 bilionu korun.
-          </p>
-
-          <p>
-            Když to rozpočítám na jednoho pracujícího člověka, vychází to zhruba
-            na 43 000 korun měsíčně. To je šílená částka, co? Je to víc, než má
-            většina lidí jako čistou mzdu. Prakticky bys mohl brát dvojnásobek,
-            kdyby tenhle „stát“ neexistoval. A přesně v tuhle chvíli se ve mně
-            perou dva lidi.
-          </p>
-
-          <div className="flex flex-col items-start gap-12 pb-6 pt-4 md:flex-row">
-            <div className="basis-1/2 space-y-4">
-              <h4 className="pt-8 font-serif text-xl font-medium">
-                Ten naštvaný já
-              </h4>
-              <p>
-                Ta moje část, co miluje svobodu, křičí: „Sakra, 43 tisíc? Za
-                co?! Za ty rozkopané silnice? Za to, že čekám na termín u
-                doktora tři měsíce? Za ty nekonečné papíry na úřadech?“ Štve mě,
-                když vidím, jak se tyhle naše společné peníze sypou do dotací
-                pro miliardáře, rozkrádají při předražených státních zakázkách
-                nebo jdou na zástupy úředníků, kteří tu jsou jen proto, aby
-                kontrolovali jiné úředníky. A co je nejhorší. Z tohoto
-                pochybného systému nejde svobodně vystoupit.
-              </p>
-            </div>
-            <div className="basis-1/2 space-y-4">
-              <h4 className="pt-8 font-serif text-xl font-medium">
-                Ten zodpovědný já
-              </h4>
-              <p>
-                Jenže pak je tu moje druhá část. Ta, co si uvědomuje, že když se
-                ráno vzbudím, dýchám (relativně) čistý vzduch, protože někdo
-                hlídá emise. Že nemusím živit svoje prarodiče, kteří už nejsou
-                schopní pracovat, protože dostávají starobní důchod. A že když
-                mě na dálnici někdo nabourá, přijede policie a sanitka, kterou
-                jsem si nemusel objednat a zaplatit jako pizzu. Ne všechny
-                peníze skončí v černé díře.
-              </p>{" "}
-            </div>
-          </div>
-
-          <p>
-            Je v pořádku si zanadávat. Vyjadřovat veřejně nespokojenost. Tlačit
-            na politiky a úředníky aby zeefktivnili státní systém. Ale zároveň
-            je potřeba přemýšlet co s těmi 2,7 bilionu udělat. Za co je chceme
-            utratit? A chceme těch peněz vlastně vybírat tolik?
-          </p>
-
-          <h4 className="pt-8 font-serif text-xl font-medium">
-            Začněme mluvit narovinu
-          </h4>
-          <p>
-            Co mě opravdu vadí, je ta naše schizofrenie. Chceme „víc peněz pro
-            učitele“, ale „míň daní“. To prostě matematicky nevychází. Přeju si,
-            abychom místo nadávání na „toho Fialu“ nebo „toho Babiše“ začali
-            mluvit na rovinu.
-          </p>
-
-          <p>
-            Místo: „Měli by dát víc na obranu,“ řekněme: „Chci, abychom si my
-            všichni připlatili na nové stíhačky.“ Místo: „Neměli by zvyšovat
-            sociální pojištění,“ řekněme na rovinu: „Chci, aby naši prarodiče
-            měli nižší důchody.“ Zní to hnusně, že? Ale tak to funguje. Každá
-            služba, kterou od státu chceme, vytahuje peníze přímo z naší kapsy.
-            A naopak – každá koruna, kterou chceme ušetřit, znamená, že se někde
-            něco ořeže.
-          </p>
-
-          <h4 className="pt-8 font-serif text-xl font-medium">
-            Výzva k zodpovědnosti
-          </h4>
-          <p>
-            Vůbec mi nevadí, když máš jiný názor na to, kam ty peníze mají téct.
-            Klidně se pojďme pohádat o tom, jestli radši dálnice, digitální stát
-            nebo vyšší důchody. Nebo nic z toho a raději ušetřit na daních. To
-            je zdravá diskuze. Ale co mi vadí, je to odosobnění. Ten pocit, že
-            stát je „něco tam nahoře“, co nás jen vysává.
-          </p>
-
-          <p>
-            Pojďme si přiznat tu nepohodlnou zodpovědnost. Máme v rukou obrovský
-            balík peněz. Máme zodpovědnost za to, jak s ním naložíme. Je to naše
-            společná kasa. Tak se o ni zajímejme. Ne jako oběti, ale jako
-            majitelé.
-          </p>
-
-          <h4 className="pt-8 font-serif text-xl font-medium">
-            Jenže ono to není jen tak
-          </h4>
-          <p>
-            Když jsem se rozhodl, že se přestanu jen rozčilovat a začnu se o ten
-            náš státní rozpočet zajímat víc, narazil jsem na zeď. Čekal bych, že
-            když jde o nejdůležitější zákon roku, bude k němu existovat něco
-            jako přehledný „uživatelský manuál“. Realita? Katastrofa.
-          </p>
-
-          <p>
-            Na webu ministerstva financí najdete pár obřích čísel, která bez
-            kontextu nic neříkají. A pak je tu slavný systém{" "}
-            <a
-              href="https://monitor.statnipokladna.cz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline decoration-stone-300 transition-colors hover:decoration-stone-500"
-            >
-              Monitor státní pokladny
-            </a>
-            . Zkusili jste ho někdy? Pokud zrovna nezahlásí chybu, je pro
-            běžného smrtelníka naprosto nepřehledný. Vypadá jako něco z minulého
-            tisíciletí a otevřít ho na mobilu? Na to rovnou zapomeňte.
-          </p>
-
-          <p>
-            Vlastně se lidem vůbec nedivím, že se o naše kolektivní peníze
-            nezajímají. Kdo to kdy slyšel, aby někdo platil 43 tisíc měsíčně za
-            nějaké služby a nedostal k tomu ani pořádné vyúčtování? V dnešní
-            době, kdy je vytvoření webové aplikace rychlejší a levnější než kdy
-            dřív, je tenhle informační dluh státu naprosto neomluvitelný.
-          </p>
-
-          <h4 className="pt-8 font-serif text-xl font-medium">Proč ne já?</h4>
-          <p>
-            A pak mě to trklo. Informační dluh „státu“? Vždyť jsem vývojář. Proč
-            bych měl čekat na to, až to udělají „oni“? Proč bychom si to nemohli
-            udělat sami pro sebe?
-          </p>
-
-          <p>
-            A tak jsem se do toho v roce 2024 pustil a začal pracovat na Lidovém
-            rozpočtu. Mým cílem bylo vzít ta složitá, nepřehledná data a
-            „přeložit“ je do lidštiny. Chtěl jsem vytvořit místo, kde si každý
-            může jednoduše naklikat souvislosti mezi tím, kam jeho peníze tečou
-            a co za ně dostává.
-          </p>
-
-          <h4 className="pt-8 font-serif text-xl font-medium">
-            Takže co je cílem projektu?
-          </h4>
-          <p>
-            Přeju si, aby tento projekt pomohl k zodpovědnější občanské
-            společnosti a ke kvalitnější diskuzi. Protože čím víc lidí bude
-            rozumět tomu, kam naše peníze tečou, tím větší tlak vznikne na
-            politiky a úředníky. Pomůže nám to najít cesty, jak stát
-            zefektivnit. A systém rozpočtu pak bude více odpovídat tomu co
-            opravdu chceme „my“.
-          </p>
-
-          <p>
-            Méně plýtvání totiž znamená více peněz pro nás všechny. A o to jde
-            především – aby se nám v Česku žilo lépe. Vždyť je to tu naše. :)
-          </p>
-        </div>
-      </section>
       {/* Features Section */}
       <section className="bg-sand-50 px-6 py-12 lg:px-12">
         <div className="mx-auto max-w-4xl">
@@ -346,19 +173,217 @@ function Page() {
         </div>
       </section>
 
+      {/* About projct section */}
+      <section className="px-6 pb-10 pt-12 text-justify [hyphens:auto] lg:px-12">
+        <div className="mx-auto max-w-3xl space-y-6">
+          <hgroup>
+            <h2 className="font-serif text-3xl md:text-4xl">
+              Stát nejsou „oni“, stát jsme my
+            </h2>
+            <h3 className="text-lg text-stone-500">
+              Proč vznikl Lidový rozpočet?
+            </h3>
+          </hgroup>
+          <p>
+            Jedna věc mě vytáčí. Takový ten klasický český sport: nadávat u piva
+            (nebo na Twitteru), jak nám „stát“ zase bere peníze a jak nám ten
+            stejný „stát“ dává málo. Je to takový národní folklór. Ale když se
+            nad tím zamyslíme víc, zjistíme, že v téhle rovnici nám chybí jedna
+            zásadní proměnná. My.
+          </p>
+
+          <p>
+            Pojďme si nalít čistého vína. Státní peníze nejsou nějaký magický
+            poklad, který politici našli na konci duhy. Jsou to naše peníze.
+            Moje, tvoje, sousedovi. My všichni jsme v roce 2025 složili na
+            hromadu 2,7 bilionu korun.
+          </p>
+
+          <p>
+            Když to rozpočítám na jednoho pracujícího člověka, vychází to zhruba
+            na 43 000 korun měsíčně. To je šílená částka, co? Je to víc, než má
+            většina lidí jako čistou mzdu. Prakticky bys mohl brát dvojnásobek,
+            kdyby tenhle „stát“ neexistoval. A přesně v tuhle chvíli se ve mně
+            perou dva lidi.
+          </p>
+
+          <Collapsible>
+            <CollapsibleTrigger className="w-full text-left">
+              <p className="text-center">
+                <Button variant="outline" size="lg">
+                  Číst dále ...
+                </Button>
+              </p>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="flex flex-col items-start gap-12 pb-6 pt-4 md:flex-row">
+                <div className="basis-1/2 space-y-4">
+                  <h4 className="pt-8 font-serif text-xl font-medium">
+                    Moje naštvané já
+                  </h4>
+                  <p>
+                    Ta moje část, co miluje svobodu, křičí: „Sakra, 43 tisíc? Za
+                    co?! Za ty rozkopané silnice? Za to, že čekám na termín u
+                    doktora tři měsíce? Za ty nekonečné papíry na úřadech?“ Štve
+                    mě, když vidím, jak se tyhle naše společné peníze sypou do
+                    dotací pro miliardáře, rozkrádají při předražených státních
+                    zakázkách nebo jdou na zástupy úředníků, kteří tu jsou jen
+                    proto, aby kontrolovali jiné úředníky. A co je nejhorší. Z
+                    tohoto pochybného systému nejde svobodně vystoupit.
+                  </p>
+                </div>
+                <div className="basis-1/2 space-y-4">
+                  <h4 className="pt-8 font-serif text-xl font-medium">
+                    Moje zodpovědné já
+                  </h4>
+                  <p>
+                    Jenže pak je tu moje druhá část. Ta, co si uvědomuje, že
+                    když se ráno vzbudím, dýchám (relativně) čistý vzduch,
+                    protože někdo hlídá emise. Že nemusím živit svoje prarodiče,
+                    kteří už nejsou schopní pracovat, protože dostávají starobní
+                    důchod. A že když mě na dálnici někdo nabourá, přijede
+                    policie a sanitka, kterou jsem si nemusel objednat a
+                    zaplatit jako pizzu. Ne všechny peníze skončí v černé díře.
+                  </p>{" "}
+                </div>
+              </div>
+
+              <p>
+                Je v pořádku si zanadávat. Vyjadřovat veřejně nespokojenost.
+                Tlačit na politiky a úředníky aby zeefktivnili státní systém.
+                Ale zároveň je potřeba přemýšlet co s těmi 2,7 bilionu udělat.
+                Za co je chceme utratit? A chceme těch peněz vlastně vybírat
+                tolik?
+              </p>
+
+              <h4 className="pt-8 font-serif text-xl font-medium">
+                Začněme mluvit narovinu
+              </h4>
+              <p>
+                Co mě opravdu vadí, je ta naše schizofrenie. Chceme „víc peněz
+                pro učitele“, ale „míň daní“. To prostě matematicky nevychází.
+                Přeju si, abychom místo nadávání na „toho Fialu“ nebo „toho
+                Babiše“ začali mluvit na rovinu.
+              </p>
+
+              <p>
+                Místo: „Měli by dát víc na obranu,“ řekněme: „Chci, abychom si
+                my všichni připlatili na nové stíhačky.“ Místo: „Neměli by
+                zvyšovat sociální pojištění,“ řekněme na rovinu: „Chci, aby naši
+                prarodiče měli nižší důchody.“ Zní to hnusně, že? Ale tak to
+                funguje. Každá služba, kterou od státu chceme, vytahuje peníze
+                přímo z naší kapsy. A naopak – každá koruna, kterou chceme
+                ušetřit, znamená, že se někde něco ořeže.
+              </p>
+
+              <h4 className="pt-8 font-serif text-xl font-medium">
+                Výzva k zodpovědnosti
+              </h4>
+              <p>
+                Vůbec mi nevadí, když máš jiný názor na to, kam ty peníze mají
+                téct. Klidně se pojďme pohádat o tom, jestli radši dálnice,
+                digitální stát nebo vyšší důchody. Nebo nic z toho a raději
+                ušetřit na daních. To je zdravá diskuze. Ale co mi vadí, je to
+                odosobnění. Ten pocit, že stát je „něco tam nahoře“, co nás jen
+                vysává.
+              </p>
+
+              <p>
+                Pojďme si přiznat tu nepohodlnou zodpovědnost. Máme v rukou
+                obrovský balík peněz. Máme zodpovědnost za to, jak s ním
+                naložíme. Je to naše společná kasa. Tak se o ni zajímejme. Ne
+                jako oběti, ale jako majitelé.
+              </p>
+
+              <h4 className="pt-8 font-serif text-xl font-medium">
+                Jenže ono to není jen tak
+              </h4>
+              <p>
+                Když jsem se rozhodl, že se přestanu jen rozčilovat a začnu se o
+                ten náš státní rozpočet zajímat víc, narazil jsem na zeď. Čekal
+                bych, že když jde o nejdůležitější zákon roku, bude k němu
+                existovat něco jako přehledný „uživatelský manuál“. Realita?
+                Katastrofa.
+              </p>
+
+              <p>
+                Na webu ministerstva financí najdete pár obřích čísel, která bez
+                kontextu nic neříkají. A pak je tu slavný systém{" "}
+                <a
+                  href="https://monitor.statnipokladna.cz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-stone-300 transition-colors hover:decoration-stone-500"
+                >
+                  Monitor státní pokladny
+                </a>
+                . Zkusili jste ho někdy? Pokud zrovna nezahlásí chybu, je pro
+                běžného smrtelníka naprosto nepřehledný. Vypadá jako něco z
+                minulého tisíciletí a otevřít ho na mobilu? Na to rovnou
+                zapomeňte.
+              </p>
+
+              <p>
+                Vlastně se lidem vůbec nedivím, že se o naše kolektivní peníze
+                nezajímají. Kdo to kdy slyšel, aby někdo platil 43 tisíc měsíčně
+                za nějaké služby a nedostal k tomu ani pořádné vyúčtování? V
+                dnešní době, kdy je vytvoření webové aplikace rychlejší a
+                levnější než kdy dřív, je tenhle informační dluh státu naprosto
+                neomluvitelný.
+              </p>
+
+              <h4 className="pt-8 font-serif text-xl font-medium">
+                Proč ne já?
+              </h4>
+              <p>
+                A pak mě to trklo. Informační dluh „státu“? Vždyť jsem vývojář.
+                Proč bych měl čekat na to, až to udělají „oni“? Proč bychom si
+                to nemohli udělat sami pro sebe?
+              </p>
+
+              <p>
+                A tak jsem se do toho v roce 2024 pustil a začal pracovat na
+                Lidovém rozpočtu. Mým cílem bylo vzít ta složitá, nepřehledná
+                data a „přeložit“ je do lidštiny. Chtěl jsem vytvořit místo, kde
+                si každý může jednoduše naklikat souvislosti mezi tím, kam jeho
+                peníze tečou a co za ně dostává.
+              </p>
+
+              <h4 className="pt-8 font-serif text-xl font-medium">
+                Takže co je cílem projektu?
+              </h4>
+              <p>
+                Přeju si, aby tento projekt pomohl k zodpovědnější občanské
+                společnosti a ke kvalitnější diskuzi. Protože čím víc lidí bude
+                rozumět tomu, kam naše peníze tečou, tím větší tlak vznikne na
+                politiky a úředníky. Pomůže nám to najít cesty, jak stát
+                zefektivnit. A systém rozpočtu pak bude více odpovídat tomu co
+                opravdu chceme „my“.
+              </p>
+
+              <p>
+                Méně plýtvání totiž znamená více peněz pro nás všechny. A o to
+                jde především – aby se nám v Česku žilo lépe. Vždyť je to tu
+                naše. :)
+              </p>
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
+      </section>
+
       {/* About Author Section */}
-      <section className="px-6 lg:px-12">
+      <section className="border-t px-6 pt-12 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <h2 className="mb-6 font-serif text-3xl md:text-4xl">
             Kdo za tím stojí
           </h2>
           <div className="flex flex-col gap-8 md:flex-row md:items-start">
             <div className="shrink-0">
-              <div className="size-32 overflow-hidden rounded-full bg-stone-200 md:size-40 mx-auto">
+              <div className="mx-auto size-32 overflow-hidden rounded-full bg-stone-200 md:size-40">
                 <img
                   src={myPhoto}
                   alt="Ondřej Velíšek"
-                  className="size-full object-cover mx-auto"
+                  className="mx-auto size-full object-cover"
                 />
               </div>
               <div className="mt-4 flex justify-center gap-4">
