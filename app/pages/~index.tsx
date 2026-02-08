@@ -215,7 +215,7 @@ function Page() {
                 </Button>
               </p>
             </CollapsibleTrigger>
-            <CollapsibleContent>
+            <CollapsibleContent innerClassName="space-y-6">
               <div className="flex flex-col items-start gap-12 pb-6 pt-4 md:flex-row">
                 <div className="basis-1/2 space-y-4">
                   <h4 className="pt-8 font-serif text-xl font-medium">
