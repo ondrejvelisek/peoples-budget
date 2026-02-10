@@ -4,5 +4,16 @@
       "source": "/vercel-rewrite/api/event",
       "destination": "https://plausible.io/api/event"
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=0"
+        }
+      ]
+    }
   ]
 }

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DonationProgressWidget } from "./DonationProgressWidget";
-import supportProjectImg from "./support-project-illustration.png";
-import supportSuccessImg from "./support-project-success-illustration.png";
+import supportProjectImg from "./support-project-illustration.webp";
+import supportSuccessImg from "./support-project-success-illustration.webp";
 import { z } from "zod";
 import { SupportWidget } from "./SupportWidget";
 import { formatCurrencyStandard } from "@/lib/utils";

@@ -18,13 +18,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import type { QueryClient } from "@tanstack/react-query";
 import { NotFound } from "./NotFound";
 import { createIsomorphicFn } from "@tanstack/react-start";
-import ogImage from "./hero-img-square.jpg";
+import ogImage from "../../public/hero-img-square.webp";
 
 createIsomorphicFn().client(() =>
   init({
     domain: "lidovyrozpocet.cz",
     endpoint: "/vercel-rewrite/api/event",
-  })
+  }),
 )();
 
 export const Route = createRootRouteWithContext<{

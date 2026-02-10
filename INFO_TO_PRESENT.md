@@ -47,3 +47,6 @@ Jaké další featury chcete? Napište mi! Odkaz na cesko digital.
 Forum k diskuzi tady. Nebo twítujte.
 
 
+
+
+Dát někam odkaz na Plausible?

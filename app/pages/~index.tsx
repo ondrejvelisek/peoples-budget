@@ -5,11 +5,9 @@ import {
   RiLinkedinBoxFill,
   RiTwitterXFill,
 } from "react-icons/ri";
-import heroImgSquare from "./hero-img-square.jpg";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { InProgress } from "@/components/InProgress/InProgress";
-import myPhoto from "./ondrejvelisek-photo.png";
 import {
   Collapsible,
   CollapsibleContent,
@@ -31,7 +29,7 @@ function Page() {
             tvoje peníze
           </h1>
           <img
-            src={heroImgSquare}
+            src="/hero-img-square.webp"
             alt="Ilustrace českého lva s kolečky plných peněz"
             className="w-full object-cover pb-6"
           />
@@ -381,7 +379,7 @@ function Page() {
             <div className="shrink-0">
               <div className="mx-auto size-32 overflow-hidden rounded-full bg-stone-200 md:size-40">
                 <img
-                  src={myPhoto}
+                  src="/ondrejvelisek-photo.webp"
                   alt="Ondřej Velíšek"
                   className="mx-auto size-full object-cover"
                 />
